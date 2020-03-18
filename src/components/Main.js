@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
 
 import Spending from './pages/Spending/Spending';
 import Categories from './pages/Categories/Categories';
@@ -7,18 +7,24 @@ import History from './pages/History/History';
 
 export default function Main() {
   return (
-    <Switch>
-      <Route exact path="/">
-        <Spending />
-      </Route>
+    <div>
+      <Link to="/">Spending</Link>
+      <Link to="/Categories">Categories</Link>
+      <Link to="/History">History</Link>
 
-      <Route path="/Categories">
-        <Categories />
-      </Route>
+      <Switch>
+        <Route exact path="/">
+          <Spending />
+        </Route>
 
-      <Route path="/History">
-        <History />
-      </Route>
-    </Switch>
+        <Route path="/Categories">
+          <Categories />
+        </Route>
+
+        <Route path="/History">
+          <History />
+        </Route>
+      </Switch>
+    </div>
   );
 }
