@@ -8,7 +8,7 @@ import History from './pages/History/History';
 export default function Main() {
   return (
     <div>
-      <Link to="/">Spending</Link>
+      <Link to="/">Spending</Link><hr/>
       <Link to="/Categories">Categories</Link>
       <Link to="/History">History</Link>
 
