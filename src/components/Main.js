@@ -8,8 +8,9 @@ import History from './pages/History/History';
 export default function Main() {
   return (
     <div>
-      <Link to="/">Spending</Link><br/><button/>
-      <Link to="/Categories">Categories</Link><br/>
+
+      <Link to="/">Spending</Link><br/><button/><hr/>
+      <Link to="/Categories">Categories</Link><br/><hr/>
       <Link to="/History">History</Link>
 
       <Switch>
