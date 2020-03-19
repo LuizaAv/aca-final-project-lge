@@ -9,7 +9,7 @@ export default function Main() {
   return (
     <div>
       <Link to="/">Spending</Link><hr/>
-      <Link to="/Categories">Categories</Link>
+      <Link to="/Categories">Categories</Link><br/>
       <Link to="/History">History</Link>
 
       <Switch>
