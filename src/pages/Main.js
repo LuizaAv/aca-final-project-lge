@@ -10,6 +10,8 @@ import History from './History/History';
 
 import { budget, categories } from '../API/db';
 
+import Reusable from '../Components/AddBudget/AddBudget'
+
 const initialState = {
   categories: [...categories],
   budget: [...budget],
@@ -20,6 +22,7 @@ export default function Main() {
   const [state, dispatch] = useReducer(reducer, initialState);
   return (
     <StoreContext.Provider value={{ state, dispatch }}>
+      <Reusable />
       <Link to="/">Summary</Link>
       <Link to="/Categories">Categories</Link>
       <Link to="/History">History</Link>
