@@ -8,10 +8,13 @@ import Summary from './Summary/Summary';
 import Categories from './Categories/Categories';
 import History from './History/History';
 
+import { budget, categories } from '../API/db';
+
 const initialState = {
-  categories: [],
-  budget: [],
+  categories: [...categories],
+  budget: [...budget],
 };
+
 
 export default function Main() {
   const [state, dispatch] = useReducer(reducer, initialState);
