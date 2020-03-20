@@ -1,13 +1,19 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.main{
+  margin: auto;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.expenseButton{
+  height: 30px;
+  width: 100px;
+  background-color: blanchedalmond;
+  border-radius: 10px;
+  margin: 5px;
+}
+
+.incomeButton{
+  height: 30px;
+  width: 100px;
+  background-color: blanchedalmond;
+  border-radius: 10px;
+  margin: 5px;
 }
