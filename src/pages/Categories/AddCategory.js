@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Select from '@material-ui/core/Select';
@@ -16,7 +17,7 @@ export default function AddCategory() {
 
   const [open, setOpen] = React.useState(false);
 
-  const handleClose = () => {
+  const handleOpen = () => {
     setOpen(!open);
   };
 
@@ -28,12 +29,23 @@ export default function AddCategory() {
     setName(e.target.value);
   };
 
+  const handleAddCategory = () => {
+    const id = state.categories.reduce(
+      (acc, category) => (category.id > acc ? category.id : acc),
+      0,
+    ) + 1;
+    const newCategory = { id, type, name };
+    dispatch(addCategory(newCategory));
+  };
+
   return (
     <>
-      <button type="button">add</button>
+      <Button variant="contained" onClick={handleOpen}>
+        Add Category
+      </Button>
 
       <Dialog
-        onClose={handleClose}
+        onClose={handleOpen}
         aria-labelledby="simple-dialog-title"
         open={open}
       >
@@ -53,6 +65,9 @@ export default function AddCategory() {
           value={name}
           onChange={handleNameChange}
         />
+        <Button variant="contained" onClick={handleAddCategory}>
+          Done
+        </Button>
       </Dialog>
     </>
   );
