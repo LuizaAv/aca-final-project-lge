@@ -1,59 +1,25 @@
-import React, { useState } from "react";
-import { Switch, Route, Link } from "react-router-dom";
-import Summary from "./Summary/Summary";
-import Categories from "./Categories/Categories";
-import History from "./History/History";
-import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import "../index.css";
-import Addexpense from "./Popups/Addexpense";
-import Addincome from "./Popups/Addincome";
+import React, { useReducer } from 'react';
+import { Switch, Route, Link } from 'react-router-dom';
 
-const useStyles = makeStyles(theme => ({
-  button: {
-    margin: theme.spacing(1)
-  }
-}));
+import { StoreContext } from '../store/storeContext';
+import { reducer } from '../store/reducers';
+
+import Summary from './Summary/Summary';
+import Categories from './Categories/Categories';
+import History from './History/History';
+
+const initialState = {
+  categories: [],
+  budget: [],
+};
 
 export default function Main() {
-  const classes = useStyles();
-  const [isExpenseOpen, setExpenseIsOpen] = useState(false);
-  const [isIncomeOpen, setIncomeIsOpen] = useState(false);
-
-
-  const handleExpense = () => {
-      setExpenseIsOpen(!isExpenseOpen);
-  }
-  
-
-  const handleIncome = () => {
-      setIncomeIsOpen(!isIncomeOpen);
-  }
-
+  const [state, dispatch] = useReducer(reducer, initialState);
   return (
-    <div className="main">
-      <Button
-        variant="contained"
-        color="default"
-        className={classes.button}
-        onClick={handleExpense}
-      >
-        add Expense
-      </Button>
-      <Button
-        variant="contained"
-        color="default"
-        className={classes.button}
-        onClick={handleIncome}
-      >
-        add Income
-      </Button>
-
-      <div className="links">
-        <Link to="/">Summary</Link>
-        <Link to="/Categories">Categories</Link>
-        <Link to="/History">History</Link>
-      </div>
+    <StoreContext.Provider value={{ state, dispatch }}>
+      <Link to="/">Summary</Link>
+      <Link to="/Categories">Categories</Link>
+      <Link to="/History">History</Link>
 
       <Switch>
         <Route exact path="/">
@@ -68,9 +34,6 @@ export default function Main() {
           <History />
         </Route>
       </Switch>
-      
-      {isExpenseOpen === true && isIncomeOpen === false && <Addexpense />}
-      {isIncomeOpen === true && isExpenseOpen === false && <Addincome />}
-    </div>
+    </StoreContext.Provider>
   );
 }
