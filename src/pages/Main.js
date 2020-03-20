@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Switch, Route, Link } from "react-router-dom";
 import Summary from "./Summary/Summary";
 import Categories from "./Categories/Categories";
@@ -20,19 +20,15 @@ export default function Main() {
   const [isExpenseOpen, setExpenseIsOpen] = useState(false);
   const [isIncomeOpen, setIncomeIsOpen] = useState(false);
 
-  useEffect(() => {
-    if (isExpenseOpen === false) {
-      setExpenseIsOpen(isExpenseOpen);
-      console.log('expense')
-    }
-  }, [isExpenseOpen]);
 
-  useEffect(() => {
-    if (isIncomeOpen === false) {
-      setIncomeIsOpen(isIncomeOpen);
-      console.log('income')
-    }
-  }, [isIncomeOpen]);
+  const handleExpense = () => {
+      setExpenseIsOpen(!isExpenseOpen);
+  }
+  
+
+  const handleIncome = () => {
+      setIncomeIsOpen(!isIncomeOpen);
+  }
 
   return (
     <div className="main">
@@ -40,7 +36,7 @@ export default function Main() {
         variant="contained"
         color="default"
         className={classes.button}
-        onClick={() => (isExpenseOpen === false ? setExpenseIsOpen(true) : setExpenseIsOpen(false))}
+        onClick={handleExpense}
       >
         add Expense
       </Button>
@@ -48,7 +44,7 @@ export default function Main() {
         variant="contained"
         color="default"
         className={classes.button}
-        onClick={() => (isIncomeOpen === false ? setIncomeIsOpen(true) : setIncomeIsOpen(false))}
+        onClick={handleIncome}
       >
         add Income
       </Button>
@@ -72,6 +68,7 @@ export default function Main() {
           <History />
         </Route>
       </Switch>
+      
       {isExpenseOpen === true && isIncomeOpen === false && <Addexpense />}
       {isIncomeOpen === true && isExpenseOpen === false && <Addincome />}
     </div>
