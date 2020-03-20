@@ -1,13 +1,22 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
+
+import { StoreContext } from '../store/storeContext';
+import { reducer } from '../store/reducers';
 
 import Summary from './Summary/Summary';
 import Categories from './Categories/Categories';
 import History from './History/History';
 
+const initialState = {
+  categories: [],
+  budget: [],
+};
+
 export default function Main() {
+  const [state, dispatch] = useReducer(reducer, initialState);
   return (
-    <div>
+    <StoreContext.Provider value={{ state, dispatch }}>
       <Link to="/">Summary</Link>
       <Link to="/Categories">Categories</Link>
       <Link to="/History">History</Link>
@@ -25,6 +34,6 @@ export default function Main() {
           <History />
         </Route>
       </Switch>
-    </div>
+    </StoreContext.Provider>
   );
 }
