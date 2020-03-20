@@ -18,6 +18,7 @@ const initialState = {
 
 export default function Main() {
   const [state, dispatch] = useReducer(reducer, initialState);
+  
   return (
     <StoreContext.Provider value={{ state, dispatch }}>
       <Link to="/">Summary</Link>
