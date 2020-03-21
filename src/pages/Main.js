@@ -8,7 +8,7 @@ import { reducer } from '../store/reducers';
 import Summary from './Summary/Summary';
 import Categories from './Categories/Categories';
 import History from './History/History';
-import AddBudget from '../components/AddBudget/AddBudget';
+import AddBudget from '../Components/AddBudget/AddBudget';
 
 import { budget, categories } from '../API/db';
 
