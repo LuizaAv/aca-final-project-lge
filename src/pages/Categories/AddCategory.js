@@ -60,7 +60,7 @@ export default function AddCategory() {
   };
 
   return (
-    <>
+    <div>
       <Button variant="outlined" onClick={handleOpen}>
         Add Category
       </Button>
@@ -89,6 +89,6 @@ export default function AddCategory() {
           </Button>
         </DialogActions>
       </Dialog>
-    </>
+    </div>
   );
 }
