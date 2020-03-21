@@ -3,25 +3,25 @@ export const budget = [
     id: 1, type: 'expense', name: 'Insurance', category: 'Automobile', amount: 500, date: '20.03.2020',
   },
   {
-    id: 2, type: 'expense', name: 'Concert', category: 'Entertainment', amount: 500, date: '20.03.2020',
+    id: 2, type: 'expense', name: 'Concert', category: 'Entertainment', amount: 510, date: '20.03.2020',
   },
   {
-    id: 3, type: 'expense', name: 'Groceries', category: 'Food', amount: 500, date: '20.03.2020',
+    id: 3, type: 'expense', name: 'Groceries', category: 'Food', amount: 520, date: '20.03.2020',
   },
   {
-    id: 4, type: 'expense', name: 'HealthCare', category: 'Medical', amount: 500, date: '20.03.2020',
+    id: 4, type: 'expense', name: 'HealthCare', category: 'Medical', amount: 530, date: '20.03.2020',
   },
   {
-    id: 5, type: 'expense', name: 'Utilities', category: 'Electric', amount: 500, date: '20.03.2020',
+    id: 5, type: 'expense', name: 'Utilities', category: 'Electric', amount: 540, date: '20.03.2020',
   },
   {
-    id: 6, type: 'income', name: 'Salary', category: 'Salary', amount: 500, date: '20.03.2020',
+    id: 6, type: 'income', name: 'Salary', category: 'Salary', amount: 550, date: '20.03.2020',
   },
   {
-    id: 7, type: 'income', name: 'Equities', category: 'Equities', amount: 500, date: '20.03.2020',
+    id: 7, type: 'income', name: 'Equities', category: 'Equities', amount: 560, date: '20.03.2020',
   },
   {
-    id: 8, type: 'income', name: 'Pensions', category: 'Pensions', amount: 500, date: '20.03.2020',
+    id: 8, type: 'income', name: 'Pensions', category: 'Pensions', amount: 570, date: '20.03.2020',
   },
 ];
 
