@@ -3,8 +3,8 @@ export const REMOVE_CATEGORY = 'REMOVE_CATEGORY';
 export const EDIT_CATEGORY = 'EDIT_CATEGORY';
 
 export const ADD_BUDGET = 'ADD_BUDGET';
-export const REMOVE_BUDGET = 'ADD_BUDGET';
-export const EDIT_BUDGET = 'ADD_BUDGET';
+export const REMOVE_BUDGET = 'REMOVE_BUDGET';
+export const EDIT_BUDGET = 'EDIT_BUDGET';
 
 export function addCategory(payload) {
   return { type: ADD_CATEGORY, payload };

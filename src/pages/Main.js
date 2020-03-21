@@ -1,5 +1,6 @@
 import React, { useReducer } from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
 
 import { StoreContext } from '../store/storeContext';
 import { reducer } from '../store/reducers';
@@ -7,6 +8,7 @@ import { reducer } from '../store/reducers';
 import Summary from './Summary/Summary';
 import Categories from './Categories/Categories';
 import History from './History/History';
+import AddBudget from '../Components/AddBudget/AddBudget';
 
 import { budget, categories } from '../API/db';
 
@@ -18,12 +20,20 @@ const initialState = {
 
 export default function Main() {
   const [state, dispatch] = useReducer(reducer, initialState);
-  
+
   return (
     <StoreContext.Provider value={{ state, dispatch }}>
-      <Link to="/">Summary</Link>
-      <Link to="/Categories">Categories</Link>
-      <Link to="/History">History</Link>
+      <AddBudget />
+
+      <Button variant="outlined">
+        <Link to="/">Summary</Link>
+      </Button>
+      <Button variant="outlined">
+        <Link to="/Categories">Categories</Link>
+      </Button>
+      <Button variant="outlined">
+        <Link to="/History">History</Link>
+      </Button>
 
       <Switch>
         <Route exact path="/">
