@@ -12,7 +12,7 @@ import Select from "@material-ui/core/Select";
 import { addBudget } from "../../store/actions";
 import { useStoreContext } from "../../store/storeContext";
 
-import { budget } from "../../API/db";
+//import { budget } from "../../API/db";
 
 const useStyles = makeStyles(theme => ({
   formControl: {
@@ -65,12 +65,14 @@ function AddBudget(props) {
       ) + 1;
     const newDate = new Date()
     setDate(`${newDate.getDay()}.${newDate.getMonth()}.${newDate.getYear()}`)
-    const addedBudget = {id, type: changeableData, name, category, amount, date: newDate};
+    const addedBudget = {id, type: changeableData, name, category, amount, date};
     setName("");
     setAmount("");
+    setCategory('');
     setOpen(!true);
     dispatch(addBudget(addedBudget));
-    console.log(budget)
+    //console.log(budget)
+    //console.log(date)
   };
 
   const handleChangeSelect = event => {
@@ -124,7 +126,7 @@ function AddBudget(props) {
                     onChange={handleChangeSelect}
                   >
                     {state.categories.map(category =>
-                      category.type == changeableData.toLowerCase() ? (
+                      category.type === changeableData.toLowerCase() ? (
                         <MenuItem value={category.name} key={category.name}>
                           {category.name}
                         </MenuItem>
