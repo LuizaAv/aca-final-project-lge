@@ -35,7 +35,7 @@ const SelectCategory = (props) => {
       >
       
         {state.categories.map(category =>
-          category.type == props.toggleData ? (
+          category.type == (props.toggleData).toLowerCase() ? (
             <MenuItem value={category.name}>{category.name}</MenuItem>
           ) : null
         )}

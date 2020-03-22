@@ -17,12 +17,12 @@ function AddBudget(props) {
   
   const handleClickExpense = () => {
     setOpen(true);
-    setChangeableData('expense')
+    setChangeableData('Expense')
   };
 
   const handleClickIncome = () => {
     setOpen(true);
-    setChangeableData('income')
+    setChangeableData('Income')
   };
 
   const handleClose = () => {
