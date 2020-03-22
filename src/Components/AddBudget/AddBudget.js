@@ -1,12 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useContext} from "react";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import SelectCategory from "./SelectCategory";
-import { useStoreContext } from "../../store/storeContext";
-import { addCategory } from "../../store/actions";
+import { addBudget } from "../../store/actions";
+import {useStoreContext} from '../../store/storeContext';
+import {Category} from './SelectCategory'
+
+import {budget} from '../../API/db';
+
+
 
 function AddBudget(props) {
   const [open, setOpen] = React.useState(false);
@@ -14,6 +19,7 @@ function AddBudget(props) {
   const [amount, setAmount] = useState(0);
   const { state, dispatch } = useStoreContext();
   const [changeableData, setChangeableData] = useState("");
+  const category = useContext(Category)
 
   const handleClickExpense = () => {
     setOpen(true);
@@ -39,17 +45,19 @@ function AddBudget(props) {
     console.log(amount);
   };
 
-  const handleAddingCategory = () => {
+  const handleAddingBudget = () => {
     const id =
       state.categories.reduce(
         (acc, category) => (category.id > acc ? category.id : acc),
         0
       ) + 1;
-    const addedExpense = { id, type: "expense", name };
+    const addedBudget = { id, type: changeableData, name, category, amount};
     setName("");
     setAmount("");
     setOpen(!true);
-    dispatch(addCategory(addedExpense));
+    dispatch(addBudget(addedBudget));
+    //console.log(budget)
+    console.log(category)
   };
 
   const style = {
@@ -107,7 +115,7 @@ function AddBudget(props) {
               <Button
                 variant="outlined"
                 style={style.submitButton}
-                onClick={handleAddingCategory}
+                onClick={handleAddingBudget}
               >
                 + Add
               </Button>
