@@ -7,12 +7,12 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
 
 import { useStoreContext } from '../../store/storeContext';
 
 import AddCategory from './AddCategory';
 import DeleteCategory from './DeleteCategory';
+import EditeComponent from './EditCategory';
 
 const useStyles = makeStyles({
   table: {
@@ -49,8 +49,7 @@ export default function Categories() {
                 <TableCell align="center">{category.name}</TableCell>
                 <TableCell align="center">{category.type}</TableCell>
                 <TableCell align="center">
-                  <Button>edit</Button>
-                  /
+                  <EditeComponent category={category} />
                   <DeleteCategory category={category} />
                 </TableCell>
               </TableRow>
