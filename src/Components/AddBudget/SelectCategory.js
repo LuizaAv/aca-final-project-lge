@@ -4,7 +4,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import {useStoreContext} from '../../store/storeContext'
+import { useStoreContext } from "../../store/storeContext";
 
 const useStyles = makeStyles(theme => ({
   formControl: {
@@ -25,25 +25,22 @@ const SelectCategory = () => {
   };
 
   return (
-      <FormControl className={classes.formControl}>
-        <InputLabel id="demo-simple-select-label">Category</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={category}
-          onChange={handleChange}
-        >
-          {
-              state.categories.map(category => (
-                category.type == 'expense' ? 
-                <MenuItem value={category.name}>{category.name}</MenuItem> :
-                null
-              ))
-          }
-        </Select>
-        
-      </FormControl>
-  )
+    <FormControl className={classes.formControl}>
+      <InputLabel id="demo-simple-select-label">Category</InputLabel>
+      <Select
+        labelId="demo-simple-select-label"
+        id="demo-simple-select"
+        value={category}
+        onChange={handleChange}
+      >
+        {state.categories.map(category =>
+          category.type == "expense" ? (
+            <MenuItem value={category.name}>{category.name}</MenuItem>
+          ) : null
+        )}
+      </Select>
+    </FormControl>
+  );
 };
 
-export default SelectCategory
+export default SelectCategory;

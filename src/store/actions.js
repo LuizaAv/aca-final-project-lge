@@ -6,6 +6,7 @@ export const ADD_BUDGET = 'ADD_BUDGET';
 export const REMOVE_BUDGET = 'REMOVE_BUDGET';
 export const EDIT_BUDGET = 'EDIT_BUDGET';
 
+
 export function addCategory(payload) {
   return { type: ADD_CATEGORY, payload };
 }
@@ -29,3 +30,4 @@ export function removeBudget(payload) {
 export function editBudget(payload) {
   return { type: EDIT_BUDGET, payload };
 }
+
