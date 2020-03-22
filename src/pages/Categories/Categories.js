@@ -13,6 +13,7 @@ import { useStoreContext } from '../../store/storeContext';
 import AddCategory from './AddCategory';
 import DeleteCategory from './DeleteCategory';
 import EditeComponent from './EditCategory';
+import Filter from '../../components/Filter/Filter';
 
 const useStyles = makeStyles({
   table: {
@@ -28,12 +29,14 @@ const StyledTableCell = withStyles((theme) => ({
 }))(TableCell);
 
 export default function Categories() {
-  const { state } = useStoreContext();
   const classes = useStyles();
+  const { state } = useStoreContext();
+  const [categories, setCategories] = React.useState(state.categories);
 
   return (
     <>
       <AddCategory />
+      <Filter setCategories={setCategories} />
       <TableContainer className={classes.table} component={Paper}>
         <Table>
           <TableHead>
@@ -44,7 +47,7 @@ export default function Categories() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {state.categories.map((category) => (
+            {categories.map((category) => (
               <TableRow key={category.id}>
                 <TableCell align="center">{category.name}</TableCell>
                 <TableCell align="center">{category.type}</TableCell>
