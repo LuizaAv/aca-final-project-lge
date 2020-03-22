@@ -14,15 +14,15 @@ function AddBudget(props) {
   const [amount, setAmount] = useState(0);
   const { state, dispatch } = useStoreContext();
   const [changeableData, setChangeableData] = useState("");
-  
+
   const handleClickExpense = () => {
     setOpen(true);
-    setChangeableData('Expense')
+    setChangeableData("Expense");
   };
 
   const handleClickIncome = () => {
     setOpen(true);
-    setChangeableData('Income')
+    setChangeableData("Income");
   };
 
   const handleClose = () => {
@@ -75,10 +75,10 @@ function AddBudget(props) {
   return (
     <div>
       <div className="addExpense">
-        <Button variant="outlined" value='Expense' onClick={handleClickExpense}>
+        <Button variant="outlined" value="Expense" onClick={handleClickExpense}>
           Add Expense
         </Button>
-        <Button variant="outlined" value='Income' onClick={handleClickIncome}>
+        <Button variant="outlined" value="Income" onClick={handleClickIncome}>
           Add Income
         </Button>
         <div>
@@ -88,7 +88,7 @@ function AddBudget(props) {
             </DialogTitle>
             <DialogContent style={style.sizes}>
               <div>
-                <SelectCategory toggleData={changeableData}/>
+                <SelectCategory toggleData={changeableData} />
               </div>
               <div>
                 <label>Name</label>
