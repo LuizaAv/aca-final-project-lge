@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const SelectCategory = () => {
+const SelectCategory = (props) => {
   const classes = useStyles();
   const [category, setCategory] = React.useState("");
   const { state } = useStoreContext();
@@ -33,8 +33,9 @@ const SelectCategory = () => {
         value={category}
         onChange={handleChange}
       >
+      
         {state.categories.map(category =>
-          category.type == "expense" ? (
+          category.type == props.toggleData ? (
             <MenuItem value={category.name}>{category.name}</MenuItem>
           ) : null
         )}
