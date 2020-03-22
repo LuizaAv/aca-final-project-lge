@@ -1,25 +1,37 @@
-import React, { useState, useContext} from "react";
+import React, { useState, useContext } from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import SelectCategory from "./SelectCategory";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
 import { addBudget } from "../../store/actions";
-import {useStoreContext} from '../../store/storeContext';
-import {Category} from './SelectCategory'
+import { useStoreContext } from "../../store/storeContext";
 
-import {budget} from '../../API/db';
+import { budget } from "../../API/db";
 
-
+const useStyles = makeStyles(theme => ({
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+    marginLeft: 100,
+    marginTop: -30
+  }
+}));
 
 function AddBudget(props) {
+  const classes = useStyles();
+  const [category, setCategory] = React.useState("");
   const [open, setOpen] = React.useState(false);
   const [name, setName] = useState("");
   const [amount, setAmount] = useState(0);
   const { state, dispatch } = useStoreContext();
   const [changeableData, setChangeableData] = useState("");
-  const category = useContext(Category)
+  const [date, setDate] = useState("")
 
   const handleClickExpense = () => {
     setOpen(true);
@@ -51,13 +63,18 @@ function AddBudget(props) {
         (acc, category) => (category.id > acc ? category.id : acc),
         0
       ) + 1;
-    const addedBudget = { id, type: changeableData, name, category, amount};
+    const newDate = new Date()
+    setDate(`${newDate.getDay()}.${newDate.getMonth()}.${newDate.getYear()}`)
+    const addedBudget = {id, type: changeableData, name, category, amount, date: newDate};
     setName("");
     setAmount("");
     setOpen(!true);
     dispatch(addBudget(addedBudget));
-    //console.log(budget)
-    console.log(category)
+    console.log(budget)
+  };
+
+  const handleChangeSelect = event => {
+    setCategory(event.target.value);
   };
 
   const style = {
@@ -96,7 +113,25 @@ function AddBudget(props) {
             </DialogTitle>
             <DialogContent style={style.sizes}>
               <div>
-                <SelectCategory toggleData={changeableData} />
+                <FormControl className={classes.formControl}>
+                  <InputLabel id="demo-simple-select-label">
+                    Category
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={category}
+                    onChange={handleChangeSelect}
+                  >
+                    {state.categories.map(category =>
+                      category.type == changeableData.toLowerCase() ? (
+                        <MenuItem value={category.name} key={category.name}>
+                          {category.name}
+                        </MenuItem>
+                      ) : null
+                    )}
+                  </Select>
+                </FormControl>
               </div>
               <div>
                 <label>Name</label>
