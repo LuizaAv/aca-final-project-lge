@@ -10,7 +10,9 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 
 import { useStoreContext } from '../../store/storeContext';
+
 import AddCategory from './AddCategory';
+import DeleteCategory from './DeleteCategory';
 
 const useStyles = makeStyles({
   table: {
@@ -48,9 +50,8 @@ export default function Categories() {
                 <TableCell align="center">{category.type}</TableCell>
                 <TableCell align="center">
                   <Button>edit</Button>
-                  {' '}
                   /
-                  <Button>delete</Button>
+                  <DeleteCategory category={category} />
                 </TableCell>
               </TableRow>
             ))}
