@@ -31,6 +31,7 @@ function AddBudget(props) {
   const [amount, setAmount] = useState(0);
   const { state, dispatch } = useStoreContext();
   const [changeableData, setChangeableData] = useState("");
+  const [date, setDate] = useState("")
 
   const handleClickExpense = () => {
     setOpen(true);
@@ -62,17 +63,14 @@ function AddBudget(props) {
         (acc, category) => (category.id > acc ? category.id : acc),
         0
       ) + 1;
-    const addedBudget = {
-      id,
-      type: changeableData,
-      name,
-      /*category,*/ amount
-    };
+    const newDate = new Date()
+    setDate(`${newDate.getDay()}.${newDate.getMonth()}.${newDate.getYear()}`)
+    const addedBudget = {id, type: changeableData, name, category, amount, date: newDate};
     setName("");
     setAmount("");
     setOpen(!true);
     dispatch(addBudget(addedBudget));
-    //console.log(budget)
+    console.log(budget)
   };
 
   const handleChangeSelect = event => {
