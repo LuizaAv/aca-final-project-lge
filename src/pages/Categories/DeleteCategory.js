@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useStoreContext } from '../../store/storeContext';
-import { removeCategory } from '../../store/actions';
+import { deleteCategory } from '../../store/actions';
 
 export default function RemoveCategory() {
   const { state, dispatch } = useStoreContext();
