@@ -1,29 +1,65 @@
-import React, { useState } from "react";
-import { useStoreContext } from "../../store/storeContext";
+import React, { useState } from 'react';
+import propTypes from 'prop-types';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
-export default function Filter() {
+import { makeStyles } from '@material-ui/core/styles';
+
+
+import { useStoreContext } from '../../store/storeContext';
+
+
+const useStyles = makeStyles({
+  select: {
+    width: 150,
+    marginLeft: 5,
+    textAlign: 'center',
+  },
+  menuItem: {
+    justifyContent: 'center',
+  },
+});
+
+
+export default function Filter({ setCategories }) {
+  const classes = useStyles();
   const { state } = useStoreContext();
-  const [type, setType] = useState("");
+  const [type, setType] = useState('all');
+
+  React.useEffect(() => {
+    const filter = type === 'all'
+      ? [...state.categories]
+      : state.categories.filter((category) => category.type === type);
+    setCategories(filter);
+  }, [type, state]);
+
+  const handleChange = (e) => {
+    setType(e.target.value);
+  };
+
   return (
     <>
-      <div>
-        <select
-          onChange={e => {
-            setType(e.target.value);
-          }}
-        >
-          <option>Expense/Income</option>
-          <option>expense</option>
-          <option>income</option>
-        </select>
-      </div>
-      <br />
-
-      {state.categories
-        .filter(c => c.type === type)
-        .map(el => (
-          <div>{el.name}</div>
-        ))}
+      <FormControlLabel
+        control={(
+          <Select
+            className={classes.select}
+            variant="outlined"
+            value={type}
+            onChange={handleChange}
+          >
+            <MenuItem className={classes.menuItem} value="all">All</MenuItem>
+            <MenuItem className={classes.menuItem} value="expense">Expense</MenuItem>
+            <MenuItem className={classes.menuItem} value="income">Income</MenuItem>
+          </Select>
+        )}
+        label="Filter"
+        labelPlacement="start"
+      />
     </>
   );
 }
+
+Filter.propTypes = {
+  setCategories: propTypes.func.isRequired,
+};
