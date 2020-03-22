@@ -1,19 +1,62 @@
 import React from 'react';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+
+import { useStoreContext } from '../../store/storeContext';
 
 import AddCategory from './AddCategory';
-import { useStoreContext } from '../../store/storeContext';
+import DeleteCategory from './DeleteCategory';
+import EditeComponent from './EditCategory';
+
+const useStyles = makeStyles({
+  table: {
+    width: '80%',
+  },
+});
+
+const StyledTableCell = withStyles((theme) => ({
+  head: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+}))(TableCell);
 
 export default function Categories() {
   const { state } = useStoreContext();
+  const classes = useStyles();
 
   return (
     <>
       <AddCategory />
-      <ul>
-        {state.categories.map(category => (
-          <li>{category.name}</li>
-        ))}
-      </ul>
+      <TableContainer className={classes.table} component={Paper}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <StyledTableCell align="center">Name</StyledTableCell>
+              <StyledTableCell align="center">Type</StyledTableCell>
+              <StyledTableCell align="center">Action</StyledTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {state.categories.map((category) => (
+              <TableRow key={category.id}>
+                <TableCell align="center">{category.name}</TableCell>
+                <TableCell align="center">{category.type}</TableCell>
+                <TableCell align="center">
+                  <EditeComponent category={category} />
+                  <DeleteCategory category={category} />
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </>
   );
 }

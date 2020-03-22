@@ -54,9 +54,9 @@ export default function AddCategory() {
       (acc, category) => (category.id > acc ? category.id : acc),
       0,
     ) + 1;
-    const newCategory = { id, type, name };
+    const addedCategory = { id, type, name };
     handleStateReset();
-    dispatch(addCategory(newCategory));
+    dispatch(addCategory(addedCategory));
   };
 
   return (

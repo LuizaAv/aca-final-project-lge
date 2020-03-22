@@ -1,9 +1,9 @@
 import {
   ADD_CATEGORY,
-  REMOVE_CATEGORY,
+  DELETE_CATEGORY,
   EDIT_CATEGORY,
   ADD_BUDGET,
-  REMOVE_BUDGET,
+  DELETE_BUDGET,
   EDIT_BUDGET,
 } from './actions';
 
@@ -11,7 +11,7 @@ export function categoriesReducer(state, action) {
   switch (action.type) {
     case ADD_CATEGORY:
       return [...state, action.payload];
-    case REMOVE_CATEGORY:
+    case DELETE_CATEGORY:
       return state.filter((category) => category.id !== action.payload.id);
     case EDIT_CATEGORY:
       return state.map((category) => (
@@ -27,7 +27,7 @@ export function budgetReducer(state, action) {
   switch (action.type) {
     case ADD_BUDGET:
       return [...state, action.payload];
-    case REMOVE_BUDGET:
+    case DELETE_BUDGET:
       return state.filter((budget) => budget.id !== action.payload.id);
     case EDIT_BUDGET:
       return state.map((budget) => (
@@ -38,7 +38,6 @@ export function budgetReducer(state, action) {
       return state;
   }
 }
-
 
 export function reducer(state, action) {
   return {
