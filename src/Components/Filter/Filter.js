@@ -3,12 +3,9 @@ import propTypes from 'prop-types';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-
 import { makeStyles } from '@material-ui/core/styles';
 
-
 import { useStoreContext } from '../../store/storeContext';
-
 
 const useStyles = makeStyles({
   select: {
@@ -20,7 +17,6 @@ const useStyles = makeStyles({
     justifyContent: 'center',
   },
 });
-
 
 export default function Filter({ setCategories }) {
   const classes = useStyles();
