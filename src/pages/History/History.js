@@ -13,7 +13,7 @@ const useStyles = makeStyles({
     minWidth: 275,
     margin: 10, 
     width: 500, 
-    height: 100, 
+    height: 120, 
     border: '1.5px solid black', 
     borderRadius: 10
   },
@@ -39,6 +39,12 @@ const useStyles = makeStyles({
   pos: {
     marginBottom: 12,
   },
+  learnMore:{
+    marginLeft: 2,
+    width: 120,
+    borderRadius: 7,
+    marginBottom: 0
+  }
 });
 
 function History() {
@@ -53,10 +59,10 @@ function History() {
         <Typography className={classes.price} color="textSecondary" gutterBottom>
           Price
         </Typography>
-        <Typography  className={classes.date}color="textSecondary" gutterBottom>
+        <Typography  className={classes.date} color="textSecondary" gutterBottom>
         Adding date: 
         </Typography>
-        <CardActions>
+        <CardActions className={classes.learnMore}>
         <Button size="small">Learn More</Button>
       </CardActions>
         </CardContent>
