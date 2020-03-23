@@ -36,7 +36,7 @@ export default function Categories() {
   return (
     <>
       <AddCategory />
-      <Filter setCategories={setCategories} />
+      <Filter filterItems={categories} setfilterItems={setCategories} />
       <TableContainer className={classes.table} component={Paper}>
         <Table>
           <TableHead>
