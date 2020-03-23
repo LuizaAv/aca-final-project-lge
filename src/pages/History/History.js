@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-
+import Emptypage from './Emptyhistorypage'
 import { useStoreContext } from "../../store/storeContext";
 
 const useStyles = makeStyles({
@@ -53,6 +53,7 @@ function History() {
 
   return (
     <div>
+      <Emptypage/>
       {state.budget.map(item =>
         item.id > 8 ? (
           <Card className={classes.root} variant="outlined">
