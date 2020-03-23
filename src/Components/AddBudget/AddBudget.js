@@ -12,7 +12,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { useStoreContext } from '../../store/storeContext';
 import { addBudget } from '../../store/actions';
-
+import {budget} from '../../API/db'
 
 const useStyles = makeStyles({
   title: {
@@ -78,6 +78,7 @@ export default function AddBudget() {
     };
     handleStateReset();
     dispatch(addBudget(addedBudget));
+    console.log(budget)
   };
 
   const handleChangeSelect = (e) => {
