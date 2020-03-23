@@ -13,7 +13,7 @@ const useStyles = makeStyles({
     minWidth: 275,
     margin: 10, 
     width: 500, 
-    height: 120, 
+    height: 140, 
     border: '1.5px solid black', 
     borderRadius: 10
   },
@@ -25,7 +25,7 @@ const useStyles = makeStyles({
   item: {
     fontSize: 14,
     float: 'left',
-    marginLeft: 40
+    marginLeft: 40,
   },
   price: {
     fontSize: 14,
@@ -43,7 +43,10 @@ const useStyles = makeStyles({
     marginLeft: 2,
     width: 120,
     borderRadius: 7,
-    marginBottom: 0
+    marginTop:-35
+  },
+  line: {
+    marginTop: 40
   }
 });
 
@@ -59,6 +62,7 @@ function History() {
         <Typography className={classes.price} color="textSecondary" gutterBottom>
           Price
         </Typography>
+        <hr className={classes.line}/>
         <Typography  className={classes.date} color="textSecondary" gutterBottom>
         Adding date: 
         </Typography>
