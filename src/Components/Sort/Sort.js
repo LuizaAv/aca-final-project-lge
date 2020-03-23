@@ -10,7 +10,7 @@ export default function Sort() {
 
   useEffect(() => {
     dispatch(sortBudget(ascending));
-  }, [ascending]);
+  }, [ascending, dispatch]);
 
   const handleClick = () => {
     setAscending(!ascending);

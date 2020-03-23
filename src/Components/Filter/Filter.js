@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import propTypes from 'prop-types';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -37,7 +36,7 @@ export default function Filter({ filterItems, setfilterItems }) {
         : state.categories.filter((category) => category.type === type);
       setfilterItems(filter);
     }
-  }, [type, state]);
+  }, [type, state, isBudget, setfilterItems]);
 
   const handleChange = (e) => {
     setType(e.target.value);
@@ -64,8 +63,3 @@ export default function Filter({ filterItems, setfilterItems }) {
     </>
   );
 }
-
-Filter.propTypes = {
-  filterItems: propTypes.func.isRequired,
-  setfilterItems: propTypes.func.isRequired,
-};
