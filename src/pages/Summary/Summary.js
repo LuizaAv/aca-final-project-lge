@@ -11,6 +11,7 @@ import Paper from '@material-ui/core/Paper';
 import { useStoreContext } from '../../store/storeContext';
 
 import Sort from '../../components/Sort/Sort';
+import Filter from '../../components/Filter/Filter';
 
 
 const useStyles = makeStyles({
@@ -29,12 +30,15 @@ const StyledTableCell = withStyles((theme) => ({
 export default function Categories() {
   const classes = useStyles();
   const { state } = useStoreContext();
+  const [budget, setBudget] = React.useState(state.budget);
 
   return (
     <>
       <div>
         <Sort />
+        <Filter filterItems={budget} setfilterItems={setBudget} />
       </div>
+
       <TableContainer className={classes.table} component={Paper}>
         <Table>
           <TableHead>
@@ -44,7 +48,7 @@ export default function Categories() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {state.budget.map((budgetItem) => (
+            {budget.map((budgetItem) => (
               <TableRow key={budgetItem.id}>
                 <TableCell align="center">{budgetItem.category}</TableCell>
                 <TableCell align="center">{budgetItem.amount}</TableCell>
