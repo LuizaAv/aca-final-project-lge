@@ -10,6 +10,7 @@ import { useStoreContext } from '../../store/storeContext';
 const useStyles = makeStyles({
   select: {
     width: 150,
+    height: 35,
     marginLeft: 5,
     textAlign: 'center',
   },
@@ -18,16 +19,24 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Filter({ setCategories }) {
+export default function Filter({ filterItems, setfilterItems }) {
   const classes = useStyles();
   const { state } = useStoreContext();
   const [type, setType] = useState('all');
+  const isBudget = filterItems[0].amount !== undefined;
 
   React.useEffect(() => {
-    const filter = type === 'all'
-      ? [...state.categories]
-      : state.categories.filter((category) => category.type === type);
-    setCategories(filter);
+    if (isBudget) {
+      const filter = type === 'all'
+        ? [...state.budget]
+        : state.budget.filter((budgetItem) => budgetItem.type === type);
+      setfilterItems(filter);
+    } else {
+      const filter = type === 'all'
+        ? [...state.categories]
+        : state.categories.filter((category) => category.type === type);
+      setfilterItems(filter);
+    }
   }, [type, state]);
 
   const handleChange = (e) => {
@@ -57,5 +66,6 @@ export default function Filter({ setCategories }) {
 }
 
 Filter.propTypes = {
-  setCategories: propTypes.func.isRequired,
+  filterItems: propTypes.func.isRequired,
+  setfilterItems: propTypes.func.isRequired,
 };

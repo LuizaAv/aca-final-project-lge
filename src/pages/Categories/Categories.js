@@ -12,7 +12,7 @@ import { useStoreContext } from '../../store/storeContext';
 
 import AddCategory from './AddCategory';
 import DeleteCategory from './DeleteCategory';
-import EditeComponent from './EditCategory';
+import EditCategory from './EditCategory';
 import Filter from '../../components/Filter/Filter';
 
 const useStyles = makeStyles({
@@ -36,7 +36,7 @@ export default function Categories() {
   return (
     <>
       <AddCategory />
-      <Filter setCategories={setCategories} />
+      <Filter filterItems={categories} setfilterItems={setCategories} />
       <TableContainer className={classes.table} component={Paper}>
         <Table>
           <TableHead>
@@ -47,12 +47,12 @@ export default function Categories() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {categories.map((category) => (
+            {categories.map(category => (
               <TableRow key={category.id}>
                 <TableCell align="center">{category.name}</TableCell>
                 <TableCell align="center">{category.type}</TableCell>
                 <TableCell align="center">
-                  <EditeComponent category={category} />
+                  <EditCategory category={category} />
                   <DeleteCategory category={category} />
                 </TableCell>
               </TableRow>

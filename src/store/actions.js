@@ -5,6 +5,7 @@ export const EDIT_CATEGORY = 'EDIT_CATEGORY';
 export const ADD_BUDGET = 'ADD_BUDGET';
 export const DELETE_BUDGET = 'DELETE_BUDGET';
 export const EDIT_BUDGET = 'EDIT_BUDGET';
+export const SORT_BUDGET = 'SORT_BUDGET';
 
 
 export function addCategory(payload) {
@@ -29,4 +30,8 @@ export function deleteBudget(payload) {
 
 export function editBudget(payload) {
   return { type: EDIT_BUDGET, payload };
+}
+
+export function sortBudget(payload) {
+  return { type: SORT_BUDGET, payload };
 }
