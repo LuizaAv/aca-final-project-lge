@@ -133,7 +133,6 @@ export default function AddBudget() {
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <KeyboardDatePicker
             className={classes.date}
-            disableToolba
             format="dd/MM/yyyy"
             margin="normal"
             label="Date"
