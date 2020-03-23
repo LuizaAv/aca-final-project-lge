@@ -31,6 +31,11 @@ const useStyles = makeStyles({
     fontSize: 14,
     marginLeft: 290
   },
+  date: {
+    fontSize: 14,
+    marginLeft: 290,
+    marginTop: 20
+  },
   pos: {
     marginBottom: 12,
   },
@@ -48,9 +53,12 @@ function History() {
         <Typography className={classes.price} color="textSecondary" gutterBottom>
           Price
         </Typography>
-        <Typography  color="textSecondary" gutterBottom>
-          Date
+        <Typography  className={classes.date}color="textSecondary" gutterBottom>
+        Adding date: 
         </Typography>
+        <CardActions>
+        <Button size="small">Learn More</Button>
+      </CardActions>
         </CardContent>
       </Card>
   </div>;
