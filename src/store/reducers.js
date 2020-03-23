@@ -5,6 +5,7 @@ import {
   ADD_BUDGET,
   DELETE_BUDGET,
   EDIT_BUDGET,
+  SORT_BUDGET,
 } from './actions';
 
 export function categoriesReducer(state, action) {
@@ -34,6 +35,12 @@ export function budgetReducer(state, action) {
         budget.id === action.payload.id
           ? action.payload
           : budget));
+    case SORT_BUDGET:
+      return state.sort((a, b) => (
+        action.payload
+          ? a.amount - b.amount
+          : b.amount - a.amount
+      ));
     default:
       return state;
   }
