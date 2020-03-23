@@ -73,7 +73,7 @@ export default function AddBudget() {
     const newDate = new Date();
     setDate(`${newDate.getDay()}.${newDate.getMonth()}.${newDate.getYear()}`);
     const addedBudget = {
-      id, type, name, category, amount, date,
+      id, type, name, category, amount: +amount, date,
     };
     handleStateReset();
     dispatch(addBudget(addedBudget));
