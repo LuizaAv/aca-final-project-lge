@@ -30,7 +30,7 @@ export default function AddBudget() {
   const [type, setType] = useState('');
   const [name, setName] = useState('');
   const [category, setCategory] = React.useState('');
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState('');
   const [date, setDate] = useState('');
   const [open, setOpen] = React.useState(false);
 
@@ -94,8 +94,9 @@ export default function AddBudget() {
 
       <Dialog fullWidth maxWidth="xs" open={open} onClose={handleOpen}>
         <DialogTitle className={classes.title}>{`Add ${type}`}</DialogTitle>
+
         <FormControl className={classes.itemSize}>
-          <InputLabel>{category}</InputLabel>
+          <InputLabel>Category</InputLabel>
           <Select value={category} onChange={handleChangeSelect}>
             {state.categories
               .filter((stateCategory) => stateCategory.type === type)
