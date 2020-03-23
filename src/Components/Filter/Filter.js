@@ -27,7 +27,6 @@ export default function Filter({ filterItems, setfilterItems }) {
 
   React.useEffect(() => {
     if (isBudget) {
-      console.log(isBudget);
       const filter = type === 'all'
         ? [...state.budget]
         : state.budget.filter((budgetItem) => budgetItem.type === type);
