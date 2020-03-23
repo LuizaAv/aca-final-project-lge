@@ -8,6 +8,8 @@ import DialogActions from '@material-ui/core/DialogActions';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { useStoreContext } from '../../store/storeContext';
@@ -22,6 +24,10 @@ const useStyles = makeStyles({
     margin: 'auto',
     marginBottom: 15,
   },
+  date: {
+    width: '40%',
+    margin: 'auto',
+  },
 });
 
 export default function AddBudget() {
@@ -31,7 +37,7 @@ export default function AddBudget() {
   const [name, setName] = useState('');
   const [category, setCategory] = React.useState('');
   const [amount, setAmount] = useState('');
-  const [date, setDate] = useState('');
+  const [date, setDate] = useState(new Date());
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => {
@@ -56,13 +62,17 @@ export default function AddBudget() {
     setAmount(e.target.value);
   };
 
+  const handleDateChange = (dat) => {
+    setDate(dat);
+  };
+
   const handleStateReset = () => {
+    setOpen(!open);
     setType('');
     setName('');
     setCategory('');
     setAmount('');
-    setDate('');
-    setOpen(!open);
+    setDate(new Date());
   };
 
   const handleAddingBudget = () => {
@@ -70,10 +80,8 @@ export default function AddBudget() {
       (acc, budget) => (budget.id > acc ? budget.id : acc),
       0,
     ) + 1;
-    const newDate = new Date();
-    setDate(`${newDate.getDay()}.${newDate.getMonth()}.${newDate.getYear()}`);
     const addedBudget = {
-      id, type, name, category, amount: +amount, date,
+      id, type, name, category, amount: +amount, date: date.toLocaleDateString(),
     };
     handleStateReset();
     dispatch(addBudget(addedBudget));
@@ -121,6 +129,21 @@ export default function AddBudget() {
           value={amount}
           onChange={handleAmountChange}
         />
+
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <KeyboardDatePicker
+            className={classes.date}
+            disableToolba
+            format="dd/MM/yyyy"
+            margin="normal"
+            label="Date"
+            value={date}
+            onChange={handleDateChange}
+            KeyboardButtonProps={{
+              'aria-label': 'change date',
+            }}
+          />
+        </MuiPickersUtilsProvider>
 
         <DialogActions>
           <Button variant="outlined" onClick={handleAddingBudget}>
