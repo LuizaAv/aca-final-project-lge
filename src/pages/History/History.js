@@ -53,9 +53,7 @@ function History() {
 
   return (
     <div>
-      <Emptypage/>
-      {state.budget.map(item =>
-        item.id > 8 ? (
+      { state.budget.map(item =>
           <Card className={classes.root} variant="outlined">
             <CardContent>
               <Typography
@@ -89,8 +87,9 @@ function History() {
               </Typography>
             </CardContent>
           </Card>
-        ) : null
-      )}
+      )
+      }
+    
     </div>
   );
 }
