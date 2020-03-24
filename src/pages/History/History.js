@@ -78,6 +78,7 @@ function History() {
               Amount:
               {' '}
               {item.type === 'expense' ? `- ${item.amount}` : `+ ${item.amount}`}
+              {item.id}
             </Typography>
             <hr className={classes.line} />
             <Typography

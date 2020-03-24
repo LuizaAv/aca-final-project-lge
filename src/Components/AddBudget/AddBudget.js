@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import uuid from 'uuid/v4';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -14,7 +15,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { useStoreContext } from '../../store/storeContext';
 import { addBudget } from '../../store/actions';
-import {budget} from '../../API/db'
+
 
 const useStyles = makeStyles({
   title: {
@@ -77,16 +78,12 @@ export default function AddBudget() {
   };
 
   const handleAddingBudget = () => {
-    const id = state.budget.reduce(
-      (acc, budget) => (budget.id > acc ? budget.id : acc),
-      0,
-    ) + 1;
+    const id = uuid()
     const addedBudget = {
       id, type, name, category, amount: +amount, date: date.toLocaleDateString(),
     };
     handleStateReset();
     dispatch(addBudget(addedBudget));
-    console.log(budget)
   };
 
   const handleChangeSelect = (e) => {
