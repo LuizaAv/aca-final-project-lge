@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
@@ -28,9 +28,9 @@ const useStyles = makeStyles({
 export default function AddCategory() {
   const classes = useStyles();
   const { dispatch } = useStoreContext();
-  const [type, setType] = React.useState('');
-  const [name, setName] = React.useState('');
-  const [open, setOpen] = React.useState(false);
+  const [type, setType] = useState('');
+  const [name, setName] = useState('');
+  const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
     setOpen(!open);

@@ -37,10 +37,10 @@ export default function AddBudget() {
   const { state, dispatch } = useStoreContext();
   const [type, setType] = useState('');
   const [name, setName] = useState('');
-  const [category, setCategory] = React.useState('');
+  const [category, setCategory] = useState('');
   const [amount, setAmount] = useState('');
   const [date, setDate] = useState(new Date());
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
     setOpen(!open);

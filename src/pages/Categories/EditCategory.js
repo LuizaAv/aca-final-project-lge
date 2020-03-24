@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import propTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
@@ -28,9 +28,9 @@ const useStyles = makeStyles({
 export default function EditCategory({ category }) {
   const classes = useStyles();
   const { dispatch } = useStoreContext();
-  const [type, setType] = React.useState(category.type);
-  const [name, setName] = React.useState(category.name);
-  const [open, setOpen] = React.useState(false);
+  const [type, setType] = useState(category.type);
+  const [name, setName] = useState(category.name);
+  const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
     setOpen(!open);
