@@ -58,7 +58,7 @@ export default function Categories() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {filteredBudget.map(budgetItem => (
+            {filteredBudget.map((budgetItem) => (
               <TableRow key={budgetItem.id}>
                 <TableCell align="center">{budgetItem.category}</TableCell>
                 <TableCell align="center">{budgetItem.amount}</TableCell>

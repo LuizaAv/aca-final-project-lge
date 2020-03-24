@@ -25,14 +25,14 @@ export default function Main() {
     <StoreContext.Provider value={{ state, dispatch }}>
       <AddBudget />
 
-      <Button variant="outlined">
-        <Link to="/">Summary</Link>
+      <Button style={{background:'blue'}} variant="outlined">
+        <Link style={{textDecoration:'none',color:'white'}} to="/">Summary</Link>
       </Button>
       <Button variant="outlined">
-        <Link to="/Categories">Categories</Link>
+        <Link style={{textDecoration:'none'}} to="/Categories">Categories</Link>
       </Button>
       <Button variant="outlined">
-        <Link to="/History">History</Link>
+        <Link style={{textDecoration:'none'}} to="/History">History</Link>
       </Button>
 
       <Switch>
