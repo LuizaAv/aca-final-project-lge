@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import Emptypage from './Emptyhistorypage';
+//import Emptypage from './Emptyhistorypage';
 import { useStoreContext } from '../../store/storeContext';
 
 import Sort from '../../components/Sort/Sort'
@@ -53,13 +53,13 @@ const useStyles = makeStyles({
 function History() {
   const classes = useStyles();
   const { state } = useStoreContext();
-  const [budget, setBudget] = useState('')
+  const [budget, setBudget] = useState(state.budget)
   return (
     <div>
       <Sort/>
-      <Filter filterItems={budget} setFilterItems={setBudget}/>
+      <Filter filterItems={budget} setfilterItems={setBudget}/>
       { budget.map((item) => (
-        <Card className={classes.root} variant="outlined" key={budget.id}>
+        <Card className={classes.root} variant="outlined" key={item.id}>
           <CardContent>
             <Typography
               className={classes.item}
@@ -77,7 +77,7 @@ function History() {
             >
               Amount:
               {' '}
-              {item.amount}
+              {item.type === 'expense' ? `- ${item.amount}` : `+ ${item.amount}`}
             </Typography>
             <hr className={classes.line} />
             <Typography
