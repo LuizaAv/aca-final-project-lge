@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import uuid from 'uuid/v4';
+import { v4 as uuidv4 } from 'uuid';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -78,7 +78,7 @@ export default function AddBudget() {
   };
 
   const handleAddingBudget = () => {
-    const id = uuid()
+    const id = uuidv4();
     const addedBudget = {
       id, type, name, category, amount: +amount, date: date.toLocaleDateString(),
     };
@@ -128,7 +128,7 @@ export default function AddBudget() {
           value={amount}
           onChange={handleAmountChange}
         />
-                
+
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <KeyboardDatePicker
             className={classes.date}
