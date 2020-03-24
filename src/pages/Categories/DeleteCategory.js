@@ -1,6 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
+import DeleteIcon from '@material-ui/icons/Delete';
+import Fab from '@material-ui/core/Fab';
 
 import { useStoreContext } from '../../store/storeContext';
 import { deleteCategory } from '../../store/actions';
@@ -13,9 +14,9 @@ export default function DeleteCategory({ category }) {
   };
 
   return (
-    <Button variant="outlined" onClick={handleDeleteCategory}>
-      Delete
-    </Button>
+    <Fab color="primary" size="small" onClick={handleDeleteCategory}>
+      <DeleteIcon />
+    </Fab>
   );
 }
 

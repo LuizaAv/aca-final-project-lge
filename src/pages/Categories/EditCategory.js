@@ -10,6 +10,8 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
+import EditIcon from '@material-ui/icons/Edit';
+import Fab from '@material-ui/core/Fab';
 
 import { useStoreContext } from '../../store/storeContext';
 import { editCategory } from '../../store/actions';
@@ -56,10 +58,10 @@ export default function EditCategory({ category }) {
   };
 
   return (
-    <div>
-      <Button variant="outlined" onClick={handleOpen}>
-        Edit
-      </Button>
+    <>
+      <Fab color="primary" size="small" onClick={handleOpen}>
+        <EditIcon />
+      </Fab>
 
       <Dialog fullWidth maxWidth="xs" onClose={handleOpen} open={open}>
         <DialogTitle className={classes.title}>Edit Category</DialogTitle>
@@ -85,7 +87,7 @@ export default function EditCategory({ category }) {
           </Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </>
   );
 }
 
