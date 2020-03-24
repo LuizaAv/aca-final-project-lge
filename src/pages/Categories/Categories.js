@@ -1,4 +1,5 @@
 import React from 'react';
+import uuid from 'uuid/v4';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -48,7 +49,7 @@ export default function Categories() {
           </TableHead>
           <TableBody>
             {categories.map(category => (
-              <TableRow key={category.id}>
+              <TableRow key={uuid()}>
                 <TableCell align="center">{category.name}</TableCell>
                 <TableCell align="center">{category.type}</TableCell>
                 <TableCell align="center">

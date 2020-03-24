@@ -1,4 +1,5 @@
 import React from 'react';
+import uuid from 'uuid/v4';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -50,10 +51,7 @@ export default function AddCategory() {
   };
 
   const handleAddCategory = () => {
-    const id = state.categories.reduce(
-      (acc, category) => (category.id > acc ? category.id : acc),
-      0,
-    ) + 1;
+    const id = uuid();
     const addedCategory = { id, type, name };
     handleStateReset();
     dispatch(addCategory(addedCategory));

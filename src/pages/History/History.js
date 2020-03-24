@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import uuid from 'uuid/v4';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -59,7 +60,7 @@ function History() {
       <Sort/>
       <Filter filterItems={budget} setfilterItems={setBudget}/>
       { budget.map((item) => (
-        <Card className={classes.root} variant="outlined" key={item.id}>
+        <Card className={classes.root} variant="outlined" key={uuid()}>
           <CardContent>
             <Typography
               className={classes.item}
@@ -78,7 +79,6 @@ function History() {
               Amount:
               {' '}
               {item.type === 'expense' ? `- ${item.amount}` : `+ ${item.amount}`}
-              {item.id}
             </Typography>
             <hr className={classes.line} />
             <Typography
