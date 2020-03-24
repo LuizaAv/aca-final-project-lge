@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -31,12 +31,16 @@ const StyledTableCell = withStyles((theme) => ({
 export default function Categories() {
   const classes = useStyles();
   const { state } = useStoreContext();
-  const [categories, setCategories] = React.useState(state.categories);
+  const [filterType, setFilterType] = useState('all');
+
+  const filteredCategories = filterType === 'all'
+    ? [...state.categories]
+    : state.categories.filter((categories) => categories.type === filterType);
 
   return (
-    <>
+    <div>
       <AddCategory />
-      <Filter filterItems={categories} setfilterItems={setCategories} />
+      <Filter filterType={filterType} setFilterType={setFilterType} />
       <TableContainer className={classes.table} component={Paper}>
         <Table>
           <TableHead>
@@ -47,7 +51,7 @@ export default function Categories() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {categories.map(category => (
+            {filteredCategories.map((category) => (
               <TableRow key={category.id}>
                 <TableCell align="center">{category.name}</TableCell>
                 <TableCell align="center">{category.type}</TableCell>
@@ -60,6 +64,6 @@ export default function Categories() {
           </TableBody>
         </Table>
       </TableContainer>
-    </>
+    </div>
   );
 }

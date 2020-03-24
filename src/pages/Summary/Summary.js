@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -12,7 +12,6 @@ import { useStoreContext } from '../../store/storeContext';
 
 import Sort from '../../components/Sort/Sort';
 import Filter from '../../components/Filter/Filter';
-
 
 const useStyles = makeStyles({
   table: {
@@ -30,13 +29,24 @@ const StyledTableCell = withStyles((theme) => ({
 export default function Categories() {
   const classes = useStyles();
   const { state } = useStoreContext();
-  const [budget, setBudget] = React.useState(state.budget);
+  const [filterType, setFilterType] = useState('all');
+  const [isAscending, setIsAscending] = useState(true);
+
+  const filteredBudget = filterType === 'all'
+    ? [...state.budget]
+    : state.budget.filter((budget) => budget.type === filterType);
+
+  filteredBudget.sort((a, b) => (
+    isAscending
+      ? a.amount - b.amount
+      : b.amount - a.amount
+  ));
 
   return (
     <>
       <div>
-        <Sort />
-        <Filter filterItems={budget} setfilterItems={setBudget} />
+        <Sort isAscending={isAscending} setIsAscending={setIsAscending} />
+        <Filter filterType={filterType} setFilterType={setFilterType} />
       </div>
 
       <TableContainer className={classes.table} component={Paper}>
@@ -48,7 +58,7 @@ export default function Categories() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {budget.map((budgetItem) => (
+            {filteredBudget.map(budgetItem => (
               <TableRow key={budgetItem.id}>
                 <TableCell align="center">{budgetItem.category}</TableCell>
                 <TableCell align="center">{budgetItem.amount}</TableCell>

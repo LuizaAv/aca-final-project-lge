@@ -50,15 +50,27 @@ const useStyles = makeStyles({
   },
 });
 
-function History() {
+export default function History() {
   const classes = useStyles();
   const { state } = useStoreContext();
-  const [budget, setBudget] = useState(state.budget)
+  const [filterType, setFilterType] = useState('all');
+  const [isAscending, setIsAscending] = useState(true);
+
+  const filteredBudget = filterType === 'all'
+    ? [...state.budget]
+    : state.budget.filter((budget) => budget.type === filterType);
+
+  filteredBudget.sort((a, b) => (
+    isAscending
+      ? a.amount - b.amount
+      : b.amount - a.amount
+  ));
+
   return (
     <div>
-      <Sort/>
-      <Filter filterItems={budget} setfilterItems={setBudget}/>
-      { budget.map((item) => (
+      <Sort isAscending={isAscending} setIsAscending={setIsAscending} />
+      <Filter filterType={filterType} setFilterType={setFilterType} />
+      { filteredBudget.map((item) => (
         <Card className={classes.root} variant="outlined" key={item.id}>
           <CardContent>
             <Typography
@@ -67,7 +79,6 @@ function History() {
               gutterBottom
             >
               Name:
-              {' '}
               {item.name}
             </Typography>
             <Typography
@@ -76,7 +87,6 @@ function History() {
               gutterBottom
             >
               Amount:
-              {' '}
               {item.type === 'expense' ? `- ${item.amount}` : `+ ${item.amount}`}
             </Typography>
             <hr className={classes.line} />
@@ -86,7 +96,6 @@ function History() {
               gutterBottom
             >
               Category:
-              {' '}
               {item.category}
             </Typography>
             <Typography
@@ -95,7 +104,6 @@ function History() {
               gutterBottom
             >
               Date:
-              {' '}
               {item.date}
             </Typography>
           </CardContent>
@@ -105,5 +113,3 @@ function History() {
     </div>
   );
 }
-
-export default History;
