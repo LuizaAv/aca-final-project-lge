@@ -1,10 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Emptypage from './Emptyhistorypage';
 import { useStoreContext } from '../../store/storeContext';
+
+import Sort from '../../components/Sort/Sort'
+import Filter from '../../components/Filter/Filter'
 
 const useStyles = makeStyles({
   root: {
@@ -50,11 +53,13 @@ const useStyles = makeStyles({
 function History() {
   const classes = useStyles();
   const { state } = useStoreContext();
-
+  const [budget, setBudget] = useState('')
   return (
     <div>
-      { state.budget.map((item) => (
-        <Card className={classes.root} variant="outlined">
+      <Sort/>
+      <Filter filterItems={budget} setFilterItems={setBudget}/>
+      { budget.map((item) => (
+        <Card className={classes.root} variant="outlined" key={budget.id}>
           <CardContent>
             <Typography
               className={classes.item}

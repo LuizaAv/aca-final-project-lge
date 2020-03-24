@@ -131,7 +131,7 @@ export default function AddBudget() {
           value={amount}
           onChange={handleAmountChange}
         />
-
+                
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <KeyboardDatePicker
             className={classes.date}
