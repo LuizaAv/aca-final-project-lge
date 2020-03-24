@@ -57,6 +57,8 @@ export default function AddCategory() {
     dispatch(addCategory(addedCategory));
   };
 
+  const doneDisabled = !(name !== '' && type !== '');
+
   return (
     <>
       <Button variant="outlined" onClick={handleOpen}>
@@ -82,7 +84,7 @@ export default function AddCategory() {
         />
 
         <DialogActions>
-          <Button variant="outlined" onClick={handleAddCategory}>
+          <Button disabled={doneDisabled} variant="outlined" onClick={handleAddCategory}>
             Done
           </Button>
         </DialogActions>

@@ -90,6 +90,8 @@ export default function AddBudget() {
     setCategory(e.target.value);
   };
 
+  const doneDisabled = !(category !== '' && name !== '' && amount !== '');
+
   return (
     <div>
       <Button variant="outlined" value="Expense" onClick={handleClickExpense}>
@@ -106,8 +108,8 @@ export default function AddBudget() {
           <InputLabel>Category</InputLabel>
           <Select value={category} onChange={handleChangeSelect}>
             {state.categories
-              .filter((stateCategory) => stateCategory.type === type)
-              .map((stateCategory) => (
+              .filter(stateCategory => stateCategory.type === type)
+              .map(stateCategory => (
                 <MenuItem value={stateCategory.name} key={stateCategory.id}>
                   {stateCategory.name}
                 </MenuItem>
@@ -125,6 +127,7 @@ export default function AddBudget() {
         <TextField
           className={classes.itemSize}
           label="Amount"
+          type="number"
           value={amount}
           onChange={handleAmountChange}
         />
@@ -138,13 +141,17 @@ export default function AddBudget() {
             value={date}
             onChange={handleDateChange}
             KeyboardButtonProps={{
-              'aria-label': 'change date',
+              'aria-label': 'change date'
             }}
           />
         </MuiPickersUtilsProvider>
 
         <DialogActions>
-          <Button variant="outlined" onClick={handleAddingBudget}>
+          <Button
+            disabled={doneDisabled}
+            variant="outlined"
+            onClick={handleAddingBudget}
+          >
             Done
           </Button>
         </DialogActions>
