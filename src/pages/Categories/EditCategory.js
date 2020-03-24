@@ -92,7 +92,7 @@ export default function EditCategory({ category }) {
 
 EditCategory.propTypes = {
   category: propTypes.shape({
-    id: propTypes.number.isRequired,
+    id: propTypes.string.isRequired,
     type: propTypes.string.isRequired,
     name: propTypes.string.isRequired,
   }),
@@ -100,7 +100,7 @@ EditCategory.propTypes = {
 
 EditCategory.defaultProps = {
   category: {
-    id: propTypes.number.isRequired,
+    id: propTypes.string.isRequired,
     type: propTypes.string.isRequired,
     name: propTypes.string.isRequired,
   },

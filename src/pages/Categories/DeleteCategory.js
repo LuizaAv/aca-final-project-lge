@@ -21,7 +21,7 @@ export default function DeleteCategory({ category }) {
 
 DeleteCategory.propTypes = {
   category: propTypes.shape({
-    id: propTypes.number.isRequired,
+    id: propTypes.string.isRequired,
     type: propTypes.string.isRequired,
     name: propTypes.string.isRequired,
   }),
@@ -29,7 +29,7 @@ DeleteCategory.propTypes = {
 
 DeleteCategory.defaultProps = {
   category: {
-    id: propTypes.number.isRequired,
+    id: propTypes.string.isRequired,
     type: propTypes.string.isRequired,
     name: propTypes.string.isRequired,
   },

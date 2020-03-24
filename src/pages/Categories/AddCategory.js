@@ -27,7 +27,7 @@ const useStyles = makeStyles({
 
 export default function AddCategory() {
   const classes = useStyles();
-  const { state, dispatch } = useStoreContext();
+  const { dispatch } = useStoreContext();
   const [type, setType] = React.useState('');
   const [name, setName] = React.useState('');
   const [open, setOpen] = React.useState(false);
