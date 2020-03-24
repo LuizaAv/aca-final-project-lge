@@ -17,7 +17,6 @@ const initialState = {
   budget: [...budget],
 };
 
-
 export default function Main() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -25,14 +24,14 @@ export default function Main() {
     <StoreContext.Provider value={{ state, dispatch }}>
       <AddBudget />
 
-      <Button style={{background:'blue'}} variant="outlined">
-        <Link style={{textDecoration:'none',color:'white'}} to="/">Summary</Link>
+      <Button variant="outlined">
+        <Link to="/">Summary</Link>
       </Button>
       <Button variant="outlined">
-        <Link style={{textDecoration:'none'}} to="/Categories">Categories</Link>
+        <Link to="/Categories">Categories</Link>
       </Button>
       <Button variant="outlined">
-        <Link style={{textDecoration:'none'}} to="/History">History</Link>
+        <Link to="/History">History</Link>
       </Button>
 
       <Switch>

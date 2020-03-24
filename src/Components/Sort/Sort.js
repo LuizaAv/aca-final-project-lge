@@ -1,8 +1,8 @@
 import React from 'react';
+import propTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 
 export default function Sort({ isAscending, setIsAscending }) {
-
   const handleClick = () => {
     setIsAscending(!isAscending);
   };
@@ -13,3 +13,8 @@ export default function Sort({ isAscending, setIsAscending }) {
     </Button>
   );
 }
+
+Sort.propTypes = {
+  isAscending: propTypes.bool.isRequired,
+  setIsAscending: propTypes.func.isRequired,
+};

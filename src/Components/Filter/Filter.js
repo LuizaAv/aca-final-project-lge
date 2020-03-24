@@ -1,4 +1,5 @@
 import React from 'react';
+import propTypes from 'prop-types';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -44,3 +45,8 @@ export default function Filter({ filterType, setFilterType }) {
     </>
   );
 }
+
+Filter.propTypes = {
+  filterType: propTypes.string.isRequired,
+  setFilterType: propTypes.func.isRequired,
+};
