@@ -10,7 +10,6 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import EditIcon from '@material-ui/icons/Edit';
-import Fab from '@material-ui/core/Fab';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { useStoreContext } from '../../store/storeContext';
@@ -24,6 +23,14 @@ const useStyles = makeStyles({
     width: '80%',
     margin: 'auto',
     marginBottom: 15,
+  },
+  icon: {
+    color: '#000',
+    borderRadius: '100%',
+    padding: 10,
+    '&:hover': {
+      backgroundColor: '#00000010',
+    },
   },
 });
 
@@ -57,9 +64,7 @@ export default function EditCategory({ category }) {
 
   return (
     <>
-      <Fab color="primary" size="small" onClick={handleOpen}>
-        <EditIcon />
-      </Fab>
+      <EditIcon fontSize="large" className={classes.icon} onClick={handleOpen} />
 
       <Dialog fullWidth maxWidth="xs" onClose={handleOpen} open={open}>
         <DialogTitle className={classes.title}>Edit Category</DialogTitle>
