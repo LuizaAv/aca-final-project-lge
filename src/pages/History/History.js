@@ -1,60 +1,41 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-//import Emptypage from './Emptyhistorypage';
+import { makeStyles } from '@material-ui/core/styles';
+import Fade from '@material-ui/core/Fade';
+import Grid from '@material-ui/core/Grid';
 import { useStoreContext } from '../../store/storeContext';
 
-import Sort from '../../components/Sort/Sort'
-import Filter from '../../components/Filter/Filter'
+import Sort from '../../components/Sort/Sort';
+import Filter from '../../components/Filter/Filter';
+import EditHistory from './EditHistory';
+import DeleteHistory from './DeleteHistory';
+// import Emptypage from './Emptyhistorypage';
 
 const useStyles = makeStyles({
-  root: {
-    minWidth: 275,
-    margin: 10,
+  card: {
     width: 500,
-    height: 140,
     border: '1.5px solid black',
     borderRadius: 10,
+    '&:hover': {
+      backgroundColor: '#00000075',
+    },
   },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
-  },
-  item: {
-    fontSize: 14,
-    float: 'left',
-    marginLeft: 40,
-  },
-  price: {
-    fontSize: 14,
-    marginLeft: 290,
-  },
-  date: {
-    fontSize: 14,
-    marginLeft: 290,
-    marginTop: -25,
-  },
-  pos: {
-    marginBottom: 12,
-  },
-  category: {
-    marginLeft: 40,
-    marginTop: 20,
-  },
-  line: {
-    marginTop: 40,
-    backgroundColor: 'yellow',
+  fade: {
+    position: 'absolute',
+    width: 500,
+    margin: 'auto',
   },
 });
+
 
 export default function History() {
   const classes = useStyles();
   const { state } = useStoreContext();
   const [filterType, setFilterType] = useState('all');
   const [isAscending, setIsAscending] = useState(true);
+  const [onItem, setOnItem] = React.useState('');
 
   const filteredBudget = filterType === 'all'
     ? [...state.budget]
@@ -66,50 +47,84 @@ export default function History() {
       : b.amount - a.amount
   ));
 
-  return (
-    <div>
-      <Sort isAscending={isAscending} setIsAscending={setIsAscending} />
-      <Filter filterType={filterType} setFilterType={setFilterType} />
-      { filteredBudget.map((item) => (
-        <Card className={classes.root} variant="outlined" key={item.id}>
-          <CardContent>
-            <Typography
-              className={classes.item}
-              color="textSecondary"
-              gutterBottom
-            >
-              Name:
-              {item.name}
-            </Typography>
-            <Typography
-              className={classes.price}
-              color="textSecondary"
-              gutterBottom
-            >
-              Amount:
-              {item.type === 'expense' ? `- ${item.amount}` : `+ ${item.amount}`}
-            </Typography>
-            <hr className={classes.line} />
-            <Typography
-              className={classes.category}
-              color="textSecondary"
-              gutterBottom
-            >
-              Category:
-              {item.category}
-            </Typography>
-            <Typography
-              className={classes.date}
-              color="textSecondary"
-              gutterBottom
-            >
-              Date:
-              {item.date}
-            </Typography>
-          </CardContent>
-        </Card>
-      ))}
+  const handleMouseOver = (item) => {
+    setOnItem(item);
+  };
 
-    </div>
+  return (
+    <Grid container justify="center">
+      <Grid item>
+        <Grid container justify="center" spacing={10}>
+          <Grid item>
+            <Sort isAscending={isAscending} setIsAscending={setIsAscending} />
+          </Grid>
+          <Grid item>
+            <Filter filterType={filterType} setFilterType={setFilterType} />
+          </Grid>
+        </Grid>
+
+        <Grid container direction="column" justify="center" spacing={2}>
+          {filteredBudget.map(item => (
+            <Grid item key={item.id}>
+              <Card className={classes.card}>
+                <CardContent
+                  onMouseEnter={() => handleMouseOver(item.id)}
+                  onMouseLeave={() => handleMouseOver('')}
+                >
+                  <Grid container justify="center" direction="column">
+                    <Grid item>
+                      <Grid container direction="row" justify="space-between">
+                        <Grid item>
+                          <Typography>{item.name}</Typography>
+                        </Grid>
+                        <Grid item>
+                          <Typography>
+                            {item.type === 'expense'
+                              ? `- ${item.amount}`
+                              : `+ ${item.amount}`}
+                          </Typography>
+                        </Grid>
+                      </Grid>
+                    </Grid>
+
+                    <Grid item className={classes.fade}>
+                      <Grid container justify="center">
+                        <Grid item>
+                          <Fade in={onItem === item.id}>
+                            <Grid container spacing={10}>
+                              <Grid item>
+                                <EditHistory budget={item} />
+                              </Grid>
+                              <Grid item>
+                                <DeleteHistory budget={item} />
+                              </Grid>
+                            </Grid>
+                          </Fade>
+                        </Grid>
+                      </Grid>
+                    </Grid>
+
+                    <Grid item>
+                      <hr />
+                    </Grid>
+
+                    <Grid item>
+                      <Grid container direction="row" justify="space-between">
+                        <Grid item>
+                          <Typography>{item.category}</Typography>
+                        </Grid>
+                        <Grid item>
+                          <Typography>{item.date}</Typography>
+                        </Grid>
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </Grid>
+    </Grid>
   );
 }
