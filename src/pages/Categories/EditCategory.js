@@ -9,9 +9,9 @@ import DialogActions from '@material-ui/core/DialogActions';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
 import EditIcon from '@material-ui/icons/Edit';
 import Fab from '@material-ui/core/Fab';
+import { makeStyles } from '@material-ui/core/styles';
 
 import { useStoreContext } from '../../store/storeContext';
 import { editCategory } from '../../store/actions';
@@ -46,16 +46,14 @@ export default function EditCategory({ category }) {
     setName(e.target.value);
   };
 
-  const handleStateReset = () => {
-    setOpen(!open);
-  };
-
-  const handleAddCategory = () => {
+  const handleEditCategory = () => {
     const { id } = category;
     const editedCategory = { id, type, name };
-    handleStateReset();
+    handleOpen();
     dispatch(editCategory(editedCategory));
   };
+
+  const doneDisabled = !(name !== '' && type !== '');
 
   return (
     <>
@@ -82,7 +80,11 @@ export default function EditCategory({ category }) {
         />
 
         <DialogActions>
-          <Button variant="outlined" onClick={handleAddCategory}>
+          <Button
+            disabled={doneDisabled}
+            variant="outlined"
+            onClick={handleEditCategory}
+          >
             Done
           </Button>
         </DialogActions>
