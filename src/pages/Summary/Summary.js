@@ -32,11 +32,19 @@ export default function Categories() {
   const [filterType, setFilterType] = useState('all');
   const [isAscending, setIsAscending] = useState(true);
 
-  const filteredBudget = filterType === 'all'
-    ? [...state.budget]
-    : state.budget.filter((budget) => budget.type === filterType);
+  const amounts = state.categories.map((c) => {
+    const count = state.budget.reduce(
+      (acc, b) => (b.category === c.name ? acc + +b.amount : acc),
+      0,
+    );
+    return { ...c, amount: count };
+  });
 
-  filteredBudget.sort((a, b) => (
+  const filteredAmounts = filterType === 'all'
+    ? [...amounts]
+    : amounts.filter((amaunt) => amaunt.type === filterType);
+
+  filteredAmounts.sort((a, b) => (
     isAscending
       ? a.amount - b.amount
       : b.amount - a.amount
@@ -58,10 +66,10 @@ export default function Categories() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {filteredBudget.map((budgetItem) => (
-              <TableRow key={budgetItem.id}>
-                <TableCell align="center">{budgetItem.category}</TableCell>
-                <TableCell align="center">{budgetItem.amount}</TableCell>
+            {filteredAmounts.map((amount) => (
+              <TableRow key={amount.id}>
+                <TableCell align="center">{amount.name}</TableCell>
+                <TableCell align="center">{amount.amount}</TableCell>
               </TableRow>
             ))}
           </TableBody>
