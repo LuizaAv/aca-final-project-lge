@@ -40,6 +40,7 @@ export default function AddBudget() {
   const [category, setCategory] = useState('');
   const [amount, setAmount] = useState('');
   const [date, setDate] = useState(new Date());
+  const [picherError, setPicherError] = useState('');
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -60,12 +61,20 @@ export default function AddBudget() {
     setName(e.target.value);
   };
 
+  const handleCategoryChange = (e) => {
+    setCategory(e.target.value);
+  };
+
   const handleAmountChange = (e) => {
     setAmount(e.target.value);
   };
 
-  const handleDateChange = (dat) => {
-    setDate(dat);
+  const handleDateChange = (newDate) => {
+    setDate(newDate);
+  };
+
+  const handlePicherError = (e) => {
+    setPicherError(e);
   };
 
   const handleStateReset = () => {
@@ -86,11 +95,13 @@ export default function AddBudget() {
     dispatch(addBudget(addedBudget));
   };
 
-  const handleChangeSelect = (e) => {
-    setCategory(e.target.value);
-  };
-
-  const doneDisabled = !(category !== '' && name !== '' && amount !== '');
+  const doneDisabled = !(
+    category !== ''
+    && name !== ''
+    && amount !== ''
+    && date !== null
+    && picherError === ''
+  );
 
   return (
     <div>
@@ -106,10 +117,10 @@ export default function AddBudget() {
 
         <FormControl className={classes.itemSize}>
           <InputLabel>Category</InputLabel>
-          <Select value={category} onChange={handleChangeSelect}>
+          <Select value={category} onChange={handleCategoryChange}>
             {state.categories
-              .filter(stateCategory => stateCategory.type === type)
-              .map(stateCategory => (
+              .filter((stateCategory) => stateCategory.type === type)
+              .map((stateCategory) => (
                 <MenuItem value={stateCategory.name} key={stateCategory.id}>
                   {stateCategory.name}
                 </MenuItem>
@@ -138,10 +149,11 @@ export default function AddBudget() {
             format="dd/MM/yyyy"
             margin="normal"
             label="Date"
+            onError={handlePicherError}
             value={date}
             onChange={handleDateChange}
             KeyboardButtonProps={{
-              'aria-label': 'change date'
+              'aria-label': 'change date',
             }}
           />
         </MuiPickersUtilsProvider>
