@@ -15,7 +15,7 @@ import Filter from '../../components/Filter/Filter';
 
 const useStyles = makeStyles({
   table: {
-    width: '80%',
+    // width: '80%',
   },
 });
 

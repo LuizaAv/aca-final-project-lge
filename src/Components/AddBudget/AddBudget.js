@@ -11,6 +11,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
+import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { useStoreContext } from '../../store/storeContext';
@@ -104,13 +105,18 @@ export default function AddBudget() {
   );
 
   return (
-    <div>
-      <Button variant="outlined" value="Expense" onClick={handleClickExpense}>
-        Add Expense
-      </Button>
-      <Button variant="outlined" value="Income" onClick={handleClickIncome}>
-        Add Income
-      </Button>
+    <Grid container spacing={3} justify="flex-end">
+      <Grid item>
+        <Button variant="outlined" value="Expense" onClick={handleClickExpense}>
+          Add Expense
+        </Button>
+      </Grid>
+      <Grid item>
+        <Button variant="outlined" value="Income" onClick={handleClickIncome}>
+          Add Income
+        </Button>
+      </Grid>
+
 
       <Dialog fullWidth maxWidth="xs" open={open} onClose={handleOpen}>
         <DialogTitle className={classes.title}>{`Add ${type}`}</DialogTitle>
@@ -168,6 +174,6 @@ export default function AddBudget() {
           </Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </Grid>
   );
 }

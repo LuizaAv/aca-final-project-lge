@@ -7,6 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 
 import { useStoreContext } from '../../store/storeContext';
 
@@ -17,7 +18,7 @@ import Filter from '../../components/Filter/Filter';
 
 const useStyles = makeStyles({
   table: {
-    width: '80%',
+    // width: '80%',
   },
 });
 
@@ -38,9 +39,15 @@ export default function Categories() {
     : state.categories.filter((categories) => categories.type === filterType);
 
   return (
-    <div>
-      <AddCategory />
-      <Filter filterType={filterType} setFilterType={setFilterType} />
+    <Grid container direction="column" spacing={3}>
+      <Grid item container justify="center" spacing={10}>
+        <Grid item>
+          <AddCategory />
+        </Grid>
+        <Grid item>
+          <Filter filterType={filterType} setFilterType={setFilterType} />
+        </Grid>
+      </Grid>
       <TableContainer className={classes.table} component={Paper}>
         <Table>
           <TableHead>
@@ -51,7 +58,7 @@ export default function Categories() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {filteredCategories.map((category) => (
+            {filteredCategories.map(category => (
               <TableRow key={category.id}>
                 <TableCell align="center">{category.name}</TableCell>
                 <TableCell align="center">{category.type}</TableCell>
@@ -64,6 +71,6 @@ export default function Categories() {
           </TableBody>
         </Table>
       </TableContainer>
-    </div>
+    </Grid>
   );
 }

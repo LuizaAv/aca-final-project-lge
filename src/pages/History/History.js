@@ -52,78 +52,76 @@ export default function History() {
   };
 
   return (
-    <Grid container justify="center">
-      <Grid item>
-        <Grid container justify="center" spacing={10}>
-          <Grid item>
-            <Sort isAscending={isAscending} setIsAscending={setIsAscending} />
-          </Grid>
-          <Grid item>
-            <Filter filterType={filterType} setFilterType={setFilterType} />
-          </Grid>
+    <Grid container direction="coulmn" spacing={3}>
+      <Grid item container justify="center" spacing={10}>
+        <Grid item>
+          <Sort isAscending={isAscending} setIsAscending={setIsAscending} />
         </Grid>
+        <Grid item>
+          <Filter filterType={filterType} setFilterType={setFilterType} />
+        </Grid>
+      </Grid>
 
-        <Grid container direction="column" justify="center" spacing={2}>
-          {filteredBudget.map(item => (
-            <Grid item key={item.id}>
-              <Card className={classes.card}>
-                <CardContent
-                  onMouseEnter={() => handleMouseOver(item.id)}
-                  onMouseLeave={() => handleMouseOver('')}
-                >
-                  <Grid container justify="center" direction="column">
-                    <Grid item>
-                      <Grid container direction="row" justify="space-between">
-                        <Grid item>
-                          <Typography>{item.name}</Typography>
-                        </Grid>
-                        <Grid item>
-                          <Typography>
-                            {item.type === 'expense'
-                              ? `- ${item.amount}`
-                              : `+ ${item.amount}`}
-                          </Typography>
-                        </Grid>
+      <Grid item container justify="center" spacing={3}>
+        {filteredBudget.map((item) => (
+          <Grid item key={item.id}>
+            <Card className={classes.card}>
+              <CardContent
+                onMouseEnter={() => handleMouseOver(item.id)}
+                onMouseLeave={() => handleMouseOver('')}
+              >
+                <Grid container justify="center" direction="column">
+                  <Grid item>
+                    <Grid container direction="row" justify="space-between">
+                      <Grid item>
+                        <Typography>{item.name}</Typography>
                       </Grid>
-                    </Grid>
-
-                    <Grid item className={classes.fade}>
-                      <Grid container justify="center">
-                        <Grid item>
-                          <Fade in={onItem === item.id}>
-                            <Grid container spacing={10}>
-                              <Grid item>
-                                <EditHistory budget={item} />
-                              </Grid>
-                              <Grid item>
-                                <DeleteHistory budget={item} />
-                              </Grid>
-                            </Grid>
-                          </Fade>
-                        </Grid>
-                      </Grid>
-                    </Grid>
-
-                    <Grid item>
-                      <hr />
-                    </Grid>
-
-                    <Grid item>
-                      <Grid container direction="row" justify="space-between">
-                        <Grid item>
-                          <Typography>{item.category}</Typography>
-                        </Grid>
-                        <Grid item>
-                          <Typography>{item.date}</Typography>
-                        </Grid>
+                      <Grid item>
+                        <Typography>
+                          {item.type === 'expense'
+                            ? `- ${item.amount}`
+                            : `+ ${item.amount}`}
+                        </Typography>
                       </Grid>
                     </Grid>
                   </Grid>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
+
+                  <Grid item className={classes.fade}>
+                    <Grid container justify="center">
+                      <Grid item>
+                        <Fade in={onItem === item.id}>
+                          <Grid container spacing={10}>
+                            <Grid item>
+                              <EditHistory budget={item} />
+                            </Grid>
+                            <Grid item>
+                              <DeleteHistory budget={item} />
+                            </Grid>
+                          </Grid>
+                        </Fade>
+                      </Grid>
+                    </Grid>
+                  </Grid>
+
+                  <Grid item>
+                    <hr />
+                  </Grid>
+
+                  <Grid item>
+                    <Grid container direction="row" justify="space-between">
+                      <Grid item>
+                        <Typography>{item.category}</Typography>
+                      </Grid>
+                      <Grid item>
+                        <Typography>{item.date}</Typography>
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                </Grid>
+              </CardContent>
+            </Card>
+          </Grid>
+        ))}
       </Grid>
     </Grid>
   );
