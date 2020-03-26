@@ -56,11 +56,12 @@ export default function Categories() {
           </TableHead>
           <TableBody>
             {filteredAmounts.map((amount) => (
-              <TableRow key={amount.id}>
+              <TableCell key={amount.id}>
                 <TableCell align="center">{amount.name}</TableCell>
-                <TableCell align="center">{(amount.type==='expense' ? '-' : '+')+amount.amount}
-              /TableCell>
-              </TableRow>
+                <TableCell align="center">
+                  {(amount.type === 'expense' ? '-' : '+') + amount.amount}
+                </TableCell>
+              </TableCell>
             ))}
           </TableBody>
         </Table>
