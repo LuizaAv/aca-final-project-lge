@@ -2,33 +2,18 @@ import React, { useState } from 'react';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
 import Fade from '@material-ui/core/Fade';
 import Grid from '@material-ui/core/Grid';
+
 import { useStoreContext } from '../../store/storeContext';
 
 import Sort from '../../components/Sort/Sort';
 import Filter from '../../components/Filter/Filter';
 import EditHistory from './EditHistory';
 import DeleteHistory from './DeleteHistory';
+import useStyles from './History.style';
+
 // import Emptypage from './Emptyhistorypage';
-
-const useStyles = makeStyles({
-  card: {
-    width: 500,
-    border: '1.5px solid black',
-    borderRadius: 10,
-    '&:hover': {
-      backgroundColor: '#00000075',
-    },
-  },
-  fade: {
-    position: 'absolute',
-    width: 500,
-    margin: 'auto',
-  },
-});
-
 
 export default function History() {
   const classes = useStyles();
@@ -52,7 +37,7 @@ export default function History() {
   };
 
   return (
-    <Grid container direction="coulmn" spacing={3}>
+    <Grid container direction="column" spacing={3}>
       <Grid item container justify="center" spacing={10}>
         <Grid item>
           <Sort isAscending={isAscending} setIsAscending={setIsAscending} />
@@ -63,7 +48,7 @@ export default function History() {
       </Grid>
 
       <Grid item container justify="center" spacing={3}>
-        {filteredBudget.map((item) => (
+        {filteredBudget.map(item => (
           <Grid item key={item.id}>
             <Card className={classes.card}>
               <CardContent

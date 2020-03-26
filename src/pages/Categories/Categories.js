@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -15,19 +14,7 @@ import AddCategory from './AddCategory';
 import DeleteCategory from './DeleteCategory';
 import EditCategory from './EditCategory';
 import Filter from '../../components/Filter/Filter';
-
-const useStyles = makeStyles({
-  table: {
-    // width: '80%',
-  },
-});
-
-const StyledTableCell = withStyles((theme) => ({
-  head: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-}))(TableCell);
+import useStyles from './Categories.style';
 
 export default function Categories() {
   const classes = useStyles();
@@ -48,13 +35,19 @@ export default function Categories() {
           <Filter filterType={filterType} setFilterType={setFilterType} />
         </Grid>
       </Grid>
-      <TableContainer className={classes.table} component={Paper}>
+      <TableContainer component={Paper}>
         <Table>
           <TableHead>
             <TableRow>
-              <StyledTableCell align="center">Name</StyledTableCell>
-              <StyledTableCell align="center">Type</StyledTableCell>
-              <StyledTableCell align="center">Action</StyledTableCell>
+              <TableCell className={classes.head} align="center">
+                Name
+              </TableCell>
+              <TableCell className={classes.head} align="center">
+                Type
+              </TableCell>
+              <TableCell className={classes.head} align="center">
+                Action
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

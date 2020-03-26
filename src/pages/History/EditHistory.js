@@ -69,7 +69,11 @@ export default function EditHistory({ budget }) {
   };
 
   const handleAmountChange = (e) => {
-    setAmount(e.target.value);
+    const { value } = e.target;
+    const firstChar = /^[1-9]/.test(value);
+    const allChar = firstChar ? /^[0-9]+$/.test(value) : false;
+    const text = allChar ? value : value.slice(0, -1);
+    setAmount(text);
   };
 
   const handleDateChange = (newData) => {
@@ -137,7 +141,6 @@ export default function EditHistory({ budget }) {
         <TextField
           className={classes.itemSize}
           label="Amount"
-          type="number"
           value={amount}
           onChange={handleAmountChange}
         />
