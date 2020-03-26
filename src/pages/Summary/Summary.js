@@ -46,7 +46,7 @@ export default function Categories() {
         <Filter filterType={filterType} setFilterType={setFilterType} />
       </div>
 
-      <TableContainer className={classes.table} component={Paper}>
+      <TableContainer component={Paper}>
         <Table>
           <TableHead>
             <TableRow>
@@ -56,12 +56,12 @@ export default function Categories() {
           </TableHead>
           <TableBody>
             {filteredAmounts.map((amount) => (
-              <TableCell key={amount.id}>
+              <TableRow key={amount.id}>
                 <TableCell align="center">{amount.name}</TableCell>
                 <TableCell align="center">
                   {(amount.type === 'expense' ? '-' : '+') + amount.amount}
                 </TableCell>
-              </TableCell>
+              </TableRow>
             ))}
           </TableBody>
         </Table>
