@@ -12,26 +12,10 @@ import TextField from '@material-ui/core/TextField';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/core/styles';
 
 import { useStoreContext } from '../../store/storeContext';
 import { addBudget } from '../../store/actions';
-
-
-const useStyles = makeStyles({
-  title: {
-    margin: 'auto',
-  },
-  itemSize: {
-    width: '80%',
-    margin: 'auto',
-    marginBottom: 15,
-  },
-  date: {
-    width: '40%',
-    margin: 'auto',
-  },
-});
+import useStyles from './AddBudget.style';
 
 export default function AddBudget() {
   const classes = useStyles();
@@ -67,7 +51,11 @@ export default function AddBudget() {
   };
 
   const handleAmountChange = (e) => {
-    setAmount(e.target.value);
+    const { value } = e.target;
+    const firstChar = /^[1-9]/.test(value);
+    const allChar = firstChar ? /^[0-9]+$/.test(value) : false;
+    const text = allChar ? value : value.slice(0, -1);
+    setAmount(text);
   };
 
   const handleDateChange = (newDate) => {
@@ -144,7 +132,6 @@ export default function AddBudget() {
         <TextField
           className={classes.itemSize}
           label="Amount"
-          type="number"
           value={amount}
           onChange={handleAmountChange}
         />
