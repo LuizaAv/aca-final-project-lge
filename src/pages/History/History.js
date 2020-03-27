@@ -3,7 +3,6 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Fade from '@material-ui/core/Fade';
-import Grid from '@material-ui/core/Grid';
 
 import { useStoreContext } from '../../store/storeContext';
 
@@ -37,77 +36,39 @@ export default function History() {
   };
 
   return (
-    <Grid container direction="column" spacing={3}>
-      <Grid item container justify="center" spacing={10}>
-        <Grid item>
-          <Sort isAscending={isAscending} setIsAscending={setIsAscending} />
-        </Grid>
-        <Grid item>
-          <Filter filterType={filterType} setFilterType={setFilterType} />
-        </Grid>
-      </Grid>
+    <div>
+      <Sort isAscending={isAscending} setIsAscending={setIsAscending} />
 
-      <Grid item container justify="center" spacing={3}>
-        {filteredBudget.map(item => (
-          <Grid item key={item.id}>
-            <Card className={classes.card}>
-              <CardContent
-                onMouseEnter={() => handleMouseOver(item.id)}
-                onMouseLeave={() => handleMouseOver('')}
-              >
-                <Grid container justify="center" direction="column">
-                  <Grid item>
-                    <Grid container direction="row" justify="space-between">
-                      <Grid item>
-                        <Typography>{item.name}</Typography>
-                      </Grid>
-                      <Grid item>
-                        <Typography>
-                          {item.type === 'expense'
-                            ? `- ${item.amount}`
-                            : `+ ${item.amount}`}
-                        </Typography>
-                      </Grid>
-                    </Grid>
-                  </Grid>
+      <Filter filterType={filterType} setFilterType={setFilterType} />
 
-                  <Grid item className={classes.fade}>
-                    <Grid container justify="center">
-                      <Grid item>
-                        <Fade in={onItem === item.id}>
-                          <Grid container spacing={10}>
-                            <Grid item>
-                              <EditHistory budget={item} />
-                            </Grid>
-                            <Grid item>
-                              <DeleteHistory budget={item} />
-                            </Grid>
-                          </Grid>
-                        </Fade>
-                      </Grid>
-                    </Grid>
-                  </Grid>
+      {filteredBudget.map((item) => (
+        <Card className={classes.card} key={item.id}>
+          <CardContent
+            className={classes.content}
+            onMouseEnter={() => handleMouseOver(item.id)}
+            onMouseLeave={() => handleMouseOver('')}
+          >
+            <Typography>{item.name}</Typography>
 
-                  <Grid item>
-                    <hr />
-                  </Grid>
+            <Typography>
+              {item.type === 'expense'
+                ? `- ${item.amount}`
+                : `+ ${item.amount}`}
+            </Typography>
 
-                  <Grid item>
-                    <Grid container direction="row" justify="space-between">
-                      <Grid item>
-                        <Typography>{item.category}</Typography>
-                      </Grid>
-                      <Grid item>
-                        <Typography>{item.date}</Typography>
-                      </Grid>
-                    </Grid>
-                  </Grid>
-                </Grid>
-              </CardContent>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
-    </Grid>
+            <Fade in={onItem === item.id} className={classes.fade}>
+              <div>
+                <EditHistory budget={item} />
+                <DeleteHistory budget={item} />
+              </div>
+            </Fade>
+            <hr />
+            <Typography>{item.category}</Typography>
+
+            <Typography>{item.date}</Typography>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
   );
 }

@@ -93,17 +93,15 @@ export default function AddBudget() {
   );
 
   return (
-    <Grid container spacing={3} justify="flex-end">
-      <Grid item>
+    <div>
         <Button variant="outlined" value="Expense" onClick={handleClickExpense}>
           Add Expense
         </Button>
-      </Grid>
-      <Grid item>
+
         <Button variant="outlined" value="Income" onClick={handleClickIncome}>
           Add Income
         </Button>
-      </Grid>
+
 
 
       <Dialog fullWidth maxWidth="xs" open={open} onClose={handleOpen}>
@@ -161,6 +159,6 @@ export default function AddBudget() {
           </Button>
         </DialogActions>
       </Dialog>
-    </Grid>
+    </div>
   );
 }

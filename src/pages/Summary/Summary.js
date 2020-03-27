@@ -7,6 +7,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import useStyles from './Summary.style';
+
 import { useStoreContext } from '../../store/storeContext';
 
 import Sort from '../../components/Sort/Sort';

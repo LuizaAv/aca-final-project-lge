@@ -1,8 +1,9 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-export default makeStyles(theme => ({
+export default makeStyles((theme) => ({
   card: {
     width: 500,
+    margin: 'auto',
     border: '1.5px solid black',
     borderRadius: 10,
     '&:hover': {
@@ -12,6 +13,7 @@ export default makeStyles(theme => ({
   fade: {
     position: 'absolute',
     width: 500,
-    margin: 'auto',
+    left: '46%',
+    right: '46%',
   },
 }));

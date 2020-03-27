@@ -26,15 +26,9 @@ export default function Categories() {
     : state.categories.filter((categories) => categories.type === filterType);
 
   return (
-    <Grid container direction="column" spacing={3}>
-      <Grid item container justify="center" spacing={10}>
-        <Grid item>
-          <AddCategory />
-        </Grid>
-        <Grid item>
-          <Filter filterType={filterType} setFilterType={setFilterType} />
-        </Grid>
-      </Grid>
+    <div>
+      <AddCategory />
+      <Filter filterType={filterType} setFilterType={setFilterType} />
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
@@ -51,7 +45,7 @@ export default function Categories() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {filteredCategories.map(category => (
+            {filteredCategories.map((category) => (
               <TableRow key={category.id}>
                 <TableCell align="center">{category.name}</TableCell>
                 <TableCell align="center">{category.type}</TableCell>
@@ -64,6 +58,6 @@ export default function Categories() {
           </TableBody>
         </Table>
       </TableContainer>
-    </Grid>
+    </div>
   );
 }
