@@ -1,6 +1,5 @@
 import React, { useReducer } from 'react';
-import { Switch, Route, Link } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
+import { Switch, Route } from 'react-router-dom';
 
 import { StoreContext } from '../store/storeContext';
 import { reducer } from '../store/reducers';

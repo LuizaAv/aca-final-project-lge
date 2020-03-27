@@ -11,7 +11,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
-import Grid from '@material-ui/core/Grid';
 
 import { useStoreContext } from '../../store/storeContext';
 import { addBudget } from '../../store/actions';
@@ -101,8 +100,6 @@ export default function AddBudget() {
         <Button variant="outlined" value="Income" onClick={handleClickIncome}>
           Add Income
         </Button>
-
-
 
       <Dialog fullWidth maxWidth="xs" open={open} onClose={handleOpen}>
         <DialogTitle className={classes.title}>{`Add ${type}`}</DialogTitle>
