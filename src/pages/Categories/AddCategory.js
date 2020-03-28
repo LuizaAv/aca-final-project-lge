@@ -23,13 +23,13 @@ const useStyles = makeStyles({
     margin: 'auto',
     marginBottom: 15,
   },
-  flexContainer:{
+  flexContainer: {
     display: 'flex',
   },
   button: {
     textDecoration: 'none',
     border: '3px solid #ffffff',
-  }
+  },
 });
 
 export default function AddCategory() {
@@ -68,35 +68,43 @@ export default function AddCategory() {
 
   return (
     <>
-    <div className={classes.flexContainer}>
-      <Button variant="outlined" onClick={handleOpen} className={classes.button}>
-        Add Category
-      </Button>
+      <div className={classes.flexContainer}>
+        <Button
+          variant="outlined"
+          onClick={handleOpen}
+          className={classes.button}
+        >
+          Add Category
+        </Button>
 
-      <Dialog fullWidth maxWidth="xs" onClose={handleOpen} open={open}>
-        <DialogTitle className={classes.title}>Add Category</DialogTitle>
+        <Dialog fullWidth maxWidth="xs" onClose={handleOpen} open={open}>
+          <DialogTitle className={classes.title}>Add Category</DialogTitle>
 
-        <FormControl className={classes.itemSize}>
-          <InputLabel>Category type</InputLabel>
-          <Select value={type} onChange={handleTypeChange}>
-            <MenuItem value="expense">Expense</MenuItem>
-            <MenuItem value="income">Income</MenuItem>
-          </Select>
-        </FormControl>
+          <FormControl className={classes.itemSize}>
+            <InputLabel>Category type</InputLabel>
+            <Select value={type} onChange={handleTypeChange}>
+              <MenuItem value="expense">Expense</MenuItem>
+              <MenuItem value="income">Income</MenuItem>
+            </Select>
+          </FormControl>
 
-        <TextField
-          className={classes.itemSize}
-          label="Category name"
-          value={name}
-          onChange={handleNameChange}
-        />
+          <TextField
+            className={classes.itemSize}
+            label="Category name"
+            value={name}
+            onChange={handleNameChange}
+          />
 
-        <DialogActions>
-          <Button disabled={doneDisabled} variant="outlined" onClick={handleAddCategory}>
-            Done
-          </Button>
-        </DialogActions>
-      </Dialog>
+          <DialogActions>
+            <Button
+              disabled={doneDisabled}
+              variant="outlined"
+              onClick={handleAddCategory}
+            >
+              Done
+            </Button>
+          </DialogActions>
+        </Dialog>
       </div>
     </>
   );
