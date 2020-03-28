@@ -11,10 +11,16 @@ import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
+import SpeedDial from '@material-ui/lab/SpeedDial';
+import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
+import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
 
-import { useStoreContext } from '../../store/storeContext';
-import { addBudget } from '../../store/actions';
+import expenceIcon from '../../assets/icons/expense-icon.png';
+import incomeIcon from '../../assets/icons/income-icon.png';
 import useStyles from './AddBudget.style';
+import { addBudget } from '../../store/actions';
+import { useStoreContext } from '../../store/storeContext';
+
 
 export default function AddBudget() {
   const classes = useStyles();
@@ -25,29 +31,20 @@ export default function AddBudget() {
   const [amount, setAmount] = useState('');
   const [date, setDate] = useState(new Date());
   const [picherError, setPicherError] = useState('');
-  const [open, setOpen] = useState(false);
+  const [speedDialOpen, setSpeedDialOpen] = React.useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
-  const handleOpen = () => {
-    setOpen(!open);
-  };
+  const handleSpeedDialOpen = () => { setSpeedDialOpen(!speedDialOpen); };
 
-  const handleClickExpense = () => {
-    setType('expense');
-    handleOpen();
-  };
+  const handleDialogOpen = () => { setDialogOpen(!dialogOpen); };
 
-  const handleClickIncome = () => {
-    setType('income');
-    handleOpen();
-  };
+  const handleClickExpense = () => { setType('expense'); setDialogOpen(!dialogOpen); };
 
-  const handleNameChange = (e) => {
-    setName(e.target.value);
-  };
+  const handleClickIncome = () => { setType('income'); setDialogOpen(!dialogOpen); };
 
-  const handleCategoryChange = (e) => {
-    setCategory(e.target.value);
-  };
+  const handleNameChange = (e) => { setName(e.target.value); };
+
+  const handleCategoryChange = (e) => { setCategory(e.target.value); };
 
   const handleAmountChange = (e) => {
     const { value } = e.target;
@@ -57,16 +54,12 @@ export default function AddBudget() {
     setAmount(text);
   };
 
-  const handleDateChange = (newDate) => {
-    setDate(newDate);
-  };
+  const handleDateChange = (newDate) => { setDate(newDate); };
 
-  const handlePicherError = (e) => {
-    setPicherError(e);
-  };
+  const handlePicherError = (e) => { setPicherError(e); };
 
   const handleStateReset = () => {
-    setOpen(!open);
+    setDialogOpen(!dialogOpen);
     setType('');
     setName('');
     setCategory('');
@@ -92,16 +85,31 @@ export default function AddBudget() {
   );
 
   return (
-    <div>
-        <Button variant="outlined" value="Expense" onClick={handleClickExpense}>
-          Add Expense
-        </Button>
+    <div className={classes.root}>
+      <SpeedDial
+        ariaLabel="SpeedDial add budget buttons"
+        className={classes.speedDial}
+        icon={<SpeedDialIcon />}
+        onClose={handleSpeedDialOpen}
+        onOpen={handleSpeedDialOpen}
+        open={speedDialOpen}
+        direction="left"
+      >
+        <SpeedDialAction
+          className={classes.speedDialAction}
+          icon={<img src={expenceIcon} width="40px" alt="Expense" />}
+          tooltipTitle="Expense"
+          onClick={handleClickExpense}
+        />
+        <SpeedDialAction
+          className={classes.speedDialAction}
+          icon={<img src={incomeIcon} width="40px" alt="Income" />}
+          tooltipTitle="Income"
+          onClick={handleClickIncome}
+        />
+      </SpeedDial>
 
-        <Button variant="outlined" value="Income" onClick={handleClickIncome}>
-          Add Income
-        </Button>
-
-      <Dialog fullWidth maxWidth="xs" open={open} onClose={handleOpen}>
+      <Dialog fullWidth maxWidth="xs" open={dialogOpen} onClose={handleDialogOpen}>
         <DialogTitle className={classes.title}>{`Add ${type}`}</DialogTitle>
 
         <FormControl className={classes.itemSize}>
