@@ -43,7 +43,7 @@ export default function Sort({ isAscending, setIsAscending }) {
           <Select
             className={classes.select}
             variant="outlined"
-            value='Sort'
+            value="Sort"
             onChange={handleChange}
           >
             <MenuItem className={classes.menuItem} value="ascending order">
