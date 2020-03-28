@@ -65,7 +65,11 @@ export default function EditCategory({ category }) {
 
   return (
     <>
-      <EditIcon fontSize="large" className={classes.icon} onClick={handleOpen} />
+      <EditIcon
+        fontSize="large"
+        className={classes.icon}
+        onClick={handleOpen}
+      />
 
       <Dialog fullWidth maxWidth="xs" onClose={handleOpen} open={open}>
         <DialogTitle className={classes.title}>Edit Category</DialogTitle>
@@ -98,7 +102,6 @@ export default function EditCategory({ category }) {
     </>
   );
 }
-
 
 EditCategory.propTypes = {
   category: propTypes.shape({
