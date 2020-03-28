@@ -1,36 +1,33 @@
-import React, { useState } from "react";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
-import Fade from "@material-ui/core/Fade";
+import React, { useState } from 'react';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import Fade from '@material-ui/core/Fade';
 
-import { useStoreContext } from "../../store/storeContext";
+import { useStoreContext } from '../../store/storeContext';
 
-import Sort from "../../components/Sort/Sort";
-import Filter from "../../components/Filter/Filter";
-import EditHistory from "./EditHistory";
-import DeleteHistory from "./DeleteHistory";
-import useStyles from "./History.style";
+import Sort from '../../components/Sort/Sort';
+import Filter from '../../components/Filter/Filter';
+import EditHistory from './EditHistory';
+import DeleteHistory from './DeleteHistory';
+import useStyles from './History.style';
 
 // import Emptypage from './Emptyhistorypage';
 
 export default function History() {
   const classes = useStyles();
   const { state } = useStoreContext();
-  const [filterType, setFilterType] = useState("all");
+  const [filterType, setFilterType] = useState('all');
   const [isAscending, setIsAscending] = useState(true);
-  const [onItem, setOnItem] = React.useState("");
+  const [onItem, setOnItem] = React.useState('');
 
-  const filteredBudget =
-    filterType === "all"
-      ? [...state.budget]
-      : state.budget.filter(budget => budget.type === filterType);
+  const filteredBudget = filterType === 'all'
+    ? [...state.budget]
+    : state.budget.filter((budget) => budget.type === filterType);
 
-  filteredBudget.sort((a, b) =>
-    isAscending ? a.amount - b.amount : b.amount - a.amount
-  );
+  filteredBudget.sort((a, b) => (isAscending ? a.amount - b.amount : b.amount - a.amount));
 
-  const handleMouseOver = item => {
+  const handleMouseOver = (item) => {
     setOnItem(item);
   };
 
@@ -41,12 +38,12 @@ export default function History() {
         <Filter filterType={filterType} setFilterType={setFilterType} />
       </div>
       <div className={classes.flexContainer}>
-        {filteredBudget.map(item => (
+        {filteredBudget.map((item) => (
           <div item key={item.id}>
             <Card className={classes.card}>
               <CardContent
                 onMouseEnter={() => handleMouseOver(item.id)}
-                onMouseLeave={() => handleMouseOver("")}
+                onMouseLeave={() => handleMouseOver('')}
               >
                 <div className={classes.nameAmount}>
                   <div className={classes.name}>
@@ -54,7 +51,7 @@ export default function History() {
                   </div>
                   <div className={classes.amount}>
                     <Typography>
-                      {item.type === "expense"
+                      {item.type === 'expense'
                         ? `- ${item.amount}`
                         : `+ ${item.amount}`}
                     </Typography>
@@ -62,8 +59,8 @@ export default function History() {
                 </div>
                 <Fade in={onItem === item.id}>
                   <div>
-                    <EditHistory budget={item} className={classes.icons}/>
-                    <DeleteHistory budget={item} className={classes.icons}/>
+                    <EditHistory budget={item} className={classes.icons} />
+                    <DeleteHistory budget={item} className={classes.icons} />
                   </div>
                 </Fade>
                 <hr />

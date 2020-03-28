@@ -4,15 +4,15 @@ export default makeStyles((theme) => ({
   link: {
     textDecoration: 'none',
   },
-  totalPage:{
+  totalPage: {
     display: 'flex',
     flexDirection: 'column',
   },
-  flexContainer:{
+  flexContainer: {
     display: 'flex',
     justifyContent: 'center',
   },
-  buttons:{
+  buttons: {
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
@@ -24,5 +24,5 @@ export default makeStyles((theme) => ({
     textDecoration: 'none',
     backgroundColor: '#466d6d',
     border: '3px solid #ffffff',
-  }
+  },
 }));

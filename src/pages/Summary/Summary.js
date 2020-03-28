@@ -43,32 +43,32 @@ export default function Categories() {
     <>
       <div className={classes.flexContainer}>
         <Sort isAscending={isAscending} setIsAscending={setIsAscending} />
-        </div>
-        <div className={classes.flexContainer}>
+      </div>
+      <div className={classes.flexContainer}>
         <Filter filterType={filterType} setFilterType={setFilterType} />
       </div>
 
       <div className={classes.flexContainer}>
-      <TableContainer component={Paper} className={classes.table}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell className={classes.head} align="center">Category</TableCell>
-              <TableCell className={classes.head} align="center">Amount</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {filteredAmounts.map((amount) => (
-              <TableRow key={amount.id} className={classes.tableRow}>
-                <TableCell align="center">{amount.name}</TableCell>
-                <TableCell align="center">
-                  {(amount.type === 'expense' ? '-' : '+') + amount.amount}
-                </TableCell>
+        <TableContainer component={Paper} className={classes.table}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell className={classes.head} align="center">Category</TableCell>
+                <TableCell className={classes.head} align="center">Amount</TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+            </TableHead>
+            <TableBody>
+              {filteredAmounts.map((amount) => (
+                <TableRow key={amount.id} className={classes.tableRow}>
+                  <TableCell align="center">{amount.name}</TableCell>
+                  <TableCell align="center">
+                    {(amount.type === 'expense' ? '-' : '+') + amount.amount}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </div>
     </>
   );

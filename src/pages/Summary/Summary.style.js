@@ -4,24 +4,24 @@ export default makeStyles((theme) => ({
   head: {
     backgroundColor: '#466d6d',
     color: 'white',
-    fontSize: 20
+    fontSize: 20,
   },
-  flexContainer:{
+  flexContainer: {
     display: 'flex',
     justifyContent: 'center',
   },
-  table:{
+  table: {
     width: 550,
-    marginTop: 10
+    marginTop: 10,
   },
-  
+
   tableRow: {
     padding: 10,
-    margin:5,
+    margin: 5,
     transition: 'transform .2s',
     '&:hover': {
-        transform: 'scale(1.1)',
-        backgroundColor: '#e0ebeb',
-     }
+      transform: 'scale(1.1)',
+      backgroundColor: '#e0ebeb',
+    },
   },
 }));
