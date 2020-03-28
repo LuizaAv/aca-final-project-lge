@@ -115,63 +115,63 @@ export default function AddBudget() {
         </Button>
       </div>
       <div className={classes.addbudget}>
-      <Dialog fullWidth maxWidth="xs" open={open} onClose={handleOpen}>
-        <DialogTitle className={classes.title}>{`Add ${type}`}</DialogTitle>
+        <Dialog fullWidth maxWidth="xs" open={open} onClose={handleOpen}>
+          <DialogTitle className={classes.title}>{`Add ${type}`}</DialogTitle>
 
-        
-        <FormControl className={classes.itemSize}>
-          <InputLabel >Category</InputLabel>
-          <Select value={category} onChange={handleCategoryChange}>
-            {state.categories
-              .filter((stateCategory) => stateCategory.type === type)
-              .map((stateCategory) => (
-                <MenuItem value={stateCategory.name} key={stateCategory.id}>
-                  {stateCategory.name}
-                </MenuItem>
-              ))}
-          </Select>
-        </FormControl>
 
-        <TextField
-          className={classes.itemSize}
-          label="Name"
-          value={name}
-          onChange={handleNameChange}
-        />
+          <FormControl className={classes.itemSize}>
+            <InputLabel>Category</InputLabel>
+            <Select value={category} onChange={handleCategoryChange}>
+              {state.categories
+                .filter((stateCategory) => stateCategory.type === type)
+                .map((stateCategory) => (
+                  <MenuItem value={stateCategory.name} key={stateCategory.id}>
+                    {stateCategory.name}
+                  </MenuItem>
+                ))}
+            </Select>
+          </FormControl>
 
-        <TextField
-          className={classes.itemSize}
-          label="Amount"
-          value={amount}
-          onChange={handleAmountChange}
-        />
-
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <KeyboardDatePicker
-            className={classes.date}
-            format="dd/MM/yyyy"
-            margin="normal"
-            label="Date"
-            onError={handlePicherError}
-            value={date}
-            onChange={handleDateChange}
-            KeyboardButtonProps={{
-              'aria-label': 'change date',
-            }}
+          <TextField
+            className={classes.itemSize}
+            label="Name"
+            value={name}
+            onChange={handleNameChange}
           />
-        </MuiPickersUtilsProvider>
 
-        <DialogActions>
-          <Button
-            disabled={doneDisabled}
-            variant="outlined"
-            onClick={handleAddingBudget}
-            className={classes.buttons}
-          >
-            Done
-          </Button>
-        </DialogActions>
-      </Dialog>
+          <TextField
+            className={classes.itemSize}
+            label="Amount"
+            value={amount}
+            onChange={handleAmountChange}
+          />
+
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <KeyboardDatePicker
+              className={classes.date}
+              format="dd/MM/yyyy"
+              margin="normal"
+              label="Date"
+              onError={handlePicherError}
+              value={date}
+              onChange={handleDateChange}
+              KeyboardButtonProps={{
+                'aria-label': 'change date',
+              }}
+            />
+          </MuiPickersUtilsProvider>
+
+          <DialogActions>
+            <Button
+              disabled={doneDisabled}
+              variant="outlined"
+              onClick={handleAddingBudget}
+              className={classes.buttons}
+            >
+              Done
+            </Button>
+          </DialogActions>
+        </Dialog>
       </div>
     </div>
   );
