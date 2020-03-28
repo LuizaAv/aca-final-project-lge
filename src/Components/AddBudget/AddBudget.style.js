@@ -10,17 +10,17 @@ export default makeStyles((theme) => ({
     marginBottom: 15,
     backgroundColor: '#85adad',
     borderRadius: 10,
-    color: 'white'
+    color: 'white',
   },
   date: {
     width: '40%',
     margin: 'auto',
   },
-  flexContainer:{
+  flexContainer: {
     display: 'flex',
     justifyContent: 'center',
   },
-  buttons:{
+  buttons: {
     alignItems: 'center',
     flexWrap: 'wrap',
     margin: 10,
@@ -32,11 +32,11 @@ export default makeStyles((theme) => ({
     textDecoration: 'none',
     border: '3px solid #ffffff',
   },
-  addbudget:{
+  addbudget: {
     display: 'flex',
-    backgroundColor:'yellow'
+    backgroundColor: 'yellow',
   },
-  dialog:{
-    backgroundColor:'yellow'
-  }
+  dialog: {
+    backgroundColor: 'yellow',
+  },
 }));
