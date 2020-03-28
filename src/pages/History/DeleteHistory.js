@@ -8,7 +8,7 @@ import { deleteBudget } from '../../store/actions';
 
 const useStyles = makeStyles({
   icon: {
-    color: '#fff',
+    color: '#466d6d',
     borderRadius: '100%',
     padding: 10,
     '&:hover': {

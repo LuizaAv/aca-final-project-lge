@@ -31,7 +31,7 @@ const useStyles = makeStyles({
     margin: 'auto',
   },
   icon: {
-    color: '#fff',
+    color: '#466d6d',
     borderRadius: '100%',
     padding: 10,
     '&:hover': {
