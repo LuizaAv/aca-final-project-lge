@@ -6,7 +6,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
+import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+import MoneyOffIcon from '@material-ui/icons/MoneyOff';
 
 import { useStoreContext } from '../../store/storeContext';
 
@@ -26,44 +27,51 @@ export default function Categories() {
     : state.categories.filter((categories) => categories.type === filterType);
 
   return (
-    <Grid container direction="column" spacing={3}>
-      <Grid item container justify="center" spacing={10}>
-        <Grid item>
-          <AddCategory />
-        </Grid>
-        <Grid item>
-          <Filter filterType={filterType} setFilterType={setFilterType} />
-        </Grid>
-      </Grid>
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell className={classes.head} align="center">
-                Name
-              </TableCell>
-              <TableCell className={classes.head} align="center">
-                Type
-              </TableCell>
-              <TableCell className={classes.head} align="center">
-                Action
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {filteredCategories.map(category => (
-              <TableRow key={category.id}>
-                <TableCell align="center">{category.name}</TableCell>
-                <TableCell align="center">{category.type}</TableCell>
-                <TableCell align="center">
-                  <EditCategory category={category} />
-                  <DeleteCategory category={category} />
+    <>
+      <div className={classes.flexContainer}>
+        <AddCategory />
+        <Filter filterType={filterType} setFilterType={setFilterType} />
+      </div>
+      <div className={classes.flexContainer}>
+        <TableContainer component={Paper} className={classes.table}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell className={classes.head} align="center">
+                  Name
+                </TableCell>
+                <TableCell className={classes.head} align="center">
+                  Type
+                </TableCell>
+                <TableCell className={classes.head} align="center">
+                  Action
                 </TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </Grid>
+            </TableHead>
+            <TableBody>
+              {filteredCategories.map((category) => (
+                <TableRow key={category.id} className={classes.tableRow}>
+                  <TableCell align="center">{category.name}</TableCell>
+                  <TableCell align="center">
+                    {category.type}
+                    <div className={classes.flexContainer}>
+                      {category.type === 'income' ? (
+                        <AttachMoneyIcon className={classes.moneyIcon} />
+                      ) : (
+                        <MoneyOffIcon className={classes.moneyIcon} />
+                      )}
+                    </div>
+                  </TableCell>
+                  <TableCell align="center">
+                    <EditCategory category={category} />
+                    <DeleteCategory category={category} />
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </div>
+    </>
   );
 }

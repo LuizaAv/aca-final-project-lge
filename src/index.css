@@ -2,18 +2,7 @@
   margin: auto;
 }
 
-.expenseButton{
-  height: 30px;
-  width: 100px;
-  background-color: blanchedalmond;
-  border-radius: 10px;
-  margin: 5px;
+body{
+  background-color: #dce8e8;
 }
 
-.incomeButton{
-  height: 30px;
-  width: 100px;
-  background-color: blanchedalmond;
-  border-radius: 10px;
-  margin: 5px;
-}

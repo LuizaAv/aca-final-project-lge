@@ -8,11 +8,12 @@ import { deleteCategory } from '../../store/actions';
 
 const useStyles = makeStyles({
   icon: {
-    color: '#000',
+    color: '#466d6d',
     borderRadius: '100%',
     padding: 10,
     '&:hover': {
       backgroundColor: '#00000010',
+      transform: 'scale(1.1)',
     },
   },
 });

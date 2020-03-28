@@ -41,12 +41,15 @@ export default function Categories() {
 
   return (
     <>
-      <div>
+      <div className={classes.flexContainer}>
         <Sort isAscending={isAscending} setIsAscending={setIsAscending} />
+        </div>
+        <div className={classes.flexContainer}>
         <Filter filterType={filterType} setFilterType={setFilterType} />
       </div>
 
-      <TableContainer component={Paper}>
+      <div className={classes.flexContainer}>
+      <TableContainer component={Paper} className={classes.table}>
         <Table>
           <TableHead>
             <TableRow>
@@ -56,7 +59,7 @@ export default function Categories() {
           </TableHead>
           <TableBody>
             {filteredAmounts.map((amount) => (
-              <TableRow key={amount.id}>
+              <TableRow key={amount.id} className={classes.tableRow}>
                 <TableCell align="center">{amount.name}</TableCell>
                 <TableCell align="center">
                   {(amount.type === 'expense' ? '-' : '+') + amount.amount}
@@ -66,6 +69,7 @@ export default function Categories() {
           </TableBody>
         </Table>
       </TableContainer>
+      </div>
     </>
   );
 }

@@ -23,6 +23,13 @@ const useStyles = makeStyles({
     margin: 'auto',
     marginBottom: 15,
   },
+  flexContainer:{
+    display: 'flex',
+  },
+  button: {
+    textDecoration: 'none',
+    border: '3px solid #ffffff',
+  }
 });
 
 export default function AddCategory() {
@@ -61,7 +68,8 @@ export default function AddCategory() {
 
   return (
     <>
-      <Button variant="outlined" onClick={handleOpen}>
+    <div className={classes.flexContainer}>
+      <Button variant="outlined" onClick={handleOpen} className={classes.button}>
         Add Category
       </Button>
 
@@ -89,6 +97,7 @@ export default function AddCategory() {
           </Button>
         </DialogActions>
       </Dialog>
+      </div>
     </>
   );
 }

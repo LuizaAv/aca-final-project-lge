@@ -1,113 +1,85 @@
-import React, { useState } from 'react';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
-import Fade from '@material-ui/core/Fade';
-import Grid from '@material-ui/core/Grid';
+import React, { useState } from "react";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import Typography from "@material-ui/core/Typography";
+import Fade from "@material-ui/core/Fade";
 
-import { useStoreContext } from '../../store/storeContext';
+import { useStoreContext } from "../../store/storeContext";
 
-import Sort from '../../components/Sort/Sort';
-import Filter from '../../components/Filter/Filter';
-import EditHistory from './EditHistory';
-import DeleteHistory from './DeleteHistory';
-import useStyles from './History.style';
+import Sort from "../../components/Sort/Sort";
+import Filter from "../../components/Filter/Filter";
+import EditHistory from "./EditHistory";
+import DeleteHistory from "./DeleteHistory";
+import useStyles from "./History.style";
 
 // import Emptypage from './Emptyhistorypage';
 
 export default function History() {
   const classes = useStyles();
   const { state } = useStoreContext();
-  const [filterType, setFilterType] = useState('all');
+  const [filterType, setFilterType] = useState("all");
   const [isAscending, setIsAscending] = useState(true);
-  const [onItem, setOnItem] = React.useState('');
+  const [onItem, setOnItem] = React.useState("");
 
-  const filteredBudget = filterType === 'all'
-    ? [...state.budget]
-    : state.budget.filter((budget) => budget.type === filterType);
+  const filteredBudget =
+    filterType === "all"
+      ? [...state.budget]
+      : state.budget.filter(budget => budget.type === filterType);
 
-  filteredBudget.sort((a, b) => (
-    isAscending
-      ? a.amount - b.amount
-      : b.amount - a.amount
-  ));
+  filteredBudget.sort((a, b) =>
+    isAscending ? a.amount - b.amount : b.amount - a.amount
+  );
 
-  const handleMouseOver = (item) => {
+  const handleMouseOver = item => {
     setOnItem(item);
   };
 
   return (
-    <Grid container direction="column" spacing={3}>
-      <Grid item container justify="center" spacing={10}>
-        <Grid item>
-          <Sort isAscending={isAscending} setIsAscending={setIsAscending} />
-        </Grid>
-        <Grid item>
-          <Filter filterType={filterType} setFilterType={setFilterType} />
-        </Grid>
-      </Grid>
-
-      <Grid item container justify="center" spacing={3}>
+    <>
+      <div className={classes.flexContainer}>
+        <Sort isAscending={isAscending} setIsAscending={setIsAscending} />
+        <Filter filterType={filterType} setFilterType={setFilterType} />
+      </div>
+      <div className={classes.flexContainer}>
         {filteredBudget.map(item => (
-          <Grid item key={item.id}>
+          <div item key={item.id}>
             <Card className={classes.card}>
               <CardContent
                 onMouseEnter={() => handleMouseOver(item.id)}
-                onMouseLeave={() => handleMouseOver('')}
+                onMouseLeave={() => handleMouseOver("")}
               >
-                <Grid container justify="center" direction="column">
-                  <Grid item>
-                    <Grid container direction="row" justify="space-between">
-                      <Grid item>
-                        <Typography>{item.name}</Typography>
-                      </Grid>
-                      <Grid item>
-                        <Typography>
-                          {item.type === 'expense'
-                            ? `- ${item.amount}`
-                            : `+ ${item.amount}`}
-                        </Typography>
-                      </Grid>
-                    </Grid>
-                  </Grid>
-
-                  <Grid item className={classes.fade}>
-                    <Grid container justify="center">
-                      <Grid item>
-                        <Fade in={onItem === item.id}>
-                          <Grid container spacing={10}>
-                            <Grid item>
-                              <EditHistory budget={item} />
-                            </Grid>
-                            <Grid item>
-                              <DeleteHistory budget={item} />
-                            </Grid>
-                          </Grid>
-                        </Fade>
-                      </Grid>
-                    </Grid>
-                  </Grid>
-
-                  <Grid item>
-                    <hr />
-                  </Grid>
-
-                  <Grid item>
-                    <Grid container direction="row" justify="space-between">
-                      <Grid item>
-                        <Typography>{item.category}</Typography>
-                      </Grid>
-                      <Grid item>
-                        <Typography>{item.date}</Typography>
-                      </Grid>
-                    </Grid>
-                  </Grid>
-                </Grid>
+                <div className={classes.nameAmount}>
+                  <div className={classes.name}>
+                    <Typography>{item.name}</Typography>
+                  </div>
+                  <div className={classes.amount}>
+                    <Typography>
+                      {item.type === "expense"
+                        ? `- ${item.amount}`
+                        : `+ ${item.amount}`}
+                    </Typography>
+                  </div>
+                </div>
+                <Fade in={onItem === item.id}>
+                  <div>
+                    <EditHistory budget={item} className={classes.icons}/>
+                    <DeleteHistory budget={item} className={classes.icons}/>
+                  </div>
+                </Fade>
+                <hr />
+                <div className={classes.categoryDate}>
+                  <div>
+                    <Typography>{item.category}</Typography>
+                  </div>
+                  <div>
+                    <Typography>{item.date}</Typography>
+                  </div>
+                </div>
               </CardContent>
             </Card>
-          </Grid>
+          </div>
         ))}
-      </Grid>
-    </Grid>
+      </div>
+    </>
   );
 }

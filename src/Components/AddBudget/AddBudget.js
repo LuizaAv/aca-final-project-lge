@@ -11,7 +11,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
-import Grid from '@material-ui/core/Grid';
+
 
 import { useStoreContext } from '../../store/storeContext';
 import { addBudget } from '../../store/actions';
@@ -93,24 +93,34 @@ export default function AddBudget() {
   );
 
   return (
-    <Grid container spacing={3} justify="flex-end">
-      <Grid item>
-        <Button variant="outlined" value="Expense" onClick={handleClickExpense}>
+    <div className={classes.flexContainer}>
+      <div className={classes.buttons}>
+        <Button
+          variant="outlined"
+          value="Expense"
+          onClick={handleClickExpense}
+          className={classes.button}
+        >
           Add Expense
         </Button>
-      </Grid>
-      <Grid item>
-        <Button variant="outlined" value="Income" onClick={handleClickIncome}>
+      </div>
+      <div className={classes.buttons}>
+        <Button
+          variant="outlined"
+          value="Income"
+          onClick={handleClickIncome}
+          className={classes.button}
+        >
           Add Income
         </Button>
-      </Grid>
-
-
+      </div>
+      <div className={classes.addbudget}>
       <Dialog fullWidth maxWidth="xs" open={open} onClose={handleOpen}>
         <DialogTitle className={classes.title}>{`Add ${type}`}</DialogTitle>
 
+        
         <FormControl className={classes.itemSize}>
-          <InputLabel>Category</InputLabel>
+          <InputLabel >Category</InputLabel>
           <Select value={category} onChange={handleCategoryChange}>
             {state.categories
               .filter((stateCategory) => stateCategory.type === type)
@@ -156,11 +166,13 @@ export default function AddBudget() {
             disabled={doneDisabled}
             variant="outlined"
             onClick={handleAddingBudget}
+            className={classes.buttons}
           >
             Done
           </Button>
         </DialogActions>
       </Dialog>
-    </Grid>
+      </div>
+    </div>
   );
 }
