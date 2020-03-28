@@ -37,7 +37,7 @@ export default function Filter({ filterType, setFilterType }) {
   return (
     <div className={classes.total}>
       <div className={classes.icon}>
-        <FilterBAndWOutlinedIcon/>
+        <FilterBAndWOutlinedIcon />
       </div>
       <FormControlLabel
         control={(
@@ -47,9 +47,15 @@ export default function Filter({ filterType, setFilterType }) {
             value={filterType}
             onChange={handleChange}
           >
-            <MenuItem className={classes.menuItem} value="all">All</MenuItem>
-            <MenuItem className={classes.menuItem} value="expense">Expense</MenuItem>
-            <MenuItem className={classes.menuItem} value="income">Income</MenuItem>
+            <MenuItem className={classes.menuItem} value="all">
+              All
+            </MenuItem>
+            <MenuItem className={classes.menuItem} value="expense">
+              Expense
+            </MenuItem>
+            <MenuItem className={classes.menuItem} value="income">
+              Income
+            </MenuItem>
           </Select>
         )}
         label="Filter"
