@@ -11,15 +11,11 @@ import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
-<<<<<<< HEAD
-
-=======
 import SpeedDial from '@material-ui/lab/SpeedDial';
 import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
->>>>>>> 9fb9dc6389b649591db991d3dd6e85599dfb9918
 
-import expenceIcon from '../../assets/icons/expense-icon.png';
+import expenceIcon from '../../assets/icons/expence-icon.png';
 import incomeIcon from '../../assets/icons/income-icon.png';
 import useStyles from './AddBudget.style';
 import { addBudget } from '../../store/actions';

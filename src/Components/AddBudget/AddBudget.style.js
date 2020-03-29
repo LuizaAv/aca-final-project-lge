@@ -14,10 +14,7 @@ export default makeStyles((theme) => ({
       backgroundColor: '#2979ff',
     },
   },
-  button: {
-    color: '#E0EBEB',
-    border: '1px solid',
-  },
+
   title: {
     margin: 'auto',
   },

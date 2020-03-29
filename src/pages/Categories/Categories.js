@@ -27,7 +27,6 @@ export default function Categories() {
     : state.categories.filter((categories) => categories.type === filterType);
 
   return (
-<<<<<<< HEAD
     <>
       <div className={classes.flexContainer}>
         <AddCategory />
@@ -74,40 +73,5 @@ export default function Categories() {
         </TableContainer>
       </div>
     </>
-=======
-    <div>
-      <AddCategory />
-      <Filter filterType={filterType} setFilterType={setFilterType} />
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell className={classes.head} align="center">
-                Name
-              </TableCell>
-              <TableCell className={classes.head} align="center">
-                Type
-              </TableCell>
-              <TableCell className={classes.head} align="center">
-                Action
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {filteredCategories.map((category) => (
-              <TableRow key={category.id}>
-                <TableCell align="center">{category.name}</TableCell>
-                <TableCell align="center">{category.type}</TableCell>
-                <TableCell align="center">
-                  <EditCategory category={category} />
-                  <DeleteCategory category={category} />
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </div>
->>>>>>> 9fb9dc6389b649591db991d3dd6e85599dfb9918
   );
 }
