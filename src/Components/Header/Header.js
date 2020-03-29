@@ -12,7 +12,7 @@ export default function Header() {
   const classes = useStyles();
 
   return (
-    <AppBar position="sticky">
+    <AppBar className={classes.appbar} position="sticky">
       <Toolbar className={classes.toolbar}>
         <nav className={classes.nav}>
           <Link to="/" className={classes.link}>

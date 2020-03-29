@@ -24,6 +24,8 @@ const useStyles = makeStyles({
   },
   icon: {
     margin: 5,
+    marginTop:8,
+    marginleft:6,
   },
 });
 

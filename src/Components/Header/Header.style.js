@@ -4,11 +4,15 @@ export default makeStyles((theme) => ({
   toolbar: {
 
   },
+  appbar:{
+    backgroundColor:'##9666ff',
+  },
   nav: {
     width: '100%',
     display: 'flex',
     justifyContent: 'center',
     position: 'absolute',
+   
 
   },
   link: {
@@ -16,8 +20,8 @@ export default makeStyles((theme) => ({
   },
   button: {
     color: '#ddd',
-    border: '1px solid',
-    margin: '0 20px',
+    border: '1px solid white',
+    margin: '0 30px',
     '&:hover': {
       borderColor: '#fff',
       color: '#fff',

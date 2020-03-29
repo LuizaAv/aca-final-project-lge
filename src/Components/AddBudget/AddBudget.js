@@ -156,6 +156,7 @@ export default function AddBudget() {
 
         <DialogActions>
           <Button
+          className={classes.btn}
             disabled={doneDisabled}
             variant="outlined"
             onClick={handleAddingBudget}
