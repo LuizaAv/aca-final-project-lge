@@ -16,7 +16,8 @@ export default makeStyles((theme) => ({
   fade: {
     position: 'absolute',
     width: 500,
-    margin: 'auto',
+    left: '46%',
+    right: '46%',
   },
   flexContainer: {
     display: 'flex',

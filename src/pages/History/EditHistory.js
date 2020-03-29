@@ -104,7 +104,6 @@ export default function EditHistory({ budget }) {
 
   return (
     <>
-
       <EditIcon fontSize="large" className={classes.icon} onClick={handleOpen} />
 
       <Dialog fullWidth maxWidth="xs" onClose={handleOpen} open={open}>
