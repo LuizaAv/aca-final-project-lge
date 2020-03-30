@@ -11,6 +11,13 @@ export default makeStyles({
   },
   drawerPaper: {
     width: drawerWidth,
+    boxShadow: '0 0 20px 20px #e6e8fc',
+  },
+  typography: {
+    color: '#363D99',
+    width: '100%',
+    padding: 30,
+    boxShadow: '0px 7px 60px 0px #e6e8fc',
   },
   nav: {
     display: 'flex',
