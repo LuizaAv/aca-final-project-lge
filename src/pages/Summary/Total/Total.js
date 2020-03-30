@@ -29,8 +29,8 @@ export default function Total() {
 
   const count = [
     { name: 'Current balance', amount: addComma(balance), className: 'balance' },
-    { name: 'Overall income', amount: addComma(income), className: 'income' },
-    { name: 'Overall expense', amount: addComma(expense), className: 'expense' },
+    { name: 'Overall income', amount: `+${addComma(income)}`, className: 'income' },
+    { name: 'Overall expense', amount: `-${addComma(expense)}`, className: 'expense' },
   ];
 
   return (
