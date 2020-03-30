@@ -1,8 +1,13 @@
+@font-face {
+  font-family: 'Segoe UI';
+  src: local('Segoe UI'),  url('./assets/fonts/SegoeUI.ttf');
+}
 .main{
   margin: auto;
 }
 
 body{
   background-color: #dce8e8;
+  font-family: 'Segoe UI';
 }
 

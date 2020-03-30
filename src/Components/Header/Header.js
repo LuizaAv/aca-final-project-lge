@@ -26,7 +26,7 @@ export default function Header() {
         }}
         anchor="left"
       >
-        <Typography className={classes.typography} variant="h5" display="block" align="center">
+        <Typography className={classes.typography} variant="h4" align="center">
           Finance
         </Typography>
 

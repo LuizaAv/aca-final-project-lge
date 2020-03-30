@@ -18,12 +18,16 @@ export default makeStyles({
     width: '100%',
     padding: 30,
     boxShadow: '0px 7px 60px 0px #e6e8fc',
+    fontFamily: 'Segoe UI',
+    fontWeight: 900,
   },
   nav: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     height: '100%',
+    fontFamily: 'Segoe UI',
+    fontWeight: 900,
     fontSize: 15,
   },
   link: {
