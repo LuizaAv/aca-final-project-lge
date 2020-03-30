@@ -2,49 +2,54 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const drawerWidth = 180;
 
-export default makeStyles((theme) => ({
+export default makeStyles({
   root: {
   //   display: 'flex',
   },
-  // appBar: {
-  //   width: `calc(100% - 240px)`,
-  //   marginLeft: 240,
-  // },
+  drawer: {
+    width: drawerWidth,
+  },
+  drawerPaper: {
+    width: drawerWidth,
+  },
   nav: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    // alignItems: 'center',
     height: '100%',
-    // width: '100%',
-    // position: 'absolute',
-    marginLeft: 30,
-    fontSize: 20,
-
+    fontSize: 15,
   },
   link: {
     textDecoration: 'none',
-    margin: 10,
+    display: 'flex',
+    alignItems: 'center',
+    marginBottom: 40,
+    color: '#ababab',
+    // svg icon color
+    fill: '#ababab',
+    '&:hover': {
+      color: '#545454',
+      fill: '#545454',
+    },
   },
-  // button: {
-  //   color: '#ddd',
-  //   border: '1px solid',
-  //   margin: '0 20px',
-  //   '&:hover': {
-  //     borderColor: '#fff',
-  //     color: '#fff',
-  //     boxShadow: '0 0 5px #fff',
-  //   },
-  // },
-  drawer: {
-    width: drawerWidth,
-    // flexShrink: 0,
+  activeLink: {
+    textDecoration: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    marginBottom: 40,
+    color: '#545454',
+    // svg icon color
+    fill: '#FF5D5D',
   },
-  drawerPaper: {
-    width: drawerWidth,
-    backgroundColor: 'red',
+  rectangleIcon: {
+    marginRight: 17,
+    fill: '#fff',
   },
-  // toolbar: {
-  //   ...theme.mixins.toolbar,
-  // },
-}));
+  activeRectangleIcon: {
+    marginRight: 17,
+    fill: '#FF5D5D',
+  },
+  icon: {
+    marginRight: 17,
+  },
+});
