@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import Drawer from '@material-ui/core/Drawer';
+import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 import { ReactComponent as SummaryIcon } from '../../assets/icons/Summary.svg';
@@ -25,6 +26,10 @@ export default function Header() {
         }}
         anchor="left"
       >
+        <Typography className={classes.typography} variant="h5" display="block" align="center">
+          Finance
+        </Typography>
+
         <nav className={classes.nav}>
           <Link to="/" onClick={() => setPath('/')} className={path === '/' ? classes.activeLink : classes.link}>
             <RectangleIcon className={path === '/' ? classes.activeRectangleIcon : classes.rectangleIcon} />
