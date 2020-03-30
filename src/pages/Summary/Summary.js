@@ -46,13 +46,16 @@ export default function Categories() {
   return (
     <div className={classes.root}>
 
-      <div className={classes.header}>
+      <div className={classes.total}>
         <Total />
         <AddBudget />
       </div>
 
-      <Sort isAscending={isAscending} setIsAscending={setIsAscending} />
-      <Filter filterType={filterType} setFilterType={setFilterType} />
+      <div className={classes.tools}>
+        <Sort isAscending={isAscending} setIsAscending={setIsAscending} />
+        <Filter filterType={filterType} setFilterType={setFilterType} />
+      </div>
+
       <TableContainer component={Paper} className={classes.table}>
         <Table>
           <TableHead>

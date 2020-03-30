@@ -2,10 +2,17 @@ import { makeStyles } from '@material-ui/core/styles';
 import { findByLabelText } from '@testing-library/react';
 
 export default makeStyles({
-  header: {
+  total: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
+  },
+  tools: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    margin: 40,
+    width: 330,
   },
   root: {
     // display: 'flex',
