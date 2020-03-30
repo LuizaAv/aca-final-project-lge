@@ -15,7 +15,7 @@ import SpeedDial from '@material-ui/lab/SpeedDial';
 import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
 
-import expenceIcon from '../../assets/icons/expense-icon.png';
+import expenceIcon from '../../assets/icons/expence-icon.png';
 import incomeIcon from '../../assets/icons/income-icon.png';
 import useStyles from './AddBudget.style';
 import { addBudget } from '../../store/actions';
@@ -156,6 +156,7 @@ export default function AddBudget() {
 
         <DialogActions>
           <Button
+          className={classes.btn}
             disabled={doneDisabled}
             variant="outlined"
             onClick={handleAddingBudget}

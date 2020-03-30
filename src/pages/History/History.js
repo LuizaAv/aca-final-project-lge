@@ -35,6 +35,8 @@ export default function History() {
     <>
       <div className={classes.flexContainer}>
         <Sort isAscending={isAscending} setIsAscending={setIsAscending} />
+        </div>
+        <div className={classes.flexContainer} >
         <Filter filterType={filterType} setFilterType={setFilterType} />
       </div>
       <div className={classes.flexContainer}>

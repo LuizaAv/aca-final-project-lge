@@ -9,10 +9,12 @@ export default makeStyles((theme) => ({
   flexContainer: {
     display: 'flex',
     justifyContent: 'center',
+    padding:12,
+    
   },
   table: {
     width: 600,
-    marginTop: 10,
+    marginTop:-5,
   },
 
   tableRow: {
@@ -26,6 +28,7 @@ export default makeStyles((theme) => ({
   },
   moneyIcon: {
     alignItems: 'baseline',
-    color: '#466d6d',
+    color: '#white',
+   
   },
 }));

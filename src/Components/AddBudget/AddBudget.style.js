@@ -14,10 +14,7 @@ export default makeStyles((theme) => ({
       backgroundColor: '#2979ff',
     },
   },
-  button: {
-    color: '#E0EBEB',
-    border: '1px solid',
-  },
+
   title: {
     margin: 'auto',
   },
@@ -25,8 +22,6 @@ export default makeStyles((theme) => ({
     width: '80%',
     margin: 'auto',
     marginBottom: 15,
-    backgroundColor: '#85adad',
-    borderRadius: 10,
     color: 'white',
   },
   date: {
@@ -56,4 +51,5 @@ export default makeStyles((theme) => ({
   dialog: {
     backgroundColor: 'yellow',
   },
+ 
 }));

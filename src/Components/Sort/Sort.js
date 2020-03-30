@@ -10,7 +10,7 @@ const useStyles = makeStyles({
   select: {
     width: 150,
     height: 40,
-    marginLeft: 5,
+    marginLeft: 10,
     textAlign: 'center',
     border: '3px solid #ffffff',
   },
@@ -23,7 +23,7 @@ const useStyles = makeStyles({
     display: 'flex',
   },
   icon: {
-    margin: 5,
+    margin:5,
   },
 });
 
