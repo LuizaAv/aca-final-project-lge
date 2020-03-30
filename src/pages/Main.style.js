@@ -9,15 +9,8 @@ export default makeStyles((theme) => ({
   },
   content: {
     flexGrow: 1,
-    // backgroundColor: theme.palette.common.black,
+    height: '100vh',
+    backgroundColor: '#f2f3f9',
     padding: theme.spacing(3),
   },
 }));
-
-
-
-// #FF5D5D կարմիր
-// #2EE152 կանաչ
-// #363D99 կապույտ
-// #F88634 գազարագույն
-// Segoe UI
