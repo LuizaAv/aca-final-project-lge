@@ -7,6 +7,9 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 
 import { useStoreContext } from '../../store/storeContext';
 
@@ -56,19 +59,31 @@ export default function Categories() {
         <Filter filterType={filterType} setFilterType={setFilterType} />
       </div>
 
-      <TableContainer component={Paper} className={classes.table}>
-        <Table>
+      <TableContainer component={Paper} className={classes.tableContainer}>
+        <Typography className={classes.title}>
+          Summary
+        </Typography>
+        <Table className={classes.table}>
           <TableHead>
             <TableRow>
-              <TableCell className={classes.head} align="center">Category</TableCell>
-              <TableCell className={classes.head} align="center">Amount</TableCell>
+              <TableCell className={classes.head}>Category</TableCell>
+              <TableCell className={classes.head} align="center">Type</TableCell>
+              <TableCell className={classes.head} align="right">Amount</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {filteredAmounts.map((amount) => (
-              <TableRow key={amount.id} className={classes.tableRow}>
-                <TableCell align="center">{amount.name}</TableCell>
-                <TableCell align="center">
+              <TableRow key={amount.id}>
+                <TableCell className={classes.category}>
+                  {amount.name}
+                </TableCell>
+                <TableCell className={classes.content} align="center">
+                  {amount.type === 'expense'
+                    ? <span><ArrowDownwardIcon className={classes.down} /></span>
+                    : <ArrowUpwardIcon className={classes.up} />}
+                  {amount.type}
+                </TableCell>
+                <TableCell className={classes.content} align="right">
                   {(amount.type === 'expense' ? '-' : '+') + amount.amount}
                 </TableCell>
               </TableRow>
