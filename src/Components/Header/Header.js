@@ -24,6 +24,9 @@ export default function Header() {
           <Link to="/Categories" className={classes.link}>
             <Button className={classes.button}>Categories</Button>
           </Link>
+          <Link to="/Charts" className={classes.link}>
+            <Button className={classes.button}>Graphs</Button>
+          </Link>
         </nav>
         <AddBudget />
       </Toolbar>
