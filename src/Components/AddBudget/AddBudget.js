@@ -11,12 +11,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
-import SpeedDial from '@material-ui/lab/SpeedDial';
-import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
-import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
+import clsx from 'clsx';
 
-import expenceIcon from '../../assets/icons/expence-icon.png';
-import incomeIcon from '../../assets/icons/income-icon.png';
 import useStyles from './AddBudget.style';
 import { addBudget } from '../../store/actions';
 import { useStoreContext } from '../../store/storeContext';
@@ -31,10 +27,7 @@ export default function AddBudget() {
   const [amount, setAmount] = useState('');
   const [date, setDate] = useState(new Date());
   const [picherError, setPicherError] = useState('');
-  const [speedDialOpen, setSpeedDialOpen] = React.useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
-
-  const handleSpeedDialOpen = () => { setSpeedDialOpen(!speedDialOpen); };
 
   const handleDialogOpen = () => { setDialogOpen(!dialogOpen); };
 
@@ -86,28 +79,18 @@ export default function AddBudget() {
 
   return (
     <div className={classes.root}>
-      <SpeedDial
-        ariaLabel="SpeedDial add budget buttons"
-        className={classes.speedDial}
-        icon={<SpeedDialIcon />}
-        onClose={handleSpeedDialOpen}
-        onOpen={handleSpeedDialOpen}
-        open={speedDialOpen}
-        direction="left"
+      <Button
+        className={clsx(classes.addButton, classes.income)}
+        onClick={handleClickIncome}
       >
-        <SpeedDialAction
-          className={classes.speedDialAction}
-          icon={<img src={expenceIcon} width="40px" alt="Expense" />}
-          tooltipTitle="Expense"
-          onClick={handleClickExpense}
-        />
-        <SpeedDialAction
-          className={classes.speedDialAction}
-          icon={<img src={incomeIcon} width="40px" alt="Income" />}
-          tooltipTitle="Income"
-          onClick={handleClickIncome}
-        />
-      </SpeedDial>
+        Add income
+      </Button>
+      <Button
+        className={clsx(classes.addButton, classes.expense)}
+        onClick={handleClickExpense}
+      >
+        Add expense
+      </Button>
 
       <Dialog fullWidth maxWidth="xs" open={dialogOpen} onClose={handleDialogOpen}>
         <DialogTitle className={classes.title}>{`Add ${type}`}</DialogTitle>

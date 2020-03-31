@@ -1,31 +1,66 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-export default makeStyles((theme) => ({
-  toolbar: {
+const drawerWidth = 180;
 
+export default makeStyles({
+  root: {
+  //   display: 'flex',
   },
-  appbar:{
-    backgroundColor:'##9666ff',
+  drawer: {
+    width: drawerWidth,
+  },
+  drawerPaper: {
+    width: drawerWidth,
+    boxShadow: '0 0 20px 20px #e6e8fc',
+  },
+  typography: {
+    color: '#363D99',
+    width: '100%',
+    padding: 30,
+    boxShadow: '0px 7px 60px 0px #e6e8fc',
+    fontFamily: 'Segoe UI',
+    fontWeight: 900,
   },
   nav: {
-    width: '100%',
     display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
-    position: 'absolute',
-   
-
+    height: '100%',
+    fontFamily: 'Segoe UI',
+    fontWeight: 900,
+    fontSize: 15,
   },
   link: {
     textDecoration: 'none',
-  },
-  button: {
-    color: '#ddd',
-    border: '1px solid white',
-    margin: '0 30px',
+    display: 'flex',
+    alignItems: 'center',
+    marginBottom: 40,
+    color: '#ababab',
+    // svg icon color
+    fill: '#ababab',
     '&:hover': {
-      borderColor: '#fff',
-      color: '#fff',
-      boxShadow: '0 0 5px #fff',
+      color: '#545454',
+      fill: '#545454',
     },
   },
-}));
+  activeLink: {
+    textDecoration: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    marginBottom: 40,
+    color: '#545454',
+    // svg icon color
+    fill: '#FF5D5D',
+  },
+  rectangleIcon: {
+    marginRight: 17,
+    fill: '#fff',
+  },
+  activeRectangleIcon: {
+    marginRight: 17,
+    fill: '#FF5D5D',
+  },
+  icon: {
+    marginRight: 17,
+  },
+});

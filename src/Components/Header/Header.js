@@ -1,35 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import AppBar from '@material-ui/core/AppBar';
-import Button from '@material-ui/core/Button';
-import Toolbar from '@material-ui/core/Toolbar';
+import Drawer from '@material-ui/core/Drawer';
+import Typography from '@material-ui/core/Typography';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
-import AddBudget from '../AddBudget/AddBudget';
+import { ReactComponent as SummaryIcon } from '../../assets/icons/Summary.svg';
+import { ReactComponent as HistoryIcon } from '../../assets/icons/History.svg';
+import { ReactComponent as CategoriesIcon } from '../../assets/icons/Categories.svg';
+import { ReactComponent as RectangleIcon } from '../../assets/icons/Rectangle.svg';
 import useStyles from './Header.style';
 
 export default function Header() {
   const classes = useStyles();
+  const [path, setPath] = useState('/');
 
   return (
-    <AppBar className={classes.appbar} position="sticky">
-      <Toolbar className={classes.toolbar}>
+    <div className={classes.root}>
+      <CssBaseline />
+      <Drawer
+        className={classes.drawer}
+        variant="permanent"
+        classes={{
+          paper: classes.drawerPaper,
+        }}
+        anchor="left"
+      >
+        <Typography className={classes.typography} variant="h4" align="center">
+          Finance
+        </Typography>
+
         <nav className={classes.nav}>
-          <Link to="/" className={classes.link}>
-            <Button className={classes.button}>Summary</Button>
+          <Link to="/" onClick={() => setPath('/')} className={path === '/' ? classes.activeLink : classes.link}>
+            <RectangleIcon className={path === '/' ? classes.activeRectangleIcon : classes.rectangleIcon} />
+            <SummaryIcon className={classes.icon} />
+            Summary
           </Link>
-          <Link to="/History" className={classes.link}>
-            <Button className={classes.button}>History</Button>
+          <Link to="/History" onClick={() => setPath('/History')} className={path === '/History' ? classes.activeLink : classes.link}>
+            <RectangleIcon className={path === '/History' ? classes.activeRectangleIcon : classes.rectangleIcon} />
+            <HistoryIcon className={classes.icon} />
+            History
           </Link>
-          <Link to="/Categories" className={classes.link}>
-            <Button className={classes.button}>Categories</Button>
+          <Link to="/Categories" onClick={() => setPath('/Categories')} className={path === '/Categories' ? classes.activeLink : classes.link}>
+            <RectangleIcon className={path === '/Categories' ? classes.activeRectangleIcon : classes.rectangleIcon} />
+            <CategoriesIcon className={classes.icon} />
+            Categories
           </Link>
           <Link to="/Charts" className={classes.link}>
             <Button className={classes.button}>Graphs</Button>
           </Link>
         </nav>
-        <AddBudget />
-      </Toolbar>
-    </AppBar>
+      </Drawer>
+    </div>
   );
 }

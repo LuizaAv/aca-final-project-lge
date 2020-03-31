@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from 'react';
 import { Bar, Pie } from 'react-chartjs-2';
+=======
+import React from 'react';
+import { Bar } from 'react-chartjs-2';
+>>>>>>> dd297e53287fe4553072963aa192acb1c0bf6472
 import { useStoreContext } from '../../store/storeContext';
 import useStyles from './Charts.style';
 
