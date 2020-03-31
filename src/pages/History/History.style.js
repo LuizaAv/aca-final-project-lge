@@ -4,7 +4,7 @@ export default makeStyles((theme) => ({
   card: {
     float: 'left',
     height: 170,
-    width: 480,
+    width: 460,
     border: '1.5px solid #466d6d',
     borderRadius: 10,
     margin: 10,
@@ -23,7 +23,8 @@ export default makeStyles((theme) => ({
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    margin: 5,
+    margin: 10,
+    
   },
   nameAmount: {
     display: 'flex',

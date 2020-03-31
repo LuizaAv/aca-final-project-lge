@@ -32,8 +32,6 @@ export default makeStyles({
     width: '80%',
     margin: 'auto',
     marginBottom: 15,
-    backgroundColor: '#85adad',
-    borderRadius: 10,
     color: 'white',
   },
   date: {
