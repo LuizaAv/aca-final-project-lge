@@ -1,5 +1,4 @@
-import { makeStyles, responsiveFontSizes } from '@material-ui/core/styles';
-import { findByLabelText } from '@testing-library/react';
+import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles({
   root: {
