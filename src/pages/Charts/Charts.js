@@ -1,57 +1,59 @@
 import React from 'react';
-import { Bar, Pie } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 import { useStoreContext } from '../../store/storeContext';
 import useStyles from './Charts.style';
 
+function randomColor() {
+  return (`hsl(0, ${Math.floor(Math.random() * 100)}%, ${Math.floor(Math.random() * 10)}`);
+}
+console.log(randomColor());
 
 export default function Charts() {
-    const classes = useStyles();
-    const { state } = useStoreContext();
-    const labels = state.budget.map((item) => item.category);
-    const price = state.budget.map((item) => item.amount);
-    const chartData = {
+  const classes = useStyles();
+  const { state } = useStoreContext();
+  const labels = state.budget.map((item) => item.category);
+  const price = state.budget.map((item) => item.amount);
+  const chartData = {
+    type: 'bar',
     labels,
     datasets: [
       {
-        label: 'Amount',
+        label: 'All period',
         data: price,
         backgroundColor: [
-          'rgba(255, 99, 132, 0.6)',
-          'rgba(54, 162, 235, 0.6)',
-          'rgba(255, 206, 86, 0.6)',
-          'rgba(75, 192, 192, 0.6)',
-          'rgba(153, 102, 255, 0.6)',
-          'rgba(255, 159, 64, 0.6)',
-          'rgba(200, 160, 52, 0.6)',
-          'rgba(258, 25, 85, 0.6)',
+          'hsl(0, 100%, 10%)',
+          'hsl(0, 100%, 20%)',
+          'hsl(0, 100%, 30%)',
+          'hsl(0, 100%, 40%)',
+          'hsl(0, 100%, 50%)',
+          'hsl(0, 100%, 60%)',
+          'hsl(0, 100%, 70%)',
+          'hsl(0, 100%, 80%)',
+          'hsl(0, 100%, 90%)',
         ],
       },
     ],
   };
 
 
-
   return (
-    <div className= {classes.flexContainer}>
+    <div className={classes.flexContainer}>
       <Bar
         data={chartData}
         options={
         {
-            title: {
-                display: true, 
-                text: 'Total expenses and income',
-                fontSize: 20
-            },
-            legend: {
-                display: true,
-                position: 'bottom'
-            }
+          title: {
+            display: true,
+            text: 'Total expenses and income',
+            fontSize: 20,
+          },
+          legend: {
+            display: true,
+            position: 'bottom',
+          },
         }
-        
-        }
+      }
       />
     </div>
   );
 }
-
-//https://www.youtube.com/watch?v=saJDdfAPb7Q
