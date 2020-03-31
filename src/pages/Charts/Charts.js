@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Bar } from 'react-chartjs-2';
+import { Bar, Pie } from 'react-chartjs-2';
 import { useStoreContext } from '../../store/storeContext';
+import useStyles from './Charts.style';
 
 
 export default function Charts() {
-  const { state } = useStoreContext();
-  const labels = state.budget.map((item) => item.category);
-  const price = state.budget.map((item) => item.amount);
-  const chartData = {
+    const classes = useStyles();
+    const { state } = useStoreContext();
+    const labels = state.budget.map((item) => item.category);
+    const price = state.budget.map((item) => item.amount);
+    const chartData = {
     labels,
     datasets: [
       {
@@ -28,14 +30,25 @@ export default function Charts() {
   };
 
 
+
   return (
-    <div>
-      <h1>Total expenses and income</h1>
+    <div className= {classes.flexContainer}>
       <Bar
         data={chartData}
-        options={{
-          maintainAspectRatio: false,
-        }}
+        options={
+        {
+            title: {
+                display: true, 
+                text: 'Total expenses and income',
+                fontSize: 20
+            },
+            legend: {
+                display: true,
+                position: 'bottom'
+            }
+        }
+        
+        }
       />
     </div>
   );
