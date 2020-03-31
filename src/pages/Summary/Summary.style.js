@@ -9,17 +9,19 @@ export default makeStyles({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
+    width: '96%',
   },
   tools: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
     margin: 40,
+    marginLeft: 85,
     width: 330,
   },
   tableContainer: {
     borderRadius: 30,
-    width: '94%',
+    width: '92%',
     alignSelf: 'center',
   },
   title: {
@@ -27,49 +29,38 @@ export default makeStyles({
     fontFamily: 'Segoe UI',
     fontSize: 30,
     fontWeight: 900,
-    marginLeft: 30,
+    marginLeft: 50,
     marginTop: 30,
   },
   table: {
-    // width: '90%',
+    width: '94%',
+    margin: 'auto',
   },
-  down: {
-    color: '#FF5D5D',
+  icon: {
     marginRight: 10,
-  },
-  up: {
-    color: '#2EE152',
-    marginRight: 10,
+    marginBottom: -4,
   },
   head: {
     fontFamily: 'Segoe UI',
     fontWeight: 900,
     fontSize: 17,
-    // backgroundColor: '#466d6d',
-    // color: 'white',
-    // fontSize: 20,
+    width: '20%',
   },
   content: {
     fontFamily: 'Segoe UI',
-    // fontWeight: 600,
     fontSize: 17,
   },
   category: {
     color: '#363D99',
-    // fontWeight: 600,
     fontSize: 17,
   },
-  flexContainer: {
-    // display: 'flex',
-    // justifyContent: 'center',
-  },
   tableRow: {
-    // padding: 10,
-    // margin: 5,
-    // transition: 'transform .2s',
-    // '&:hover': {
-    //   transform: 'scale(1.1)',
-    //   backgroundColor: '#e0ebeb',
-    // },
+    padding: 10,
+    margin: 5,
+    transition: 'transform .2s',
+    '&:hover': {
+      transform: 'scale(1.1)',
+      backgroundColor: '#e0ebeb',
+    },
   },
 });
