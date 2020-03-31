@@ -63,4 +63,8 @@ export default makeStyles({
   icon: {
     marginRight: 17,
   },
+  graphIcon: {
+    marginRight: 17,
+    fontSize: 40
+  },
 });

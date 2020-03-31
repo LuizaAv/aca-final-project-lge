@@ -9,6 +9,7 @@ import { ReactComponent as SummaryIcon } from '../../assets/icons/Summary.svg';
 import { ReactComponent as HistoryIcon } from '../../assets/icons/History.svg';
 import { ReactComponent as CategoriesIcon } from '../../assets/icons/Categories.svg';
 import { ReactComponent as RectangleIcon } from '../../assets/icons/Rectangle.svg';
+import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import useStyles from './Header.style';
 
 export default function Header() {
@@ -46,8 +47,10 @@ export default function Header() {
             <CategoriesIcon className={classes.icon} />
             Categories
           </Link>
-          <Link to="/Charts" className={classes.link}>
-            <Button className={classes.button}>Graphs</Button>
+          <Link to="/Charts" onClick={() => setPath('/Charts')} className={path === '/Charts' ? classes.activeLink : classes.link}>
+            <RectangleIcon className={path === '/Charts' ? classes.activeRectangleIcon : classes.rectangleIcon} />
+            <TrendingUpIcon className={classes.graphIcon}/>
+            Graphs
           </Link>
         </nav>
       </Drawer>
