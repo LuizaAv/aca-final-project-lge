@@ -52,12 +52,12 @@ export default makeStyles({
   },
   content: {
     fontFamily: 'Segoe UI',
-    fontWeight: 600,
+    // fontWeight: 600,
     fontSize: 17,
   },
   category: {
     color: '#363D99',
-    fontWeight: 600,
+    // fontWeight: 600,
     fontSize: 17,
   },
   flexContainer: {

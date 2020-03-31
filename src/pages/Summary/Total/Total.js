@@ -25,7 +25,7 @@ export default function Total() {
 
   const balance = income - expense;
 
-  const addComma = (count) => count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ', ');
+  const addComma = (count) => count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
   const count = [
     { name: 'Current balance', amount: addComma(balance), className: 'balance' },

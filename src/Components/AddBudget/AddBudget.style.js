@@ -6,6 +6,7 @@ export default makeStyles({
     padding: '7px 20px',
     textTransform: 'lowercase',
     fontFamily: 'Segoe UI',
+    fontWeight: 900,
     color: '#fff',
     boxShadow: '0 5px 15px -4px #000',
     marginRight: 30,
