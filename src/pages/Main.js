@@ -8,7 +8,7 @@ import Header from '../components/Header/Header';
 import Summary from './Summary/Summary';
 import Categories from './Categories/Categories';
 import History from './History/History';
-import TotalChart from './Charts/TotalCharts';
+import MainChart from './Charts/MainChart';
 import useStyles from './Main.style';
 
 import { budget, categories } from '../API/db';
@@ -39,7 +39,7 @@ export default function Main() {
               <History />
             </Route>
             <Route path="/Charts">
-              <TotalChart />
+              <MainChart />
             </Route>
           </Switch>
         </div>

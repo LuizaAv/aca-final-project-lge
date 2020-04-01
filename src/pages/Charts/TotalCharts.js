@@ -1,8 +1,8 @@
 import React from 'react';
-import { Bar } from 'react-chartjs-2';
+import { Bar} from 'react-chartjs-2';
 import { useStoreContext } from '../../store/storeContext';
 import useStyles from './Charts.style';
-
+import MonthlyChart from './MonthlyChart';
 
 export default function TotalChart() {
   const classes = useStyles();
@@ -28,37 +28,36 @@ export default function TotalChart() {
           'hsl(0, 100%, 70%)',
           'hsl(0, 100%, 80%)',
           'hsl(0, 100%, 90%)',
-        ]
+        ],
       },
     ],
   };
 
-
   return (
-    <div className={classes.flexContainer}>
-      <Bar
-        data={chartData}
-        options={
-        {
-          title: {
-            display: true,
-            text: 'Total expenses and income',
-            fontSize: 20,
-          },
-          legend: {
-            display: true,
-            position: 'bottom',
-          },
-          scales:{
-            yAxes:[{
-              ticks:{
-                beginAtZero: true
-              },
-            }]
-        }
-        }
-      }
-      />
-    </div>
+      <div className={classes.flexContainer}>
+        <Bar
+          data={chartData}
+          options={{
+            title: {
+              display: true,
+              text: 'Total expenses and income',
+              fontSize: 20,
+            },
+            legend: {
+              display: true,
+              position: 'bottom',
+            },
+            scales: {
+              yAxes: [
+                {
+                  ticks: {
+                    beginAtZero: true,
+                  },
+                },
+              ],
+            },
+          }}
+        />
+      </div>
   );
 }
