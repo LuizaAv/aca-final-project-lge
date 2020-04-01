@@ -2,7 +2,6 @@ import React from 'react';
 import { Bar} from 'react-chartjs-2';
 import { useStoreContext } from '../../store/storeContext';
 import useStyles from './Charts.style';
-import MonthlyChart from './MonthlyChart';
 
 export default function TotalChart() {
   const classes = useStyles();
@@ -46,6 +45,10 @@ export default function TotalChart() {
             legend: {
               display: true,
               position: 'bottom',
+              fontSize: 18,
+              labels: {
+              fontSize: 18,
+            },
             },
             scales: {
               yAxes: [
