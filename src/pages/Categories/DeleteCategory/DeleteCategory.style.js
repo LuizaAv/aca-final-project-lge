@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles(({
   iconButton: {
-    marginRight: -20,
+    margin: -20,
   },
   icon: {
     '&:hover': {

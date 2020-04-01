@@ -7,7 +7,9 @@ export default makeStyles((theme) => ({
   },
   header: {
     display: 'flex',
-    // alignItems: 'center',
+    height: 70,
+    marginBottom: 10,
+    alignItems: 'center',
     justifyContent: 'flex-end',
     width: '96%',
   },
@@ -16,6 +18,7 @@ export default makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'space-between',
     margin: 30,
+    marginBottom: 40,
     marginLeft: 85,
     width: 300,
   },

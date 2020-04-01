@@ -11,9 +11,10 @@ export default makeStyles({
   },
   button: {
     borderRadius: 25,
-    padding: '7px 20px',
-    fontFamily: 'Segoe UI',
+    padding: '6px 20px',
+    fontSize: 16,
     backgroundColor: '#fff',
+    color: '#000',
     textTransform: 'none',
     '&:hover': {
       borderColor: '#000',

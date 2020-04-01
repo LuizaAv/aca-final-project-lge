@@ -9,6 +9,10 @@ export default makeStyles(({
     margin: 'auto',
     marginBottom: 15,
   },
+  iconButton: {
+    margin: -20,
+    marginRight: 15,
+  },
   icon: {
     '&:hover': {
       transform: 'scale(1.2)',
