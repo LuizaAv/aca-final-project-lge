@@ -65,6 +65,11 @@ export default makeStyles({
   },
   graphIcon: {
     marginRight: 17,
-    fontSize: 40
+    fontSize: 30,
+  },
+  activeGraphIcon: {
+    color: '#FF5D5D',
+    marginRight: 17,
+    fontSize: 30,
   },
 });

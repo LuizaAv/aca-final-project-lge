@@ -93,7 +93,11 @@ export default function Header() {
                 ? classes.activeRectangleIcon
                 : classes.rectangleIcon}
             />
-            <TrendingUpIcon className={classes.graphIcon} />
+            <TrendingUpIcon
+              className={path === '/Charts'
+                ? classes.activeGraphIcon
+                : classes.graphIcon}
+            />
             Graphs
           </Link>
         </nav>
