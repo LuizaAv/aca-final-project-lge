@@ -1,22 +1,11 @@
 import React from 'react';
 import propTypes from 'prop-types';
+import IconButton from '@material-ui/core/IconButton'
 import DeleteIcon from '@material-ui/icons/Delete';
-import { makeStyles } from '@material-ui/core/styles';
 
 import { useStoreContext } from '../../../store/storeContext';
 import { deleteCategory } from '../../../store/actions';
-
-const useStyles = makeStyles({
-  icon: {
-    color: '#466d6d',
-    borderRadius: '100%',
-    padding: 10,
-    '&:hover': {
-      backgroundColor: '#00000010',
-      transform: 'scale(1.1)',
-    },
-  },
-});
+import useStyles from './DeleteCategory.style';
 
 export default function DeleteCategory({ category }) {
   const classes = useStyles();
@@ -27,7 +16,9 @@ export default function DeleteCategory({ category }) {
   };
 
   return (
-    <DeleteIcon fontSize="large" className={classes.icon} onClick={handleDeleteCategory} />
+    <IconButton className={classes.iconButton}>
+      <DeleteIcon className={classes.icon} onClick={handleDeleteCategory} />
+    </IconButton>
   );
 }
 

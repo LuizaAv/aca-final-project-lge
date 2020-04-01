@@ -9,31 +9,12 @@ import DialogActions from '@material-ui/core/DialogActions';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
+import IconButton from '@material-ui/core/IconButton'
 import EditIcon from '@material-ui/icons/Edit';
-import { makeStyles } from '@material-ui/core/styles';
 
 import { useStoreContext } from '../../../store/storeContext';
 import { editCategory } from '../../../store/actions';
-
-const useStyles = makeStyles({
-  title: {
-    margin: 'auto',
-  },
-  itemSize: {
-    width: '80%',
-    margin: 'auto',
-    marginBottom: 15,
-  },
-  icon: {
-    color: '#466d6d',
-    borderRadius: '100%',
-    padding: 10,
-    '&:hover': {
-      backgroundColor: '#00000010',
-      transform: 'scale(1.1)',
-    },
-  },
-});
+import useStyles from './EditCategory.style';
 
 export default function EditCategory({ category }) {
   const classes = useStyles();
@@ -65,11 +46,12 @@ export default function EditCategory({ category }) {
 
   return (
     <>
-      <EditIcon
-        fontSize="large"
-        className={classes.icon}
-        onClick={handleOpen}
-      />
+      <IconButton>
+        <EditIcon
+          className={classes.icon}
+          onClick={handleOpen}
+        />
+      </IconButton>
 
       <Dialog fullWidth maxWidth="xs" onClose={handleOpen} open={open}>
         <DialogTitle className={classes.title}>Edit Category</DialogTitle>
