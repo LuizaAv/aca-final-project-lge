@@ -8,12 +8,12 @@ export default makeStyles((theme) => ({
     width: 1000,
   },
   total:{
-    height: 80,
-    width: 210,
-    backgroundColor: 'grey',
+    height: 100,
+    width: 230,
     borderRadius: 10,
     fontSize: 22,
-    color: 'white',
+    color: 'grey',
+    border: '3px solid red',
     textAlign: 'center'
   }
   
