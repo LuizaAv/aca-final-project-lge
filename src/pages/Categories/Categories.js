@@ -6,8 +6,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-// import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
-// import MoneyOffIcon from '@material-ui/icons/MoneyOff';
+
 import Typography from '@material-ui/core/Typography';
 import { ReactComponent as ArrowDownwardIcon } from '../../assets/icons/Arrow-down.svg';
 import { ReactComponent as ArrowUpwardIcon } from '../../assets/icons/Arrow-up.svg';
