@@ -6,14 +6,16 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
-import MoneyOffIcon from '@material-ui/icons/MoneyOff';
 
+import Typography from '@material-ui/core/Typography';
+import { ReactComponent as ArrowDownwardIcon } from '../../assets/icons/Arrow-down.svg';
+import { ReactComponent as ArrowUpwardIcon } from '../../assets/icons/Arrow-up.svg';
 import { useStoreContext } from '../../store/storeContext';
 
-import AddCategory from './AddCategory';
-import DeleteCategory from './DeleteCategory';
-import EditCategory from './EditCategory';
+import AddBudget from '../../components/AddBudget/AddBudget';
+import AddCategory from './AddCategory/AddCategory';
+import DeleteCategory from './DeleteCategory/DeleteCategory';
+import EditCategory from './EditCategory/EditCategory';
 import Filter from '../../components/Filter/Filter';
 import useStyles from './Categories.style';
 
@@ -27,51 +29,56 @@ export default function Categories() {
     : state.categories.filter((categories) => categories.type === filterType);
 
   return (
-    <>
-      <div className={classes.flexContainer}>
+    <div className={classes.root}>
+
+      <div className={classes.header}>
+        <AddBudget />
+      </div>
+
+      <div className={classes.tools}>
         <AddCategory />
         <Filter filterType={filterType} setFilterType={setFilterType} />
       </div>
-      <div className={classes.flexContainer}>
-        <TableContainer component={Paper} className={classes.table}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell className={classes.head} align="center">
-                  Name
+
+      <TableContainer component={Paper} className={classes.tableContainer}>
+        <Typography className={classes.title}>
+          Category
+        </Typography>
+        <Table className={classes.table}>
+          <TableHead>
+            <TableRow>
+              <TableCell className={classes.head}>
+                Name
+              </TableCell>
+              <TableCell className={classes.head} align="center">
+                Type
+              </TableCell>
+              <TableCell className={classes.head} align="right">
+                Action
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {filteredCategories.map((category) => (
+              <TableRow key={category.id}>
+                <TableCell className={classes.name}>
+                  {category.name}
                 </TableCell>
-                <TableCell className={classes.head} align="center">
-                  Type
+                <TableCell className={classes.content} align="center">
+                  {category.type === 'expense'
+                    ? <ArrowDownwardIcon className={classes.icon} />
+                    : <ArrowUpwardIcon className={classes.icon} />}
+                  {category.type}
                 </TableCell>
-                <TableCell className={classes.head} align="center">
-                  Action
+                <TableCell className={classes.content} align="right">
+                  <EditCategory category={category} />
+                  <DeleteCategory category={category} />
                 </TableCell>
               </TableRow>
-            </TableHead>
-            <TableBody>
-              {filteredCategories.map((category) => (
-                <TableRow key={category.id} className={classes.tableRow}>
-                  <TableCell align="center">{category.name}</TableCell>
-                  <TableCell align="center">
-                    {category.type}
-                    <div className={classes.flexContainer}>
-                      {category.type === 'income' ? (
-                        <AttachMoneyIcon className={classes.moneyIcon} />
-                      ) : (
-                        <MoneyOffIcon className={classes.moneyIcon} />
-                      )}
-                    </div>
-                  </TableCell>
-                  <TableCell align="center">
-                    <EditCategory category={category} />
-                    <DeleteCategory category={category} />
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </div>
-    </>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </div>
   );
 }
