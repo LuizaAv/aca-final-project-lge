@@ -3,18 +3,19 @@ import { Doughnut } from 'react-chartjs-2';
 import { useStoreContext } from '../../store/storeContext';
 import useStyles from './Charts.style';
 
-export default function ExpenseChart() {
+export default function IncomeChart() {
   const classes = useStyles();
   const { state } = useStoreContext();
-  const labels = state.budget.map((item) => (item.type === 'expense' ? item.name : ''));
-  const amount = state.budget.map((item) => (item.type === 'expense' ? item.amount : ''));
+  const labels = state.budget.map((item) => (item.type === 'income' ? item.name : ''));
+  const amount = state.budget.map((item) => (item.type === 'income' ? item.amount : ''));
+
 
   const chartData = {
     type: 'doughnut',
     labels,
     datasets: [
       {
-        label: 'Expense on each thing',
+        label: 'Income from each source',
         data: amount,
         maxBarThickness: 55,
         backgroundColor: [
@@ -32,7 +33,6 @@ export default function ExpenseChart() {
     ],
   };
 
-  console.log(labels);
   return (
     <div className={classes.flexContainer}>
       <Doughnut
@@ -46,15 +46,15 @@ export default function ExpenseChart() {
         }}
       />
       <div className={classes.total}>
-        Overall expenses
-        -
+        Overall income
+        +
         {
             state.budget.reduce((acc, budget) => (
-              budget.type === 'expense'
+              budget.type === 'income'
                 ? acc + +budget.amount
                 : acc
             ), 0)
-          }
+        }
       </div>
     </div>
   );
