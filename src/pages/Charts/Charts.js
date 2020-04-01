@@ -51,6 +51,13 @@ export default function Charts() {
             display: true,
             position: 'bottom',
           },
+          scales:{
+            yAxes:[{
+              ticks:{
+                beginAtZero: true
+              },
+            }]
+          }
         }
       }
       />
