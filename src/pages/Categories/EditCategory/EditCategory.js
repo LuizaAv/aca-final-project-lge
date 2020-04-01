@@ -12,8 +12,8 @@ import TextField from '@material-ui/core/TextField';
 import EditIcon from '@material-ui/icons/Edit';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { useStoreContext } from '../../store/storeContext';
-import { editCategory } from '../../store/actions';
+import { useStoreContext } from '../../../store/storeContext';
+import { editCategory } from '../../../store/actions';
 
 const useStyles = makeStyles({
   title: {

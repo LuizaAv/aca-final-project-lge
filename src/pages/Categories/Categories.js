@@ -15,8 +15,8 @@ import { useStoreContext } from '../../store/storeContext';
 
 import AddBudget from '../../components/AddBudget/AddBudget';
 import AddCategory from './AddCategory/AddCategory';
-import DeleteCategory from './DeleteCategory';
-import EditCategory from './EditCategory';
+import DeleteCategory from './DeleteCategory/DeleteCategory';
+import EditCategory from './EditCategory/EditCategory';
 import Filter from '../../components/Filter/Filter';
 import useStyles from './Categories.style';
 

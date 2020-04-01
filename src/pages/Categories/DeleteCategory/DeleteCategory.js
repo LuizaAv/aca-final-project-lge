@@ -3,8 +3,8 @@ import propTypes from 'prop-types';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { useStoreContext } from '../../store/storeContext';
-import { deleteCategory } from '../../store/actions';
+import { useStoreContext } from '../../../store/storeContext';
+import { deleteCategory } from '../../../store/actions';
 
 const useStyles = makeStyles({
   icon: {
