@@ -8,8 +8,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
-import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
+import { ReactComponent as ArrowDownwardIcon } from '../../assets/icons/Arrow-down.svg';
+import { ReactComponent as ArrowUpwardIcon } from '../../assets/icons/Arrow-up.svg';
 
 import { useStoreContext } from '../../store/storeContext';
 
@@ -49,7 +49,7 @@ export default function Categories() {
   return (
     <div className={classes.root}>
 
-      <div className={classes.total}>
+      <div className={classes.header}>
         <Total />
         <AddBudget />
       </div>
@@ -79,8 +79,8 @@ export default function Categories() {
                 </TableCell>
                 <TableCell className={classes.content} align="center">
                   {amount.type === 'expense'
-                    ? <span><ArrowDownwardIcon className={classes.down} /></span>
-                    : <ArrowUpwardIcon className={classes.up} />}
+                    ? <ArrowDownwardIcon className={classes.icon} />
+                    : <ArrowUpwardIcon className={classes.icon} />}
                   {amount.type}
                 </TableCell>
                 <TableCell className={classes.content} align="right">

@@ -63,4 +63,13 @@ export default makeStyles({
   icon: {
     marginRight: 17,
   },
+  graphIcon: {
+    marginRight: 17,
+    fontSize: 30,
+  },
+  activeGraphIcon: {
+    color: '#FF5D5D',
+    marginRight: 17,
+    fontSize: 30,
+  },
 });
