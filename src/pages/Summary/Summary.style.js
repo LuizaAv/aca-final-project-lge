@@ -5,7 +5,7 @@ export default makeStyles({
     display: 'flex',
     flexDirection: 'column',
   },
-  total: {
+  header: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',

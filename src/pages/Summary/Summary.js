@@ -49,7 +49,7 @@ export default function Categories() {
   return (
     <div className={classes.root}>
 
-      <div className={classes.total}>
+      <div className={classes.header}>
         <Total />
         <AddBudget />
       </div>
