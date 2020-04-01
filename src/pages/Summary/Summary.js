@@ -79,7 +79,7 @@ export default function Categories() {
                 </TableCell>
                 <TableCell className={classes.content} align="center">
                   {amount.type === 'expense'
-                    ? <span><ArrowDownwardIcon className={classes.icon} /></span>
+                    ? <ArrowDownwardIcon className={classes.icon} />
                     : <ArrowUpwardIcon className={classes.icon} />}
                   {amount.type}
                 </TableCell>
