@@ -3,6 +3,10 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Fade from '@material-ui/core/Fade';
+import AddBudget from '../../components/AddBudget/AddBudget';
+import TotalForHistory from '../Summary/Total/TotalForHistory';
+import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
+
 
 import { useStoreContext } from '../../store/storeContext';
 
@@ -33,12 +37,15 @@ export default function History() {
 
   return (
     <>
-      <div className={classes.flexContainer}>
-        <Sort isAscending={isAscending} setIsAscending={setIsAscending} />
-        </div>
-        <div className={classes.flexContainer} >
-        <Filter filterType={filterType} setFilterType={setFilterType} />
+    <div className={classes.total}>
+         <AccountBalanceWalletIcon style={{fontSize:'44px',marginTop:'7px'}}/>
+        <TotalForHistory/>
+        <AddBudget />
       </div>
+      <div className={classes.tools}>
+        <Sort isAscending={isAscending} setIsAscending={setIsAscending} />
+        <Filter filterType={filterType} setFilterType={setFilterType} />
+        </div>
       <div className={classes.flexContainer}>
         {filteredBudget.map((item) => (
           <div item key={item.id}>
@@ -52,24 +59,23 @@ export default function History() {
                     <Typography>{item.name}</Typography>
                   </div>
                   <div className={classes.amount}>
-                    <Typography>
-                      {item.type === 'expense'
-                        ? `- ${item.amount}`
-                        : `+ ${item.amount}`}
-                    </Typography>
-                  </div>
-                </div>
-                <Fade in={onItem === item.id}>
                   <div>
                     <EditHistory budget={item} className={classes.icons} />
                     <DeleteHistory budget={item} className={classes.icons} />
                   </div>
-                </Fade>
-                <hr />
+                  </div>
+                </div>
+               
+                <hr style={{marginTop:'28px'}}/>
                 <div className={classes.categoryDate}>
                   <div>
                     <Typography>{item.category}</Typography>
                   </div>
+                  <Typography>
+                      {item.type === 'expense'
+                        ? `- ${item.amount}`
+                        : `+ ${item.amount}`}
+                    </Typography>
                   <div>
                     <Typography>{item.date}</Typography>
                   </div>

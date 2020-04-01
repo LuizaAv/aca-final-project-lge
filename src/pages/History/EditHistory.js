@@ -33,9 +33,11 @@ const useStyles = makeStyles({
   icon: {
     color: '#466d6d',
     borderRadius: '100%',
+    fontSize:50,
+    marginTop:-12,
     padding: 10,
     '&:hover': {
-      backgroundColor: '#ffffff10',
+      backgroundColor: '#e6ecff',
     },
   },
 });

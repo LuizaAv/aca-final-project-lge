@@ -11,8 +11,10 @@ const useStyles = makeStyles({
     color: '#466d6d',
     borderRadius: '100%',
     padding: 10,
+    fontSize:49,
+    marginTop:-12,
     '&:hover': {
-      backgroundColor: '#ffffff10',
+      backgroundColor: '#e6ecff',
     },
   },
 });
