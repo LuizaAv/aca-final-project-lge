@@ -14,7 +14,7 @@ import useStyles from './Header.style';
 
 export default function Header() {
   const classes = useStyles();
-  const [path, setPath] = useState('/');
+  const [path, setPath] = useState(window.location.pathname);
 
   return (
     <div className={classes.root}>
