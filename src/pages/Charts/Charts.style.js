@@ -7,7 +7,7 @@ export default makeStyles((theme) => ({
     height: 600,
     width: 1000,
   },
-  expense:{
+  total:{
     height: 80,
     width: 210,
     backgroundColor: 'grey',

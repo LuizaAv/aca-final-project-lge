@@ -1,5 +1,5 @@
 import React from 'react';
-import ExpenseChart from './MonthlyChart';
+import ExpenseChart from './ExpensesChart';
 import TotalChart from './TotalCharts';
 import useStyles from './Charts.style';
 

@@ -45,7 +45,7 @@ export default function ExpenseChart() {
           },
         }}
       />
-      <div className={classes.expense}>
+      <div className={classes.total}>
         Overall expenses
           -{amount.reduce((acc, curr) => acc + curr)}
       </div>
