@@ -7,14 +7,14 @@ export default makeStyles((theme) => ({
     height: 600,
     width: 1000,
   },
-  total:{
+  total: {
     height: 100,
     width: 230,
     borderRadius: 10,
     fontSize: 22,
     color: 'grey',
     border: '3px solid red',
-    textAlign: 'center'
-  }
-  
+    textAlign: 'center',
+  },
+
 }));

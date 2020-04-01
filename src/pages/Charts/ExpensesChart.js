@@ -32,7 +32,6 @@ export default function ExpenseChart() {
     ],
   };
 
-  console.log(labels);
   return (
     <div className={classes.flexContainer}>
       <Doughnut
