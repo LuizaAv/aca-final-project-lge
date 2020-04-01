@@ -17,7 +17,7 @@ export default makeStyles((theme) => ({
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    margin: 10,
+    margin: 6,
     
   },
   nameAmount: {
@@ -45,7 +45,7 @@ export default makeStyles((theme) => ({
     justifyContent: 'space-between',
     margin: 49,
     width: 330,
-    marginLeft:284,
+    marginLeft:419,
    
   },
   total:{

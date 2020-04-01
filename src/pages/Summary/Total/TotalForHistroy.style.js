@@ -17,7 +17,7 @@ export default makeStyles({
   },
   balance: {
     color: 'red',
-    marginLeft:-310,
+    marginLeft:-462,
   },
   name: {
     color: '#545454',
