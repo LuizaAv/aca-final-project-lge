@@ -46,10 +46,12 @@ export default function EditCategory({ category }) {
 
   return (
     <>
-      <IconButton className={classes.iconButton}>
+      <IconButton
+        className={classes.iconButton}
+        onClick={handleOpen}
+      >
         <EditIcon
           className={classes.icon}
-          onClick={handleOpen}
         />
       </IconButton>
 

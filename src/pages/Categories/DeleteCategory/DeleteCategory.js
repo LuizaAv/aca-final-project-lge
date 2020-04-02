@@ -16,8 +16,11 @@ export default function DeleteCategory({ category }) {
   };
 
   return (
-    <IconButton className={classes.iconButton}>
-      <DeleteIcon className={classes.icon} onClick={handleDeleteCategory} />
+    <IconButton
+      className={classes.iconButton}
+      onClick={handleDeleteCategory}
+    >
+      <DeleteIcon className={classes.icon} />
     </IconButton>
   );
 }
