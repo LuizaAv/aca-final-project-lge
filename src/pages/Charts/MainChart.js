@@ -6,8 +6,8 @@ import useStyles from './Charts.style';
 export default function MainChart() {
   const classes = useStyles();
   return (
-      <div className={classes.flexContainer}>
-        <TotalChart />
-      </div>
+    <div className={classes.flexContainer}>
+      <TotalChart />
+    </div>
   );
 }
