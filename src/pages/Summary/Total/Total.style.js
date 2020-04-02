@@ -8,6 +8,8 @@ export default makeStyles({
     borderLeft: '1px solid #707070',
     paddingLeft: 40,
     marginLeft: 50,
+  },
+  amount: {
     fontFamily: 'Segoe UI',
     fontWeight: 900,
     fontSize: 30,
