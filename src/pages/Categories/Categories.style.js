@@ -52,10 +52,12 @@ export default makeStyles((theme) => ({
   content: {
     fontFamily: 'Segoe UI',
     fontSize: 17,
+    textTransform: 'capitalize',
   },
   name: {
     color: '#363D99',
     fontSize: 17,
+    textTransform: 'capitalize',
   },
 
   tableRow: {

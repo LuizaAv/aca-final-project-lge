@@ -49,10 +49,12 @@ export default makeStyles({
   content: {
     fontFamily: 'Segoe UI',
     fontSize: 17,
+    textTransform: 'capitalize',
   },
   category: {
     color: '#363D99',
     fontSize: 17,
+    textTransform: 'capitalize',
   },
   tableRow: {
     padding: 10,
