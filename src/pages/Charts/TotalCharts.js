@@ -1,66 +1,44 @@
 import React from 'react';
-import { Bar} from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 import { useStoreContext } from '../../store/storeContext';
 import useStyles from './Charts.style';
 
 export default function TotalChart() {
   const classes = useStyles();
   const { state } = useStoreContext();
-  const labels = state.budget.map((item) => item.category);
-  const price = state.budget.map((item) => item.amount);
+  const date = state.budget.sort((a, b) => a.date.split('.').join('') - b.date.split('.').join(''));
+  const expenses = date.map((el) => (el.type === 'expense' ? el.amount : 0));
+  const incomes = date.map((el) => (el.type === 'income' ? el.amount : 0));
 
-  const chartData = {
-    type: 'bar',
-    labels,
+  const data = {
+    labels: date.map((el) => el.date),
     datasets: [
       {
-        label: 'All period',
-        data: price,
-        maxBarThickness: 55,
-        backgroundColor: [
-          'hsl(0, 100%, 10%)',
-          'hsl(0, 100%, 20%)',
-          'hsl(0, 100%, 30%)',
-          'hsl(0, 100%, 40%)',
-          'hsl(0, 100%, 50%)',
-          'hsl(0, 100%, 60%)',
-          'hsl(0, 100%, 70%)',
-          'hsl(0, 100%, 80%)',
-          'hsl(0, 100%, 90%)',
-        ],
+        label: 'income',
+        data: incomes,
+        fill: true, // Don't fill area under the line
+        backgroundColor: '#DAF7A6', // fill color
+        borderColor: '#2EE152', // Line color
+      },
+      {
+        label: 'expense',
+        data: expenses,
+        fill: true, // Don't fill area under the line
+        backgroundColor: '#FF9B9B', // fill color
+        borderColor: '#FF5D5D', // Line color
       },
     ],
   };
 
+
   return (
-      <div className={classes.flexContainer}>
-        <Bar
-          data={chartData}
-          options={{
-            title: {
-              display: true,
-              text: 'Total expenses and income',
-              fontSize: 20,
-            },
-            legend: {
-              display: true,
-              position: 'bottom',
-              fontSize: 18,
-              labels: {
-              fontSize: 18,
-            },
-            },
-            scales: {
-              yAxes: [
-                {
-                  ticks: {
-                    beginAtZero: true,
-                  },
-                },
-              ],
-            },
-          }}
-        />
-      </div>
+    <div className={classes.container}>
+      <header className={classes.header}>
+        <h1>Total expenses and income</h1>
+      </header>
+      <article className={classes.content}>
+        <Line data={data} />
+      </article>
+    </div>
   );
 }
