@@ -51,8 +51,10 @@ export default makeStyles((theme) => ({
   total:{
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    
   },
+  root:{
+    display:'flex',
+    justifyContent:'space-between'
+  }
   
 }));

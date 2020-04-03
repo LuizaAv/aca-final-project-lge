@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 export default makeStyles({
   root: {
     display: 'flex',
+    marginLeft:-38
     
   },
   count: {
@@ -17,7 +18,8 @@ export default makeStyles({
   },
   balance: {
     color: 'red',
-    marginLeft:-462,
+    marginTop:-62,
+    
   },
   name: {
     color: '#545454',

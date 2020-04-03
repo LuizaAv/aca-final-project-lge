@@ -37,11 +37,18 @@ export default function History() {
 
   return (
     <>
-    <div className={classes.total}>
-         <AccountBalanceWalletIcon style={{fontSize:'44px',marginTop:'7px'}}/>
-        <TotalForHistory/>
-        <AddBudget />
-      </div>
+    <div className={classes.root}>
+      
+<div>
+  <div>
+<AccountBalanceWalletIcon style={{fontSize:'45px'}}/>
+  </div>
+  <div>
+<TotalForHistory/>
+  </div>
+</div>
+<div><AddBudget/></div>
+    </div>
       <div className={classes.tools}>
         <Sort isAscending={isAscending} setIsAscending={setIsAscending} />
         <Filter filterType={filterType} setFilterType={setFilterType} />
