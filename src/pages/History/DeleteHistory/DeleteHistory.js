@@ -1,23 +1,11 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { makeStyles } from '@material-ui/core/styles';
 
-import { useStoreContext } from '../../store/storeContext';
-import { deleteBudget } from '../../store/actions';
+import { useStoreContext } from '../../../store/storeContext';
+import { deleteBudget } from '../../../store/actions';
 
-const useStyles = makeStyles({
-  icon: {
-    color: '#466d6d',
-    borderRadius: '100%',
-    padding: 10,
-    fontSize:49,
-    marginTop:-12,
-    '&:hover': {
-      backgroundColor: '#e6ecff',
-    },
-  },
-});
+import useStyles from './DeleteHistory.style';
 
 export default function DeleteHistory({ budget }) {
   const classes = useStyles();

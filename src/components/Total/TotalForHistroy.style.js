@@ -3,10 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 export default makeStyles({
   root: {
     display: 'flex',
-    
   },
   count: {
-    
     paddingLeft: 40,
     marginLeft: 50,
     fontFamily: 'Segoe UI',
@@ -17,12 +15,11 @@ export default makeStyles({
   },
   balance: {
     color: 'red',
-    marginLeft:-462,
+    marginLeft: -462,
   },
   name: {
     color: '#545454',
     fontFamily: 'Segoe UI',
     fontWeight: 900,
   },
-  
 });

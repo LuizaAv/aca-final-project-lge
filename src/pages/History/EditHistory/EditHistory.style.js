@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-export default makeStyles(({
+export default makeStyles({
   dialog: {
     borderRadius: 30,
   },
@@ -17,13 +17,18 @@ export default makeStyles(({
     margin: 'auto',
     marginBottom: 15,
   },
-  iconButton: {
-    margin: -20,
-    marginRight: 15,
+  date: {
+    width: '40%',
+    margin: 'auto',
   },
   icon: {
+    color: '#466d6d',
+    borderRadius: '100%',
+    fontSize: 50,
+    marginTop: -12,
+    padding: 10,
     '&:hover': {
-      transform: 'scale(1.2)',
+      backgroundColor: '#e6ecff',
     },
   },
   dialogAction: {
@@ -34,4 +39,4 @@ export default makeStyles(({
     borderRadius: 30,
     width: 100,
   },
-}));
+});

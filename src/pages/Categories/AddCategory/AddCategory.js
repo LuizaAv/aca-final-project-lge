@@ -59,7 +59,13 @@ export default function AddCategory() {
         Add Category
       </Button>
 
-      <Dialog fullWidth maxWidth="xs" onClose={handleOpen} open={open}>
+      <Dialog
+        classes={{ paper: classes.dialog }}
+        fullWidth
+        maxWidth="xs"
+        onClose={handleOpen}
+        open={open}
+      >
         <DialogTitle className={classes.title}>Add Category</DialogTitle>
 
         <FormControl className={classes.itemSize}>
@@ -77,8 +83,16 @@ export default function AddCategory() {
           onChange={handleNameChange}
         />
 
-        <DialogActions>
+        <DialogActions className={classes.dialogAction}>
           <Button
+            className={classes.actionButton}
+            variant="outlined"
+            onClick={handleOpen}
+          >
+            Cancel
+          </Button>
+          <Button
+            className={classes.actionButton}
             disabled={doneDisabled}
             variant="outlined"
             onClick={handleAddCategory}

@@ -12,35 +12,11 @@ import TextField from '@material-ui/core/TextField';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import EditIcon from '@material-ui/icons/Edit';
-import { makeStyles } from '@material-ui/core/styles';
 
-import { useStoreContext } from '../../store/storeContext';
-import { editBudget } from '../../store/actions';
+import { useStoreContext } from '../../../store/storeContext';
+import { editBudget } from '../../../store/actions';
 
-const useStyles = makeStyles({
-  title: {
-    margin: 'auto',
-  },
-  itemSize: {
-    width: '80%',
-    margin: 'auto',
-    marginBottom: 15,
-  },
-  date: {
-    width: '40%',
-    margin: 'auto',
-  },
-  icon: {
-    color: '#466d6d',
-    borderRadius: '100%',
-    fontSize:50,
-    marginTop:-12,
-    padding: 10,
-    '&:hover': {
-      backgroundColor: '#e6ecff',
-    },
-  },
-});
+import useStyles from './EditHistory.style';
 
 export default function EditHistory({ budget }) {
   const classes = useStyles();
@@ -108,7 +84,13 @@ export default function EditHistory({ budget }) {
     <>
       <EditIcon fontSize="large" className={classes.icon} onClick={handleOpen} />
 
-      <Dialog fullWidth maxWidth="xs" onClose={handleOpen} open={open}>
+      <Dialog
+        classes={{ paper: classes.dialog }}
+        fullWidth
+        maxWidth="xs"
+        onClose={handleOpen}
+        open={open}
+      >
         <DialogTitle className={classes.title}>Edit Budget</DialogTitle>
 
         <FormControl className={classes.itemSize}>
@@ -161,8 +143,16 @@ export default function EditHistory({ budget }) {
           />
         </MuiPickersUtilsProvider>
 
-        <DialogActions>
+        <DialogActions className={classes.dialogAction}>
           <Button
+            className={classes.actionButton}
+            variant="outlined"
+            onClick={handleOpen}
+          >
+            Cancel
+          </Button>
+          <Button
+            className={classes.actionButton}
             disabled={doneDisabled}
             variant="outlined"
             onClick={handleEditBudget}

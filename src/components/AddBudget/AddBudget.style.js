@@ -25,12 +25,27 @@ export default makeStyles({
       boxShadow: '0 5px 15px -4px #800000',
     },
   },
-  title: {
-    margin: 'auto',
+  dialog: {
+    borderRadius: 30,
+  },
+  titleIncome: {
+    width: '100%',
+    backgroundColor: '#2EE152',
+    color: '#fff',
+    textAlign: 'center',
+    fontFamily: 'Segoe UI',
+  },
+  titleExpence: {
+    width: '100%',
+    backgroundColor: '#FF5D5D',
+    color: '#fff',
+    textAlign: 'center',
+    fontFamily: 'Segoe UI',
   },
   itemSize: {
     width: '80%',
     margin: 'auto',
+    marginTop: 20,
     marginBottom: 15,
     color: 'white',
   },
@@ -38,27 +53,12 @@ export default makeStyles({
     width: '40%',
     margin: 'auto',
   },
-  flexContainer: {
-    display: 'flex',
-    justifyContent: 'center',
+  dialogAction: {
+    margin: 'auto',
   },
-  buttons: {
-    alignItems: 'center',
-    flexWrap: 'wrap',
-    margin: 10,
-    backgroundColor: '#466d6d',
-    borderRadius: 15,
-  },
-  button: {
-    color: 'white',
-    textDecoration: 'none',
-    border: '3px solid #ffffff',
-  },
-  addbudget: {
-    display: 'flex',
-    backgroundColor: 'yellow',
-  },
-  dialog: {
-    backgroundColor: 'yellow',
+  actionButton: {
+    margin: 15,
+    borderRadius: 30,
+    width: 100,
   },
 });

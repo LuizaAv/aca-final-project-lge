@@ -5,7 +5,7 @@ import clsx from 'clsx';
 
 import { useStoreContext } from '../../../store/storeContext';
 
-import useStyles from './TotalForHistroy.style'
+import useStyles from './TotalForHistroy.style';
 
 export default function Total() {
   const classes = useStyles();
@@ -29,7 +29,7 @@ export default function Total() {
 
   const count = [
     { name: 'B A L A N C E', amount: addComma(balance), className: 'balance' },
-    
+
   ];
 
   return (

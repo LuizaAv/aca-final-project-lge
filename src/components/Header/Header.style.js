@@ -60,16 +60,22 @@ export default makeStyles({
     marginRight: 17,
     fill: '#FF5D5D',
   },
-  icon: {
+  summaryIcon: {
     marginRight: 17,
+    height: 27,
   },
-  graphIcon: {
+  historyIcon: {
     marginRight: 17,
-    fontSize: 30,
+    marginLeft: -4,
+    height: 27,
   },
-  activeGraphIcon: {
-    color: '#FF5D5D',
+  categoriesIcon: {
     marginRight: 17,
-    fontSize: 30,
+    height: 27,
+  },
+  graphsIcon: {
+    marginRight: 17,
+    marginLeft: -1,
+    height: 27,
   },
 });

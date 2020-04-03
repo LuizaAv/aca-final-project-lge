@@ -3,7 +3,7 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import clsx from 'clsx';
 
-import { useStoreContext } from '../../../store/storeContext';
+import { useStoreContext } from '../../store/storeContext';
 
 import useStyles from './Total.style';
 

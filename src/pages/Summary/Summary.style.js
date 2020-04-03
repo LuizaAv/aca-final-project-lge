@@ -23,6 +23,7 @@ export default makeStyles({
     borderRadius: 30,
     width: '92%',
     alignSelf: 'center',
+    boxShadow: '0px 0px 20px 5px #C0C0C0',
   },
   title: {
     color: '#363D99',
