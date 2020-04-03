@@ -29,8 +29,6 @@ export default function AddBudget() {
   const [picherError, setPicherError] = useState('');
   const [dialogOpen, setDialogOpen] = useState(false);
 
-  console.log(state.budget)
-
   const handleDialogOpen = () => { setDialogOpen(!dialogOpen); };
 
   const handleClickExpense = () => { setType('expense'); setDialogOpen(!dialogOpen); };
