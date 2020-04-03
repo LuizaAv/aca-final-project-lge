@@ -11,6 +11,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
+import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
 
 import { useStoreContext } from '../../../store/storeContext';
@@ -82,8 +83,12 @@ export default function EditHistory({ budget }) {
 
   return (
     <>
-      <EditIcon fontSize="large" className={classes.icon} onClick={handleOpen} />
-
+      <IconButton
+        className={classes.iconButton}
+        onClick={handleOpen}
+      >
+        <EditIcon className={classes.icon} />
+      </IconButton>
       <Dialog
         classes={{ paper: classes.dialog }}
         fullWidth

@@ -6,7 +6,6 @@ export default makeStyles((theme) => ({
     flexDirection: 'column',
   },
   header: {
-    marginBottom: 10,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -16,10 +15,9 @@ export default makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    margin: 30,
-    marginBottom: 40,
+    margin: 40,
     marginLeft: 85,
-    width: 300,
+    width: 330,
   },
   tableContainer: {
     borderRadius: 30,

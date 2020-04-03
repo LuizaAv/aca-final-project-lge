@@ -1,48 +1,9 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
-  card: {
-    float: 'left',
-    height: 160,
-    width: 380,
-    borderRadius: 10,
-    margin: 10,
-    color: '#466d6d',
-    boxShadow: '0px 0px 20px 5px #C0C0C0',
-    '&:hover': {
-      backgroundColor: '#f2f3f9',
-    },
-  },
-  flexContainer: {
+  root: {
     display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    margin: 6,
-  },
-  nameAmount: {
-    display: 'flex',
-    height: 60,
-    width: 350,
-    justifyContent: 'space-between',
-    color: '#2F4F4F',
-    textShadow: '1px 0px black',
-  },
-  categoryDate: {
-    display: 'flex',
-    height: 50,
-    width: 350,
-    justifyContent: 'space-between',
-  },
-  icons: {
-    color: '#466d6d',
-  },
-  tools: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    margin: 49,
-    width: 330,
-    marginLeft: 419,
+    flexDirection: 'column',
   },
   header: {
     display: 'flex',
@@ -50,11 +11,39 @@ export default makeStyles((theme) => ({
     justifyContent: 'space-between',
     width: '96%',
   },
-  balanceIcon: {
-    fontSize: '44px',
-    marginTop: '7px',
+  tools: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    margin: 40,
+    marginLeft: 85,
+    width: 330,
+  },
+  flexContainer: {
+    display: 'flex',
+    alignSelf: 'center',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+  },
+  card: {
+    height: 160,
+    width: 330,
+    borderRadius: 20,
+    margin: '0 20px 40px 20px',
+    color: '#466d6d',
+    boxShadow: '0px 0px 5px 5px #C0C0C0',
+  },
+  nameAmount: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    color: '#2F4F4F',
+    textShadow: '1px 0px black',
+  },
+  categoryDate: {
+    display: 'flex',
+    justifyContent: 'space-between',
   },
   hr: {
-    marginTop: '28px',
+    marginTop: '70px',
   },
 }));

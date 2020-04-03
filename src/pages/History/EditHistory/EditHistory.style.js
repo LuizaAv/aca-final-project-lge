@@ -21,14 +21,13 @@ export default makeStyles({
     width: '40%',
     margin: 'auto',
   },
+  iconButton: {
+    margin: -20,
+    marginRight: 20,
+  },
   icon: {
-    color: '#466d6d',
-    borderRadius: '100%',
-    fontSize: 50,
-    marginTop: -12,
-    padding: 10,
     '&:hover': {
-      backgroundColor: '#e6ecff',
+      transform: 'scale(1.2)',
     },
   },
   dialogAction: {

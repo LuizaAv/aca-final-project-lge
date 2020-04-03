@@ -1,5 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
+import IconButton from '@material-ui/core/IconButton'
 import DeleteIcon from '@material-ui/icons/Delete';
 
 import { useStoreContext } from '../../../store/storeContext';
@@ -15,7 +16,14 @@ export default function DeleteHistory({ budget }) {
     dispatch(deleteBudget(budget));
   };
 
-  return <DeleteIcon fontSize="large" className={classes.icon} onClick={handleDeleteBudget} />;
+  return (
+    <IconButton
+      className={classes.iconButton}
+      onClick={handleDeleteBudget}
+    >
+      <DeleteIcon className={classes.icon} />
+    </IconButton>
+  )
 }
 
 DeleteHistory.propTypes = {

@@ -3,8 +3,10 @@ import { makeStyles } from '@material-ui/core/styles';
 export default makeStyles({
   button: {
     borderRadius: 25,
-    padding: '6px 20px',
+    height: 40,
+    padding: '6px 34px',
     fontSize: 16,
+    marginLeft: 5,
     backgroundColor: '#fff',
     color: '#000',
     textTransform: 'none',
