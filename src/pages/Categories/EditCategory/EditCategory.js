@@ -82,16 +82,16 @@ export default function EditCategory({ category }) {
         <DialogActions className={classes.dialogAction}>
           <Button
             className={classes.actionButton}
-            variant="outlined"
             onClick={handleOpen}
+            color="secondary"
           >
             Cancel
           </Button>
           <Button
             className={classes.actionButton}
             disabled={doneDisabled}
-            variant="outlined"
             onClick={handleEditCategory}
+            color="primary"
           >
             Done
           </Button>

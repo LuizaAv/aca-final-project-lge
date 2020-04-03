@@ -39,19 +39,21 @@ export default function DeleteCategory({ category }) {
         onClose={handleClose}
         classes={{ paper: classes.dialog }}
       >
-        <DialogTitle> Are you sure want to permanently remove this item? </DialogTitle>
+        <DialogTitle className={classes.dialogTitle} disableTypography>
+          Are you sure want to permanently remove this item?
+        </DialogTitle>
         <DialogActions className={classes.dialogAction}>
           <Button
             onClick={handleClose}
             className={classes.actionButton}
-            variant="outlined"
+            color="secondary"
           >
             Cancel
           </Button>
           <Button
             onClick={handleDeleteCategory}
             className={classes.actionButton}
-            variant="outlined"
+            color="primary"
           >
             Ok
           </Button>

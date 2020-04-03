@@ -38,5 +38,6 @@ export default makeStyles({
     margin: 15,
     borderRadius: 30,
     width: 100,
+    fontWeight: 600,
   },
 });

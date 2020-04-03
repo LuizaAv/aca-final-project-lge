@@ -151,7 +151,7 @@ export default function EditHistory({ budget }) {
         <DialogActions className={classes.dialogAction}>
           <Button
             className={classes.actionButton}
-            variant="outlined"
+            color="secondary"
             onClick={handleOpen}
           >
             Cancel
@@ -159,7 +159,7 @@ export default function EditHistory({ budget }) {
           <Button
             className={classes.actionButton}
             disabled={doneDisabled}
-            variant="outlined"
+            color="primary"
             onClick={handleEditBudget}
           >
             Done

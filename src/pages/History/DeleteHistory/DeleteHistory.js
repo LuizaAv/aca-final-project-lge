@@ -39,19 +39,23 @@ export default function DeleteHistory({ budget }) {
         onClose={handleClose}
         classes={{ paper: classes.dialog }}
       >
-        <DialogTitle> Are you sure want to permanently remove this item? </DialogTitle>
+        <DialogTitle className={classes.dialogTitle} disableTypography>
+          Are you sure want to permanently remove this item?
+        </DialogTitle>
         <DialogActions className={classes.dialogAction}>
           <Button
             onClick={handleClose}
             className={classes.actionButton}
-            variant="outlined"
+            color="secondary"
+            //variant="outlined"
           >
             Cancel
           </Button>
           <Button
             onClick={handleDeleteBudget}
             className={classes.actionButton}
-            variant="outlined"
+            //variant="outlined"
+            color="primary"
           >
             Ok
           </Button>
@@ -68,7 +72,7 @@ DeleteHistory.propTypes = {
     name: propTypes.string.isRequired,
     category: propTypes.string.isRequired,
     amount: propTypes.number.isRequired,
-    date: propTypes.string.isRequired,
+    date: propTypes.instanceOf(Date),
   }),
 };
 
@@ -79,6 +83,6 @@ DeleteHistory.defaultProps = {
     name: propTypes.string.isRequired,
     category: propTypes.string.isRequired,
     amount: propTypes.number.isRequired,
-    date: propTypes.string.isRequired,
+    date: propTypes.instanceOf(Date),
   },
 };
