@@ -17,6 +17,7 @@ import AddCategory from './AddCategory/AddCategory';
 import DeleteCategory from './DeleteCategory/DeleteCategory';
 import EditCategory from './EditCategory/EditCategory';
 import Filter from '../../components/Filter/Filter';
+import Total from '../../components/Total/Total';
 import useStyles from './Categories.style';
 
 export default function Categories() {
@@ -32,6 +33,7 @@ export default function Categories() {
     <div className={classes.root}>
 
       <div className={classes.header}>
+        <Total />
         <AddBudget />
       </div>
 

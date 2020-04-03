@@ -48,6 +48,7 @@ export default makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
+    width: '96%',
   },
   balanceIcon: {
     fontSize: '44px',

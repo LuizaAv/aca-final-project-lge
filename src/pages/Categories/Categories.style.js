@@ -6,11 +6,10 @@ export default makeStyles((theme) => ({
     flexDirection: 'column',
   },
   header: {
-    display: 'flex',
-    height: 70,
     marginBottom: 10,
+    display: 'flex',
     alignItems: 'center',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
     width: '96%',
   },
   tools: {

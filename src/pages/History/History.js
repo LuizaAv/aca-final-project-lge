@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 // import Fade from '@material-ui/core/Fade';
 import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 import AddBudget from '../../components/AddBudget/AddBudget';
-// import TotalForHistory from '../Summary/Total/TotalForHistory';
+import Total from '../../components/Total/Total';
 
 
 import { useStoreContext } from '../../store/storeContext';
@@ -38,8 +38,9 @@ export default function History() {
   return (
     <>
       <div className={classes.header}>
-        <AccountBalanceWalletIcon className={classes.balanceIcon} />
+        {/* <AccountBalanceWalletIcon className={classes.balanceIcon} /> */}
         {/* <TotalForHistory /> */}
+        <Total />
         <AddBudget />
       </div>
 
