@@ -29,6 +29,8 @@ export default function AddBudget() {
   const [picherError, setPicherError] = useState('');
   const [dialogOpen, setDialogOpen] = useState(false);
 
+  console.log(state.budget)
+
   const handleDialogOpen = () => { setDialogOpen(!dialogOpen); };
 
   const handleClickExpense = () => { setType('expense'); setDialogOpen(!dialogOpen); };
@@ -63,7 +65,7 @@ export default function AddBudget() {
   const handleAddingBudget = () => {
     const id = uuidv4();
     const addedBudget = {
-      id, type, name, category, amount: +amount, date: date.toLocaleDateString(),
+      id, type, name, category, amount: +amount, date,
     };
     handleStateReset();
     dispatch(addBudget(addedBudget));

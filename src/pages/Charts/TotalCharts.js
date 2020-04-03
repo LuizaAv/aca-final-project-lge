@@ -6,12 +6,13 @@ import useStyles from './Charts.style';
 export default function TotalChart() {
   const classes = useStyles();
   const { state } = useStoreContext();
-  const date = state.budget.sort((a, b) => a.date.split('.').join('') - b.date.split('.').join(''));
-  const expenses = date.map((el) => (el.type === 'expense' ? el.amount : 0));
-  const incomes = date.map((el) => (el.type === 'income' ? el.amount : 0));
+  const budget = [...state.budget];
+  const sortedBudgetByDate = budget.sort((a, b) => a.date.getTime() - b.date.getTime());
+  const expenses = sortedBudgetByDate.map((el) => (el.type === 'expense' ? el.amount : 0));
+  const incomes = sortedBudgetByDate.map((el) => (el.type === 'income' ? el.amount : 0));
 
   const data = {
-    labels: date.map((el) => el.date),
+    labels: sortedBudgetByDate.map((el) => el.date.toLocaleDateString()),
     datasets: [
       {
         label: 'income',

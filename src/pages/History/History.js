@@ -60,7 +60,7 @@ export default function History() {
                     ? `- ${item.amount}`
                     : `+ ${item.amount}`}
                 </Typography>
-                <Typography>{item.date}</Typography>
+                <Typography>{item.date.toLocaleDateString()}</Typography>
               </div>
             </CardContent>
           </Card>

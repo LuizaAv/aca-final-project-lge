@@ -26,7 +26,7 @@ export default function EditHistory({ budget }) {
   const [name, setName] = useState(budget.name);
   const [category, setCategory] = useState(budget.category);
   const [amount, setAmount] = useState(budget.amount);
-  const [date, setDate] = useState(new Date(budget.date.split('.').reverse()));
+  const [date, setDate] = useState(budget.date);
   const [picherError, setPicherError] = useState('');
   const [open, setOpen] = useState(false);
 
@@ -66,7 +66,7 @@ export default function EditHistory({ budget }) {
   const handleEditBudget = () => {
     const { id } = budget;
     const editedBudget = {
-      id, type, name, category, amount: +amount, date: date.toLocaleDateString(),
+      id, type, name, category, amount: +amount, date,
     };
     handleOpen();
     dispatch(editBudget(editedBudget));
@@ -177,7 +177,7 @@ EditHistory.propTypes = {
     name: propTypes.string.isRequired,
     category: propTypes.string.isRequired,
     amount: propTypes.number.isRequired,
-    date: propTypes.string.isRequired,
+    date: propTypes.instanceOf(Date),
   }),
 };
 
@@ -188,6 +188,6 @@ EditHistory.defaultProps = {
     name: propTypes.string.isRequired,
     category: propTypes.string.isRequired,
     amount: propTypes.number.isRequired,
-    date: propTypes.string.isRequired,
+    date: propTypes.instanceOf(Date),
   },
 };

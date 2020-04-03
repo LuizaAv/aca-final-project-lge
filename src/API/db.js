@@ -7,7 +7,7 @@ export const budget = [
     name: 'Insurance',
     category: 'Automobile',
     amount: 500,
-    date: '19.03.2020',
+    date: new Date('March 19, 2020 03:24:00'),
   },
   {
     id: uuidv4(),
@@ -15,7 +15,7 @@ export const budget = [
     name: 'Concert',
     category: 'Entertainment',
     amount: 310,
-    date: '21.03.2020',
+    date: new Date('March 21, 2020 03:24:00'),
   },
   {
     id: uuidv4(),
@@ -23,7 +23,7 @@ export const budget = [
     name: 'Groceries',
     category: 'Food',
     amount: 120,
-    date: '23.03.2020',
+    date: new Date('March 23, 2020 03:24:00'),
   },
   {
     id: uuidv4(),
@@ -31,7 +31,7 @@ export const budget = [
     name: 'HealthCare',
     category: 'Medical',
     amount: 530,
-    date: '25.03.2020',
+    date: new Date('March 25, 2020 03:24:00'),
   },
   {
     id: uuidv4(),
@@ -39,7 +39,7 @@ export const budget = [
     name: 'Utilities',
     category: 'Electric',
     amount: 340,
-    date: '26.03.2020',
+    date: new Date('March 26, 2020 03:24:00'),
   },
   {
     id: uuidv4(),
@@ -47,7 +47,7 @@ export const budget = [
     name: 'Salary',
     category: 'Salary',
     amount: 540,
-    date: '24.03.2020',
+    date: new Date('March 24, 2020 03:24:00'),
   },
   {
     id: uuidv4(),
@@ -55,7 +55,7 @@ export const budget = [
     name: 'Equities',
     category: 'Equities',
     amount: 90,
-    date: '22.03.2020',
+    date: new Date('March 22, 2020 03:24:00'),
   },
   {
     id: uuidv4(),
@@ -63,7 +63,7 @@ export const budget = [
     name: 'Pensions',
     category: 'Pensions',
     amount: 270,
-    date: '20.03.2020',
+    date: new Date('March 20, 2020 03:24:00'),
   },
 ];
 
