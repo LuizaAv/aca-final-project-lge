@@ -10,4 +10,15 @@ export default makeStyles({
       transform: 'scale(1.2)',
     },
   },
+  dialog: {
+    borderRadius: 30,
+  },
+  dialogAction: {
+    margin: 'auto',
+  },
+  actionButton: {
+    borderRadius: 30,
+    width: 100,
+    margin: '0 30px',
+  },
 });
