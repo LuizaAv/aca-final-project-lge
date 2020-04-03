@@ -4,7 +4,7 @@ export default makeStyles({
   button: {
     borderRadius: 25,
     height: 40,
-    padding: '6px 34px',
+    width: 168,
     fontSize: 16,
     marginLeft: 5,
     backgroundColor: '#fff',
