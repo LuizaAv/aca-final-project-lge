@@ -13,7 +13,7 @@ import { ReactComponent as ArrowUpwardIcon } from '../../assets/icons/Arrow-up.s
 
 import { useStoreContext } from '../../store/storeContext';
 
-import Total from './Total/Total';
+import Total from '../../components/Total/Total';
 import Sort from '../../components/Sort/Sort';
 import Filter from '../../components/Filter/Filter';
 import AddBudget from '../../components/AddBudget/AddBudget';
@@ -25,16 +25,25 @@ export default function Categories() {
   const [filterType, setFilterType] = useState('all');
   const [isAscending, setIsAscending] = useState(true);
 
-  const amounts = state.categories.map((category) => {
-    const count = state.budget.reduce(
+  const uniqueCategories = state.budget.reduce((acc, item) => (
+    acc.some((accItem) => (
+      accItem.category === item.category
+      && accItem.type === item.type
+    ))
+      ? acc
+      : [...acc, item]
+  ), []);
+
+  const amounts = uniqueCategories.map((category) => {
+    const amount = state.budget.reduce(
       (acc, budget) => (
-        budget.category === category.name && budget.type === category.type
+        budget.category === category.category && budget.type === category.type
           ? acc + +budget.amount
           : acc),
       0,
     );
-    return { ...category, amount: count };
-  }).filter((amount) => amount.amount !== 0);
+    return { ...category, amount };
+  });
 
   const filteredAmounts = filterType === 'all'
     ? [...amounts]
@@ -75,7 +84,7 @@ export default function Categories() {
             {filteredAmounts.map((amount) => (
               <TableRow key={amount.id}>
                 <TableCell className={classes.category}>
-                  {amount.name}
+                  {amount.category}
                 </TableCell>
                 <TableCell className={classes.content} align="center">
                   {amount.type === 'expense'

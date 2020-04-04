@@ -1,8 +1,9 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-export default makeStyles(({
+export default makeStyles({
   iconButton: {
     margin: -20,
+    marginRight: 0,
   },
   icon: {
     '&:hover': {
@@ -16,7 +17,7 @@ export default makeStyles(({
     fontSize: 20,
   },
   dialogAction: {
-    marginTop: -10,
+    marginTop: -5,
     marginBottom: 10,
     margin: 'auto',
   },
@@ -26,4 +27,4 @@ export default makeStyles(({
     width: 80,
     fontWeight: '600',
   },
-}));
+});

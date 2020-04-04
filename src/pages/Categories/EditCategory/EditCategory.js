@@ -9,7 +9,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
-import IconButton from '@material-ui/core/IconButton'
+import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
 
 import { useStoreContext } from '../../../store/storeContext';
@@ -46,14 +46,22 @@ export default function EditCategory({ category }) {
 
   return (
     <>
-      <IconButton className={classes.iconButton}>
+      <IconButton
+        className={classes.iconButton}
+        onClick={handleOpen}
+      >
         <EditIcon
           className={classes.icon}
-          onClick={handleOpen}
         />
       </IconButton>
 
-      <Dialog fullWidth maxWidth="xs" onClose={handleOpen} open={open}>
+      <Dialog
+        classes={{ paper: classes.dialog }}
+        fullWidth
+        maxWidth="xs"
+        onClose={handleOpen}
+        open={open}
+      >
         <DialogTitle className={classes.title}>Edit Category</DialogTitle>
 
         <FormControl className={classes.itemSize}>
@@ -71,11 +79,19 @@ export default function EditCategory({ category }) {
           onChange={handleNameChange}
         />
 
-        <DialogActions>
+        <DialogActions className={classes.dialogAction}>
           <Button
+            className={classes.actionButton}
+            onClick={handleOpen}
+            color="secondary"
+          >
+            Cancel
+          </Button>
+          <Button
+            className={classes.actionButton}
             disabled={doneDisabled}
-            variant="outlined"
             onClick={handleEditCategory}
+            color="primary"
           >
             Done
           </Button>

@@ -5,7 +5,7 @@ import Drawer from '@material-ui/core/Drawer';
 import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-import TrendingUpIcon from '@material-ui/icons/TrendingUp';
+import { ReactComponent as GraphsIcon } from '../../assets/icons/Graphs.svg';
 import { ReactComponent as SummaryIcon } from '../../assets/icons/Summary.svg';
 import { ReactComponent as HistoryIcon } from '../../assets/icons/History.svg';
 import { ReactComponent as CategoriesIcon } from '../../assets/icons/Categories.svg';
@@ -48,7 +48,7 @@ export default function Header() {
                   : classes.rectangleIcon
                 }
             />
-            <SummaryIcon className={classes.icon} />
+            <SummaryIcon className={classes.summaryIcon} />
             Summary
           </Link>
           <Link
@@ -63,7 +63,7 @@ export default function Header() {
                 ? classes.activeRectangleIcon
                 : classes.rectangleIcon}
             />
-            <HistoryIcon className={classes.icon} />
+            <HistoryIcon className={classes.historyIcon} />
             History
           </Link>
           <Link
@@ -78,7 +78,7 @@ export default function Header() {
                 ? classes.activeRectangleIcon
                 : classes.rectangleIcon}
             />
-            <CategoriesIcon className={classes.icon} />
+            <CategoriesIcon className={classes.categoriesIcon} />
             Categories
           </Link>
           <Link
@@ -93,11 +93,7 @@ export default function Header() {
                 ? classes.activeRectangleIcon
                 : classes.rectangleIcon}
             />
-            <TrendingUpIcon
-              className={path === '/Charts'
-                ? classes.activeGraphIcon
-                : classes.graphIcon}
-            />
+            <GraphsIcon className={classes.graphsIcon} />
             Graphs
           </Link>
         </nav>

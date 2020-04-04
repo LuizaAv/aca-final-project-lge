@@ -2,28 +2,30 @@ import React, { useState } from 'react';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+<<<<<<< HEAD
 import Fade from '@material-ui/core/Fade';
 import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 import AddBudget from '../../components/AddBudget/AddBudget';
 import TotalForHistory from '../Summary/Total/TotalForHistory';
+=======
+import AddBudget from '../../components/AddBudget/AddBudget';
+import Total from '../../components/Total/Total';
+>>>>>>> 7e861e2c821f05e227cb9da954c7d63a31bfd645
 
 
 import { useStoreContext } from '../../store/storeContext';
 
 import Sort from '../../components/Sort/Sort';
 import Filter from '../../components/Filter/Filter';
-import EditHistory from './EditHistory';
-import DeleteHistory from './DeleteHistory';
+import EditHistory from './EditHistory/EditHistory';
+import DeleteHistory from './DeleteHistory/DeleteHistory';
 import useStyles from './History.style';
-
-// import Emptypage from './Emptyhistorypage';
 
 export default function History() {
   const classes = useStyles();
   const { state } = useStoreContext();
   const [filterType, setFilterType] = useState('all');
   const [isAscending, setIsAscending] = useState(true);
-  const [onItem, setOnItem] = React.useState('');
 
   const filteredBudget = filterType === 'all'
     ? [...state.budget]
@@ -31,21 +33,26 @@ export default function History() {
 
   filteredBudget.sort((a, b) => (isAscending ? a.amount - b.amount : b.amount - a.amount));
 
-  const handleMouseOver = (item) => {
-    setOnItem(item);
-  };
-
   return (
+<<<<<<< HEAD
     <>
       <div className={classes.total}>
         <AccountBalanceWalletIcon style={{ fontSize: '44px', marginTop: '7px' }} />
         <TotalForHistory />
+=======
+    <div className={classes.root}>
+
+      <div className={classes.header}>
+        <Total />
+>>>>>>> 7e861e2c821f05e227cb9da954c7d63a31bfd645
         <AddBudget />
       </div>
+
       <div className={classes.tools}>
         <Sort isAscending={isAscending} setIsAscending={setIsAscending} />
         <Filter filterType={filterType} setFilterType={setFilterType} />
       </div>
+<<<<<<< HEAD
       <div className={classes.flexContainer}>
         {filteredBudget.map((item) => (
           <div item key={item.id}>
@@ -79,12 +86,36 @@ export default function History() {
                   <div>
                     <Typography>{item.date}</Typography>
                   </div>
+=======
+
+      <div className={classes.flexContainer}>
+        {filteredBudget.map((item) => (
+          <Card key={item.id} className={classes.card}>
+            <CardContent>
+              <div className={classes.nameAmount}>
+                <Typography className={classes.name}>{item.name}</Typography>
+                <div className={classes.amount}>
+                  <EditHistory budget={item} />
+                  <DeleteHistory budget={item} />
+>>>>>>> 7e861e2c821f05e227cb9da954c7d63a31bfd645
                 </div>
-              </CardContent>
-            </Card>
-          </div>
+              </div>
+
+              <hr className={classes.hr} />
+
+              <div className={classes.categoryDate}>
+                <Typography>{item.category}</Typography>
+                <Typography>
+                  {item.type === 'expense'
+                    ? `- ${item.amount}`
+                    : `+ ${item.amount}`}
+                </Typography>
+                <Typography>{item.date.toLocaleDateString()}</Typography>
+              </div>
+            </CardContent>
+          </Card>
         ))}
       </div>
-    </>
+    </div>
   );
 }

@@ -63,7 +63,7 @@ export default function AddBudget() {
   const handleAddingBudget = () => {
     const id = uuidv4();
     const addedBudget = {
-      id, type, name, category, amount: +amount, date: date.toLocaleDateString(),
+      id, type, name, category, amount: +amount, date,
     };
     handleStateReset();
     dispatch(addBudget(addedBudget));
@@ -92,8 +92,22 @@ export default function AddBudget() {
         Add expense
       </Button>
 
-      <Dialog fullWidth maxWidth="xs" open={dialogOpen} onClose={handleDialogOpen}>
-        <DialogTitle className={classes.title}>{`Add ${type}`}</DialogTitle>
+      <Dialog
+        classes={{ paper: classes.dialog }}
+        fullWidth
+        maxWidth="xs"
+        open={dialogOpen}
+        onClose={handleDialogOpen}
+      >
+        <DialogTitle
+          className={
+            type === 'expense'
+              ? classes.titleExpence
+              : classes.titleIncome
+          }
+        >
+          {`Add ${type}`}
+        </DialogTitle>
 
         <FormControl className={classes.itemSize}>
           <InputLabel>Category</InputLabel>
@@ -137,12 +151,19 @@ export default function AddBudget() {
           />
         </MuiPickersUtilsProvider>
 
-        <DialogActions>
+        <DialogActions className={classes.dialogAction}>
           <Button
-          className={classes.btn}
+            className={classes.actionButton}
+            onClick={handleDialogOpen}
+            color="secondary"
+          >
+            Cancel
+          </Button>
+          <Button
+            className={classes.actionButton}
             disabled={doneDisabled}
-            variant="outlined"
             onClick={handleAddingBudget}
+            color="primary"
           >
             Done
           </Button>

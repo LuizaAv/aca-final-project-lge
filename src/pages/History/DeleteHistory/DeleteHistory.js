@@ -8,10 +8,11 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 
 import { useStoreContext } from '../../../store/storeContext';
-import { deleteCategory } from '../../../store/actions';
-import useStyles from './DeleteCategory.style';
+import { deleteBudget } from '../../../store/actions';
 
-export default function DeleteCategory({ category }) {
+import useStyles from './DeleteHistory.style';
+
+export default function DeleteHistory({ budget }) {
   const classes = useStyles();
   const { dispatch } = useStoreContext();
   const [open, setOpen] = React.useState(false);
@@ -20,9 +21,8 @@ export default function DeleteCategory({ category }) {
     setOpen(!open);
   };
 
-  const handleDeleteCategory = () => {
-    setOpen(!open);
-    dispatch(deleteCategory(category));
+  const handleDeleteBudget = () => {
+    dispatch(deleteBudget(budget));
   };
 
   return (
@@ -47,12 +47,14 @@ export default function DeleteCategory({ category }) {
             onClick={handleClose}
             className={classes.actionButton}
             color="secondary"
+            //variant="outlined"
           >
             Cancel
           </Button>
           <Button
-            onClick={handleDeleteCategory}
+            onClick={handleDeleteBudget}
             className={classes.actionButton}
+            //variant="outlined"
             color="primary"
           >
             Ok
@@ -63,18 +65,24 @@ export default function DeleteCategory({ category }) {
   );
 }
 
-DeleteCategory.propTypes = {
-  category: propTypes.shape({
+DeleteHistory.propTypes = {
+  budget: propTypes.shape({
     id: propTypes.string.isRequired,
     type: propTypes.string.isRequired,
     name: propTypes.string.isRequired,
+    category: propTypes.string.isRequired,
+    amount: propTypes.number.isRequired,
+    date: propTypes.instanceOf(Date),
   }),
 };
 
-DeleteCategory.defaultProps = {
-  category: {
+DeleteHistory.defaultProps = {
+  budget: {
     id: propTypes.string.isRequired,
     type: propTypes.string.isRequired,
     name: propTypes.string.isRequired,
+    category: propTypes.string.isRequired,
+    amount: propTypes.number.isRequired,
+    date: propTypes.instanceOf(Date),
   },
 };

@@ -7,25 +7,23 @@ export default makeStyles((theme) => ({
   },
   header: {
     display: 'flex',
-    height: 70,
-    marginBottom: 10,
     alignItems: 'center',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
     width: '96%',
   },
   tools: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    margin: 30,
-    marginBottom: 40,
+    margin: 40,
     marginLeft: 85,
-    width: 300,
+    width: 330,
   },
   tableContainer: {
     borderRadius: 30,
     width: '92%',
     alignSelf: 'center',
+    boxShadow: '0px 0px 20px 5px #C0C0C0',
   },
   title: {
     color: '#363D99',
@@ -52,10 +50,12 @@ export default makeStyles((theme) => ({
   content: {
     fontFamily: 'Segoe UI',
     fontSize: 17,
+    textTransform: 'capitalize',
   },
   name: {
     color: '#363D99',
     fontSize: 17,
+    textTransform: 'capitalize',
   },
 
   tableRow: {

@@ -11,36 +11,13 @@ import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
+import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
-import { makeStyles } from '@material-ui/core/styles';
 
-import { useStoreContext } from '../../store/storeContext';
-import { editBudget } from '../../store/actions';
+import { useStoreContext } from '../../../store/storeContext';
+import { editBudget } from '../../../store/actions';
 
-const useStyles = makeStyles({
-  title: {
-    margin: 'auto',
-  },
-  itemSize: {
-    width: '80%',
-    margin: 'auto',
-    marginBottom: 15,
-  },
-  date: {
-    width: '40%',
-    margin: 'auto',
-  },
-  icon: {
-    color: '#466d6d',
-    borderRadius: '100%',
-    fontSize:50,
-    marginTop:-12,
-    padding: 10,
-    '&:hover': {
-      backgroundColor: '#e6ecff',
-    },
-  },
-});
+import useStyles from './EditHistory.style';
 
 export default function EditHistory({ budget }) {
   const classes = useStyles();
@@ -49,7 +26,7 @@ export default function EditHistory({ budget }) {
   const [name, setName] = useState(budget.name);
   const [category, setCategory] = useState(budget.category);
   const [amount, setAmount] = useState(budget.amount);
-  const [date, setDate] = useState(new Date(budget.date.split('.').reverse()));
+  const [date, setDate] = useState(budget.date);
   const [picherError, setPicherError] = useState('');
   const [open, setOpen] = useState(false);
 
@@ -89,7 +66,7 @@ export default function EditHistory({ budget }) {
   const handleEditBudget = () => {
     const { id } = budget;
     const editedBudget = {
-      id, type, name, category, amount: +amount, date: date.toLocaleDateString(),
+      id, type, name, category, amount: +amount, date,
     };
     handleOpen();
     dispatch(editBudget(editedBudget));
@@ -106,9 +83,19 @@ export default function EditHistory({ budget }) {
 
   return (
     <>
-      <EditIcon fontSize="large" className={classes.icon} onClick={handleOpen} />
-
-      <Dialog fullWidth maxWidth="xs" onClose={handleOpen} open={open}>
+      <IconButton
+        className={classes.iconButton}
+        onClick={handleOpen}
+      >
+        <EditIcon className={classes.icon} />
+      </IconButton>
+      <Dialog
+        classes={{ paper: classes.dialog }}
+        fullWidth
+        maxWidth="xs"
+        onClose={handleOpen}
+        open={open}
+      >
         <DialogTitle className={classes.title}>Edit Budget</DialogTitle>
 
         <FormControl className={classes.itemSize}>
@@ -161,10 +148,18 @@ export default function EditHistory({ budget }) {
           />
         </MuiPickersUtilsProvider>
 
-        <DialogActions>
+        <DialogActions className={classes.dialogAction}>
           <Button
+            className={classes.actionButton}
+            color="secondary"
+            onClick={handleOpen}
+          >
+            Cancel
+          </Button>
+          <Button
+            className={classes.actionButton}
             disabled={doneDisabled}
-            variant="outlined"
+            color="primary"
             onClick={handleEditBudget}
           >
             Done
@@ -182,7 +177,7 @@ EditHistory.propTypes = {
     name: propTypes.string.isRequired,
     category: propTypes.string.isRequired,
     amount: propTypes.number.isRequired,
-    date: propTypes.string.isRequired,
+    date: propTypes.instanceOf(Date),
   }),
 };
 
@@ -193,6 +188,6 @@ EditHistory.defaultProps = {
     name: propTypes.string.isRequired,
     category: propTypes.string.isRequired,
     amount: propTypes.number.isRequired,
-    date: propTypes.string.isRequired,
+    date: propTypes.instanceOf(Date),
   },
 };

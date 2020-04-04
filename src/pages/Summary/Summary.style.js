@@ -23,6 +23,7 @@ export default makeStyles({
     borderRadius: 30,
     width: '92%',
     alignSelf: 'center',
+    boxShadow: '0px 0px 20px 5px #C0C0C0',
   },
   title: {
     color: '#363D99',
@@ -49,10 +50,12 @@ export default makeStyles({
   content: {
     fontFamily: 'Segoe UI',
     fontSize: 17,
+    textTransform: 'capitalize',
   },
   category: {
     color: '#363D99',
     fontSize: 17,
+    textTransform: 'capitalize',
   },
   tableRow: {
     padding: 10,

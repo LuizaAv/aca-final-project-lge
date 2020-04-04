@@ -3,7 +3,7 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import clsx from 'clsx';
 
-import { useStoreContext } from '../../../store/storeContext';
+import { useStoreContext } from '../../store/storeContext';
 
 import useStyles from './Total.style';
 
@@ -36,12 +36,14 @@ export default function Total() {
   return (
     <div className={classes.root}>
       {count.map((item) => (
-        <Typography key={item.name} className={clsx(classes.count, classes[item.className])}>
-          {item.amount}
+        <div key={item.name} className={classes.count}>
+          <Typography className={clsx(classes.amount, classes[item.className])}>
+            {item.amount}
+          </Typography>
           <Typography className={classes.name}>
             {item.name}
           </Typography>
-        </Typography>
+        </div>
       ))}
     </div>
   );
