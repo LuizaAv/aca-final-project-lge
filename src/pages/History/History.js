@@ -5,7 +5,6 @@ import Typography from '@material-ui/core/Typography';
 import AddBudget from '../../components/AddBudget/AddBudget';
 import Total from '../../components/Total/Total';
 
-
 import { useStoreContext } from '../../store/storeContext';
 
 import Sort from '../../components/Sort/Sort';
@@ -15,7 +14,6 @@ import EditHistory from './EditHistory/EditHistory';
 import DeleteHistory from './DeleteHistory/DeleteHistory';
 import useStyles from './History.style';
 
-
 export default function History() {
   const classes = useStyles();
   const { state } = useStoreContext();
@@ -23,44 +21,37 @@ export default function History() {
   const [isAscending, setIsAscending] = useState(true);
   const [dateFilter, setDateFilter] = useState('all');
 
-  // const date = state.budget.map((item) => item.date);
-  // const splited = date.map((item) => item.toString().split('.'));
-  // const itemDay = splited.map((item) => item[1]);
-  // const itemMonth = splited.map((item) => item[0]);
-  // const itemYear = splited.map((item) => item[2]);
-
-  // const currentDate = new Date();
-  // const currentDay = currentDate.getDate();
-  // const currentMonth = currentDate.getMonth() + 1;
-  // const currentYear = currentDate.getFullYear();
-
-  // const checkedDay = (`0${currentDay}`);
-  // const checkedMonth = (`0${currentMonth}`);
-
-  // const day = currentDay < 10 ? checkedDay : currentDay;
-  // const month = currentMonth < 10 ? checkedMonth : currentMonth;
-
-
   const filteredBudget = filterType === 'all'
     ? [...state.budget]
     : state.budget.filter((budget) => budget.type === filterType);
 
+  const dayCheck = () => filteredBudget.filter(
+    (budget) => budget.date.toLocaleDateString() === new Date().toLocaleDateString(),
+  );
+
+  const monthCheck = () => filteredBudget.filter(
+    (budget) => budget.date.toLocaleDateString().slice(3)
+        === new Date().toLocaleDateString().slice(3),
+  );
+
+  const yearCheck = () => filteredBudget.filter(
+    (budget) => budget.date.toLocaleDateString().slice(6)
+      === new Date().toLocaleDateString().slice(6),
+  );
   const dayFilter = dateFilter === 'all'
     ? [...filteredBudget]
     : dateFilter === 'daily'
-    ? filteredBudget.filter((budget) => budget.date.toLocaleDateString() === new Date().toLocaleDateString())
-    : dateFilter === 'monthly'
-    ? filteredBudget.filter((budget) => budget.date.toLocaleDateString().slice(3) === new Date().toLocaleDateString().slice(3))
-    : dateFilter === 'yearly'
-    ?  filteredBudget.filter((budget) => budget.date.toLocaleDateString().slice(6) === new Date().toLocaleDateString().slice(6))
-    : [...filteredBudget]
+      ? dayCheck()
+      : dateFilter === 'monthly'
+        ? monthCheck()
+        : dateFilter === 'yearly'
+          ? yearCheck()
+          : [...filteredBudget];
 
-    dayFilter.sort((a, b) => (isAscending ? a.amount - b.amount : b.amount - a.amount));
-
+  dayFilter.sort((a, b) => (isAscending ? a.amount - b.amount : b.amount - a.amount));
 
   return (
     <div className={classes.root}>
-
       <div className={classes.header}>
         <Total />
         <AddBudget />
