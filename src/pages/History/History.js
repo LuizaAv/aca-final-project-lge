@@ -9,7 +9,7 @@ import { useStoreContext } from '../../store/storeContext';
 
 import Sort from '../../components/Sort/Sort';
 import Filter from '../../components/Filter/Filter';
-import DataFilter from '../../components/DataFilter/DataFilter';
+import DateFilter from '../../components/DateFilter/DateFilter';
 import EditHistory from './EditHistory/EditHistory';
 import DeleteHistory from './DeleteHistory/DeleteHistory';
 import useStyles from './History.style';
@@ -60,7 +60,7 @@ export default function History() {
       <div className={classes.tools}>
         <Sort isAscending={isAscending} setIsAscending={setIsAscending} />
         <Filter filterType={filterType} setFilterType={setFilterType} />
-        <DataFilter dateFilter={dateFilter} setDateFilter={setDateFilter} />
+        <DateFilter dateFilter={dateFilter} setDateFilter={setDateFilter} />
       </div>
 
       <div className={classes.flexContainer}>

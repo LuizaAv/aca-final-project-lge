@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-import useStyles from './DataFilter.style';
+import useStyles from './DateFilter.style';
 
 
-export default function DataFilter({ dateFilter, setDateFilter }) {
+export default function DateFilter({ dateFilter, setDateFilter }) {
   const classes = useStyles();
 
   const select = [
