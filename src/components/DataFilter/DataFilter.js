@@ -3,7 +3,6 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import useStyles from './DataFilter.style';
 
-import { useStoreContext } from '../../store/storeContext';
 
 export default function DataFilter({ dateFilter, setDateFilter }) {
   const classes = useStyles();
