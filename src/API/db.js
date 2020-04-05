@@ -1,3 +1,4 @@
+
 import { v4 as uuidv4 } from 'uuid';
 
 export const budget = [
@@ -23,7 +24,7 @@ export const budget = [
     name: 'Groceries',
     category: 'Food',
     amount: 120,
-    date: new Date('March 23, 2020 03:24:00'),
+    date: new Date('April 23, 2020 03:24:00'),
   },
   {
     id: uuidv4(),
@@ -31,7 +32,7 @@ export const budget = [
     name: 'HealthCare',
     category: 'Medical',
     amount: 530,
-    date: new Date('March 25, 2020 03:24:00'),
+    date: new Date('April 05, 2020 03:24:00'),
   },
   {
     id: uuidv4(),
@@ -39,7 +40,7 @@ export const budget = [
     name: 'Utilities',
     category: 'Electric',
     amount: 340,
-    date: new Date('March 26, 2020 03:24:00'),
+    date: new Date('April 26, 2019 03:24:00'),
   },
   {
     id: uuidv4(),
@@ -47,7 +48,7 @@ export const budget = [
     name: 'Salary',
     category: 'Salary',
     amount: 540,
-    date: new Date('March 24, 2020 03:24:00'),
+    date: new Date('March 24, 2019 03:24:00'),
   },
   {
     id: uuidv4(),
