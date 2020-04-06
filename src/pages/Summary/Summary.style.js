@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-export default makeStyles({
+export default makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -20,14 +20,12 @@ export default makeStyles({
     width: 330,
   },
   tableContainer: {
-    borderRadius: 30,
     width: '92%',
     alignSelf: 'center',
-    boxShadow: '0px 0px 20px 5px #C0C0C0',
+    boxShadow: theme.shadows[15],
   },
   title: {
-    color: '#363D99',
-    fontFamily: 'Segoe UI',
+    color: theme.palette.tertiary.main,
     fontSize: 30,
     fontWeight: 900,
     marginLeft: 50,
@@ -42,28 +40,24 @@ export default makeStyles({
     marginBottom: -4,
   },
   head: {
-    fontFamily: 'Segoe UI',
     fontWeight: 900,
     fontSize: 17,
     width: '20%',
   },
   content: {
-    fontFamily: 'Segoe UI',
     fontSize: 17,
     textTransform: 'capitalize',
   },
   category: {
-    color: '#363D99',
+    color: theme.palette.tertiary.main,
     fontSize: 17,
     textTransform: 'capitalize',
   },
   tableRow: {
-    padding: 10,
-    margin: 5,
     transition: 'transform .2s',
     '&:hover': {
-      transform: 'scale(1.1)',
+      transform: 'scale(1.01)',
       backgroundColor: '#e0ebeb',
     },
   },
-});
+}));

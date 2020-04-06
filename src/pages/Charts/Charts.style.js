@@ -14,7 +14,7 @@ export default makeStyles((theme) => ({
     margin: 'auto',
   },
   content: {
-    
+
   },
 
 }));

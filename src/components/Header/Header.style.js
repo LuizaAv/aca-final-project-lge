@@ -2,32 +2,26 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const drawerWidth = 180;
 
-export default makeStyles({
-  root: {
-  //   display: 'flex',
-  },
+export default makeStyles((theme) => ({
   drawer: {
     width: drawerWidth,
   },
   drawerPaper: {
     width: drawerWidth,
-    boxShadow: '0 0 20px 20px #e6e8fc',
+    boxShadow: theme.shadows[15],
   },
-  typography: {
-    color: '#363D99',
+  logo: {
     width: '100%',
     padding: 30,
     boxShadow: '0px 7px 60px 0px #e6e8fc',
-    fontFamily: 'Segoe UI',
-    fontWeight: 900,
+    fontWeight: theme.typography.fontWeightBold,
   },
   nav: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     height: '100%',
-    fontFamily: 'Segoe UI',
-    fontWeight: 900,
+    fontWeight: theme.typography.fontWeightBold,
     fontSize: 15,
   },
   link: {
@@ -35,12 +29,11 @@ export default makeStyles({
     display: 'flex',
     alignItems: 'center',
     marginBottom: 40,
-    color: '#ababab',
-    // svg icon color
-    fill: '#ababab',
+    color: theme.palette.text.secondary,
+    fill: '#ababab', // svg icon color
     '&:hover': {
-      color: '#545454',
-      fill: '#545454',
+      color: theme.palette.text.primary,
+      fill: theme.palette.text.primary,
     },
   },
   activeLink: {
@@ -48,9 +41,9 @@ export default makeStyles({
     display: 'flex',
     alignItems: 'center',
     marginBottom: 40,
-    color: '#545454',
-    // svg icon color
-    fill: '#FF5D5D',
+    color: theme.palette.text.primary,
+    fill: theme.palette.secondary.main, // svg icon color
+
   },
   rectangleIcon: {
     marginRight: 17,
@@ -58,7 +51,7 @@ export default makeStyles({
   },
   activeRectangleIcon: {
     marginRight: 17,
-    fill: '#FF5D5D',
+    fill: theme.palette.secondary.main,
   },
   summaryIcon: {
     marginRight: 17,
@@ -78,4 +71,4 @@ export default makeStyles({
     marginLeft: -1,
     height: 27,
   },
-});
+}));

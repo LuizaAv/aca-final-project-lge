@@ -11,7 +11,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
-import clsx from 'clsx';
 
 import useStyles from './AddBudget.style';
 import { addBudget } from '../../store/actions';
@@ -78,22 +77,25 @@ export default function AddBudget() {
   );
 
   return (
-    <div className={classes.root}>
+    <div>
       <Button
-        className={clsx(classes.addButton, classes.income)}
+        className={classes.addButton}
         onClick={handleClickIncome}
+        color="primary"
+        variant="outlined"
       >
         Add income
       </Button>
       <Button
-        className={clsx(classes.addButton, classes.expense)}
+        className={classes.addButton}
         onClick={handleClickExpense}
+        variant="outlined"
+        color="secondary"
       >
         Add expense
       </Button>
 
       <Dialog
-        classes={{ paper: classes.dialog }}
         fullWidth
         maxWidth="xs"
         open={dialogOpen}
@@ -109,7 +111,7 @@ export default function AddBudget() {
           {`Add ${type}`}
         </DialogTitle>
 
-        <FormControl className={classes.itemSize}>
+        <FormControl className={classes.item}>
           <InputLabel>Category</InputLabel>
           <Select value={category} onChange={handleCategoryChange}>
             {state.categories
@@ -123,14 +125,14 @@ export default function AddBudget() {
         </FormControl>
 
         <TextField
-          className={classes.itemSize}
+          className={classes.item}
           label="Name"
           value={name}
           onChange={handleNameChange}
         />
 
         <TextField
-          className={classes.itemSize}
+          className={classes.item}
           label="Amount"
           value={amount}
           onChange={handleAmountChange}

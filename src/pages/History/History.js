@@ -67,9 +67,11 @@ export default function History() {
         {dayFilter.map((item) => (
           <Card key={item.id} className={classes.card}>
             <CardContent>
-              <div className={classes.nameAmount}>
-                <Typography className={classes.name}>{item.name}</Typography>
-                <div className={classes.amount}>
+              <div className={classes.cardItem}>
+                <Typography className={classes.name}>
+                  {item.name}
+                </Typography>
+                <div>
                   <EditHistory budget={item} />
                   <DeleteHistory budget={item} />
                 </div>
@@ -77,15 +79,22 @@ export default function History() {
 
               <hr className={classes.hr} />
 
-              <div className={classes.categoryDate}>
-                <Typography>{item.category}</Typography>
+              <div className={classes.cardItem}>
+                <Typography className={classes.category}>
+                  {item.category}
+                </Typography>
+
                 <Typography>
                   {item.type === 'expense'
                     ? `- ${item.amount}`
                     : `+ ${item.amount}`}
                 </Typography>
-                <Typography>{item.date.toLocaleDateString()}</Typography>
+
+                <Typography className={classes.date}>
+                  {item.date.toLocaleDateString()}
+                </Typography>
               </div>
+
             </CardContent>
           </Card>
         ))}

@@ -30,6 +30,7 @@ export default function DeleteHistory({ budget }) {
       <IconButton
         className={classes.iconButton}
         onClick={handleClose}
+        color="secondary"
       >
         <DeleteIcon className={classes.icon} />
       </IconButton>
@@ -47,14 +48,14 @@ export default function DeleteHistory({ budget }) {
             onClick={handleClose}
             className={classes.actionButton}
             color="secondary"
-            //variant="outlined"
+            // variant="outlined"
           >
             Cancel
           </Button>
           <Button
             onClick={handleDeleteBudget}
             className={classes.actionButton}
-            //variant="outlined"
+            // variant="outlined"
             color="primary"
           >
             Ok

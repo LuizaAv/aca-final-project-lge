@@ -26,24 +26,27 @@ export default makeStyles((theme) => ({
     justifyContent: 'center',
   },
   card: {
-    height: 160,
     width: 330,
-    borderRadius: 20,
     margin: '0 20px 40px 20px',
-    color: '#466d6d',
-    boxShadow: '0px 0px 5px 5px #C0C0C0',
+    boxShadow: theme.shadows[10],
   },
-  nameAmount: {
+  cardItem: {
     display: 'flex',
     justifyContent: 'space-between',
-    color: '#2F4F4F',
-    textShadow: '1px 0px black',
   },
-  categoryDate: {
-    display: 'flex',
-    justifyContent: 'space-between',
+  name: {
+    color: theme.palette.tertiary.light,
+    fontWeight: 600,
+  },
+  category: {
+    color: theme.palette.tertiary.light,
+    fontWeight: 300,
+  },
+  date: {
+
   },
   hr: {
-    marginTop: '70px',
+    marginTop: 40,
+    marginBottom: 10,
   },
 }));

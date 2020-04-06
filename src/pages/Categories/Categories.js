@@ -62,7 +62,7 @@ export default function Categories() {
           </TableHead>
           <TableBody>
             {filteredCategories.map((category) => (
-              <TableRow key={category.id}>
+              <TableRow key={category.id} className={classes.tableRow}>
                 <TableCell className={classes.name}>
                   {category.name}
                 </TableCell>

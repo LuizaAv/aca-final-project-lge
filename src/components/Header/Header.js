@@ -17,7 +17,7 @@ export default function Header() {
   const [path, setPath] = useState(window.location.pathname);
 
   return (
-    <div className={classes.root}>
+    <div>
       <CssBaseline />
       <Drawer
         className={classes.drawer}
@@ -26,7 +26,7 @@ export default function Header() {
         anchor="left"
       >
         <Typography
-          className={classes.typography}
+          className={classes.logo}
           variant="h4"
           align="center"
         >

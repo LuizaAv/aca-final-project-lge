@@ -20,6 +20,7 @@ export default makeStyles(({
   iconButton: {
     margin: -20,
     marginRight: 15,
+    color: '#ffa726',
   },
   icon: {
     '&:hover': {

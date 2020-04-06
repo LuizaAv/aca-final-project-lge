@@ -86,6 +86,7 @@ export default function EditHistory({ budget }) {
       <IconButton
         className={classes.iconButton}
         onClick={handleOpen}
+        color="secondary"
       >
         <EditIcon className={classes.icon} />
       </IconButton>
