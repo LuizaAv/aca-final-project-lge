@@ -16,13 +16,16 @@ export default function DeleteHistory({ budget }) {
   const classes = useStyles();
   const { dispatch } = useStoreContext();
   const [open, setOpen] = React.useState(false);
+  
 
   const handleClose = () => {
     setOpen(!open);
   };
 
   const handleDeleteBudget = () => {
+
     dispatch(deleteBudget(budget));
+     
   };
 
   return (
