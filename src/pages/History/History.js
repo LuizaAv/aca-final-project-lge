@@ -26,7 +26,8 @@ export default function History() {
   const [filterType, setFilterType] = useState('all');
   const [isAscending, setIsAscending] = useState(true);
   const [dateFilter, setDateFilter] = useState('all');
-  const [e,setE]=useState('');
+  const [event,setEvent]=useState('');
+  
   const [open,setOpen]=useState(false);
   
 
@@ -66,7 +67,7 @@ export default function History() {
 
   dayFilter.sort((a, b) => (isAscending ? a.amount - b.amount : b.amount - a.amount));
 
-  const Searched = e === '' ? dayFilter : dayFilter.filter(item=>item.name.toLowerCase()===e.toLowerCase())
+  const Searched = event === '' ? dayFilter : dayFilter.filter(item=>item.name.toLowerCase().startsWith(event.toLowerCase()))
    
   
 
@@ -82,7 +83,7 @@ export default function History() {
         <Filter filterType={filterType} setFilterType={setFilterType} />
         <DateFilter dateFilter={dateFilter} setDateFilter={setDateFilter} />
         <div>
-      <HistorySearch e={e} setE={setE}/>
+      <HistorySearch e={event} setE={setEvent}/>
       </div>
       </div>
       
@@ -93,7 +94,7 @@ export default function History() {
               <div className={classes.nameAmount}>
                 <Typography className={classes.name}>{item.name}</Typography>
                 <div className={classes.amount}>
-                  <EditHistory budget={item} />
+                  <EditHistory budget={item} SnackBarOpen={setOpen} />
                   <DeleteHistory budget={item} SnackBarOpen={setOpen}   />
                 </div>
               </div>
