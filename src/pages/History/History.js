@@ -35,19 +35,16 @@ function filterByDate(budget, date) {
   return [...budget];
 }
 
-
 export default function History() {
   const classes = useStyles();
   const { state } = useStoreContext();
   const [filterType, setFilterType] = useState('all');
   const [isAscending, setIsAscending] = useState(true);
   const [filterDate, setFilterDate] = useState('all');
-  const [event, setEvent] = useState('');
-  const [open, setOpen] = useState(false);
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const [search, setSearch] = useState('');
+  const [openDelete, setOpenDelete] = useState(false);
+  const [openEdit, setOpenEdit] = useState(false);
+  const [openCancel, setOpenCancel] = useState(false);
 
   const budgetFilteredByType = filterType === 'all'
     ? [...state.budget]
@@ -59,10 +56,9 @@ export default function History() {
     isAscending ? a.amount - b.amount : b.amount - a.amount
   ));
 
-  const budgetSearched = event === ''
+  const budgetSearched = search === ''
     ? budgetSorted
-    : budgetSorted.filter((item) => item.name.toLowerCase().startsWith(event.toLowerCase()));
-
+    : budgetSorted.filter((item) => item.name.toLowerCase().startsWith(search.toLowerCase()));
 
   return (
     <div className={classes.root}>
@@ -75,9 +71,7 @@ export default function History() {
         <Sort isAscending={isAscending} setIsAscending={setIsAscending} />
         <FilterType filterType={filterType} setFilterType={setFilterType} />
         <FilterDate filterDate={filterDate} setFilterDate={setFilterDate} />
-        <div>
-          <HistorySearch e={event} setE={setEvent} />
-        </div>
+        <HistorySearch search={search} setSearch={setSearch} />
       </div>
 
       <div className={classes.flexContainer}>
@@ -87,8 +81,16 @@ export default function History() {
               <div className={classes.cardItem}>
                 <Typography className={classes.name}>{item.name}</Typography>
                 <div className={classes.amount}>
-                  <EditHistory budget={item} SnackBarOpen={setOpen} />
-                  <DeleteHistory budget={item} SnackBarOpen={setOpen} />
+                  <EditHistory
+                    budget={item}
+                    setOpenEdit={setOpenEdit}
+                    setOpenCancel={setOpenCancel}
+                  />
+                  <DeleteHistory
+                    budget={item}
+                    setOpenDelete={setOpenDelete}
+                    setOpenCancel={setOpenCancel}
+                  />
                 </div>
               </div>
 
@@ -113,9 +115,19 @@ export default function History() {
           </Card>
         ))}
       </div>
-      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-        <MuiAlert elevation={6} variant="filled" severity="success">
-          This is a success message!
+      <Snackbar open={openDelete} autoHideDuration={3000} onClose={() => { setOpenDelete(false); }}>
+        <MuiAlert variant="filled" severity="success" onClose={() => { setOpenDelete(false); }}>
+          Deleted successfully!
+        </MuiAlert>
+      </Snackbar>
+      <Snackbar open={openEdit} autoHideDuration={3000} onClose={() => { setOpenEdit(false); }}>
+        <MuiAlert variant="filled" severity="success" onClose={() => { setOpenEdit(false); }}>
+          Edited successfully!
+        </MuiAlert>
+      </Snackbar>
+      <Snackbar open={openCancel} autoHideDuration={3000} onClose={() => { setOpenCancel(false); }}>
+        <MuiAlert variant="filled" severity="info" onClose={() => { setOpenCancel(false); }}>
+          Аction was canceled
         </MuiAlert>
       </Snackbar>
     </div>

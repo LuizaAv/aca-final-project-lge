@@ -13,7 +13,7 @@ import { deleteBudget } from '../../../store/actions';
 import useStyles from './DeleteHistory.style';
 
 
-export default function DeleteHistory({ budget, SnackBarOpen }) {
+export default function DeleteHistory({ budget, setOpenDelete, setOpenCancel }) {
   const classes = useStyles();
   const { dispatch } = useStoreContext();
   const [open, setOpen] = React.useState(false);
@@ -23,8 +23,13 @@ export default function DeleteHistory({ budget, SnackBarOpen }) {
     setOpen(!open);
   };
 
+  const handleCancel = () => {
+    setOpen(false);
+    setOpenCancel(true);
+  };
+
   const handleDeleteBudget = () => {
-    SnackBarOpen(true);
+    setOpenDelete(true);
     dispatch(deleteBudget(budget));
   };
 
@@ -47,7 +52,7 @@ export default function DeleteHistory({ budget, SnackBarOpen }) {
         </DialogTitle>
         <DialogActions className={classes.dialogAction}>
           <Button
-            onClick={handleClose}
+            onClick={handleCancel}
             className={classes.actionButton}
             color="secondary"
           >
@@ -57,7 +62,6 @@ export default function DeleteHistory({ budget, SnackBarOpen }) {
             onClick={handleDeleteBudget}
             className={classes.actionButton}
             color="primary"
-
           >
             Ok
           </Button>

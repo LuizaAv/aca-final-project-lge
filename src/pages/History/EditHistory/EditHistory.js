@@ -19,7 +19,7 @@ import { editBudget } from '../../../store/actions';
 
 import useStyles from './EditHistory.style';
 
-export default function EditHistory({ budget, SnackBarOpen }) {
+export default function EditHistory({ budget, setOpenEdit, setOpenCancel }) {
   const classes = useStyles();
   const { state, dispatch } = useStoreContext();
   const [type, setType] = useState(budget.type);
@@ -32,6 +32,11 @@ export default function EditHistory({ budget, SnackBarOpen }) {
 
   const handleOpen = () => {
     setOpen(!open);
+  };
+
+  const handleCancel = () => {
+    setOpen(false);
+    setOpenCancel(true);
   };
 
   const handleTypeChange = (e) => {
@@ -69,7 +74,7 @@ export default function EditHistory({ budget, SnackBarOpen }) {
       id, type, name, category, amount: +amount, date,
     };
     handleOpen();
-    SnackBarOpen(true)
+    setOpenEdit(true);
     dispatch(editBudget(editedBudget));
   };
 
@@ -153,7 +158,7 @@ export default function EditHistory({ budget, SnackBarOpen }) {
           <Button
             className={classes.actionButton}
             color="secondary"
-            onClick={handleOpen}
+            onClick={handleCancel}
           >
             Cancel
           </Button>
