@@ -49,7 +49,6 @@ export default function EditCategory({ category }) {
       <IconButton
         className={classes.iconButton}
         onClick={handleOpen}
-        color="secondary"
       >
         <EditIcon
           className={classes.icon}

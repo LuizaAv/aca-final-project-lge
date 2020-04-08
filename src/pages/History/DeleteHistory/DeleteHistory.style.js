@@ -4,7 +4,7 @@ export default makeStyles({
   iconButton: {
     margin: -20,
     marginRight: 0,
-    color: '#f44336',
+    // color: '#f44336',
   },
   icon: {
     '&:hover': {

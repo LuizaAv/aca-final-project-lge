@@ -30,7 +30,6 @@ export default function DeleteCategory({ category }) {
       <IconButton
         className={classes.iconButton}
         onClick={handleClose}
-        color="secondary"
       >
         <DeleteIcon className={classes.icon} />
       </IconButton>

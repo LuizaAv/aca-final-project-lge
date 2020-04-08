@@ -13,23 +13,19 @@ import { deleteBudget } from '../../../store/actions';
 import useStyles from './DeleteHistory.style';
 
 
-
-export default function DeleteHistory({ budget , SnackBarOpen }) {
+export default function DeleteHistory({ budget, SnackBarOpen }) {
   const classes = useStyles();
   const { dispatch } = useStoreContext();
   const [open, setOpen] = React.useState(false);
 
-  
-  
 
   const handleClose = () => {
     setOpen(!open);
   };
 
   const handleDeleteBudget = () => {
-    SnackBarOpen(true)
+    SnackBarOpen(true);
     dispatch(deleteBudget(budget));
-     
   };
 
   return (
@@ -37,7 +33,6 @@ export default function DeleteHistory({ budget , SnackBarOpen }) {
       <IconButton
         className={classes.iconButton}
         onClick={handleClose}
-        color="secondary"
       >
         <DeleteIcon className={classes.icon} />
       </IconButton>

@@ -87,7 +87,6 @@ export default function EditHistory({ budget, SnackBarOpen }) {
       <IconButton
         className={classes.iconButton}
         onClick={handleOpen}
-        color="secondary"
       >
         <EditIcon className={classes.icon} />
       </IconButton>

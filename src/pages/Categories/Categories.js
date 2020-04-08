@@ -16,7 +16,7 @@ import AddBudget from '../../components/AddBudget/AddBudget';
 import AddCategory from './AddCategory/AddCategory';
 import DeleteCategory from './DeleteCategory/DeleteCategory';
 import EditCategory from './EditCategory/EditCategory';
-import Filter from '../../components/Filter/Filter';
+import FilterType from '../../components/FilterType/FilterType';
 import Total from '../../components/Total/Total';
 import useStyles from './Categories.style';
 
@@ -39,7 +39,7 @@ export default function Categories() {
 
       <div className={classes.tools}>
         <AddCategory />
-        <Filter filterType={filterType} setFilterType={setFilterType} />
+        <FilterType filterType={filterType} setFilterType={setFilterType} />
       </div>
 
       <TableContainer component={Paper} className={classes.tableContainer}>

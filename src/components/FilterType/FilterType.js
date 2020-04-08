@@ -2,9 +2,9 @@ import React from 'react';
 import propTypes from 'prop-types';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-import useStyles from './Filter.style';
+import useStyles from './FilterType.style';
 
-export default function Filter({ filterType, setFilterType }) {
+export default function FilterType({ filterType, setFilterType }) {
   const classes = useStyles();
 
   const handleChange = (e) => {
@@ -33,7 +33,7 @@ export default function Filter({ filterType, setFilterType }) {
   );
 }
 
-Filter.propTypes = {
+FilterType.propTypes = {
   filterType: propTypes.string.isRequired,
   setFilterType: propTypes.func.isRequired,
 };
