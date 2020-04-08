@@ -12,10 +12,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function HistorySearch({ e, setE }) {
+export default function HistorySearch({ search, setSearch }) {
   const classes = useStyles();
   const handleChange = (e) => {
-    setE(e.target.value);
+    setSearch(e.target.value);
   };
 
   return (
@@ -25,10 +25,9 @@ export default function HistorySearch({ e, setE }) {
         label="Search Your Card..."
         variant="outlined"
         color="secondary"
-        value={e}
+        value={search}
         onChange={handleChange}
       />
-
     </div>
   );
 }
