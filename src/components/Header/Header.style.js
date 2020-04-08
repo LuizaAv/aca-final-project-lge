@@ -15,6 +15,7 @@ export default makeStyles((theme) => ({
     padding: 30,
     boxShadow: '0px 7px 60px 0px #e6e8fc',
     fontWeight: theme.typography.fontWeightBold,
+    color: theme.palette.tertiary.main,
   },
   nav: {
     display: 'flex',

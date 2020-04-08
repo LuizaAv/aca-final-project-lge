@@ -19,7 +19,7 @@ import { editBudget } from '../../../store/actions';
 
 import useStyles from './EditHistory.style';
 
-export default function EditHistory({ budget }) {
+export default function EditHistory({ budget, SnackBarOpen }) {
   const classes = useStyles();
   const { state, dispatch } = useStoreContext();
   const [type, setType] = useState(budget.type);
@@ -69,6 +69,7 @@ export default function EditHistory({ budget }) {
       id, type, name, category, amount: +amount, date,
     };
     handleOpen();
+    SnackBarOpen(true)
     dispatch(editBudget(editedBudget));
   };
 
