@@ -2,10 +2,10 @@ import React from 'react';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 
-import useStyles from './DateFilter.style';
+import useStyles from './FilterDate.style';
 
 
-export default function DateFilter({ dateFilter, setDateFilter }) {
+export default function FilterDate({ filterDate, setFilterDate }) {
   const classes = useStyles();
 
   const select = [
@@ -16,7 +16,7 @@ export default function DateFilter({ dateFilter, setDateFilter }) {
   ];
 
   const handleChange = (e) => {
-    setDateFilter(e.target.value);
+    setFilterDate(e.target.value);
   };
 
   return (
@@ -24,7 +24,7 @@ export default function DateFilter({ dateFilter, setDateFilter }) {
       <Select
         className={classes.select}
         variant="outlined"
-        value={dateFilter}
+        value={filterDate}
         onChange={handleChange}
       >
         {select.map((item) => (
