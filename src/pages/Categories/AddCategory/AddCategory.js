@@ -15,7 +15,7 @@ import { useStoreContext } from '../../../store/storeContext';
 import { addCategory } from '../../../store/actions';
 
 
-export default function AddCategory() {
+export default function AddCategory({ setOpenAdd, setOpenCancel }) {
   const classes = useStyles();
   const { dispatch } = useStoreContext();
   const [type, setType] = useState('');
@@ -24,6 +24,11 @@ export default function AddCategory() {
 
   const handleOpen = () => {
     setOpen(!open);
+  };
+
+  const handleCancel = () => {
+    setOpen(false);
+    setOpenCancel(true);
   };
 
   const handleTypeChange = (e) => {
@@ -44,6 +49,7 @@ export default function AddCategory() {
     const id = uuidv4();
     const addedCategory = { id, type, name };
     handleStateReset();
+    setOpenAdd(true);
     dispatch(addCategory(addedCategory));
   };
 
@@ -86,7 +92,7 @@ export default function AddCategory() {
         <DialogActions className={classes.dialogAction}>
           <Button
             className={classes.actionButton}
-            onClick={handleOpen}
+            onClick={handleCancel}
             color="secondary"
           >
             Cancel

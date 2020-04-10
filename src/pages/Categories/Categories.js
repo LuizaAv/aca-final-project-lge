@@ -29,6 +29,7 @@ export default function Categories() {
   const [openDelete, setOpenDelete] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
   const [openCancel, setOpenCancel] = useState(false);
+  const [openAdd, setOpenAdd] = useState(false);
 
   const filteredCategories = filterType === 'all'
     ? [...state.categories]
@@ -43,7 +44,10 @@ export default function Categories() {
       </div>
 
       <div className={classes.tools}>
-        <AddCategory />
+        <AddCategory
+          setOpenAdd={setOpenAdd}
+          setOpenCancel={setOpenCancel}
+        />
         <FilterType filterType={filterType} setFilterType={setFilterType} />
       </div>
 
@@ -94,6 +98,11 @@ export default function Categories() {
           </TableBody>
         </Table>
       </TableContainer>
+      <Snackbar open={openAdd} autoHideDuration={3000} onClose={() => { setOpenAdd(false); }}>
+        <MuiAlert variant="filled" severity="success" onClose={() => { setOpenAdd(false); }}>
+          Category successfully added
+        </MuiAlert>
+      </Snackbar>
       <Snackbar open={openDelete} autoHideDuration={3000} onClose={() => { setOpenDelete(false); }}>
         <MuiAlert variant="filled" severity="success" onClose={() => { setOpenDelete(false); }}>
           Deleted successfully!
