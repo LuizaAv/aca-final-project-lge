@@ -11,11 +11,12 @@ import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 
 import useStyles from './AddBudget.style';
 import { addBudget } from '../../store/actions';
 import { useStoreContext } from '../../store/storeContext';
-
 
 export default function AddBudget() {
   const classes = useStyles();
@@ -27,8 +28,12 @@ export default function AddBudget() {
   const [date, setDate] = useState(new Date());
   const [picherError, setPicherError] = useState('');
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [openCancel, setOpenCancel] = useState(false);
+  const [openAdd, setOpenAdd] = useState(false);
 
   const handleDialogOpen = () => { setDialogOpen(!dialogOpen); };
+
+  const handleCancel = () => { setDialogOpen(false); setOpenCancel(true); };
 
   const handleClickExpense = () => { setType('expense'); setDialogOpen(!dialogOpen); };
 
@@ -64,6 +69,7 @@ export default function AddBudget() {
     const addedBudget = {
       id, type, name, category, amount: +amount, date,
     };
+    setOpenAdd(true);
     handleStateReset();
     dispatch(addBudget(addedBudget));
   };
@@ -156,7 +162,7 @@ export default function AddBudget() {
         <DialogActions className={classes.dialogAction}>
           <Button
             className={classes.actionButton}
-            onClick={handleDialogOpen}
+            onClick={handleCancel}
             color="secondary"
           >
             Cancel
@@ -171,6 +177,17 @@ export default function AddBudget() {
           </Button>
         </DialogActions>
       </Dialog>
+
+      <Snackbar open={openAdd} autoHideDuration={3000} onClose={() => { setOpenAdd(false); }}>
+        <MuiAlert variant="filled" severity="success" onClose={() => { setOpenAdd(false); }}>
+          Successfully added
+        </MuiAlert>
+      </Snackbar>
+      <Snackbar open={openCancel} autoHideDuration={3000} onClose={() => { setOpenCancel(false); }}>
+        <MuiAlert variant="filled" severity="info" onClose={() => { setOpenCancel(false); }}>
+          Аction was canceled
+        </MuiAlert>
+      </Snackbar>
     </div>
   );
 }
