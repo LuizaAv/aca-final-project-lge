@@ -80,6 +80,8 @@ DeleteHistory.propTypes = {
     amount: propTypes.number.isRequired,
     date: propTypes.instanceOf(Date),
   }),
+  setOpenDelete: propTypes.func.isRequired,
+  setOpenCancel: propTypes.func.isRequired,
 };
 
 DeleteHistory.defaultProps = {

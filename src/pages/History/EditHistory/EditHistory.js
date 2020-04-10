@@ -192,6 +192,8 @@ EditHistory.propTypes = {
     amount: propTypes.number.isRequired,
     date: propTypes.instanceOf(Date),
   }),
+  setOpenEdit: propTypes.func.isRequired,
+  setOpenCancel: propTypes.func.isRequired,
 };
 
 EditHistory.defaultProps = {

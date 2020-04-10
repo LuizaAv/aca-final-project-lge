@@ -1,4 +1,5 @@
 import React from 'react';
+import propTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -31,3 +32,8 @@ export default function HistorySearch({ search, setSearch }) {
     </div>
   );
 }
+
+HistorySearch.propTypes = {
+  setSearch: propTypes.func.isRequired,
+  search: propTypes.bool.isRequired,
+};
