@@ -35,5 +35,5 @@ export default function HistorySearch({ search, setSearch }) {
 
 HistorySearch.propTypes = {
   setSearch: propTypes.func.isRequired,
-  search: propTypes.bool.isRequired,
+  search: propTypes.string.isRequired,
 };

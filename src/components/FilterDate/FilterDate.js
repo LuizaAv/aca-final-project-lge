@@ -40,5 +40,5 @@ export default function FilterDate({ filterDate, setFilterDate }) {
 
 FilterDate.propTypes = {
   setFilterDate: propTypes.func.isRequired,
-  filterDate: propTypes.bool.isRequired,
+  filterDate: propTypes.string.isRequired,
 };
