@@ -85,6 +85,13 @@ export default function EditHistory({ budget, setOpenEdit, setOpenCancel }) {
     && amount !== ''
     && date !== null
     && picherError === ''
+    && ( // if the previous value
+      type !== budget.type
+      || category !== budget.category
+      || name !== budget.name
+      || +amount !== +budget.amount
+      || date.toLocaleDateString() !== budget.date.toLocaleDateString()
+    )
   );
 
   return (
