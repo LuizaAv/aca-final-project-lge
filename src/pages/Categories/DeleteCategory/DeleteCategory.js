@@ -11,7 +11,7 @@ import { useStoreContext } from '../../../store/storeContext';
 import { deleteCategory } from '../../../store/actions';
 import useStyles from './DeleteCategory.style';
 
-export default function DeleteCategory({ category }) {
+export default function DeleteCategory({ category, setOpenDelete, setOpenCancel }) {
   const classes = useStyles();
   const { dispatch } = useStoreContext();
   const [open, setOpen] = React.useState(false);
@@ -20,7 +20,13 @@ export default function DeleteCategory({ category }) {
     setOpen(!open);
   };
 
+  const handleCancel = () => {
+    setOpen(false);
+    setOpenCancel(true);
+  };
+
   const handleDeleteCategory = () => {
+    setOpenDelete(true);
     setOpen(!open);
     dispatch(deleteCategory(category));
   };
@@ -44,7 +50,7 @@ export default function DeleteCategory({ category }) {
         </DialogTitle>
         <DialogActions className={classes.dialogAction}>
           <Button
-            onClick={handleClose}
+            onClick={handleCancel}
             className={classes.actionButton}
             color="secondary"
           >
@@ -69,6 +75,8 @@ DeleteCategory.propTypes = {
     type: propTypes.string.isRequired,
     name: propTypes.string.isRequired,
   }),
+  setOpenDelete: propTypes.func.isRequired,
+  setOpenCancel: propTypes.func.isRequired,
 };
 
 DeleteCategory.defaultProps = {

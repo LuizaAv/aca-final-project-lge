@@ -16,7 +16,7 @@ import { useStoreContext } from '../../../store/storeContext';
 import { editCategory } from '../../../store/actions';
 import useStyles from './EditCategory.style';
 
-export default function EditCategory({ category }) {
+export default function EditCategory({ category, setOpenEdit, setOpenCancel }) {
   const classes = useStyles();
   const { dispatch } = useStoreContext();
   const [type, setType] = useState(category.type);
@@ -25,6 +25,11 @@ export default function EditCategory({ category }) {
 
   const handleOpen = () => {
     setOpen(!open);
+  };
+
+  const handleCancel = () => {
+    setOpen(false);
+    setOpenCancel(true);
   };
 
   const handleTypeChange = (e) => {
@@ -39,10 +44,18 @@ export default function EditCategory({ category }) {
     const { id } = category;
     const editedCategory = { id, type, name };
     handleOpen();
+    setOpenEdit(true);
     dispatch(editCategory(editedCategory));
   };
 
-  const doneDisabled = !(name !== '' && type !== '');
+  const doneDisabled = !(
+    name !== ''
+    && type !== ''
+    && ( // if the previous value
+      type !== category.type
+      || name !== category.name
+    )
+  );
 
   return (
     <>
@@ -82,7 +95,7 @@ export default function EditCategory({ category }) {
         <DialogActions className={classes.dialogAction}>
           <Button
             className={classes.actionButton}
-            onClick={handleOpen}
+            onClick={handleCancel}
             color="secondary"
           >
             Cancel
@@ -107,6 +120,8 @@ EditCategory.propTypes = {
     type: propTypes.string.isRequired,
     name: propTypes.string.isRequired,
   }),
+  setOpenEdit: propTypes.func.isRequired,
+  setOpenCancel: propTypes.func.isRequired,
 };
 
 EditCategory.defaultProps = {
