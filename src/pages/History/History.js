@@ -1,20 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
+import Pagination from '@material-ui/lab/Pagination';
+
+import { useStoreContext } from '../../store/storeContext';
 import AddBudget from '../../components/AddBudget/AddBudget';
 import Total from '../../components/Total/Total';
-import { useStoreContext } from '../../store/storeContext';
-
 import Sort from '../../components/Sort/Sort';
 import FilterType from '../../components/FilterType/FilterType';
 import FilterDate from '../../components/FilterDate/FilterDate';
 import EditHistory from './EditHistory/EditHistory';
 import DeleteHistory from './DeleteHistory/DeleteHistory';
-import useStyles from './History.style';
 import HistorySearch from '../../components/HistorySearch/HistorySearch';
+import useStyles from './History.style';
+
 
 function filterByDate(budget, date) {
   const dayCheck = () => budget.filter(
@@ -45,6 +47,11 @@ export default function History() {
   const [openDelete, setOpenDelete] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
   const [openCancel, setOpenCancel] = useState(false);
+  const [page, setPage] = React.useState(1);
+
+  useEffect(() => {
+    setPage(1);
+  }, [filterType, isAscending, filterDate, search]);
 
   const budgetFilteredByType = filterType === 'all'
     ? [...state.budget]
@@ -59,6 +66,11 @@ export default function History() {
   const budgetSearched = search === ''
     ? budgetSorted
     : budgetSorted.filter((item) => item.name.toLowerCase().startsWith(search.toLowerCase()));
+
+  const elementsPerPage = 7;
+  const countPages = Math.ceil(budgetSearched.length / elementsPerPage);
+  const indexMin = (page - 1) * elementsPerPage;
+  const indexMax = indexMin + elementsPerPage;
 
   return (
     <div className={classes.root}>
@@ -75,46 +87,58 @@ export default function History() {
       </div>
 
       <div className={classes.flexContainer}>
-        {budgetSearched.map((item) => (
-          <Card key={item.id} className={classes.card}>
-            <CardContent>
-              <div className={classes.cardItem}>
-                <Typography className={classes.name}>{item.name}</Typography>
-                <div className={classes.amount}>
-                  <EditHistory
-                    budget={item}
-                    setOpenEdit={setOpenEdit}
-                    setOpenCancel={setOpenCancel}
-                  />
-                  <DeleteHistory
-                    budget={item}
-                    setOpenDelete={setOpenDelete}
-                    setOpenCancel={setOpenCancel}
-                  />
+        {budgetSearched
+          .filter((item, index) => index >= indexMin && index < indexMax)
+          .map((item) => (
+            <Card key={item.id} className={classes.card}>
+              <CardContent>
+                <div className={classes.cardItem}>
+                  <Typography className={classes.name}>{item.name}</Typography>
+                  <div className={classes.amount}>
+                    <EditHistory
+                      budget={item}
+                      setOpenEdit={setOpenEdit}
+                      setOpenCancel={setOpenCancel}
+                    />
+                    <DeleteHistory
+                      budget={item}
+                      setOpenDelete={setOpenDelete}
+                      setOpenCancel={setOpenCancel}
+                    />
+                  </div>
                 </div>
-              </div>
 
-              <hr className={classes.hr} />
+                <hr className={classes.hr} />
 
-              <div className={classes.cardItem}>
-                <Typography className={classes.category}>
-                  {item.category}
-                </Typography>
+                <div className={classes.cardItem}>
+                  <Typography className={classes.category}>
+                    {item.category}
+                  </Typography>
 
-                <Typography>
-                  {item.type === 'expense'
-                    ? `- ${item.amount}`
-                    : `+ ${item.amount}`}
-                </Typography>
+                  <Typography>
+                    {item.type === 'expense'
+                      ? `- ${item.amount}`
+                      : `+ ${item.amount}`}
+                  </Typography>
 
-                <Typography className={classes.date}>
-                  {item.date.toLocaleDateString()}
-                </Typography>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
+                  <Typography className={classes.date}>
+                    {item.date.toLocaleDateString()}
+                  </Typography>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
       </div>
+
+      <Pagination
+        count={countPages}
+        page={page}
+        onChange={(e, vlaue) => setPage(vlaue)}
+        variant="outlined"
+        color="secondary"
+        className={classes.pagination}
+      />
+
       <Snackbar open={openDelete} autoHideDuration={3000} onClose={() => { setOpenDelete(false); }}>
         <MuiAlert variant="filled" severity="success" onClose={() => { setOpenDelete(false); }}>
           Deleted successfully!

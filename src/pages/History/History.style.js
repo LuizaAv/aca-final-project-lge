@@ -24,9 +24,11 @@ export default makeStyles((theme) => ({
     alignSelf: 'center',
     flexWrap: 'wrap',
     justifyContent: 'center',
+    minHeight: '60vh',
   },
   card: {
     width: 330,
+    height: 140,
     margin: '0 20px 40px 20px',
     boxShadow: theme.shadows[10],
   },
@@ -48,5 +50,8 @@ export default makeStyles((theme) => ({
   hr: {
     marginTop: 40,
     marginBottom: 10,
+  },
+  pagination: {
+    margin: 'auto',
   },
 }));
