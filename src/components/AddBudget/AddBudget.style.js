@@ -1,9 +1,23 @@
 import { makeStyles } from '@material-ui/core/styles';
+import { red, lightGreen } from '@material-ui/core/colors';
 
 export default makeStyles((theme) => ({
   addButton: {
     marginRight: 30,
-    fontWeight: 600,
+  },
+  addIncome: {
+    marginRight: 30,
+    color: '#000',
+    '&:hover': {
+      backgroundColor: lightGreen.A200,
+    },
+  },
+  addExpense: {
+    marginRight: 30,
+    color: '#000',
+    '&:hover': {
+      backgroundColor: red.A100,
+    },
   },
   titleIncome: {
     backgroundColor: theme.palette.primary.light,

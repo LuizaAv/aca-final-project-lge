@@ -85,7 +85,7 @@ export default function AddBudget() {
   return (
     <div>
       <Button
-        className={classes.addButton}
+        className={classes.addIncome}
         onClick={handleClickIncome}
         color="primary"
         variant="outlined"
@@ -93,10 +93,10 @@ export default function AddBudget() {
         Add income
       </Button>
       <Button
-        className={classes.addButton}
+        className={classes.addExpense}
         onClick={handleClickExpense}
-        variant="outlined"
         color="secondary"
+        variant="outlined"
       >
         Add expense
       </Button>

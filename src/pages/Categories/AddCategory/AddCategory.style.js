@@ -2,7 +2,6 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles({
   button: {
-    borderRadius: 25,
     height: 40,
     width: 168,
     fontSize: 16,

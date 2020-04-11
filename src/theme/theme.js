@@ -19,7 +19,7 @@ const theme = createMuiTheme({
     fontFamily: 'Segoe UI',
   },
   shape: {
-    borderRadius: 15,
+    borderRadius: 25,
   },
 });
 

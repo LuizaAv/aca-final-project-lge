@@ -38,7 +38,7 @@ export default function MainChart() {
       <header className={classes.header}>
         <h1>Total expenses and income</h1>
       </header>
-      <Paper className={classes.paper} elevation={10}>
+      <Paper className={classes.paper} elevation={5}>
         <Line data={data} />
       </Paper>
     </div>

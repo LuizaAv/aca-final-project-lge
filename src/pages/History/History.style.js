@@ -30,7 +30,7 @@ export default makeStyles((theme) => ({
     width: 330,
     height: 140,
     margin: '0 20px 40px 20px',
-    boxShadow: theme.shadows[10],
+    boxShadow: theme.shadows[5],
   },
   cardItem: {
     display: 'flex',

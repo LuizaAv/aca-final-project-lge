@@ -22,7 +22,7 @@ export default makeStyles((theme) => ({
   tableContainer: {
     width: '92%',
     alignSelf: 'center',
-    boxShadow: theme.shadows[15],
+    boxShadow: theme.shadows[5],
   },
   title: {
     color: theme.palette.tertiary.main,
