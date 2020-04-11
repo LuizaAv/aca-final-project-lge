@@ -13,8 +13,8 @@ export default makeStyles((theme) => ({
   header: {
     margin: 'auto',
   },
-  content: {
-
+  paper: {
+    padding: 20,
   },
 
 }));

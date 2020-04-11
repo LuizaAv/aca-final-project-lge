@@ -1,9 +1,11 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
+import Paper from '@material-ui/core/Paper';
+
 import { useStoreContext } from '../../store/storeContext';
 import useStyles from './Charts.style';
 
-export default function TotalChart() {
+export default function MainChart() {
   const classes = useStyles();
   const { state } = useStoreContext();
   const budget = [...state.budget];
@@ -31,15 +33,14 @@ export default function TotalChart() {
     ],
   };
 
-
   return (
     <div className={classes.container}>
       <header className={classes.header}>
         <h1>Total expenses and income</h1>
       </header>
-      <article className={classes.content}>
+      <Paper className={classes.paper} elevation={10}>
         <Line data={data} />
-      </article>
+      </Paper>
     </div>
   );
 }
