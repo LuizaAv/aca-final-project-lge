@@ -150,7 +150,7 @@ export default function History() {
         </MuiAlert>
       </Snackbar>
       <Snackbar open={openCancel} autoHideDuration={3000} onClose={() => { setOpenCancel(false); }}>
-        <MuiAlert variant="filled" severity="info" onClose={() => { setOpenCancel(false); }}>
+        <MuiAlert variant="filled" severity="warning" onClose={() => { setOpenCancel(false); }}>
           Аction was canceled
         </MuiAlert>
       </Snackbar>
