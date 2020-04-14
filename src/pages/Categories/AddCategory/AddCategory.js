@@ -13,6 +13,7 @@ import useStyles from './AddCategory.style';
 
 import { useStoreContext } from '../../../store/storeContext';
 import { addCategory } from '../../../store/actions';
+import { dbAddCategory } from '../../../API/dbActions';
 
 
 export default function AddCategory({ setOpenAdd, setOpenCancel }) {
@@ -50,6 +51,7 @@ export default function AddCategory({ setOpenAdd, setOpenCancel }) {
     const addedCategory = { id, type, name };
     handleStateReset();
     setOpenAdd(true);
+    dbAddCategory(addedCategory);
     dispatch(addCategory(addedCategory));
   };
 

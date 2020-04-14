@@ -15,6 +15,8 @@ import EditIcon from '@material-ui/icons/Edit';
 import { useStoreContext } from '../../../store/storeContext';
 import { editCategory } from '../../../store/actions';
 import useStyles from './EditCategory.style';
+import { dbEditCategory } from '../../../API/dbActions';
+
 
 export default function EditCategory({ category, setOpenEdit, setOpenCancel }) {
   const classes = useStyles();
@@ -45,6 +47,7 @@ export default function EditCategory({ category, setOpenEdit, setOpenCancel }) {
     const editedCategory = { id, type, name };
     handleOpen();
     setOpenEdit(true);
+    dbEditCategory(editedCategory);
     dispatch(editCategory(editedCategory));
   };
 

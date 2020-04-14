@@ -17,6 +17,8 @@ import MuiAlert from '@material-ui/lab/Alert';
 import useStyles from './AddBudget.style';
 import { addBudget } from '../../store/actions';
 import { useStoreContext } from '../../store/storeContext';
+import { dbAddBudget } from '../../API/dbActions';
+
 
 export default function AddBudget() {
   const classes = useStyles();
@@ -71,6 +73,7 @@ export default function AddBudget() {
     };
     setOpenAdd(true);
     handleStateReset();
+    dbAddBudget(addedBudget);
     dispatch(addBudget(addedBudget));
   };
 

@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 
 import { useStoreContext } from '../../../store/storeContext';
 import { deleteBudget } from '../../../store/actions';
-
+import { dbDeleteBudget } from '../../../API/dbActions';
 import useStyles from './DeleteHistory.style';
 
 
@@ -30,6 +30,7 @@ export default function DeleteHistory({ budget, setOpenDelete, setOpenCancel }) 
 
   const handleDeleteBudget = () => {
     setOpenDelete(true);
+    dbDeleteBudget(budget);
     dispatch(deleteBudget(budget));
   };
 

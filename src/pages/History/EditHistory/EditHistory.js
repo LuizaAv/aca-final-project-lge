@@ -16,7 +16,7 @@ import EditIcon from '@material-ui/icons/Edit';
 
 import { useStoreContext } from '../../../store/storeContext';
 import { editBudget } from '../../../store/actions';
-
+import { dbEditBudget } from '../../../API/dbActions';
 import useStyles from './EditHistory.style';
 
 export default function EditHistory({ budget, setOpenEdit, setOpenCancel }) {
@@ -75,6 +75,7 @@ export default function EditHistory({ budget, setOpenEdit, setOpenCancel }) {
     };
     handleOpen();
     setOpenEdit(true);
+    dbEditBudget(editedBudget);
     dispatch(editBudget(editedBudget));
   };
 

@@ -18,9 +18,17 @@ const initialState = {
   budget: [...budget],
 };
 
+// async function API() {
+//   const response = await fetch('http://localhost:3010');
+//   const result = await response.json();
+//   return result;
+// }
+
+
 export default function Main() {
   const classes = useStyles();
   const [state, dispatch] = useReducer(reducer, initialState);
+
   return (
     <StoreContext.Provider value={{ state, dispatch }}>
       <div className={classes.root}>

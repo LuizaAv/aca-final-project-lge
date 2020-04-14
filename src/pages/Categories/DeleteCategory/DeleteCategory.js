@@ -10,6 +10,8 @@ import Button from '@material-ui/core/Button';
 import { useStoreContext } from '../../../store/storeContext';
 import { deleteCategory } from '../../../store/actions';
 import useStyles from './DeleteCategory.style';
+import { dbDeleteCategory } from '../../../API/dbActions';
+
 
 export default function DeleteCategory({ category, setOpenDelete, setOpenCancel }) {
   const classes = useStyles();
@@ -28,6 +30,7 @@ export default function DeleteCategory({ category, setOpenDelete, setOpenCancel 
   const handleDeleteCategory = () => {
     setOpenDelete(true);
     setOpen(!open);
+    dbDeleteCategory(category);
     dispatch(deleteCategory(category));
   };
 
