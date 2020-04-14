@@ -1,0 +1,50 @@
+{
+  "budget": [
+    {
+      "id": "01d9adc4-16aa-4074-8386-021d3fe8852e",
+      "type": "income",
+      "name": "Salary",
+      "category": "Salary",
+      "amount": 690,
+      "date": "2020-04-14T12:20:55.140Z"
+    },
+    {
+      "id": "37238d19-b03b-4d68-9bf8-d64abd1e6d5c",
+      "type": "expense",
+      "name": "A-class",
+      "category": "Automobile",
+      "amount": 1200,
+      "date": "2020-04-14T12:22:32.151Z"
+    },
+    {
+      "id": "a335feec-3ed1-49aa-9647-71f9ed4f8d30",
+      "type": "expense",
+      "name": "Concert",
+      "category": "Entertainment",
+      "amount": 500,
+      "date": "2020-04-14T12:23:22.266Z"
+    }
+  ],
+  "categories": [
+    {
+      "id": "913fddb9-da5c-4cb5-a6f4-67629660073b",
+      "type": "expense",
+      "name": "Automobile"
+    },
+    {
+      "id": "f1f6b2fe-37b1-4e72-ac3f-8cf74f82cc95",
+      "type": "expense",
+      "name": "Entertainment"
+    },
+    {
+      "id": "59fbc2d9-234b-46d1-aee8-9c3461eaab1a",
+      "type": "income",
+      "name": "Salary"
+    },
+    {
+      "id": "688be6ed-fada-4eb1-a556-003d6c569001",
+      "type": "income",
+      "name": "Pensions"
+    }
+  ]
+}
