@@ -1,8 +1,10 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import { StoreContext } from '../store/storeContext';
 import { reducer } from '../store/reducers';
+import { initCategory, initBudget } from '../store/actions';
+import { dbGetBudget, dbGetCategory } from '../API/dbActions';
 
 import Header from '../components/Header/Header';
 import Summary from './Summary/Summary';
@@ -11,23 +13,21 @@ import History from './History/History';
 import Chart from './Charts/Chart';
 import useStyles from './Main.style';
 
-import { budget, categories } from '../API/db';
-
 const initialState = {
-  categories: [...categories],
-  budget: [...budget],
+  categories: [],
+  budget: [],
 };
-
-// async function API() {
-//   const response = await fetch('http://localhost:3010');
-//   const result = await response.json();
-//   return result;
-// }
-
 
 export default function Main() {
   const classes = useStyles();
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  useEffect(() => {
+    dbGetCategory()
+      .then((categories) => dispatch(initCategory(categories)));
+    dbGetBudget()
+      .then((budget) => dispatch(initBudget(budget)));
+  }, []);
 
   return (
     <StoreContext.Provider value={{ state, dispatch }}>
