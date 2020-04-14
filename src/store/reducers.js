@@ -1,7 +1,9 @@
 import {
+  INIT_CATEGORY,
   ADD_CATEGORY,
   DELETE_CATEGORY,
   EDIT_CATEGORY,
+  INIT_BUDGET,
   ADD_BUDGET,
   DELETE_BUDGET,
   EDIT_BUDGET,
@@ -9,6 +11,8 @@ import {
 
 export function categoriesReducer(state, action) {
   switch (action.type) {
+    case INIT_CATEGORY:
+      return [...state, ...action.payload];
     case ADD_CATEGORY:
       return [...state, action.payload];
     case DELETE_CATEGORY:
@@ -25,6 +29,8 @@ export function categoriesReducer(state, action) {
 
 export function budgetReducer(state, action) {
   switch (action.type) {
+    case INIT_BUDGET:
+      return [...state, ...action.payload];
     case ADD_BUDGET:
       return [...state, action.payload];
     case DELETE_BUDGET:
