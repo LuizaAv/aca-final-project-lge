@@ -22,6 +22,8 @@ import FilterType from '../../components/FilterType/FilterType';
 import Total from '../../components/Total/Total';
 import useStyles from './Categories.style';
 
+import Snackbars from '../../components/Snackbars/Snackbars';
+
 export default function Categories() {
   const classes = useStyles();
   const { state } = useStoreContext();
@@ -29,7 +31,11 @@ export default function Categories() {
   const [openDelete, setOpenDelete] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
   const [openCancel, setOpenCancel] = useState(false);
+  const [openError, setOpenError] = useState(false);
   const [openAdd, setOpenAdd] = useState(false);
+
+  const [snackbarType, setSnackbarType] = useState('');
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
 
   const filteredCategories = filterType === 'all'
     ? [...state.categories]
@@ -45,8 +51,11 @@ export default function Categories() {
 
       <div className={classes.tools}>
         <AddCategory
-          setOpenAdd={setOpenAdd}
-          setOpenCancel={setOpenCancel}
+          // setOpenAdd={setOpenAdd}
+          // setOpenCancel={setOpenCancel}
+          // setOpenError={setOpenError}
+          setSnackbarType={setSnackbarType}
+          setSnackbarOpen={setSnackbarOpen}
         />
         <FilterType filterType={filterType} setFilterType={setFilterType} />
       </div>
@@ -86,11 +95,13 @@ export default function Categories() {
                     category={category}
                     setOpenEdit={setOpenEdit}
                     setOpenCancel={setOpenCancel}
+                    setOpenError={setOpenError}
                   />
                   <DeleteCategory
                     category={category}
                     setOpenDelete={setOpenDelete}
                     setOpenCancel={setOpenCancel}
+                    setOpenError={setOpenError}
                   />
                 </TableCell>
               </TableRow>
@@ -98,26 +109,8 @@ export default function Categories() {
           </TableBody>
         </Table>
       </TableContainer>
-      <Snackbar open={openAdd} autoHideDuration={3000} onClose={() => { setOpenAdd(false); }}>
-        <MuiAlert variant="filled" severity="success" onClose={() => { setOpenAdd(false); }}>
-          Category successfully added
-        </MuiAlert>
-      </Snackbar>
-      <Snackbar open={openDelete} autoHideDuration={3000} onClose={() => { setOpenDelete(false); }}>
-        <MuiAlert variant="filled" severity="success" onClose={() => { setOpenDelete(false); }}>
-          Deleted successfully!
-        </MuiAlert>
-      </Snackbar>
-      <Snackbar open={openEdit} autoHideDuration={3000} onClose={() => { setOpenEdit(false); }}>
-        <MuiAlert variant="filled" severity="success" onClose={() => { setOpenEdit(false); }}>
-          Edited successfully!
-        </MuiAlert>
-      </Snackbar>
-      <Snackbar open={openCancel} autoHideDuration={3000} onClose={() => { setOpenCancel(false); }}>
-        <MuiAlert variant="filled" severity="warning" onClose={() => { setOpenCancel(false); }}>
-          Аction was canceled
-        </MuiAlert>
-      </Snackbar>
+
+      <Snackbars type={snackbarType} open={snackbarOpen} setOpen={setSnackbarOpen} />
     </div>
   );
 }

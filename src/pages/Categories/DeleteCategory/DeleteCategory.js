@@ -13,12 +13,14 @@ import useStyles from './DeleteCategory.style';
 import { dbDeleteCategory } from '../../../API/dbActions';
 
 
-export default function DeleteCategory({ category, setOpenDelete, setOpenCancel }) {
+export default function DeleteCategory({
+  category, setOpenDelete, setOpenCancel, setOpenError,
+}) {
   const classes = useStyles();
   const { dispatch } = useStoreContext();
   const [open, setOpen] = useState(false);
 
-  const handleClose = () => {
+  const handleOpen = () => {
     setOpen(!open);
   };
 
@@ -28,26 +30,25 @@ export default function DeleteCategory({ category, setOpenDelete, setOpenCancel 
   };
 
   const handleDeleteCategory = () => {
-    setOpenDelete(true);
-    setOpen(!open);
+    handleOpen();
     dbDeleteCategory(category)
       .then(() => dispatch(deleteCategory(category)))
-      .then((response) => response.json())
-      .catch((error) => (`Error:${error}`));
+      .then(() => setOpenDelete(true))
+      .catch(() => setOpenError(true));
   };
 
   return (
     <>
       <IconButton
         className={classes.iconButton}
-        onClick={handleClose}
+        onClick={handleOpen}
       >
         <DeleteIcon className={classes.icon} />
       </IconButton>
 
       <Dialog
         open={open}
-        onClose={handleClose}
+        onClose={handleOpen}
         classes={{ paper: classes.dialog }}
       >
         <DialogTitle className={classes.dialogTitle} disableTypography>
@@ -82,6 +83,7 @@ DeleteCategory.propTypes = {
   }),
   setOpenDelete: propTypes.func.isRequired,
   setOpenCancel: propTypes.func.isRequired,
+  setOpenError: propTypes.func.isRequired,
 };
 
 DeleteCategory.defaultProps = {

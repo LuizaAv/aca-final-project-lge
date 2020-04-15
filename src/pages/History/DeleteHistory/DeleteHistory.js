@@ -13,13 +13,15 @@ import { dbDeleteBudget } from '../../../API/dbActions';
 import useStyles from './DeleteHistory.style';
 
 
-export default function DeleteHistory({ budget, setOpenDelete, setOpenCancel }) {
+export default function DeleteHistory({
+  budget, setOpenDelete, setOpenCancel, setOpenError,
+}) {
   const classes = useStyles();
   const { dispatch } = useStoreContext();
   const [open, setOpen] = React.useState(false);
 
 
-  const handleClose = () => {
+  const handleOpen = () => {
     setOpen(!open);
   };
 
@@ -29,25 +31,25 @@ export default function DeleteHistory({ budget, setOpenDelete, setOpenCancel }) 
   };
 
   const handleDeleteBudget = () => {
-    setOpenDelete(true);
+    handleOpen();
     dbDeleteBudget(budget)
       .then(() => dispatch(deleteBudget(budget)))
-      .then((response) => response.json())
-      .catch((error) => (`Error:${error}`));
+      .then(() => setOpenDelete(true))
+      .catch(() => setOpenError(true));
   };
 
   return (
     <>
       <IconButton
         className={classes.iconButton}
-        onClick={handleClose}
+        onClick={handleOpen}
       >
         <DeleteIcon className={classes.icon} />
       </IconButton>
 
       <Dialog
         open={open}
-        onClose={handleClose}
+        onClose={handleOpen}
         classes={{ paper: classes.dialog }}
       >
         <DialogTitle className={classes.dialogTitle} disableTypography>
@@ -85,6 +87,7 @@ DeleteHistory.propTypes = {
   }),
   setOpenDelete: propTypes.func.isRequired,
   setOpenCancel: propTypes.func.isRequired,
+  setOpenError: propTypes.func.isRequired,
 };
 
 DeleteHistory.defaultProps = {

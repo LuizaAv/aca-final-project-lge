@@ -19,7 +19,9 @@ import { editBudget } from '../../../store/actions';
 import { dbEditBudget } from '../../../API/dbActions';
 import useStyles from './EditHistory.style';
 
-export default function EditHistory({ budget, setOpenEdit, setOpenCancel }) {
+export default function EditHistory({
+  budget, setOpenEdit, setOpenCancel, setOpenError,
+}) {
   const classes = useStyles();
   const { state, dispatch } = useStoreContext();
   const [type, setType] = useState(budget.type);
@@ -74,11 +76,10 @@ export default function EditHistory({ budget, setOpenEdit, setOpenCancel }) {
       id, type, name, category, amount: +amount, date,
     };
     handleOpen();
-    setOpenEdit(true);
     dbEditBudget(editedBudget)
       .then(() => dispatch(editBudget(editedBudget)))
-      .then((response) => response.json())
-      .catch((error) => (`Error:${error}`));
+      .then(() => setOpenEdit(true))
+      .catch(() => setOpenError(true));
   };
 
   const doneDisabled = !(
@@ -197,6 +198,7 @@ EditHistory.propTypes = {
   }),
   setOpenEdit: propTypes.func.isRequired,
   setOpenCancel: propTypes.func.isRequired,
+  setOpenError: propTypes.func.isRequired,
 };
 
 EditHistory.defaultProps = {

@@ -17,8 +17,9 @@ import { editCategory } from '../../../store/actions';
 import useStyles from './EditCategory.style';
 import { dbEditCategory } from '../../../API/dbActions';
 
-
-export default function EditCategory({ category, setOpenEdit, setOpenCancel }) {
+export default function EditCategory({
+  category, setOpenEdit, setOpenCancel, setOpenError,
+}) {
   const classes = useStyles();
   const { dispatch } = useStoreContext();
   const [type, setType] = useState(category.type);
@@ -46,11 +47,10 @@ export default function EditCategory({ category, setOpenEdit, setOpenCancel }) {
     const { id } = category;
     const editedCategory = { id, type, name };
     handleOpen();
-    setOpenEdit(true);
     dbEditCategory(editedCategory)
       .then(() => dispatch(editCategory(editedCategory)))
-      .then((response) => response.json())
-      .catch((error) => (`Error:${error}`));
+      .then(() => setOpenEdit(true))
+      .catch(() => setOpenError(true));
   };
 
   const doneDisabled = !(
@@ -127,6 +127,7 @@ EditCategory.propTypes = {
   }),
   setOpenEdit: propTypes.func.isRequired,
   setOpenCancel: propTypes.func.isRequired,
+  setOpenError: propTypes.func.isRequired,
 };
 
 EditCategory.defaultProps = {

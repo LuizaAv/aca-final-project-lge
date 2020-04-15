@@ -31,6 +31,7 @@ export default function AddBudget() {
   const [picherError, setPicherError] = useState('');
   const [dialogOpen, setDialogOpen] = useState(false);
   const [openCancel, setOpenCancel] = useState(false);
+  const [openError, setOpenError] = useState(false);
   const [openAdd, setOpenAdd] = useState(false);
 
   const handleDialogOpen = () => { setDialogOpen(!dialogOpen); };
@@ -71,12 +72,11 @@ export default function AddBudget() {
     const addedBudget = {
       id, type, name, category, amount: +amount, date,
     };
-    setOpenAdd(true);
     handleStateReset();
     dbAddBudget(addedBudget)
       .then(() => dispatch(addBudget(addedBudget)))
-      .then((response) => response.json())
-      .catch((error) => (`Error:${error}`));
+      .then(() => setOpenAdd(true))
+      .catch(() => setOpenError(true));
   };
 
   const doneDisabled = !(
@@ -191,6 +191,11 @@ export default function AddBudget() {
       <Snackbar open={openCancel} autoHideDuration={3000} onClose={() => { setOpenCancel(false); }}>
         <MuiAlert variant="filled" severity="warning" onClose={() => { setOpenCancel(false); }}>
           Аction was canceled
+        </MuiAlert>
+      </Snackbar>
+      <Snackbar open={openError} autoHideDuration={3000} onClose={() => { setOpenError(false); }}>
+        <MuiAlert variant="filled" severity="error" onClose={() => { setOpenError(false); }}>
+          Error: Server is not responding
         </MuiAlert>
       </Snackbar>
     </div>

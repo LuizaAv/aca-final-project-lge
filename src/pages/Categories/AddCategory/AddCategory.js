@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import propTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
@@ -16,7 +17,10 @@ import { addCategory } from '../../../store/actions';
 import { dbAddCategory } from '../../../API/dbActions';
 
 
-export default function AddCategory({ setOpenAdd, setOpenCancel }) {
+export default function AddCategory({
+  // setOpenAdd, setOpenCancel, setOpenError
+  setSnackbarType, setSnackbarOpen
+}) {
   const classes = useStyles();
   const { dispatch } = useStoreContext();
   const [type, setType] = useState('');
@@ -27,9 +31,21 @@ export default function AddCategory({ setOpenAdd, setOpenCancel }) {
     setOpen(!open);
   };
 
+  const handleSnackbarAdd = () => {
+    setSnackbarType('add');
+    setSnackbarOpen(true);
+  };
+
+  const handleSnackbarErroe = () => {
+    setSnackbarType('error');
+    setSnackbarOpen(true);
+  };
+
   const handleCancel = () => {
     setOpen(false);
-    setOpenCancel(true);
+    // setOpenCancel(true);
+    setSnackbarType('cancel');
+    setSnackbarOpen(true);
   };
 
   const handleTypeChange = (e) => {
@@ -50,11 +66,10 @@ export default function AddCategory({ setOpenAdd, setOpenCancel }) {
     const id = uuidv4();
     const addedCategory = { id, type, name };
     handleStateReset();
-    setOpenAdd(true);
     dbAddCategory(addedCategory)
       .then(() => dispatch(addCategory(addedCategory)))
-      .then((response) => response.json())
-      .catch((error) => (`Error:${error}`));
+      .then(() => handleSnackbarAdd())
+      .catch(() => handleSnackbarErroe());
   };
 
   const doneDisabled = !(name !== '' && type !== '');
@@ -114,3 +129,9 @@ export default function AddCategory({ setOpenAdd, setOpenCancel }) {
     </>
   );
 }
+
+AddCategory.propTypes = {
+  setOpenAdd: propTypes.func.isRequired,
+  setOpenCancel: propTypes.func.isRequired,
+  setOpenError: propTypes.func.isRequired,
+};

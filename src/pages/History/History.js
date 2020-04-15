@@ -47,6 +47,7 @@ export default function History() {
   const [openDelete, setOpenDelete] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
   const [openCancel, setOpenCancel] = useState(false);
+  const [openError, setOpenError] = useState(false);
   const [page, setPage] = React.useState(1);
 
   useEffect(() => {
@@ -99,11 +100,13 @@ export default function History() {
                       budget={item}
                       setOpenEdit={setOpenEdit}
                       setOpenCancel={setOpenCancel}
+                      setOpenError={setOpenError}
                     />
                     <DeleteHistory
                       budget={item}
                       setOpenDelete={setOpenDelete}
                       setOpenCancel={setOpenCancel}
+                      setOpenError={setOpenError}
                     />
                   </div>
                 </div>
@@ -152,6 +155,11 @@ export default function History() {
       <Snackbar open={openCancel} autoHideDuration={3000} onClose={() => { setOpenCancel(false); }}>
         <MuiAlert variant="filled" severity="warning" onClose={() => { setOpenCancel(false); }}>
           Аction was canceled
+        </MuiAlert>
+      </Snackbar>
+      <Snackbar open={openError} autoHideDuration={3000} onClose={() => { setOpenError(false); }}>
+        <MuiAlert variant="filled" severity="error" onClose={() => { setOpenError(false); }}>
+          Error: Server is not responding
         </MuiAlert>
       </Snackbar>
     </div>
