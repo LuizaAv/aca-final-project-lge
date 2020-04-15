@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';
 import Pagination from '@material-ui/lab/Pagination';
 
 import { useStoreContext } from '../../store/storeContext';
@@ -15,8 +13,8 @@ import FilterDate from '../../components/FilterDate/FilterDate';
 import EditHistory from './EditHistory/EditHistory';
 import DeleteHistory from './DeleteHistory/DeleteHistory';
 import HistorySearch from '../../components/HistorySearch/HistorySearch';
+import Snackbars from '../../components/Snackbars/Snackbars';
 import useStyles from './History.style';
-
 
 function filterByDate(budget, date) {
   const dayCheck = () => budget.filter(
@@ -44,10 +42,8 @@ export default function History() {
   const [isAscending, setIsAscending] = useState(true);
   const [filterDate, setFilterDate] = useState('all');
   const [search, setSearch] = useState('');
-  const [openDelete, setOpenDelete] = useState(false);
-  const [openEdit, setOpenEdit] = useState(false);
-  const [openCancel, setOpenCancel] = useState(false);
-  const [openError, setOpenError] = useState(false);
+  const [snackbarType, setSnackbarType] = useState('');
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [page, setPage] = React.useState(1);
 
   useEffect(() => {
@@ -98,15 +94,13 @@ export default function History() {
                   <div className={classes.amount}>
                     <EditHistory
                       budget={item}
-                      setOpenEdit={setOpenEdit}
-                      setOpenCancel={setOpenCancel}
-                      setOpenError={setOpenError}
+                      setSnackbarType={setSnackbarType}
+                      setSnackbarOpen={setSnackbarOpen}
                     />
                     <DeleteHistory
                       budget={item}
-                      setOpenDelete={setOpenDelete}
-                      setOpenCancel={setOpenCancel}
-                      setOpenError={setOpenError}
+                      setSnackbarType={setSnackbarType}
+                      setSnackbarOpen={setSnackbarOpen}
                     />
                   </div>
                 </div>
@@ -142,26 +136,7 @@ export default function History() {
         className={classes.pagination}
       />
 
-      <Snackbar open={openDelete} autoHideDuration={3000} onClose={() => { setOpenDelete(false); }}>
-        <MuiAlert variant="filled" severity="success" onClose={() => { setOpenDelete(false); }}>
-          Deleted successfully!
-        </MuiAlert>
-      </Snackbar>
-      <Snackbar open={openEdit} autoHideDuration={3000} onClose={() => { setOpenEdit(false); }}>
-        <MuiAlert variant="filled" severity="success" onClose={() => { setOpenEdit(false); }}>
-          Edited successfully!
-        </MuiAlert>
-      </Snackbar>
-      <Snackbar open={openCancel} autoHideDuration={3000} onClose={() => { setOpenCancel(false); }}>
-        <MuiAlert variant="filled" severity="warning" onClose={() => { setOpenCancel(false); }}>
-          Аction was canceled
-        </MuiAlert>
-      </Snackbar>
-      <Snackbar open={openError} autoHideDuration={3000} onClose={() => { setOpenError(false); }}>
-        <MuiAlert variant="filled" severity="error" onClose={() => { setOpenError(false); }}>
-          Error: Server is not responding
-        </MuiAlert>
-      </Snackbar>
+      <Snackbars type={snackbarType} open={snackbarOpen} setOpen={setSnackbarOpen} />
     </div>
   );
 }

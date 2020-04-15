@@ -14,7 +14,7 @@ import { dbDeleteCategory } from '../../../API/dbActions';
 
 
 export default function DeleteCategory({
-  category, setOpenDelete, setOpenCancel, setOpenError,
+  category, setSnackbarType, setSnackbarOpen,
 }) {
   const classes = useStyles();
   const { dispatch } = useStoreContext();
@@ -24,17 +24,28 @@ export default function DeleteCategory({
     setOpen(!open);
   };
 
+  const handleSnackbarDelete = () => {
+    setSnackbarType('detele');
+    setSnackbarOpen(true);
+  };
+
+  const handleSnackbarErroe = () => {
+    setSnackbarType('error');
+    setSnackbarOpen(true);
+  };
+
   const handleCancel = () => {
     setOpen(false);
-    setOpenCancel(true);
+    setSnackbarType('cancel');
+    setSnackbarOpen(true);
   };
 
   const handleDeleteCategory = () => {
     handleOpen();
     dbDeleteCategory(category)
       .then(() => dispatch(deleteCategory(category)))
-      .then(() => setOpenDelete(true))
-      .catch(() => setOpenError(true));
+      .then(() => handleSnackbarDelete())
+      .catch(() => handleSnackbarErroe());
   };
 
   return (
@@ -81,9 +92,8 @@ DeleteCategory.propTypes = {
     type: propTypes.string.isRequired,
     name: propTypes.string.isRequired,
   }),
-  setOpenDelete: propTypes.func.isRequired,
-  setOpenCancel: propTypes.func.isRequired,
-  setOpenError: propTypes.func.isRequired,
+  setSnackbarType: propTypes.func.isRequired,
+  setSnackbarOpen: propTypes.func.isRequired,
 };
 
 DeleteCategory.defaultProps = {

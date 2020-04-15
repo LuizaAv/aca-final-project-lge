@@ -18,7 +18,7 @@ import useStyles from './EditCategory.style';
 import { dbEditCategory } from '../../../API/dbActions';
 
 export default function EditCategory({
-  category, setOpenEdit, setOpenCancel, setOpenError,
+  category, setSnackbarType, setSnackbarOpen,
 }) {
   const classes = useStyles();
   const { dispatch } = useStoreContext();
@@ -30,9 +30,20 @@ export default function EditCategory({
     setOpen(!open);
   };
 
+  const handleSnackbarEdit = () => {
+    setSnackbarType('Edit');
+    setSnackbarOpen(true);
+  };
+
+  const handleSnackbarErroe = () => {
+    setSnackbarType('error');
+    setSnackbarOpen(true);
+  };
+
   const handleCancel = () => {
     setOpen(false);
-    setOpenCancel(true);
+    setSnackbarType('cancel');
+    setSnackbarOpen(true);
   };
 
   const handleTypeChange = (e) => {
@@ -49,8 +60,8 @@ export default function EditCategory({
     handleOpen();
     dbEditCategory(editedCategory)
       .then(() => dispatch(editCategory(editedCategory)))
-      .then(() => setOpenEdit(true))
-      .catch(() => setOpenError(true));
+      .then(() => handleSnackbarEdit())
+      .catch(() => handleSnackbarErroe());
   };
 
   const doneDisabled = !(
@@ -125,9 +136,8 @@ EditCategory.propTypes = {
     type: propTypes.string.isRequired,
     name: propTypes.string.isRequired,
   }),
-  setOpenEdit: propTypes.func.isRequired,
-  setOpenCancel: propTypes.func.isRequired,
-  setOpenError: propTypes.func.isRequired,
+  setSnackbarType: propTypes.func.isRequired,
+  setSnackbarOpen: propTypes.func.isRequired,
 };
 
 EditCategory.defaultProps = {

@@ -6,8 +6,6 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';
 
 import Typography from '@material-ui/core/Typography';
 import { ReactComponent as ArrowDownwardIcon } from '../../assets/icons/Arrow-down.svg';
@@ -20,20 +18,13 @@ import DeleteCategory from './DeleteCategory/DeleteCategory';
 import EditCategory from './EditCategory/EditCategory';
 import FilterType from '../../components/FilterType/FilterType';
 import Total from '../../components/Total/Total';
-import useStyles from './Categories.style';
-
 import Snackbars from '../../components/Snackbars/Snackbars';
+import useStyles from './Categories.style';
 
 export default function Categories() {
   const classes = useStyles();
   const { state } = useStoreContext();
   const [filterType, setFilterType] = useState('all');
-  const [openDelete, setOpenDelete] = useState(false);
-  const [openEdit, setOpenEdit] = useState(false);
-  const [openCancel, setOpenCancel] = useState(false);
-  const [openError, setOpenError] = useState(false);
-  const [openAdd, setOpenAdd] = useState(false);
-
   const [snackbarType, setSnackbarType] = useState('');
   const [snackbarOpen, setSnackbarOpen] = useState(false);
 
@@ -51,9 +42,6 @@ export default function Categories() {
 
       <div className={classes.tools}>
         <AddCategory
-          // setOpenAdd={setOpenAdd}
-          // setOpenCancel={setOpenCancel}
-          // setOpenError={setOpenError}
           setSnackbarType={setSnackbarType}
           setSnackbarOpen={setSnackbarOpen}
         />
@@ -93,15 +81,13 @@ export default function Categories() {
                 <TableCell className={classes.content} align="right">
                   <EditCategory
                     category={category}
-                    setOpenEdit={setOpenEdit}
-                    setOpenCancel={setOpenCancel}
-                    setOpenError={setOpenError}
+                    setSnackbarType={setSnackbarType}
+                    setSnackbarOpen={setSnackbarOpen}
                   />
                   <DeleteCategory
                     category={category}
-                    setOpenDelete={setOpenDelete}
-                    setOpenCancel={setOpenCancel}
-                    setOpenError={setOpenError}
+                    setSnackbarType={setSnackbarType}
+                    setSnackbarOpen={setSnackbarOpen}
                   />
                 </TableCell>
               </TableRow>

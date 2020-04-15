@@ -11,14 +11,12 @@ import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
-import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';
 
 import useStyles from './AddBudget.style';
 import { addBudget } from '../../store/actions';
 import { useStoreContext } from '../../store/storeContext';
 import { dbAddBudget } from '../../API/dbActions';
-
+import Snackbars from '../Snackbars/Snackbars';
 
 export default function AddBudget() {
   const classes = useStyles();
@@ -30,17 +28,36 @@ export default function AddBudget() {
   const [date, setDate] = useState(new Date());
   const [picherError, setPicherError] = useState('');
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [openCancel, setOpenCancel] = useState(false);
-  const [openError, setOpenError] = useState(false);
-  const [openAdd, setOpenAdd] = useState(false);
+  const [snackbarType, setSnackbarType] = useState('');
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
 
   const handleDialogOpen = () => { setDialogOpen(!dialogOpen); };
 
-  const handleCancel = () => { setDialogOpen(false); setOpenCancel(true); };
+  const handleSnackbarAdd = () => {
+    setSnackbarType('add');
+    setSnackbarOpen(true);
+  };
 
-  const handleClickExpense = () => { setType('expense'); setDialogOpen(!dialogOpen); };
+  const handleSnackbarErroe = () => {
+    setSnackbarType('error');
+    setSnackbarOpen(true);
+  };
 
-  const handleClickIncome = () => { setType('income'); setDialogOpen(!dialogOpen); };
+  const handleCancel = () => {
+    setDialogOpen(false);
+    setSnackbarType('cancel');
+    setSnackbarOpen(true);
+  };
+
+  const handleClickExpense = () => {
+    setType('expense');
+    setDialogOpen(!dialogOpen);
+  };
+
+  const handleClickIncome = () => {
+    setType('income');
+    setDialogOpen(!dialogOpen);
+  };
 
   const handleNameChange = (e) => { setName(e.target.value); };
 
@@ -75,8 +92,8 @@ export default function AddBudget() {
     handleStateReset();
     dbAddBudget(addedBudget)
       .then(() => dispatch(addBudget(addedBudget)))
-      .then(() => setOpenAdd(true))
-      .catch(() => setOpenError(true));
+      .then(() => handleSnackbarAdd())
+      .catch(() => handleSnackbarErroe());
   };
 
   const doneDisabled = !(
@@ -183,21 +200,7 @@ export default function AddBudget() {
         </DialogActions>
       </Dialog>
 
-      <Snackbar open={openAdd} autoHideDuration={3000} onClose={() => { setOpenAdd(false); }}>
-        <MuiAlert variant="filled" severity="success" onClose={() => { setOpenAdd(false); }}>
-          Successfully added
-        </MuiAlert>
-      </Snackbar>
-      <Snackbar open={openCancel} autoHideDuration={3000} onClose={() => { setOpenCancel(false); }}>
-        <MuiAlert variant="filled" severity="warning" onClose={() => { setOpenCancel(false); }}>
-          Аction was canceled
-        </MuiAlert>
-      </Snackbar>
-      <Snackbar open={openError} autoHideDuration={3000} onClose={() => { setOpenError(false); }}>
-        <MuiAlert variant="filled" severity="error" onClose={() => { setOpenError(false); }}>
-          Error: Server is not responding
-        </MuiAlert>
-      </Snackbar>
+      <Snackbars type={snackbarType} open={snackbarOpen} setOpen={setSnackbarOpen} />
     </div>
   );
 }

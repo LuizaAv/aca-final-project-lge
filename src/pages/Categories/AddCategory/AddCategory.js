@@ -17,10 +17,7 @@ import { addCategory } from '../../../store/actions';
 import { dbAddCategory } from '../../../API/dbActions';
 
 
-export default function AddCategory({
-  // setOpenAdd, setOpenCancel, setOpenError
-  setSnackbarType, setSnackbarOpen
-}) {
+export default function AddCategory({ setSnackbarType, setSnackbarOpen }) {
   const classes = useStyles();
   const { dispatch } = useStoreContext();
   const [type, setType] = useState('');
@@ -43,7 +40,6 @@ export default function AddCategory({
 
   const handleCancel = () => {
     setOpen(false);
-    // setOpenCancel(true);
     setSnackbarType('cancel');
     setSnackbarOpen(true);
   };
@@ -131,7 +127,6 @@ export default function AddCategory({
 }
 
 AddCategory.propTypes = {
-  setOpenAdd: propTypes.func.isRequired,
-  setOpenCancel: propTypes.func.isRequired,
-  setOpenError: propTypes.func.isRequired,
+  setSnackbarType: propTypes.func.isRequired,
+  setSnackbarOpen: propTypes.func.isRequired,
 };

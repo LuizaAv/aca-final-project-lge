@@ -14,7 +14,7 @@ import useStyles from './DeleteHistory.style';
 
 
 export default function DeleteHistory({
-  budget, setOpenDelete, setOpenCancel, setOpenError,
+  budget, setSnackbarType, setSnackbarOpen,
 }) {
   const classes = useStyles();
   const { dispatch } = useStoreContext();
@@ -25,17 +25,28 @@ export default function DeleteHistory({
     setOpen(!open);
   };
 
+  const handleSnackbarDelete = () => {
+    setSnackbarType('detele');
+    setSnackbarOpen(true);
+  };
+
+  const handleSnackbarErroe = () => {
+    setSnackbarType('error');
+    setSnackbarOpen(true);
+  };
+
   const handleCancel = () => {
     setOpen(false);
-    setOpenCancel(true);
+    setSnackbarType('cancel');
+    setSnackbarOpen(true);
   };
 
   const handleDeleteBudget = () => {
     handleOpen();
     dbDeleteBudget(budget)
       .then(() => dispatch(deleteBudget(budget)))
-      .then(() => setOpenDelete(true))
-      .catch(() => setOpenError(true));
+      .then(() => handleSnackbarDelete())
+      .catch(() => handleSnackbarErroe());
   };
 
   return (
@@ -85,9 +96,8 @@ DeleteHistory.propTypes = {
     amount: propTypes.number.isRequired,
     date: propTypes.instanceOf(Date),
   }),
-  setOpenDelete: propTypes.func.isRequired,
-  setOpenCancel: propTypes.func.isRequired,
-  setOpenError: propTypes.func.isRequired,
+  setSnackbarType: propTypes.func.isRequired,
+  setSnackbarOpen: propTypes.func.isRequired,
 };
 
 DeleteHistory.defaultProps = {

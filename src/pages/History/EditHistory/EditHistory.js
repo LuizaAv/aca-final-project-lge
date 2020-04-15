@@ -20,7 +20,7 @@ import { dbEditBudget } from '../../../API/dbActions';
 import useStyles from './EditHistory.style';
 
 export default function EditHistory({
-  budget, setOpenEdit, setOpenCancel, setOpenError,
+  budget, setSnackbarType, setSnackbarOpen,
 }) {
   const classes = useStyles();
   const { state, dispatch } = useStoreContext();
@@ -36,9 +36,20 @@ export default function EditHistory({
     setOpen(!open);
   };
 
+  const handleSnackbarEdit = () => {
+    setSnackbarType('Edit');
+    setSnackbarOpen(true);
+  };
+
+  const handleSnackbarErroe = () => {
+    setSnackbarType('error');
+    setSnackbarOpen(true);
+  };
+
   const handleCancel = () => {
     setOpen(false);
-    setOpenCancel(true);
+    setSnackbarType('cancel');
+    setSnackbarOpen(true);
   };
 
   const handleTypeChange = (e) => {
@@ -78,8 +89,8 @@ export default function EditHistory({
     handleOpen();
     dbEditBudget(editedBudget)
       .then(() => dispatch(editBudget(editedBudget)))
-      .then(() => setOpenEdit(true))
-      .catch(() => setOpenError(true));
+      .then(() => handleSnackbarEdit())
+      .catch(() => handleSnackbarErroe());
   };
 
   const doneDisabled = !(
@@ -196,9 +207,8 @@ EditHistory.propTypes = {
     amount: propTypes.number.isRequired,
     date: propTypes.instanceOf(Date),
   }),
-  setOpenEdit: propTypes.func.isRequired,
-  setOpenCancel: propTypes.func.isRequired,
-  setOpenError: propTypes.func.isRequired,
+  setSnackbarType: propTypes.func.isRequired,
+  setSnackbarOpen: propTypes.func.isRequired,
 };
 
 EditHistory.defaultProps = {
