@@ -25,7 +25,11 @@ export default function AddCategory({ setSnackbarType, setSnackbarOpen }) {
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
-    setOpen(!open);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
   };
 
   const handleSnackbarAdd = () => {
@@ -55,7 +59,7 @@ export default function AddCategory({ setSnackbarType, setSnackbarOpen }) {
   const handleStateReset = () => {
     setType('');
     setName('');
-    setOpen(!open);
+    setOpen(false);
   };
 
   const handleAddCategory = () => {
@@ -84,7 +88,7 @@ export default function AddCategory({ setSnackbarType, setSnackbarOpen }) {
         classes={{ paper: classes.dialog }}
         fullWidth
         maxWidth="xs"
-        onClose={handleOpen}
+        onClose={handleClose}
         open={open}
       >
         <DialogTitle className={classes.title}>Add Category</DialogTitle>

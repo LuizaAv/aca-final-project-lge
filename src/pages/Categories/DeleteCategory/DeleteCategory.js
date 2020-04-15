@@ -21,7 +21,11 @@ export default function DeleteCategory({
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
-    setOpen(!open);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
   };
 
   const handleSnackbarDelete = () => {
@@ -41,7 +45,7 @@ export default function DeleteCategory({
   };
 
   const handleDeleteCategory = () => {
-    handleOpen();
+    handleClose();
     dbDeleteCategory(category)
       .then(() => dispatch(deleteCategory(category)))
       .then(() => handleSnackbarDelete())
@@ -59,7 +63,7 @@ export default function DeleteCategory({
 
       <Dialog
         open={open}
-        onClose={handleOpen}
+        onClose={handleClose}
         classes={{ paper: classes.dialog }}
       >
         <DialogTitle className={classes.dialogTitle} disableTypography>

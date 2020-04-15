@@ -20,9 +20,12 @@ export default function DeleteHistory({
   const { dispatch } = useStoreContext();
   const [open, setOpen] = React.useState(false);
 
-
   const handleOpen = () => {
-    setOpen(!open);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
   };
 
   const handleSnackbarDelete = () => {
@@ -42,7 +45,7 @@ export default function DeleteHistory({
   };
 
   const handleDeleteBudget = () => {
-    handleOpen();
+    handleClose();
     dbDeleteBudget(budget)
       .then(() => dispatch(deleteBudget(budget)))
       .then(() => handleSnackbarDelete())
@@ -60,7 +63,7 @@ export default function DeleteHistory({
 
       <Dialog
         open={open}
-        onClose={handleOpen}
+        onClose={handleClose}
         classes={{ paper: classes.dialog }}
       >
         <DialogTitle className={classes.dialogTitle} disableTypography>

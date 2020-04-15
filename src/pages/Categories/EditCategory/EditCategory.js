@@ -27,7 +27,11 @@ export default function EditCategory({
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
-    setOpen(!open);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
   };
 
   const handleSnackbarEdit = () => {
@@ -57,7 +61,7 @@ export default function EditCategory({
   const handleEditCategory = () => {
     const { id } = category;
     const editedCategory = { id, type, name };
-    handleOpen();
+    handleClose();
     dbEditCategory(editedCategory)
       .then(() => dispatch(editCategory(editedCategory)))
       .then(() => handleSnackbarEdit())
@@ -88,7 +92,7 @@ export default function EditCategory({
         classes={{ paper: classes.dialog }}
         fullWidth
         maxWidth="xs"
-        onClose={handleOpen}
+        onClose={handleClose}
         open={open}
       >
         <DialogTitle className={classes.title}>Edit Category</DialogTitle>

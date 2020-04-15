@@ -31,7 +31,9 @@ export default function AddBudget() {
   const [snackbarType, setSnackbarType] = useState('');
   const [snackbarOpen, setSnackbarOpen] = useState(false);
 
-  const handleDialogOpen = () => { setDialogOpen(!dialogOpen); };
+  const handleDialogClose = () => {
+    setDialogOpen(false);
+  };
 
   const handleSnackbarAdd = () => {
     setSnackbarType('add');
@@ -51,17 +53,21 @@ export default function AddBudget() {
 
   const handleClickExpense = () => {
     setType('expense');
-    setDialogOpen(!dialogOpen);
+    setDialogOpen(true);
   };
 
   const handleClickIncome = () => {
     setType('income');
-    setDialogOpen(!dialogOpen);
+    setDialogOpen(true);
   };
 
-  const handleNameChange = (e) => { setName(e.target.value); };
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
 
-  const handleCategoryChange = (e) => { setCategory(e.target.value); };
+  const handleCategoryChange = (e) => {
+    setCategory(e.target.value);
+  };
 
   const handleAmountChange = (e) => {
     const { value } = e.target;
@@ -71,12 +77,16 @@ export default function AddBudget() {
     setAmount(text);
   };
 
-  const handleDateChange = (newDate) => { setDate(newDate); };
+  const handleDateChange = (newDate) => {
+    setDate(newDate);
+  };
 
-  const handlePicherError = (e) => { setPicherError(e); };
+  const handleDatePickerError = (e) => {
+    setPicherError(e);
+  };
 
   const handleStateReset = () => {
-    setDialogOpen(!dialogOpen);
+    setDialogOpen(false);
     setType('');
     setName('');
     setCategory('');
@@ -127,7 +137,7 @@ export default function AddBudget() {
         fullWidth
         maxWidth="xs"
         open={dialogOpen}
-        onClose={handleDialogOpen}
+        onClose={handleDialogClose}
       >
         <DialogTitle
           className={
@@ -172,7 +182,7 @@ export default function AddBudget() {
             format="dd/MM/yyyy"
             margin="normal"
             label="Date"
-            onError={handlePicherError}
+            onError={handleDatePickerError}
             value={date}
             onChange={handleDateChange}
             KeyboardButtonProps={{

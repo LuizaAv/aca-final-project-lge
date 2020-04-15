@@ -33,7 +33,11 @@ export default function EditHistory({
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
-    setOpen(!open);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
   };
 
   const handleSnackbarEdit = () => {
@@ -86,7 +90,7 @@ export default function EditHistory({
     const editedBudget = {
       id, type, name, category, amount: +amount, date,
     };
-    handleOpen();
+    handleClose();
     dbEditBudget(editedBudget)
       .then(() => dispatch(editBudget(editedBudget)))
       .then(() => handleSnackbarEdit())
@@ -121,7 +125,7 @@ export default function EditHistory({
         classes={{ paper: classes.dialog }}
         fullWidth
         maxWidth="xs"
-        onClose={handleOpen}
+        onClose={handleClose}
         open={open}
       >
         <DialogTitle className={classes.title}>Edit Budget</DialogTitle>
