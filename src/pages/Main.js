@@ -6,7 +6,7 @@ import { reducer } from '../store/reducers';
 import { initCategory, initBudget } from '../store/actions';
 import { dbGetBudget, dbGetCategory } from '../API/dbActions';
 
-import Header from '../components/Header/Header';
+import Navigation from '../components/Navigation/Navigation';
 import Summary from './Summary/Summary';
 import Categories from './Categories/Categories';
 import History from './History/History';
@@ -36,8 +36,8 @@ export default function Main() {
   return (
     <StoreContext.Provider value={{ state, dispatch }}>
       <div className={classes.root}>
-        <div className={classes.header}>
-          <Header />
+        <div className={classes.navigation}>
+          <Navigation />
         </div>
         <div className={classes.content}>
           <Switch>

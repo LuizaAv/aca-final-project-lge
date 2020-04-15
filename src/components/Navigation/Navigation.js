@@ -10,9 +10,9 @@ import { ReactComponent as SummaryIcon } from '../../assets/icons/Summary.svg';
 import { ReactComponent as HistoryIcon } from '../../assets/icons/History.svg';
 import { ReactComponent as CategoriesIcon } from '../../assets/icons/Categories.svg';
 import { ReactComponent as RectangleIcon } from '../../assets/icons/Rectangle.svg';
-import useStyles from './Header.style';
+import useStyles from './Navigation.style';
 
-export default function Header() {
+export default function Navigation() {
   const classes = useStyles();
   const [path, setPath] = useState(window.location.pathname);
 

@@ -4,7 +4,7 @@ export default makeStyles((theme) => ({
   root: {
     display: 'flex',
   },
-  header: {
+  navigation: {
     flexShrink: 0,
   },
   content: {
