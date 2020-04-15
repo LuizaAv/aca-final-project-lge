@@ -64,7 +64,7 @@ export default function History() {
     ? budgetSorted
     : budgetSorted.filter((item) => item.name.toLowerCase().startsWith(search.toLowerCase()));
 
-  const elementsPerPage = 7;
+  const elementsPerPage = 6;
   const countPages = Math.ceil(budgetSearched.length / elementsPerPage);
   const indexMin = (page - 1) * elementsPerPage;
   const indexMax = indexMin + elementsPerPage;
