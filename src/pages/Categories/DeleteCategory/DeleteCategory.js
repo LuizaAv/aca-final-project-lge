@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import propTypes from 'prop-types';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -16,7 +16,7 @@ import { dbDeleteCategory } from '../../../API/dbActions';
 export default function DeleteCategory({ category, setOpenDelete, setOpenCancel }) {
   const classes = useStyles();
   const { dispatch } = useStoreContext();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleClose = () => {
     setOpen(!open);
@@ -30,8 +30,10 @@ export default function DeleteCategory({ category, setOpenDelete, setOpenCancel 
   const handleDeleteCategory = () => {
     setOpenDelete(true);
     setOpen(!open);
-    dbDeleteCategory(category);
-    dispatch(deleteCategory(category));
+    dbDeleteCategory(category)
+      .then(() => dispatch(deleteCategory(category)))
+      .then((response) => response.json())
+      .catch((error) => (`Error:${error}`));
   };
 
   return (

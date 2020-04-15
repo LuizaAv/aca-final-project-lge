@@ -73,8 +73,10 @@ export default function AddBudget() {
     };
     setOpenAdd(true);
     handleStateReset();
-    dbAddBudget(addedBudget);
-    dispatch(addBudget(addedBudget));
+    dbAddBudget(addedBudget)
+      .then(() => dispatch(addBudget(addedBudget)))
+      .then((response) => response.json())
+      .catch((error) => (`Error:${error}`));
   };
 
   const doneDisabled = !(

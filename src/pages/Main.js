@@ -24,9 +24,13 @@ export default function Main() {
 
   useEffect(() => {
     dbGetCategory()
-      .then((categories) => dispatch(initCategory(categories)));
+      .then((categories) => dispatch(initCategory(categories)))
+      .then((response) => response.json())
+      .catch((error) => (`Error:${error}`));
     dbGetBudget()
-      .then((budget) => dispatch(initBudget(budget)));
+      .then((budget) => dispatch(initBudget(budget)))
+      .then((response) => response.json())
+      .catch((error) => (`Error:${error}`));
   }, []);
 
   return (

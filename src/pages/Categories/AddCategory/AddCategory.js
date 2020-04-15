@@ -51,8 +51,10 @@ export default function AddCategory({ setOpenAdd, setOpenCancel }) {
     const addedCategory = { id, type, name };
     handleStateReset();
     setOpenAdd(true);
-    dbAddCategory(addedCategory);
-    dispatch(addCategory(addedCategory));
+    dbAddCategory(addedCategory)
+      .then(() => dispatch(addCategory(addedCategory)))
+      .then((response) => response.json())
+      .catch((error) => (`Error:${error}`));
   };
 
   const doneDisabled = !(name !== '' && type !== '');

@@ -47,8 +47,10 @@ export default function EditCategory({ category, setOpenEdit, setOpenCancel }) {
     const editedCategory = { id, type, name };
     handleOpen();
     setOpenEdit(true);
-    dbEditCategory(editedCategory);
-    dispatch(editCategory(editedCategory));
+    dbEditCategory(editedCategory)
+      .then(() => dispatch(editCategory(editedCategory)))
+      .then((response) => response.json())
+      .catch((error) => (`Error:${error}`));
   };
 
   const doneDisabled = !(

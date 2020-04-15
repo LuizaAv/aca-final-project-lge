@@ -30,8 +30,10 @@ export default function DeleteHistory({ budget, setOpenDelete, setOpenCancel }) 
 
   const handleDeleteBudget = () => {
     setOpenDelete(true);
-    dbDeleteBudget(budget);
-    dispatch(deleteBudget(budget));
+    dbDeleteBudget(budget)
+      .then(() => dispatch(deleteBudget(budget)))
+      .then((response) => response.json())
+      .catch((error) => (`Error:${error}`));
   };
 
   return (

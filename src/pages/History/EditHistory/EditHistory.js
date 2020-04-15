@@ -75,8 +75,10 @@ export default function EditHistory({ budget, setOpenEdit, setOpenCancel }) {
     };
     handleOpen();
     setOpenEdit(true);
-    dbEditBudget(editedBudget);
-    dispatch(editBudget(editedBudget));
+    dbEditBudget(editedBudget)
+      .then(() => dispatch(editBudget(editedBudget)))
+      .then((response) => response.json())
+      .catch((error) => (`Error:${error}`));
   };
 
   const doneDisabled = !(
