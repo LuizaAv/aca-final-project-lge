@@ -3,41 +3,55 @@ import propTypes from 'prop-types';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 
+const cheсkType = (type) => {
+  if (type === 'add') {
+    return {
+      severity: 'success',
+      message: 'Added successfully',
+    };
+  }
+  if (type === 'edit') {
+    return {
+      severity: 'success',
+      message: 'Edited successfully',
+    };
+  }
+  if (type === 'delete') {
+    return {
+      severity: 'success',
+      message: 'Deleted successfully',
+    };
+  }
+  if (type === 'cancel') {
+    return {
+      severity: 'warning',
+      message: 'Аction was canceled',
+    };
+  }
+  if (type === 'error') {
+    return {
+      severity: 'error',
+      message: 'Error: Server is not responding',
+    };
+  }
+  return {
+    severity: '',
+    message: '',
+  };
+};
 
 export default function Snackbars({ type, open, setOpen }) {
-  const typeChecking = () => {
-    switch (type) {
-      case 'add': return (
-        <MuiAlert variant="filled" severity="success" onClose={() => { setOpen(false); }}>
-          Added successfully
-        </MuiAlert>
-      );
-      case 'edit': return (
-        <MuiAlert variant="filled" severity="success" onClose={() => { setOpen(false); }}>
-          Edited successfully
-        </MuiAlert>
-      );
-      case 'delete': return (
-        <MuiAlert variant="filled" severity="success" onClose={() => { setOpen(false); }}>
-          Deleted successfully
-        </MuiAlert>
-      );
-      case 'cancel': return (
-        <MuiAlert variant="filled" severity="warning" onClose={() => { setOpen(false); }}>
-          Аction was canceled
-        </MuiAlert>
-      );
-      case 'error': return (
-        <MuiAlert variant="filled" severity="error" onClose={() => { setOpen(false); }}>
-          Error: Server is not responding
-        </MuiAlert>
-      );
-      default: return null;
-    }
+  const { severity, message } = cheсkType(type);
+
+  const handleClose = () => {
+    setOpen(false);
   };
+
   return (
-    <Snackbar open={open} autoHideDuration={3000} onClose={() => { setOpen(false); }}>
-      {typeChecking()}
+    <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+      <MuiAlert variant="filled" severity={severity} onClose={handleClose}>
+        { message }
+      </MuiAlert>
     </Snackbar>
   );
 }
