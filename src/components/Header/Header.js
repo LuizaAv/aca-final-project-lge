@@ -1,13 +1,12 @@
 import React from 'react';
-
 import Typography from '@material-ui/core/Typography';
 import clsx from 'clsx';
 
 import { useStoreContext } from '../../store/storeContext';
+import AddBudget from '../AddBudget/AddBudget';
+import useStyles from './Header.style';
 
-import useStyles from './Total.style';
-
-export default function Total() {
+export default function Header() {
   const classes = useStyles();
   const { state } = useStoreContext();
 
@@ -24,7 +23,6 @@ export default function Total() {
   ), 0);
 
   const balance = income - expense;
-
   const addComma = (count) => count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
   const count = [
@@ -35,16 +33,20 @@ export default function Total() {
 
   return (
     <div className={classes.root}>
-      {count.map((item) => (
-        <div key={item.name} className={classes.count}>
-          <Typography className={clsx(classes.amount, classes[item.className])}>
-            {item.amount}
-          </Typography>
-          <Typography className={classes.name}>
-            {item.name}
-          </Typography>
-        </div>
-      ))}
+      <div className={classes.total}>
+        {count.map((item) => (
+          <div key={item.name} className={classes.count}>
+            <Typography className={clsx(classes.amount, classes[item.className])}>
+              {item.amount}
+            </Typography>
+            <Typography className={classes.name}>
+              {item.name}
+            </Typography>
+          </div>
+        ))}
+      </div>
+
+      <AddBudget />
     </div>
   );
 }

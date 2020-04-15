@@ -5,8 +5,8 @@ import Typography from '@material-ui/core/Typography';
 import Pagination from '@material-ui/lab/Pagination';
 
 import { useStoreContext } from '../../store/storeContext';
-import AddBudget from '../../components/AddBudget/AddBudget';
-import Total from '../../components/Total/Total';
+// import AddBudget from '../../components/AddBudget/AddBudget';
+import Header from '../../components/Header/Header';
 import Sort from '../../components/Sort/Sort';
 import FilterType from '../../components/FilterType/FilterType';
 import FilterDate from '../../components/FilterDate/FilterDate';
@@ -69,10 +69,7 @@ export default function History() {
 
   return (
     <div className={classes.root}>
-      <div className={classes.header}>
-        <Total />
-        <AddBudget />
-      </div>
+      <Header />
 
       <div className={classes.tools}>
         <Sort isAscending={isAscending} setIsAscending={setIsAscending} />

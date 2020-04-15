@@ -3,6 +3,12 @@ import { makeStyles } from '@material-ui/core/styles';
 export default makeStyles({
   root: {
     display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '96%',
+  },
+  total: {
+    display: 'flex',
   },
   count: {
     borderLeft: '1px solid #707070',

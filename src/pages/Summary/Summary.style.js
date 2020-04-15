@@ -5,12 +5,6 @@ export default makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
   },
-  header: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    width: '96%',
-  },
   tools: {
     display: 'flex',
     alignItems: 'center',

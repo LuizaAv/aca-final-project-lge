@@ -12,10 +12,9 @@ import { ReactComponent as ArrowUpwardIcon } from '../../assets/icons/Arrow-up.s
 
 import { useStoreContext } from '../../store/storeContext';
 
-import Total from '../../components/Total/Total';
+import Header from '../../components/Header/Header';
 import Sort from '../../components/Sort/Sort';
 import FilterType from '../../components/FilterType/FilterType';
-import AddBudget from '../../components/AddBudget/AddBudget';
 import useStyles from './Summary.style';
 
 export default function Categories() {
@@ -56,11 +55,7 @@ export default function Categories() {
 
   return (
     <div className={classes.root}>
-
-      <div className={classes.header}>
-        <Total />
-        <AddBudget />
-      </div>
+      <Header />
 
       <div className={classes.tools}>
         <Sort isAscending={isAscending} setIsAscending={setIsAscending} />
