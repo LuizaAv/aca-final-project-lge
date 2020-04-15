@@ -26,7 +26,7 @@ export default function AddBudget() {
   const [category, setCategory] = useState('');
   const [amount, setAmount] = useState('');
   const [date, setDate] = useState(new Date());
-  const [picherError, setPicherError] = useState('');
+  const [datePickerError, setDatePickerError] = useState('');
   const [dialogOpen, setDialogOpen] = useState(false);
   const [snackbarType, setSnackbarType] = useState('');
   const [snackbarOpen, setSnackbarOpen] = useState(false);
@@ -82,7 +82,7 @@ export default function AddBudget() {
   };
 
   const handleDatePickerError = (e) => {
-    setPicherError(e);
+    setDatePickerError(e);
   };
 
   const handleStateReset = () => {
@@ -106,12 +106,12 @@ export default function AddBudget() {
       .catch(() => handleSnackbarErroe());
   };
 
-  const doneDisabled = !(
-    category !== ''
-    && name !== ''
-    && amount !== ''
-    && date !== null
-    && picherError === ''
+  const doneDisabled = (
+    category === ''
+    || name === ''
+    || amount === ''
+    || date === null
+    || datePickerError !== ''
   );
 
   return (

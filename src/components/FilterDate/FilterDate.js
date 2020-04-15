@@ -2,9 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-
 import useStyles from './FilterDate.style';
-
 
 export default function FilterDate({ filterDate, setFilterDate }) {
   const classes = useStyles();

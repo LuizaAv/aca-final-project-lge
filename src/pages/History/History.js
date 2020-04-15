@@ -18,15 +18,13 @@ import useStyles from './History.style';
 
 function filterByDate(budget, date) {
   const dayCheck = () => budget.filter(
-    (item) => item.date.toLocaleDateString() === new Date().toLocaleDateString(),
+    (item) => item.date.getDate() === new Date().getDate(),
   );
   const monthCheck = () => budget.filter(
-    (item) => item.date.toLocaleDateString().slice(3)
-        === new Date().toLocaleDateString().slice(3),
+    (item) => item.date.getMonth() === new Date().getMonth(),
   );
   const yearCheck = () => budget.filter(
-    (item) => item.date.toLocaleDateString().slice(6)
-      === new Date().toLocaleDateString().slice(6),
+    (item) => item.date.getFullYear() === new Date().getFullYear(),
   );
 
   if (date === 'daily') return dayCheck();

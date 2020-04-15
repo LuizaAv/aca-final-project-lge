@@ -24,7 +24,6 @@ export default function Sort({ isAscending, setIsAscending }) {
         Descending Order
       </MenuItem>
     </Select>
-
   );
 }
 

@@ -72,7 +72,7 @@ export default function AddCategory({ setSnackbarType, setSnackbarOpen }) {
       .catch(() => handleSnackbarErroe());
   };
 
-  const doneDisabled = !(name !== '' && type !== '');
+  const doneDisabled = (name === '' || type === '');
 
   return (
     <>

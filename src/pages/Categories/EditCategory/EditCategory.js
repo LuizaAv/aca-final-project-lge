@@ -68,12 +68,11 @@ export default function EditCategory({
       .catch(() => handleSnackbarErroe());
   };
 
-  const doneDisabled = !(
-    name !== ''
-    && type !== ''
-    && ( // if the previous value
-      type !== category.type
-      || name !== category.name
+  const doneDisabled = (
+    name === '' || type === ''
+    || (
+      type === category.type
+      && name === category.name
     )
   );
 

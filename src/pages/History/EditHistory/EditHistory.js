@@ -97,19 +97,19 @@ export default function EditHistory({
       .catch(() => handleSnackbarErroe());
   };
 
-  const doneDisabled = !(
-    type !== ''
-    && category !== ''
-    && name !== ''
-    && amount !== ''
-    && date !== null
-    && picherError === ''
-    && ( // if the previous value
-      type !== budget.type
-      || category !== budget.category
-      || name !== budget.name
-      || +amount !== +budget.amount
-      || date.toLocaleDateString() !== budget.date.toLocaleDateString()
+  const doneDisabled = (
+    type === ''
+    || category === ''
+    || name === ''
+    || amount === ''
+    || date === null
+    || picherError !== ''
+    || (
+      type === budget.type
+      && category === budget.category
+      && name === budget.name
+      && +amount === +budget.amount
+      && date.getTime() === budget.date.getTime()
     )
   );
 
