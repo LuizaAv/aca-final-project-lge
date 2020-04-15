@@ -26,9 +26,25 @@ export default function Header() {
   const addComma = (count) => count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
   const count = [
-    { name: 'Current balance', amount: addComma(balance), className: 'balance' },
-    { name: 'Overall income', amount: `+${addComma(income)}`, className: 'income' },
-    { name: 'Overall expense', amount: `-${addComma(expense)}`, className: 'expense' },
+    {
+      name: 'Current balance',
+      amount: addComma(balance),
+      className: 'balance',
+    },
+    {
+      name: 'Overall income',
+      amount: income !== 0
+        ? `+${addComma(income)}`
+        : 0,
+      className: 'income',
+    },
+    {
+      name: 'Overall expense',
+      amount: expense !== 0
+        ? `-${addComma(expense)}`
+        : 0,
+      className: 'expense',
+    },
   ];
 
   return (

@@ -17,6 +17,7 @@ export default makeStyles((theme) => ({
     width: '92%',
     alignSelf: 'center',
     boxShadow: theme.shadows[5],
+    paddingBottom: 50,
   },
   title: {
     color: theme.palette.tertiary.main,

@@ -5,7 +5,6 @@ import Typography from '@material-ui/core/Typography';
 import Pagination from '@material-ui/lab/Pagination';
 
 import { useStoreContext } from '../../store/storeContext';
-// import AddBudget from '../../components/AddBudget/AddBudget';
 import Header from '../../components/Header/Header';
 import Sort from '../../components/Sort/Sort';
 import FilterType from '../../components/FilterType/FilterType';
@@ -42,7 +41,7 @@ export default function History() {
   const [search, setSearch] = useState('');
   const [snackbarType, setSnackbarType] = useState('');
   const [snackbarOpen, setSnackbarOpen] = useState(false);
-  const [page, setPage] = React.useState(1);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     setPage(1);
