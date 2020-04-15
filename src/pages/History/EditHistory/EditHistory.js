@@ -37,7 +37,7 @@ export default function EditHistory({
   };
 
   const handleSnackbarEdit = () => {
-    setSnackbarType('Edit');
+    setSnackbarType('edit');
     setSnackbarOpen(true);
   };
 

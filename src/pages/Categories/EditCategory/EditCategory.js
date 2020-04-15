@@ -31,7 +31,7 @@ export default function EditCategory({
   };
 
   const handleSnackbarEdit = () => {
-    setSnackbarType('Edit');
+    setSnackbarType('edit');
     setSnackbarOpen(true);
   };
 

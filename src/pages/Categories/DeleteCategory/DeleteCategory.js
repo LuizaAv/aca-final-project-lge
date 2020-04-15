@@ -25,7 +25,7 @@ export default function DeleteCategory({
   };
 
   const handleSnackbarDelete = () => {
-    setSnackbarType('detele');
+    setSnackbarType('delete');
     setSnackbarOpen(true);
   };
 

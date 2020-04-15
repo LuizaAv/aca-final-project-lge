@@ -26,7 +26,7 @@ export default function DeleteHistory({
   };
 
   const handleSnackbarDelete = () => {
-    setSnackbarType('detele');
+    setSnackbarType('delete');
     setSnackbarOpen(true);
   };
 
