@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React, { useState, useEffect } from 'react';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -11,7 +12,7 @@ import FilterType from '../../components/FilterType/FilterType';
 import FilterDate from '../../components/FilterDate/FilterDate';
 import EditHistory from './EditHistory/EditHistory';
 import DeleteHistory from './DeleteHistory/DeleteHistory';
-import HistorySearch from '../../components/HistorySearch/HistorySearch';
+import Search from '../../components/Search/Search';
 import Snackbars from '../../components/Snackbars/Snackbars';
 import useStyles from './History.style';
 
@@ -38,14 +39,14 @@ export default function History() {
   const [filterType, setFilterType] = useState('all');
   const [isAscending, setIsAscending] = useState(true);
   const [filterDate, setFilterDate] = useState('all');
-  const [search, setSearch] = useState('');
+  const [searchValue, setSearchValue] = useState('');
   const [snackbarType, setSnackbarType] = useState('');
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [page, setPage] = useState(1);
 
   useEffect(() => {
     setPage(1);
-  }, [filterType, isAscending, filterDate, search]);
+  }, [filterType, isAscending, filterDate, searchValue]);
 
   const budgetFilteredByType = filterType === 'all'
     ? [...state.budget]
@@ -57,9 +58,9 @@ export default function History() {
     isAscending ? a.amount - b.amount : b.amount - a.amount
   ));
 
-  const budgetSearched = search === ''
+  const budgetSearched = searchValue === ''
     ? budgetSorted
-    : budgetSorted.filter((item) => item.name.toLowerCase().startsWith(search.toLowerCase()));
+    : budgetSorted.filter((item) => item.name.toLowerCase().startsWith(searchValue.toLowerCase()));
 
   const elementsPerPage = 6;
   const countPages = Math.ceil(budgetSearched.length / elementsPerPage);
@@ -74,51 +75,57 @@ export default function History() {
         <Sort isAscending={isAscending} setIsAscending={setIsAscending} />
         <FilterType filterType={filterType} setFilterType={setFilterType} />
         <FilterDate filterDate={filterDate} setFilterDate={setFilterDate} />
-        <HistorySearch search={search} setSearch={setSearch} />
+        <Search searchValue={searchValue} setSearchValue={setSearchValue} />
       </div>
 
       <div className={classes.flexContainer}>
-        {budgetSearched
-          .filter((item, index) => index >= indexMin && index < indexMax)
-          .map((item) => (
-            <Card key={item.id} className={classes.card}>
-              <CardContent>
-                <div className={classes.cardItem}>
-                  <Typography className={classes.name}>{item.name}</Typography>
-                  <div className={classes.amount}>
-                    <EditHistory
-                      budget={item}
-                      setSnackbarType={setSnackbarType}
-                      setSnackbarOpen={setSnackbarOpen}
-                    />
-                    <DeleteHistory
-                      budget={item}
-                      setSnackbarType={setSnackbarType}
-                      setSnackbarOpen={setSnackbarOpen}
-                    />
-                  </div>
-                </div>
+        {budgetSearched.length === 0
+          ? (
+            <Typography align="center" variant="h3" color="textSecondary">
+              There isn't any post yet !!!
+            </Typography>
+          ) : (
+            budgetSearched
+              .filter((item, index) => index >= indexMin && index < indexMax)
+              .map((item) => (
+                <Card key={item.id} className={classes.card}>
+                  <CardContent>
+                    <div className={classes.cardItem}>
+                      <Typography className={classes.name}>{item.name}</Typography>
+                      <div className={classes.amount}>
+                        <EditHistory
+                          budget={item}
+                          setSnackbarType={setSnackbarType}
+                          setSnackbarOpen={setSnackbarOpen}
+                        />
+                        <DeleteHistory
+                          budget={item}
+                          setSnackbarType={setSnackbarType}
+                          setSnackbarOpen={setSnackbarOpen}
+                        />
+                      </div>
+                    </div>
 
-                <hr className={classes.hr} />
+                    <hr className={classes.hr} />
 
-                <div className={classes.cardItem}>
-                  <Typography className={classes.category}>
-                    {item.category}
-                  </Typography>
+                    <div className={classes.cardItem}>
+                      <Typography className={classes.category}>
+                        {item.category}
+                      </Typography>
 
-                  <Typography>
-                    {item.type === 'expense'
-                      ? `- ${item.amount}`
-                      : `+ ${item.amount}`}
-                  </Typography>
+                      <Typography>
+                        {item.type === 'expense'
+                          ? `- ${item.amount}`
+                          : `+ ${item.amount}`}
+                      </Typography>
 
-                  <Typography className={classes.date}>
-                    {item.date.toLocaleDateString()}
-                  </Typography>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+                      <Typography className={classes.date}>
+                        {item.date.toLocaleDateString()}
+                      </Typography>
+                    </div>
+                  </CardContent>
+                </Card>
+              )))}
       </div>
 
       <Pagination

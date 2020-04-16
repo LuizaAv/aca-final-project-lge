@@ -77,6 +77,7 @@ export default function AddCategory({ setSnackbarType, setSnackbarOpen }) {
   return (
     <>
       <Button
+        color="primary"
         variant="outlined"
         onClick={handleOpen}
         className={classes.button}

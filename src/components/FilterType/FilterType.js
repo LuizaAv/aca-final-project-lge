@@ -2,6 +2,8 @@ import React from 'react';
 import propTypes from 'prop-types';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
 import useStyles from './FilterType.style';
 
 export default function FilterType({ filterType, setFilterType }) {
@@ -18,18 +20,22 @@ export default function FilterType({ filterType, setFilterType }) {
   ];
 
   return (
-    <Select
-      className={classes.select}
-      variant="outlined"
-      value={filterType}
-      onChange={handleChange}
-    >
-      {select.map((item) => (
-        <MenuItem key={item.name} className={classes.menuItem} value={item.value}>
-          {item.name}
-        </MenuItem>
-      ))}
-    </Select>
+    <FormControl variant="outlined">
+      <InputLabel>Type filter</InputLabel>
+      <Select
+        className={classes.select}
+        variant="outlined"
+        value={filterType}
+        onChange={handleChange}
+        label="Type filter"
+      >
+        {select.map((item) => (
+          <MenuItem key={item.name} className={classes.menuItem} value={item.value}>
+            {item.name}
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
   );
 }
 

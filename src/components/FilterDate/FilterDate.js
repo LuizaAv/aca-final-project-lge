@@ -2,6 +2,8 @@ import React from 'react';
 import propTypes from 'prop-types';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
 import useStyles from './FilterDate.style';
 
 export default function FilterDate({ filterDate, setFilterDate }) {
@@ -20,18 +22,21 @@ export default function FilterDate({ filterDate, setFilterDate }) {
 
   return (
     <div>
-      <Select
-        className={classes.select}
-        variant="outlined"
-        value={filterDate}
-        onChange={handleChange}
-      >
-        {select.map((item) => (
-          <MenuItem key={item.name} value={item.value}>
-            {item.name}
-          </MenuItem>
-        ))}
-      </Select>
+      <FormControl variant="outlined">
+        <InputLabel>Date filter</InputLabel>
+        <Select
+          className={classes.select}
+          value={filterDate}
+          onChange={handleChange}
+          label="Date filter"
+        >
+          {select.map((item) => (
+            <MenuItem key={item.name} value={item.value}>
+              {item.name}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
     </div>
   );
 }

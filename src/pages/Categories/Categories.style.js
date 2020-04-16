@@ -11,7 +11,7 @@ export default makeStyles((theme) => ({
     justifyContent: 'space-between',
     margin: 40,
     marginLeft: 85,
-    width: 330,
+    width: 370,
   },
   tableContainer: {
     width: '92%',

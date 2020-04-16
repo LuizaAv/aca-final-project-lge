@@ -1,17 +1,19 @@
 import { makeStyles } from '@material-ui/core/styles';
+import { lightGreen } from '@material-ui/core/colors';
 
 export default makeStyles({
   button: {
     height: 40,
-    width: 168,
+    width: '20ch',
     fontSize: 16,
-    marginLeft: 5,
-    backgroundColor: '#fff',
+    // marginLeft: 5,
+    // backgroundColor: '#fff',
     color: '#000',
-    textTransform: 'none',
+    // textTransform: 'none',
     '&:hover': {
-      borderColor: '#000',
-      backgroundColor: '#fff',
+      backgroundColor: lightGreen.A200,
+      // borderColor: '#000',
+      // backgroundColor: '#fff',
     },
   },
   dialog: {
