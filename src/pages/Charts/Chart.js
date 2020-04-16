@@ -20,14 +20,14 @@ export default function MainChart() {
         label: 'income',
         data: incomes,
         fill: true, // Don't fill area under the line
-        backgroundColor: '#DAF7A6', // fill color
-        borderColor: '#2EE152', // Line color
+        backgroundColor: '#76ff0335', // fill color
+        borderColor: '#76ff03', // Line color
       },
       {
         label: 'expense',
         data: expenses,
         fill: true, // Don't fill area under the line
-        backgroundColor: '#FF9B9B', // fill color
+        backgroundColor: '#ff525235', // fill color
         borderColor: '#FF5D5D', // Line color
       },
     ],
