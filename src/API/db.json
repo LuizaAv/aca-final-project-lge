@@ -67,16 +67,6 @@
   ],
   "categories": [
     {
-      "id": "5922325f-5093-46ab-b5ff-b9f885d46c03",
-      "type": "income",
-      "name": "sdfs"
-    },
-    {
-      "id": "7c5a1775-edf1-4167-925a-3d45a8d7ba76",
-      "type": "expense",
-      "name": "gf"
-    },
-    {
       "id": "f552307a-df3b-4d92-be7d-30e35625bbc0",
       "type": "expense",
       "name": "Automobile"
