@@ -1,19 +1,16 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { lightGreen } from '@material-ui/core/colors';
 
 export default makeStyles({
   button: {
     height: 40,
     width: '20ch',
     fontSize: 16,
-    // marginLeft: 5,
-    // backgroundColor: '#fff',
     color: '#000',
+    borderColor: '#9fa8da',
     // textTransform: 'none',
     '&:hover': {
-      backgroundColor: lightGreen.A200,
-      // borderColor: '#000',
-      // backgroundColor: '#fff',
+      backgroundColor: '#8c9eff',
+      borderColor: '#3f51b5',
     },
   },
   dialog: {
@@ -21,7 +18,7 @@ export default makeStyles({
   },
   title: {
     width: '100%',
-    backgroundColor: '#5F80D8',
+    backgroundColor: '#5c6bc0',
     color: '#fff',
     textAlign: 'center',
     fontFamily: 'Segoe UI',
