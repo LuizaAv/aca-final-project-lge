@@ -20,7 +20,7 @@ export default makeStyles((theme) => ({
     },
   },
   titleIncome: {
-    backgroundColor: theme.palette.primary.light,
+    backgroundColor: theme.palette.primary.main,
     color: theme.palette.common.white,
     textAlign: 'center',
   },
