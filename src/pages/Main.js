@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useReducer, useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import { StoreContext } from '../store/storeContext';
@@ -11,6 +11,7 @@ import Summary from './Summary/Summary';
 import Categories from './Categories/Categories';
 import History from './History/History';
 import Chart from './Charts/Chart';
+import Snackbars from '../components/Snackbars/Snackbars';
 import useStyles from './Main.style';
 
 const initialState = {
@@ -21,16 +22,15 @@ const initialState = {
 export default function Main() {
   const classes = useStyles();
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [snackbarOpen, setSnackbarOpen] = useState(false)
 
   useEffect(() => {
     dbGetCategory()
       .then((categories) => dispatch(initCategory(categories)))
-      .then((response) => response.json())
-      .catch((error) => (`Error:${error}`));
+      .catch(() => setSnackbarOpen(true));
     dbGetBudget()
       .then((budget) => dispatch(initBudget(budget)))
-      .then((response) => response.json())
-      .catch((error) => (`Error:${error}`));
+      .catch(() => setSnackbarOpen(true));
   }, []);
 
   return (
@@ -56,6 +56,7 @@ export default function Main() {
           </Switch>
         </div>
       </div>
+      <Snackbars type="error" open={snackbarOpen} setOpen={setSnackbarOpen} />
     </StoreContext.Provider>
   );
 }
