@@ -22,7 +22,7 @@ const initialState = {
 export default function Main() {
   const classes = useStyles();
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [snackbarOpen, setSnackbarOpen] = useState(false)
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
 
   useEffect(() => {
     dbGetCategory()

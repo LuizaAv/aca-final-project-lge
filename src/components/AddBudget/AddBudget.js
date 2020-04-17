@@ -116,22 +116,24 @@ export default function AddBudget() {
 
   return (
     <div>
-      <Button
-        className={classes.addIncome}
-        onClick={handleClickIncome}
-        color="primary"
-        variant="outlined"
-      >
-        Add income
-      </Button>
-      <Button
-        className={classes.addExpense}
-        onClick={handleClickExpense}
-        color="secondary"
-        variant="outlined"
-      >
-        Add expense
-      </Button>
+      <div className={classes.addButtons}>
+        <Button
+          className={classes.addIncome}
+          onClick={handleClickIncome}
+          color="primary"
+          variant="outlined"
+        >
+          Add income
+        </Button>
+        <Button
+          className={classes.addExpense}
+          onClick={handleClickExpense}
+          color="secondary"
+          variant="outlined"
+        >
+          Add expense
+        </Button>
+      </div>
 
       <Dialog
         fullWidth

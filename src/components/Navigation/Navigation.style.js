@@ -72,4 +72,14 @@ export default makeStyles((theme) => ({
     marginLeft: -1,
     height: 27,
   },
+  hide: {
+    display: 'none',
+  },
+  chevronLeftIcon: {
+    position: 'absolute',
+    marginLeft: '73%',
+  },
+  menuIcon: {
+    position: 'fixed',
+  },
 }));

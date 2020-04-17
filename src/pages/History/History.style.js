@@ -12,6 +12,20 @@ export default makeStyles((theme) => ({
     margin: 40,
     marginLeft: 85,
     width: 765,
+    [theme.breakpoints.down('md')]: {
+      width: 682,
+    },
+    [theme.breakpoints.down('sm')]: {
+      margin: 'auto',
+      marginTop: 20,
+      marginBottom: 20,
+      width: '100%',
+      justifyContent: 'space-evenly',
+    },
+    [theme.breakpoints.down('xs')]: {
+      flexWrap: 'wrap',
+      height: 90,
+    },
   },
   flexContainer: {
     display: 'flex',

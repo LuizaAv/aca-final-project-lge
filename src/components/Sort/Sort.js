@@ -14,18 +14,27 @@ export default function Sort({ isAscending, setIsAscending }) {
 
   return (
     <FormControl variant="outlined">
-      <InputLabel>Sort by amount</InputLabel>
+      <InputLabel className={classes.label}>
+        Sort by amount
+      </InputLabel>
       <Select
         className={classes.select}
+        classes={{ root: classes.selectRoot }}
         variant="outlined"
         defaultValue="ascending"
         onChange={handleChange}
         label="Sort by amount"
       >
-        <MenuItem className={classes.menuItem} value="ascending">
+        <MenuItem
+          className={classes.item}
+          value="ascending"
+        >
           Ascending Order
         </MenuItem>
-        <MenuItem className={classes.menuItem} value="descending">
+        <MenuItem
+          className={classes.item}
+          value="descending"
+        >
           Descending Order
         </MenuItem>
       </Select>

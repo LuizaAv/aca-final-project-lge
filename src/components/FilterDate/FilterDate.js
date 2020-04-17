@@ -23,15 +23,22 @@ export default function FilterDate({ filterDate, setFilterDate }) {
   return (
     <div>
       <FormControl variant="outlined">
-        <InputLabel>Date filter</InputLabel>
+        <InputLabel className={classes.label}>
+          Date filter
+        </InputLabel>
         <Select
           className={classes.select}
+          classes={{ root: classes.selectRoot }}
           value={filterDate}
           onChange={handleChange}
           label="Date filter"
         >
           {select.map((item) => (
-            <MenuItem key={item.name} value={item.value}>
+            <MenuItem
+              className={classes.item}
+              key={item.name}
+              value={item.value}
+            >
               {item.name}
             </MenuItem>
           ))}

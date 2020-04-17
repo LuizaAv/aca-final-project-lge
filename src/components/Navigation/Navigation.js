@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import Drawer from '@material-ui/core/Drawer';
 import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import { ReactComponent as GraphsIcon } from '../../assets/icons/Graphs.svg';
 import { ReactComponent as SummaryIcon } from '../../assets/icons/Summary.svg';
@@ -14,17 +18,42 @@ import useStyles from './Navigation.style';
 
 export default function Navigation() {
   const classes = useStyles();
+  const matches = useMediaQuery('(min-width:1030px)');
   const [path, setPath] = useState(window.location.pathname);
+  const [open, setOpen] = useState(true);
+
+  useEffect(() => {
+    setOpen(matches);
+  }, [matches]);
+
+  const handleClick = () => {
+    setOpen(!open);
+  };
 
   return (
     <div>
       <CssBaseline />
+      <IconButton
+        color="inherit"
+        onClick={handleClick}
+        className={matches ? classes.hide : classes.menuIcon}
+      >
+        <MenuIcon />
+      </IconButton>
       <Drawer
+        open={open}
         className={classes.drawer}
-        variant="permanent"
+        variant={matches ? 'persistent' : 'temporary'}
         classes={{ paper: classes.drawerPaper }}
         anchor="left"
       >
+        <IconButton
+          color="inherit"
+          onClick={handleClick}
+          className={matches ? classes.hide : classes.chevronLeftIcon}
+        >
+          <ChevronLeftIcon />
+        </IconButton>
         <Typography
           className={classes.logo}
           variant="h4"

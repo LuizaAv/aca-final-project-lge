@@ -91,7 +91,7 @@ export default function AddCategory({ setSnackbarType, setSnackbarOpen }) {
         onClose={handleClose}
         open={open}
       >
-        <DialogTitle className={classes.title}>Add Category</DialogTitle>
+        <DialogTitle className={classes.title}>Add category</DialogTitle>
 
         <FormControl className={classes.itemSize}>
           <InputLabel>Category type</InputLabel>

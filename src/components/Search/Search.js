@@ -12,8 +12,10 @@ export default function Search({ searchValue, setSearchValue }) {
   return (
     <TextField
       className={classes.search}
-      size="small"
+      InputLabelProps={{ shrink: true }}
       label="Search"
+      placeholder="Search history"
+      size="small"
       variant="outlined"
       value={searchValue}
       onChange={handleChange}

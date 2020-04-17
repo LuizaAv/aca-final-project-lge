@@ -21,16 +21,23 @@ export default function FilterType({ filterType, setFilterType }) {
 
   return (
     <FormControl variant="outlined">
-      <InputLabel>Type filter</InputLabel>
+      <InputLabel className={classes.label}>
+        Type filter
+      </InputLabel>
       <Select
         className={classes.select}
+        classes={{ root: classes.selectRoot }}
         variant="outlined"
         value={filterType}
         onChange={handleChange}
         label="Type filter"
       >
         {select.map((item) => (
-          <MenuItem key={item.name} className={classes.menuItem} value={item.value}>
+          <MenuItem
+            className={classes.item}
+            key={item.name}
+            value={item.value}
+          >
             {item.name}
           </MenuItem>
         ))}

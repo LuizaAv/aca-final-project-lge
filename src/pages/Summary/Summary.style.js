@@ -12,6 +12,16 @@ export default makeStyles((theme) => ({
     margin: 40,
     marginLeft: 85,
     width: 370,
+    [theme.breakpoints.down('md')]: {
+      width: 330,
+    },
+    [theme.breakpoints.down('sm')]: {
+      margin: 0,
+      marginTop: 20,
+      marginBottom: 20,
+      width: '100%',
+      justifyContent: 'space-evenly',
+    },
   },
   tableContainer: {
     width: '92%',

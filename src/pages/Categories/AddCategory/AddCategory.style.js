@@ -1,16 +1,20 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-export default makeStyles({
+export default makeStyles((theme) => ({
   button: {
-    height: 40,
     width: '20ch',
     fontSize: 16,
     color: '#000',
     borderColor: '#9fa8da',
-    // textTransform: 'none',
     '&:hover': {
       backgroundColor: '#8c9eff',
       borderColor: '#3f51b5',
+    },
+    [theme.breakpoints.down('md')]: {
+      fontSize: 13,
+    },
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 10,
     },
   },
   dialog: {
@@ -38,4 +42,4 @@ export default makeStyles({
     width: 100,
     fontWeight: 600,
   },
-});
+}));
