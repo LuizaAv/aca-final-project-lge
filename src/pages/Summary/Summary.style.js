@@ -13,7 +13,7 @@ export default makeStyles((theme) => ({
     marginLeft: 85,
     width: 370,
     [theme.breakpoints.down('md')]: {
-      width: 330,
+      width: 350,
     },
     [theme.breakpoints.down('sm')]: {
       margin: 0,

@@ -8,17 +8,17 @@ export default makeStyles((theme) => ({
     },
     [theme.breakpoints.down('md')]: {
       '& > *': {
-        fontSize: 13,
+        fontSize: 14,
         width: '22ch',
         height: 35,
       },
     },
-    [theme.breakpoints.down('sm')]: {
-      '& > *': {
-        fontSize: 10,
-        width: '24ch',
-        height: 27,
-      },
-    },
+    // [theme.breakpoints.down('sm')]: {
+    //   '& > *': {
+    //     fontSize: 10,
+    //     width: '24ch',
+    //     height: 27,
+    //   },
+    // },
   },
 }));

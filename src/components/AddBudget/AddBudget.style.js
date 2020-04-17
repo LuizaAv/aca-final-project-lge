@@ -13,7 +13,7 @@ export default makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       marginRight: 0,
       marginLeft: 22,
-      width: 220,
+      width: 250,
     },
   },
   addIncome: {
@@ -23,11 +23,11 @@ export default makeStyles((theme) => ({
       backgroundColor: lightGreen.A200,
     },
     [theme.breakpoints.down('md')]: {
-      fontSize: 13,
+      fontSize: 14,
     },
-    [theme.breakpoints.down('sm')]: {
-      fontSize: 10,
-    },
+    // [theme.breakpoints.down('sm')]: {
+    //   fontSize: 10,
+    // },
   },
   addExpense: {
     color: '#000',
@@ -36,11 +36,11 @@ export default makeStyles((theme) => ({
       backgroundColor: red.A100,
     },
     [theme.breakpoints.down('md')]: {
-      fontSize: 13,
+      fontSize: 14,
     },
-    [theme.breakpoints.down('sm')]: {
-      fontSize: 10,
-    },
+    // [theme.breakpoints.down('sm')]: {
+    //   fontSize: 10,
+    // },
   },
   titleIncome: {
     backgroundColor: theme.palette.primary.main,

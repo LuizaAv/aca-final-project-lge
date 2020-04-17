@@ -6,24 +6,24 @@ export default makeStyles((theme) => ({
     height: 40,
     fontSize: 16,
     [theme.breakpoints.down('md')]: {
-      fontSize: 13,
+      fontSize: 14,
       width: '22ch',
       height: 35,
     },
-    [theme.breakpoints.down('sm')]: {
-      fontSize: 10,
-      width: '24ch',
-      height: 27,
-    },
+    // [theme.breakpoints.down('sm')]: {
+    //   fontSize: 10,
+    //   width: '24ch',
+    //   height: 27,
+    // },
   },
   label: {
     fontSize: 16,
     [theme.breakpoints.down('md')]: {
-      fontSize: 13,
+      fontSize: 14,
     },
-    [theme.breakpoints.down('sm')]: {
-      fontSize: 10,
-    },
+    // [theme.breakpoints.down('sm')]: {
+    //   fontSize: 10,
+    // },
   },
   selectRoot: {
     '&:focus': {

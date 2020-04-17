@@ -9,7 +9,7 @@ export default makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       alignItems: 'center',
       flexDirection: 'column',
-      height: '100px',
+      height: '130px',
     },
   },
   total: {
@@ -37,9 +37,9 @@ export default makeStyles((theme) => ({
     [theme.breakpoints.down('md')]: {
       fontSize: 25,
     },
-    [theme.breakpoints.down('sm')]: {
-      fontSize: 20,
-    },
+    // [theme.breakpoints.down('sm')]: {
+    //   fontSize: 20,
+    // },
   },
   balance: {
     color: '#363D99',
@@ -56,10 +56,10 @@ export default makeStyles((theme) => ({
     fontWeight: 900,
     fontSize: 16,
     [theme.breakpoints.down('md')]: {
-      fontSize: 13,
+      fontSize: 14,
     },
-    [theme.breakpoints.down('sm')]: {
-      fontSize: 10,
-    },
+    // [theme.breakpoints.down('sm')]: {
+    //   fontSize: 10,
+    // },
   },
 }));
