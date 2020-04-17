@@ -6,7 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import { ReactComponent as GraphsIcon } from '../../assets/icons/Graphs.svg';
@@ -27,7 +26,9 @@ export default function Navigation() {
   }, [matches]);
 
   const handleClick = () => {
-    setOpen(!open);
+    if (!matches) {
+      setOpen(!open);
+    }
   };
 
   return (
@@ -43,17 +44,11 @@ export default function Navigation() {
       <Drawer
         open={open}
         className={classes.drawer}
-        variant={matches ? 'persistent' : 'temporary'}
         classes={{ paper: classes.drawerPaper }}
+        variant={matches ? 'persistent' : 'temporary'}
         anchor="left"
+        onClick={handleClick}
       >
-        <IconButton
-          color="inherit"
-          onClick={handleClick}
-          className={matches ? classes.hide : classes.chevronLeftIcon}
-        >
-          <ChevronLeftIcon />
-        </IconButton>
         <Typography
           className={classes.logo}
           variant="h4"
