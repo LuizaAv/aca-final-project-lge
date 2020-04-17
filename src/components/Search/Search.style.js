@@ -9,7 +9,7 @@ export default makeStyles((theme) => ({
     [theme.breakpoints.down('md')]: {
       '& > *': {
         fontSize: 14,
-        width: '22ch',
+        // width: '22ch',
         height: 35,
       },
     },

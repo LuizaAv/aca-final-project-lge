@@ -7,7 +7,7 @@ export default makeStyles((theme) => ({
     fontSize: 16,
     [theme.breakpoints.down('md')]: {
       fontSize: 14,
-      width: '22ch',
+      // width: '20ch',
       height: 35,
     },
     // [theme.breakpoints.down('sm')]: {

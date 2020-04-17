@@ -11,7 +11,7 @@ export default makeStyles((theme) => ({
       borderColor: '#3f51b5',
     },
     [theme.breakpoints.down('md')]: {
-      width: '22ch',
+      // width: '22ch',
       fontSize: 14,
     },
     // [theme.breakpoints.down('sm')]: {
