@@ -24,7 +24,7 @@ export default makeStyles((theme) => ({
     },
     [theme.breakpoints.down('xs')]: {
       flexWrap: 'wrap',
-      height: 90,
+      height: 110,
     },
   },
   flexContainer: {

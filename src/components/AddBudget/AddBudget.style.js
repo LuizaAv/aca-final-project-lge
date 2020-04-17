@@ -11,9 +11,9 @@ export default makeStyles((theme) => ({
       width: 250,
     },
     [theme.breakpoints.down('sm')]: {
-      marginRight: 0,
-      marginLeft: 22,
-      width: 250,
+      margin: 'auto',
+      marginLeft: 4,
+      width: 260,
     },
   },
   addIncome: {

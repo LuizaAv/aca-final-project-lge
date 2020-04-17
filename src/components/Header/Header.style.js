@@ -7,7 +7,7 @@ export default makeStyles((theme) => ({
     alignItems: 'center',
     width: '96%',
     [theme.breakpoints.down('sm')]: {
-      alignItems: 'center',
+      width: '100%',
       flexDirection: 'column',
       height: '130px',
     },
@@ -24,8 +24,8 @@ export default makeStyles((theme) => ({
       marginLeft: 40,
     },
     [theme.breakpoints.down('sm')]: {
-      paddingLeft: 20,
-      marginLeft: 30,
+      paddingLeft: 10,
+      marginLeft: 20,
     },
   },
   amount: {
@@ -55,8 +55,9 @@ export default makeStyles((theme) => ({
     fontFamily: 'Segoe UI',
     fontWeight: 900,
     fontSize: 16,
+    textAlign: 'center',
     [theme.breakpoints.down('md')]: {
-      fontSize: 14,
+      fontSize: 13,
     },
     // [theme.breakpoints.down('sm')]: {
     //   fontSize: 10,
