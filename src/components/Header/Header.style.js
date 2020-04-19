@@ -5,7 +5,7 @@ export default makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: '96%',
+    width: '77%',
     [theme.breakpoints.down('sm')]: {
       width: '100%',
       flexDirection: 'column',

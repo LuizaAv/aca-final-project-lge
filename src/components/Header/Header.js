@@ -90,7 +90,7 @@ export default function Header() {
             </Typography>
             <div className={classes.span}>
               <Typography className={classes.text}>
-                Futute:
+                Future:
               </Typography>
               <Typography className={clsx(classes[item.name], classes.text)}>
                 {item.futureAmount}
@@ -111,7 +111,7 @@ export default function Header() {
         ))}
       </div>
 
-      <AddBudget />
+      <AddBudget/>
     </div>
   );
 }

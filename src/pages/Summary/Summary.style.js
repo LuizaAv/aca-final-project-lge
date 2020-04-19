@@ -32,7 +32,7 @@ export default makeStyles((theme) => ({
     alignSelf: 'center',
     boxShadow: theme.shadows[5],
     paddingBottom: 50,
-    marginLeft: '-10%',
+    marginLeft: '-20%',
     [theme.breakpoints.down('sm')]: {
       width: '90%',
       margin: 'auto',
