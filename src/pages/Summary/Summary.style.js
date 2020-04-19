@@ -28,10 +28,19 @@ export default makeStyles((theme) => ({
     },
   },
   tableContainer: {
-    width: '92%',
+    width: '70%',
     alignSelf: 'center',
     boxShadow: theme.shadows[5],
     paddingBottom: 50,
+    marginLeft: '-10%',
+    [theme.breakpoints.down('sm')]: {
+      width: '90%',
+      margin: 'auto',
+    },
+    [theme.breakpoints.between('sm', 'md')]: {
+      width: '85%',
+      marginLeft: '13%',
+    },
   },
   title: {
     color: theme.palette.tertiary.main,
@@ -39,6 +48,12 @@ export default makeStyles((theme) => ({
     fontWeight: 900,
     marginLeft: 50,
     marginTop: 30,
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 24,
+    },
+    [theme.breakpoints.between('sm', 'md')]: {
+      fontSize: 28,
+    },
   },
   table: {
     width: '94%',
