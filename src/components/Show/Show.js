@@ -4,47 +4,46 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
-import useStyles from './Sort.style';
-import {FormattedMessage} from 'react-intl';
+import useStyles from './Show.style';
 
-export default function Sort({ isAscending, setIsAscending }) {
+export default function Show({ isCurrent, setIsCurrent }) {
   const classes = useStyles();
 
   const handleChange = () => {
-    setIsAscending(!isAscending);
+    setIsCurrent(!isCurrent);
   };
 
   return (
     <FormControl variant="outlined">
       <InputLabel className={classes.label}>
-      <FormattedMessage id="Sortbyamount"  />
+        Show
       </InputLabel>
       <Select
         className={classes.select}
         classes={{ root: classes.selectRoot }}
         variant="outlined"
-        defaultValue="ascending"
+        defaultValue="current"
         onChange={handleChange}
-        label="Sort by amount"
+        label="Show "
       >
         <MenuItem
           className={classes.item}
-          value="ascending"
+          value="current"
         >
-        <FormattedMessage id="AscendingOrder"  />
+          Current
         </MenuItem>
         <MenuItem
           className={classes.item}
-          value="descending"
+          value="future"
         >
-          <FormattedMessage id="DescendingOrder"  />
+          Future
         </MenuItem>
       </Select>
     </FormControl>
   );
 }
 
-Sort.propTypes = {
-  isAscending: propTypes.bool.isRequired,
-  setIsAscending: propTypes.func.isRequired,
+Show.propTypes = {
+  isCurrent: propTypes.bool.isRequired,
+  setIsCurrent: propTypes.func.isRequired,
 };

@@ -12,11 +12,11 @@ import { ReactComponent as ArrowDownwardIcon } from '../../assets/icons/Arrow-do
 import { ReactComponent as ArrowUpwardIcon } from '../../assets/icons/Arrow-up.svg';
 import { useStoreContext } from '../../store/storeContext';
 
+import Header from '../../components/Header/Header';
 import AddCategory from './AddCategory/AddCategory';
 import DeleteCategory from './DeleteCategory/DeleteCategory';
 import EditCategory from './EditCategory/EditCategory';
 import FilterType from '../../components/FilterType/FilterType';
-import Header from '../../components/Header/Header';
 import Snackbars from '../../components/Snackbars/Snackbars';
 import useStyles from './Categories.style';
 

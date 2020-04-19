@@ -16,6 +16,7 @@ import { useStoreContext } from '../../store/storeContext';
 import Header from '../../components/Header/Header';
 import Sort from '../../components/Sort/Sort';
 import FilterType from '../../components/FilterType/FilterType';
+import Show from '../../components/Show/Show';
 import useStyles from './Summary.style';
 
 export default function Categories() {
@@ -23,8 +24,14 @@ export default function Categories() {
   const { state } = useStoreContext();
   const [filterType, setFilterType] = useState('all');
   const [isAscending, setIsAscending] = useState(true);
+  const [isCurrent, setIsCurrent] = useState(true);
 
-  const uniqueCategories = state.budget.reduce((acc, item) => (
+  const currentBudget = state.budget.filter((item) => item.date.getTime() <= new Date().getTime());
+  const futureBudget = state.budget.filter((item) => item.date.getTime() > new Date().getTime());
+
+  const showItems = isCurrent ? currentBudget : futureBudget;
+
+  const uniqueCategories = showItems.reduce((acc, item) => (
     acc.some((accItem) => (
       accItem.category === item.category
       && accItem.type === item.type
@@ -61,6 +68,7 @@ export default function Categories() {
       <div className={classes.tools}>
         <Sort isAscending={isAscending} setIsAscending={setIsAscending} />
         <FilterType filterType={filterType} setFilterType={setFilterType} />
+        <Show isCurrent={isCurrent} setIsCurrent={setIsCurrent} />
       </div>
 
       <TableContainer component={Paper} className={classes.tableContainer}>

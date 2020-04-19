@@ -11,9 +11,9 @@ export default makeStyles((theme) => ({
     justifyContent: 'space-between',
     margin: 40,
     marginLeft: 85,
-    width: 370,
+    width: 568,
     [theme.breakpoints.down('md')]: {
-      width: 350,
+      width: 485,
     },
     [theme.breakpoints.down('sm')]: {
       margin: 0,
@@ -21,6 +21,10 @@ export default makeStyles((theme) => ({
       marginBottom: 20,
       width: '100%',
       justifyContent: 'space-evenly',
+    },
+    [theme.breakpoints.down('xs')]: {
+      flexWrap: 'wrap',
+      height: 100,
     },
   },
   tableContainer: {
