@@ -8,6 +8,7 @@ import useStyles from './Sort.style';
 
 export default function Sort({ isAscending, setIsAscending }) {
   const classes = useStyles();
+
   const handleChange = () => {
     setIsAscending(!isAscending);
   };
