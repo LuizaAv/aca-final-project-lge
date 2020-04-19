@@ -12,7 +12,8 @@ export default makeStyles((theme) => ({
   },
   logo: {
     width: '100%',
-    padding: 30,
+    paddingTop: 50,
+    paddingBottom: 50,
     boxShadow: '0px 7px 60px 0px #e6e8fc',
     fontWeight: theme.typography.fontWeightBold,
     color: theme.palette.tertiary.main,
