@@ -1,10 +1,12 @@
 import React, { useReducer, useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
+import {messages} from '../languages/messages'
 
 import { StoreContext } from '../store/storeContext';
 import { reducer } from '../store/reducers';
 import { initCategory, initBudget } from '../store/actions';
 import { dbGetBudget, dbGetCategory } from '../API/dbActions';
+import {IntlProvider,FormattedMessage} from 'react-intl';
 
 import Navigation from '../components/Navigation/Navigation';
 import Summary from './Summary/Summary';
@@ -23,6 +25,7 @@ export default function Main() {
   const classes = useStyles();
   const [state, dispatch] = useReducer(reducer, initialState);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [language, setLanguage] = useState("en");
 
   useEffect(() => {
     dbGetCategory()
@@ -33,8 +36,13 @@ export default function Main() {
       .catch(() => setSnackbarOpen(true));
   }, []);
 
+  
+
   return (
-    <StoreContext.Provider value={{ state, dispatch }}>
+
+    <StoreContext.Provider value={{ state, dispatch,language,setLanguage }}>
+    
+    <IntlProvider locale={language} messages={messages[language]}>
       <div className={classes.root}>
         <div className={classes.navigation}>
           <Navigation />
@@ -57,6 +65,7 @@ export default function Main() {
         </div>
       </div>
       <Snackbars type="error" open={snackbarOpen} setOpen={setSnackbarOpen} />
+      </IntlProvider>
     </StoreContext.Provider>
   );
 }
