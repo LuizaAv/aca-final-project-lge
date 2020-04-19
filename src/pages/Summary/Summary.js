@@ -22,15 +22,20 @@ export default function Categories() {
   const { state } = useStoreContext();
   const [filterType, setFilterType] = useState('all');
   const [isAscending, setIsAscending] = useState(true);
+  const [isCurrent, setIsCurrent] = useState(true);
 
-  const uniqueCategories = state.budget.reduce((acc, item) => (
-    acc.some((accItem) => (
-      accItem.category === item.category
+  const currentBudget = state.budget.filter((item) => item.date.getTime() <= new Date().getTime());
+  const futureBudget = state.budget.filter((item) => item.date.getTime() > new Date().getTime());
+
+  const uniqueCategories = (isCurrent ? currentBudget : futureBudget)
+    .reduce((acc, item) => (
+      acc.some((accItem) => (
+        accItem.category === item.category
       && accItem.type === item.type
-    ))
-      ? acc
-      : [...acc, item]
-  ), []);
+      ))
+        ? acc
+        : [...acc, item]
+    ), []);
 
   const amounts = uniqueCategories.map((category) => {
     const amount = state.budget.reduce(
