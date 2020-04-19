@@ -44,12 +44,12 @@ export default makeStyles((theme) => ({
   },
   dialog: {
     [theme.breakpoints.down('sm')]: {
-      width: 350,
+      width: 400,
       height: 440,
       margin: 'auto',
     },
     [theme.breakpoints.between('sm', 'md')]: {
-      width: 400,
+      width: 450,
       height: 540,
       margin: 'auto',
     },
@@ -77,7 +77,7 @@ export default makeStyles((theme) => ({
     marginTop: 20,
     marginBottom: 15,
     [theme.breakpoints.down('sm')]: {
-      width: '55%',
+      width: '65%',
       height: '80%',
       margin: 'auto',
       marginTop: 5,

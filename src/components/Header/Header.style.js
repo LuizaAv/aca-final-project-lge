@@ -5,10 +5,15 @@ export default makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: '77%',
+    width: '100%',
     [theme.breakpoints.down('sm')]: {
       width: '100%',
       flexDirection: 'column',
+      height: '160px',
+    },
+    [theme.breakpoints.between('sm', 'md')]: {
+      width: '100%',
+      flexDirection: 'row',
       height: '160px',
     },
   },

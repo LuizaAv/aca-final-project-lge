@@ -34,12 +34,25 @@ export default makeStyles((theme) => ({
     flexWrap: 'wrap',
     justifyContent: 'center',
     minHeight: '55vh',
+    width: 1150,
+    [theme.breakpoints.between('sm', 'md')]: {
+      width: 750,
+    },
+    [theme.breakpoints.down('sm', 'md')]: {
+      width: 500,
+    },
   },
   card: {
     width: 330,
     height: 140,
     margin: '0 20px',
     boxShadow: theme.shadows[5],
+    [theme.breakpoints.between('sm', 'md')]: {
+      margin: 20
+    },
+    [theme.breakpoints.down('sm', 'md')]: {
+      margin: 10,
+    },
   },
   cardItem: {
     display: 'flex',

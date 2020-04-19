@@ -67,11 +67,6 @@
   ],
   "categories": [
     {
-      "id": "f552307a-df3b-4d92-be7d-30e35625bbc0",
-      "type": "expense",
-      "name": "Automobile"
-    },
-    {
       "id": "148884b0-a60e-4ec6-ba14-83b3944bdfb0",
       "type": "expense",
       "name": "Entertainment"

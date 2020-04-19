@@ -28,18 +28,17 @@ export default makeStyles((theme) => ({
     },
   },
   tableContainer: {
-    width: '70%',
+    width: '96%',
     alignSelf: 'center',
     boxShadow: theme.shadows[5],
     paddingBottom: 50,
-    marginLeft: '-20%',
     [theme.breakpoints.down('sm')]: {
-      width: '90%',
+      width: '95%',
       margin: 'auto',
     },
     [theme.breakpoints.between('sm', 'md')]: {
-      width: '85%',
-      marginLeft: '13%',
+      width: '90',
+      marginLeft: '3%',
     },
   },
   title: {
@@ -49,7 +48,7 @@ export default makeStyles((theme) => ({
     marginLeft: 50,
     marginTop: 30,
     [theme.breakpoints.down('sm')]: {
-      fontSize: 24,
+      fontSize: 22,
     },
     [theme.breakpoints.between('sm', 'md')]: {
       fontSize: 28,
