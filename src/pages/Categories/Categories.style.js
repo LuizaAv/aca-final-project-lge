@@ -35,6 +35,12 @@ export default makeStyles((theme) => ({
     fontWeight: 900,
     marginLeft: 50,
     marginTop: 30,
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 22,
+    },
+    [theme.breakpoints.between('sm', 'md')]: {
+      fontSize: 26,
+    },
   },
   table: {
     width: '94%',

@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-export default makeStyles({
+export default makeStyles((theme) =>({
   dialog: {
     borderRadius: 30,
   },
@@ -40,4 +40,4 @@ export default makeStyles({
     width: 100,
     fontWeight: 600,
   },
-});
+}));

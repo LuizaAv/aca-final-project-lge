@@ -9,7 +9,7 @@ export default makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    margin: 40,
+    margin: 60,
     marginLeft: 85,
     width: 965,
     [theme.breakpoints.down('md')]: {

@@ -28,6 +28,12 @@ export default makeStyles((theme) => ({
     textAlign: 'center',
     fontFamily: 'Segoe UI',
     marginBottom: 15,
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 22,
+    },
+    [theme.breakpoints.between('sm', 'md')]: {
+      fontSize: 28,
+    },
   },
   itemSize: {
     width: '80%',

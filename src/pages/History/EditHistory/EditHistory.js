@@ -127,6 +127,7 @@ export default function EditHistory({
         maxWidth="xs"
         onClose={handleClose}
         open={open}
+        className={classes.dialogWindow}
       >
         <DialogTitle className={classes.title}>Edit Budget</DialogTitle>
 
