@@ -3,6 +3,13 @@ import { makeStyles } from '@material-ui/core/styles';
 export default makeStyles((theme) =>({
   dialog: {
     borderRadius: 30,
+    opacity: '0.9',
+    [theme.breakpoints.down('sm')]: {
+      width: '80%'
+    },
+    [theme.breakpoints.between('sm', 'md')]: {
+      width: '40%'
+    },
   },
   title: {
     width: '100%',
