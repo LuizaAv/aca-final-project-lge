@@ -10,51 +10,100 @@ export default function Header() {
   const classes = useStyles();
   const { state } = useStoreContext();
 
-  const income = state.budget.reduce((acc, budget) => (
-    budget.type === 'income'
-      ? acc + +budget.amount
+  const income = state.budget.filter((item) => item.type === 'income');
+  const expense = state.budget.filter((item) => item.type === 'expense');
+
+  const currentAmountIncome = income.reduce((acc, item) => (
+    item.date.getTime() <= new Date().getTime()
+      ? acc + +item.amount
       : acc
   ), 0);
 
-  const expense = state.budget.reduce((acc, budget) => (
-    budget.type === 'expense'
-      ? acc + +budget.amount
+  const futureAmountIncome = income.reduce((acc, item) => (
+    item.date.getTime() > new Date().getTime()
+      ? acc + +item.amount
       : acc
   ), 0);
 
-  const balance = income - expense;
-  const addComma = (count) => count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  const totalAmountIncome = currentAmountIncome + futureAmountIncome;
 
-  const count = [
+  const currentAmountExpense = expense.reduce((acc, item) => (
+    item.date.getTime() <= new Date().getTime()
+      ? acc + +item.amount
+      : acc
+  ), 0);
+
+  const futureAmountExpense = expense.reduce((acc, item) => (
+    item.date.getTime() > new Date().getTime()
+      ? acc + +item.amount
+      : acc
+  ), 0);
+
+  const totalAmountExpense = currentAmountExpense + futureAmountExpense;
+
+  const currentBalance = currentAmountIncome - currentAmountExpense;
+  const futureBalance = futureAmountIncome - futureAmountExpense;
+  const totalBalance = currentBalance + futureBalance;
+
+  const addComma = (amount) => amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+  const amount = [
     {
-      name: 'Current balance',
-      amount: addComma(balance),
-      className: 'balance',
+      name: 'balance',
+      currentAmount: addComma(currentBalance),
+      futureAmount: addComma(futureBalance),
+      totalAmount: addComma(totalBalance),
     },
     {
-      name: 'Overall income',
-      amount: income !== 0
-        ? `+${addComma(income)}`
-        : 0,
-      className: 'income',
+      name: 'income',
+      currentAmount: currentAmountIncome === 0
+        ? currentAmountIncome
+        : `+${addComma(currentAmountIncome)}`,
+      futureAmount: futureAmountIncome === 0
+        ? futureAmountIncome
+        : `+${addComma(futureAmountIncome)}`,
+      totalAmount: totalAmountIncome === 0
+        ? totalAmountIncome
+        : `+${addComma(totalAmountIncome)}`,
     },
     {
-      name: 'Overall expense',
-      amount: expense !== 0
-        ? `-${addComma(expense)}`
-        : 0,
-      className: 'expense',
+      name: 'expense',
+      currentAmount: currentAmountExpense === 0
+        ? currentAmountExpense
+        : `-${addComma(currentAmountExpense)}`,
+      futureAmount: futureAmountExpense === 0
+        ? futureAmountExpense
+        : `-${addComma(futureAmountExpense)}`,
+      totalAmount: totalAmountExpense === 0
+        ? totalAmountExpense
+        : `-${addComma(totalAmountExpense)}`,
     },
   ];
 
   return (
     <div className={classes.root}>
-      <div className={classes.total}>
-        {count.map((item) => (
-          <div key={item.name} className={classes.count}>
-            <Typography className={clsx(classes.amount, classes[item.className])}>
-              {item.amount}
+      <div className={classes.amounts}>
+        {amount.map((item) => (
+          <div key={item.name} className={classes.item}>
+            <Typography className={clsx(classes.current, classes[item.name])}>
+              {item.currentAmount}
             </Typography>
+            <div className={classes.span}>
+              <Typography className={classes.text}>
+                Futute:
+              </Typography>
+              <Typography className={clsx(classes[item.name], classes.text)}>
+                {item.futureAmount}
+              </Typography>
+            </div>
+            <div className={classes.span}>
+              <Typography className={classes.text}>
+                Total:
+              </Typography>
+              <Typography className={clsx(classes[item.name], classes.text)}>
+                {item.totalAmount}
+              </Typography>
+            </div>
             <Typography className={classes.name}>
               {item.name}
             </Typography>

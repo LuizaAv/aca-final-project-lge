@@ -9,13 +9,13 @@ export default makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       width: '100%',
       flexDirection: 'column',
-      height: '130px',
+      height: '160px',
     },
   },
-  total: {
+  amounts: {
     display: 'flex',
   },
-  count: {
+  item: {
     borderLeft: '1px solid #707070',
     paddingLeft: 40,
     marginLeft: 50,
@@ -28,39 +28,49 @@ export default makeStyles((theme) => ({
       marginLeft: 20,
     },
   },
-  amount: {
+  current: {
     fontFamily: 'Segoe UI',
-    fontWeight: 900,
     fontSize: 30,
+    textAlign: 'center',
     letterSpacing: 2,
     transform: 'scaleY(0.9)',
     [theme.breakpoints.down('md')]: {
       fontSize: 25,
     },
-    // [theme.breakpoints.down('sm')]: {
-    //   fontSize: 20,
-    // },
+  },
+  text: {
+    fontFamily: 'Segoe UI',
+    fontWeight: 300,
+    fontSize: 15,
+    [theme.breakpoints.down('md')]: {
+      fontSize: 12,
+    },
+  },
+  span: {
+    display: 'flex',
+    justifyContent: 'space-between',
   },
   balance: {
     color: '#363D99',
+    fontWeight: 900,
   },
   income: {
     color: '#2EE152',
+    fontWeight: 900,
   },
   expense: {
     color: '#FF5D5D',
+    fontWeight: 900,
   },
   name: {
-    color: '#545454',
+    color: theme.palette.grey[600],
     fontFamily: 'Segoe UI',
-    fontWeight: 900,
-    fontSize: 16,
+    fontWeight: 600,
+    fontSize: 23,
+    textTransform: 'capitalize',
     textAlign: 'center',
     [theme.breakpoints.down('md')]: {
-      fontSize: 13,
+      fontSize: 20,
     },
-    // [theme.breakpoints.down('sm')]: {
-    //   fontSize: 10,
-    // },
   },
 }));
