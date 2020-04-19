@@ -25,9 +25,9 @@ export default makeStyles((theme) => ({
     [theme.breakpoints.down('md')]: {
       fontSize: 14,
     },
-    // [theme.breakpoints.down('sm')]: {
-    //   fontSize: 10,
-    // },
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 10,
+    },
   },
   addExpense: {
     color: '#000',
@@ -38,14 +38,19 @@ export default makeStyles((theme) => ({
     [theme.breakpoints.down('md')]: {
       fontSize: 14,
     },
-    // [theme.breakpoints.down('sm')]: {
-    //   fontSize: 10,
-    // },
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 10,
+    },
   },
   dialog: {
     [theme.breakpoints.down('sm')]: {
       width: 350,
       height: 440,
+      margin: 'auto',
+    },
+    [theme.breakpoints.between('sm', 'md')]: {
+      width: 400,
+      height: 540,
       margin: 'auto',
     },
   },
@@ -72,7 +77,7 @@ export default makeStyles((theme) => ({
     marginTop: 20,
     marginBottom: 15,
     [theme.breakpoints.down('sm')]: {
-      width: '65%',
+      width: '55%',
       height: '80%',
       margin: 'auto',
       marginTop: 5,

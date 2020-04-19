@@ -134,7 +134,7 @@ export default function AddBudget() {
           Add expense
         </Button>
       </div>
-      <div>
+      <div >
         <Dialog
           fullWidth
           maxWidth="xs"
@@ -179,7 +179,7 @@ export default function AddBudget() {
             onChange={handleAmountChange}
           />
 
-          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <MuiPickersUtilsProvider utils={DateFnsUtils} >
             <KeyboardDatePicker
               className={classes.date}
               format="dd/MM/yyyy"
