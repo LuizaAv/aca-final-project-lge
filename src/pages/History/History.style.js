@@ -11,9 +11,9 @@ export default makeStyles((theme) => ({
     justifyContent: 'space-between',
     margin: 40,
     marginLeft: 85,
-    width: 765,
+    width: 965,
     [theme.breakpoints.down('md')]: {
-      width: 718,
+      width: 820,
     },
     [theme.breakpoints.down('sm')]: {
       margin: 'auto',
@@ -21,10 +21,11 @@ export default makeStyles((theme) => ({
       marginBottom: 20,
       width: '100%',
       justifyContent: 'space-evenly',
+      flexWrap: 'wrap',
+      height: 100,
     },
     [theme.breakpoints.down('xs')]: {
-      flexWrap: 'wrap',
-      height: 110,
+      height: 150,
     },
   },
   flexContainer: {
@@ -32,12 +33,12 @@ export default makeStyles((theme) => ({
     alignSelf: 'center',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    minHeight: '60vh',
+    minHeight: '55vh',
   },
   card: {
     width: 330,
     height: 140,
-    margin: '0 20px 40px 20px',
+    margin: '0 20px',
     boxShadow: theme.shadows[5],
   },
   cardItem: {

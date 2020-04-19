@@ -13,19 +13,23 @@ import FilterDate from '../../components/FilterDate/FilterDate';
 import EditHistory from './EditHistory/EditHistory';
 import DeleteHistory from './DeleteHistory/DeleteHistory';
 import Search from '../../components/Search/Search';
+import Show from '../../components/Show/Show';
 import Snackbars from '../../components/Snackbars/Snackbars';
 import useStyles from './History.style';
 
 function filterByDate(budget, date) {
-  const dayCheck = () => budget.filter(
-    (item) => item.date.getDate() === new Date().getDate(),
-  );
-  const monthCheck = () => budget.filter(
-    (item) => item.date.getMonth() === new Date().getMonth(),
-  );
-  const yearCheck = () => budget.filter(
-    (item) => item.date.getFullYear() === new Date().getFullYear(),
-  );
+  const dayCheck = () => budget.filter((item) => (
+    item.date.getDate() === new Date().getDate()
+    && item.date.getMonth() === new Date().getMonth()
+    && item.date.getFullYear() === new Date().getFullYear()
+  ));
+  const monthCheck = () => budget.filter((item) => (
+    item.date.getMonth() === new Date().getMonth()
+    && item.date.getFullYear() === new Date().getFullYear()
+  ));
+  const yearCheck = () => budget.filter((item) => (
+    item.date.getFullYear() === new Date().getFullYear()
+  ));
 
   if (date === 'daily') return dayCheck();
   if (date === 'monthly') return monthCheck();
@@ -41,16 +45,22 @@ export default function History() {
   const [filterDate, setFilterDate] = useState('all');
   const [searchValue, setSearchValue] = useState('');
   const [snackbarType, setSnackbarType] = useState('');
+  const [isCurrent, setIsCurrent] = useState(true);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [page, setPage] = useState(1);
+
+  const currentBudget = state.budget.filter((item) => item.date.getTime() <= new Date().getTime());
+  const futureBudget = state.budget.filter((item) => item.date.getTime() > new Date().getTime());
 
   useEffect(() => {
     setPage(1);
   }, [filterType, isAscending, filterDate, searchValue]);
 
+  const showItems = isCurrent ? currentBudget : futureBudget;
+
   const budgetFilteredByType = filterType === 'all'
-    ? [...state.budget]
-    : state.budget.filter((budget) => budget.type === filterType);
+    ? [...showItems]
+    : showItems.filter((budget) => budget.type === filterType);
 
   const budgetFilteredByDate = filterByDate(budgetFilteredByType, filterDate);
 
@@ -75,6 +85,7 @@ export default function History() {
         <Sort isAscending={isAscending} setIsAscending={setIsAscending} />
         <FilterType filterType={filterType} setFilterType={setFilterType} />
         <FilterDate filterDate={filterDate} setFilterDate={setFilterDate} />
+        <Show isCurrent={isCurrent} setIsCurrent={setIsCurrent} />
         <Search searchValue={searchValue} setSearchValue={setSearchValue} />
       </div>
 
