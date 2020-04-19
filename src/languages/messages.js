@@ -1,9 +1,51 @@
 export const messages= {
     en:{
-       name:''
+       Summary:'Summary',
+       Histroy:'Histroy',
+       Categories:'Categories',
+       Graphs:'Graphs',
+       AddIncome:'Add Income',
+       AddExpense:'Add Expense',
+       Sortbyamount:'Sort By Amount',
+       AscendingOrder:'Ascending Order',
+       DescendingOrder:'Descending Order',
+       Typefilter:'Type Filter',
+       All:'All',
+       Expense:'Expense',
+       Income:'Income',
+       Category:'Category',
+       Type:'Type',
+       Amount:'Amount',
+       Datefilter:"Date Filter",
+       Totalexpenseandincome:'Total Expense and Income',
+       'Whole Period':'Whole Period',
+       Daily:'Daily',
+       Monthly:'Monthly',
+       Yearly:'Yearly'
         
     },
     hy:{
-
+      Summary:"Ամփոփում",
+      History:"Պատմություն",
+      Categories:'Կատեգորիաներ',
+      Graphs:'Գրաֆիկներ',
+      AddIncome:"Ավելացնել ծախս",
+      AddExpense:'Ավելացնել եկամուտ',
+      Sortbyamount:'Տեսակավորել ըստ գումարի',
+      AscendingOrder:'Աճման կարգով',
+      DescendingOrder:'Նվազման կարգով',
+      Typefilter:'Ծախսի տեսակ ',
+      All:'Ամբողջ',
+      Expense:'Ծախս',
+      Income:'Եկամուտ',
+      Category:'Կատեգորիա',
+      Type:'Տեսակ',
+      Amount:'Գումար',
+      Datefilter:' Ըստ ամսաթվի',
+      Totalexpenseandincome:'Ընդհանուր ծախս և եկամուտ',
+      'Whole Period':'Ամբողջ',
+      Daily:'Օրեկան',
+      Monthly:'Ամսեկան',
+      Yearly:'Տարեկան',
     }
 }
