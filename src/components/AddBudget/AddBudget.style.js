@@ -42,21 +42,42 @@ export default makeStyles((theme) => ({
     //   fontSize: 10,
     // },
   },
+  dialog: {
+    [theme.breakpoints.down('sm')]: {
+      width: 350,
+      height: 440,
+      margin: 'auto',
+    },
+  },
   titleIncome: {
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.common.white,
     textAlign: 'center',
+    [theme.breakpoints.down('sm')]: {
+      height: 50,
+    },
   },
   titleExpence: {
     backgroundColor: theme.palette.secondary.light,
     color: theme.palette.common.white,
     textAlign: 'center',
+    [theme.breakpoints.down('sm')]: {
+      height: 50,
+    },
   },
   item: {
     width: '80%',
+    height: '100%',
     margin: 'auto',
     marginTop: 20,
     marginBottom: 15,
+    [theme.breakpoints.down('sm')]: {
+      width: '65%',
+      height: '80%',
+      margin: 'auto',
+      marginTop: 5,
+      marginBottom: 10,
+    },
   },
   date: {
     width: '50%',

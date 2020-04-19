@@ -134,85 +134,87 @@ export default function AddBudget() {
           Add expense
         </Button>
       </div>
-
-      <Dialog
-        fullWidth
-        maxWidth="xs"
-        open={dialogOpen}
-        onClose={handleDialogClose}
-      >
-        <DialogTitle
-          className={
+      <div>
+        <Dialog
+          fullWidth
+          maxWidth="xs"
+          open={dialogOpen}
+          onClose={handleDialogClose}
+          className={classes.dialog}
+        >
+          <DialogTitle
+            className={
             type === 'expense'
               ? classes.titleExpence
               : classes.titleIncome
           }
-        >
-          {`Add ${type}`}
-        </DialogTitle>
+          >
+            {`Add ${type}`}
+          </DialogTitle>
 
-        <FormControl className={classes.item}>
-          <InputLabel>Category</InputLabel>
-          <Select value={category} onChange={handleCategoryChange}>
-            {state.categories
-              .filter((stateCategory) => stateCategory.type === type)
-              .map((stateCategory) => (
-                <MenuItem value={stateCategory.name} key={stateCategory.id}>
-                  {stateCategory.name}
-                </MenuItem>
-              ))}
-          </Select>
-        </FormControl>
+          <FormControl className={classes.item}>
+            <InputLabel>Category</InputLabel>
+            <Select value={category} onChange={handleCategoryChange}>
+              {state.categories
+                .filter((stateCategory) => stateCategory.type === type)
+                .map((stateCategory) => (
+                  <MenuItem value={stateCategory.name} key={stateCategory.id}>
+                    {stateCategory.name}
+                  </MenuItem>
+                ))}
+            </Select>
+          </FormControl>
 
-        <TextField
-          className={classes.item}
-          label="Name"
-          value={name}
-          onChange={handleNameChange}
-        />
-
-        <TextField
-          className={classes.item}
-          label="Amount"
-          value={amount}
-          onChange={handleAmountChange}
-        />
-
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <KeyboardDatePicker
-            className={classes.date}
-            format="dd/MM/yyyy"
-            margin="normal"
-            label="Date"
-            onError={handleDatePickerError}
-            value={date}
-            onChange={handleDateChange}
-            KeyboardButtonProps={{
-              'aria-label': 'change date',
-            }}
+          <TextField
+            className={classes.item}
+            label="Name"
+            value={name}
+            onChange={handleNameChange}
           />
-        </MuiPickersUtilsProvider>
 
-        <DialogActions className={classes.dialogAction}>
-          <Button
-            className={classes.actionButton}
-            onClick={handleCancel}
-            color="secondary"
-          >
-            Cancel
-          </Button>
-          <Button
-            className={classes.actionButton}
-            disabled={doneDisabled}
-            onClick={handleAddingBudget}
-            color="primary"
-          >
-            Done
-          </Button>
-        </DialogActions>
-      </Dialog>
+          <TextField
+            className={classes.item}
+            label="Amount"
+            value={amount}
+            onChange={handleAmountChange}
+          />
 
-      <Snackbars type={snackbarType} open={snackbarOpen} setOpen={setSnackbarOpen} />
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <KeyboardDatePicker
+              className={classes.date}
+              format="dd/MM/yyyy"
+              margin="normal"
+              label="Date"
+              onError={handleDatePickerError}
+              value={date}
+              onChange={handleDateChange}
+              KeyboardButtonProps={{
+                'aria-label': 'change date',
+              }}
+            />
+          </MuiPickersUtilsProvider>
+
+          <DialogActions className={classes.dialogAction}>
+            <Button
+              className={classes.actionButton}
+              onClick={handleCancel}
+              color="secondary"
+            >
+              Cancel
+            </Button>
+            <Button
+              className={classes.actionButton}
+              disabled={doneDisabled}
+              onClick={handleAddingBudget}
+              color="primary"
+            >
+              Done
+            </Button>
+          </DialogActions>
+        </Dialog>
+
+        <Snackbars type={snackbarType} open={snackbarOpen} setOpen={setSnackbarOpen} />
+      </div>
     </div>
   );
 }
