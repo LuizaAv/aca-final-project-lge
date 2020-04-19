@@ -5,6 +5,7 @@ import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import useStyles from './Sort.style';
+import {FormattedMessage} from 'react-intl';
 
 export default function Sort({ isAscending, setIsAscending }) {
   const classes = useStyles();
@@ -15,7 +16,7 @@ export default function Sort({ isAscending, setIsAscending }) {
   return (
     <FormControl variant="outlined">
       <InputLabel className={classes.label}>
-        Sort by amount
+      <FormattedMessage id="Sortbyamount"  />
       </InputLabel>
       <Select
         className={classes.select}
@@ -29,13 +30,13 @@ export default function Sort({ isAscending, setIsAscending }) {
           className={classes.item}
           value="ascending"
         >
-          Ascending Order
+        <FormattedMessage id="AscendingOrder"  />
         </MenuItem>
         <MenuItem
           className={classes.item}
           value="descending"
         >
-          Descending Order
+          <FormattedMessage id="DescendingOrder"  />
         </MenuItem>
       </Select>
     </FormControl>

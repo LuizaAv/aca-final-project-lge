@@ -9,6 +9,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { ReactComponent as ArrowDownwardIcon } from '../../assets/icons/Arrow-down.svg';
 import { ReactComponent as ArrowUpwardIcon } from '../../assets/icons/Arrow-up.svg';
+import {FormattedMessage} from 'react-intl';
 
 import { useStoreContext } from '../../store/storeContext';
 
@@ -64,14 +65,20 @@ export default function Categories() {
 
       <TableContainer component={Paper} className={classes.tableContainer}>
         <Typography className={classes.title}>
-          Summary
+        <FormattedMessage id="Summary"  />
         </Typography>
         <Table className={classes.table}>
           <TableHead>
             <TableRow>
-              <TableCell className={classes.head}>Category</TableCell>
-              <TableCell className={classes.head} align="center">Type</TableCell>
-              <TableCell className={classes.head} align="right">Amount</TableCell>
+              <TableCell className={classes.head}>
+              <FormattedMessage id="Category"  />
+              </TableCell>
+              <TableCell className={classes.head} align="center">
+              <FormattedMessage id="Type"  />
+                </TableCell>
+              <TableCell className={classes.head} align="right">
+              <FormattedMessage id="Amount"  />
+                </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

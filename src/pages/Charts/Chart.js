@@ -1,6 +1,7 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 import Paper from '@material-ui/core/Paper';
+import {FormattedMessage} from 'react-intl';
 
 import { useStoreContext } from '../../store/storeContext';
 import useStyles from './Charts.style';
@@ -36,7 +37,9 @@ export default function MainChart() {
   return (
     <div className={classes.container}>
       <header className={classes.header}>
-        <h1>Total expenses and income</h1>
+        <h1>
+        <FormattedMessage id="Totalexpenseandincome"  />
+          </h1>
       </header>
       <Paper className={classes.paper} elevation={5}>
         <Line data={data} />
