@@ -5,6 +5,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import useStyles from './FilterType.style';
+import {FormattedMessage} from 'react-intl';
 
 export default function FilterType({ filterType, setFilterType }) {
   const classes = useStyles();
@@ -22,7 +23,7 @@ export default function FilterType({ filterType, setFilterType }) {
   return (
     <FormControl variant="outlined">
       <InputLabel className={classes.label}>
-        Type filter
+      <FormattedMessage id="Typefilter"  />
       </InputLabel>
       <Select
         className={classes.select}
@@ -31,15 +32,21 @@ export default function FilterType({ filterType, setFilterType }) {
         value={filterType}
         onChange={handleChange}
         label="Type filter"
+
+        
       >
         {select.map((item) => (
+          
           <MenuItem
-            className={classes.item}
-            key={item.name}
-            value={item.value}
+          
+             className={classes.item}
+             key={item.name}
+             value={item.value}
+
           >
-            {item.name}
+          <FormattedMessage id={item.name} values={item.name} />
           </MenuItem>
+         
         ))}
       </Select>
     </FormControl>

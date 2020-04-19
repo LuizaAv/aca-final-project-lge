@@ -11,6 +11,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
+import {FormattedMessage} from 'react-intl';
 
 import useStyles from './AddBudget.style';
 import { addBudget } from '../../store/actions';
@@ -123,7 +124,8 @@ export default function AddBudget() {
           color="primary"
           variant="outlined"
         >
-          Add income
+          
+          <FormattedMessage id="AddExpense" />
         </Button>
         <Button
           className={classes.addExpense}
@@ -131,7 +133,7 @@ export default function AddBudget() {
           color="secondary"
           variant="outlined"
         >
-          Add expense
+         <FormattedMessage id="AddIncome" />
         </Button>
       </div>
 
@@ -152,7 +154,9 @@ export default function AddBudget() {
         </DialogTitle>
 
         <FormControl className={classes.item}>
-          <InputLabel>Category</InputLabel>
+          <InputLabel>
+          <FormattedMessage id="Categories"  />
+          </InputLabel>
           <Select value={category} onChange={handleCategoryChange}>
             {state.categories
               .filter((stateCategory) => stateCategory.type === type)

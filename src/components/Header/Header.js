@@ -30,6 +30,7 @@ export default function Header() {
       name: 'Current balance',
       amount: addComma(balance),
       className: 'balance',
+     
     },
     {
       name: 'Overall income',
