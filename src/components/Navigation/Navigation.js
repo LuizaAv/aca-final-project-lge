@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import {FormattedMessage} from 'react-intl';
+
 
 import Drawer from '@material-ui/core/Drawer';
 import Typography from '@material-ui/core/Typography';
@@ -14,12 +16,15 @@ import { ReactComponent as HistoryIcon } from '../../assets/icons/History.svg';
 import { ReactComponent as CategoriesIcon } from '../../assets/icons/Categories.svg';
 import { ReactComponent as RectangleIcon } from '../../assets/icons/Rectangle.svg';
 import useStyles from './Navigation.style';
+import { useStoreContext } from '../../store/storeContext';
 
 export default function Navigation() {
   const classes = useStyles();
   const matches = useMediaQuery('(min-width:1030px)');
   const [path, setPath] = useState(window.location.pathname);
   const [open, setOpen] = useState(true);
+
+  const {language,setLanguage} = useStoreContext();
 
   useEffect(() => {
     setOpen(matches);
@@ -30,6 +35,9 @@ export default function Navigation() {
       setOpen(!open);
     }
   };
+  
+
+
 
   return (
     <div>
@@ -56,6 +64,12 @@ export default function Navigation() {
         >
           Finance
         </Typography>
+        
+        <select onChange={(e)=>setLanguage(e.target.value)} defaultValue={language}>
+        {["en", "hy"].map(l => (
+          <option key={l}>{l}</option>
+        ))}
+      </select>
 
         <nav className={classes.nav}>
           <Link
@@ -73,7 +87,7 @@ export default function Navigation() {
                 }
             />
             <SummaryIcon className={classes.summaryIcon} />
-            Summary
+            <FormattedMessage id="Summary"  />
           </Link>
           <Link
             to="/History"
@@ -82,13 +96,14 @@ export default function Navigation() {
               ? classes.activeLink
               : classes.link}
           >
+            
             <RectangleIcon
               className={path === '/History'
                 ? classes.activeRectangleIcon
                 : classes.rectangleIcon}
             />
             <HistoryIcon className={classes.historyIcon} />
-            History
+            <FormattedMessage id="History"  />
           </Link>
           <Link
             to="/Categories"
@@ -103,7 +118,7 @@ export default function Navigation() {
                 : classes.rectangleIcon}
             />
             <CategoriesIcon className={classes.categoriesIcon} />
-            Categories
+            <FormattedMessage id="Categories"  />
           </Link>
           <Link
             to="/Charts"
@@ -118,7 +133,7 @@ export default function Navigation() {
                 : classes.rectangleIcon}
             />
             <GraphsIcon className={classes.graphsIcon} />
-            Graphs
+            <FormattedMessage id="Graphs"  />
           </Link>
         </nav>
       </Drawer>
