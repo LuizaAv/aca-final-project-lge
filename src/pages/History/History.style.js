@@ -7,6 +7,9 @@ export default makeStyles((theme) => ({
     [theme.breakpoints.down('md')]: {
       width: 415,
     },
+    [theme.breakpoints.between('md', 'lg')]: {
+      width: '100%',
+    },
   },
   tools: {
     display: 'flex',
@@ -29,6 +32,17 @@ export default makeStyles((theme) => ({
     },
     [theme.breakpoints.down('xs')]: {
       height: 150,
+    },
+  },
+  text: {
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 25,
+    },
+    [theme.breakpoints.between('sm', 'md')]: {
+      fontSize: 30,
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: 40,
     },
   },
   flexContainer: {
