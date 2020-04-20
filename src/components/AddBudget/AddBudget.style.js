@@ -42,33 +42,16 @@ export default makeStyles((theme) => ({
       fontSize: 10,
     },
   },
-  dialog: {
-    [theme.breakpoints.down('sm')]: {
-      width: 400,
-      height: 440,
-      margin: 'auto',
-    },
-    [theme.breakpoints.between('sm', 'md')]: {
-      width: 450,
-      height: 540,
-      margin: 'auto',
-    },
-  },
+  
   titleIncome: {
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.common.white,
     textAlign: 'center',
-    [theme.breakpoints.down('sm')]: {
-      height: 50,
-    },
   },
   titleExpence: {
     backgroundColor: theme.palette.secondary.light,
     color: theme.palette.common.white,
     textAlign: 'center',
-    [theme.breakpoints.down('sm')]: {
-      height: 50,
-    },
   },
   item: {
     width: '80%',
@@ -76,13 +59,6 @@ export default makeStyles((theme) => ({
     margin: 'auto',
     marginTop: 20,
     marginBottom: 15,
-    [theme.breakpoints.down('sm')]: {
-      width: '65%',
-      height: '80%',
-      margin: 'auto',
-      marginTop: 5,
-      marginBottom: 10,
-    },
   },
   date: {
     width: '50%',
