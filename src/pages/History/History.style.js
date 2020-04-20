@@ -4,6 +4,9 @@ export default makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
+    [theme.breakpoints.down('md')]: {
+      width: 415,
+    },
   },
   tools: {
     display: 'flex',

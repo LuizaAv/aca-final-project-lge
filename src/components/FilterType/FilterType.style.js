@@ -6,9 +6,10 @@ export default makeStyles((theme) => ({
     height: 40,
     fontSize: 16,
     [theme.breakpoints.down('md')]: {
-      fontSize: 14,
-      // width: '22ch',
+      fontSize: 12,
+      width: '20ch',
       height: 35,
+      float: 'left',
     },
     // [theme.breakpoints.down('sm')]: {
     //   fontSize: 10,
