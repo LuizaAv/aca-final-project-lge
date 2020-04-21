@@ -85,6 +85,9 @@ export default function Header() {
       <div className={classes.amounts}>
         {amount.map((item) => (
           <div key={item.name} className={classes.item}>
+            <Typography className={classes.name}>
+              {item.name}
+            </Typography>
             <Typography className={clsx(classes.current, classes[item.name])}>
               {item.currentAmount}
             </Typography>
@@ -92,7 +95,7 @@ export default function Header() {
               <Typography className={classes.text}>
                 Future:
               </Typography>
-              <Typography className={clsx(classes[item.name], classes.text)}>
+              <Typography className={classes.text}>
                 {item.futureAmount}
               </Typography>
             </div>
@@ -100,13 +103,10 @@ export default function Header() {
               <Typography className={classes.text}>
                 Total:
               </Typography>
-              <Typography className={clsx(classes[item.name], classes.text)}>
+              <Typography className={classes.text}>
                 {item.totalAmount}
               </Typography>
             </div>
-            <Typography className={classes.name}>
-              {item.name}
-            </Typography>
           </div>
         ))}
       </div>

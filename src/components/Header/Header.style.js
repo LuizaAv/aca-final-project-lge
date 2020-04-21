@@ -2,6 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
   root: {
+    marginTop: -20,
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -19,13 +20,16 @@ export default makeStyles((theme) => ({
     borderLeft: '1px solid #707070',
     paddingLeft: 40,
     marginLeft: 50,
+    width: 150,
     [theme.breakpoints.down('md')]: {
       paddingLeft: 30,
       marginLeft: 40,
+      width: 130,
     },
     [theme.breakpoints.down('sm')]: {
       paddingLeft: 10,
       marginLeft: 20,
+      width: 100,
     },
   },
   current: {
