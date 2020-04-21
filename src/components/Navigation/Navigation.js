@@ -118,7 +118,7 @@ export default function Navigation() {
                 : classes.rectangleIcon}
             />
             <GraphsIcon className={classes.graphsIcon} />
-            Graphs
+            Charts
           </Link>
         </nav>
       </Drawer>
