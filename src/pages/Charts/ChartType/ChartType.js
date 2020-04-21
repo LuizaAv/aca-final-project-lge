@@ -44,6 +44,6 @@ export default function ChartType({ type, setType }) {
 }
 
 ChartType.propTypes = {
-  type: propTypes.bool.isRequired,
+  type: propTypes.string.isRequired,
   setType: propTypes.func.isRequired,
 };
