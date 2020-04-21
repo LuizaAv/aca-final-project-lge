@@ -4,12 +4,18 @@ export default makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
+    [theme.breakpoints.down('md')]: {
+      width: 415,
+    },
+    [theme.breakpoints.between('md', 'lg')]: {
+      width: '100%',
+    },
   },
   tools: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    margin: 40,
+    margin: 60,
     marginLeft: 85,
     width: 965,
     [theme.breakpoints.down('md')]: {
@@ -28,18 +34,42 @@ export default makeStyles((theme) => ({
       height: 150,
     },
   },
+  text: {
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 25,
+    },
+    [theme.breakpoints.between('sm', 'md')]: {
+      fontSize: 30,
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: 40,
+    },
+  },
   flexContainer: {
     display: 'flex',
     alignSelf: 'center',
     flexWrap: 'wrap',
     justifyContent: 'center',
     minHeight: '55vh',
+    width: 1150,
+    [theme.breakpoints.between('sm', 'md')]: {
+      width: 750,
+    },
+    [theme.breakpoints.down('sm', 'md')]: {
+      width: 500,
+    },
   },
   card: {
     width: 330,
     height: 140,
     margin: '0 20px',
     boxShadow: theme.shadows[5],
+    [theme.breakpoints.between('sm', 'md')]: {
+      margin: 20
+    },
+    [theme.breakpoints.down('sm', 'md')]: {
+      margin: 10,
+    },
   },
   cardItem: {
     display: 'flex',

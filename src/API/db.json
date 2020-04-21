@@ -55,22 +55,9 @@
       "category": "Salary",
       "amount": 850,
       "date": "2020-04-01T08:45:00.000Z"
-    },
-    {
-      "id": "bb8100d4-0ec4-40a0-8d91-7883f98bbbba",
-      "type": "expense",
-      "name": "Bread",
-      "category": "Food",
-      "amount": 30,
-      "date": "2020-04-16T08:49:31.504Z"
     }
   ],
   "categories": [
-    {
-      "id": "f552307a-df3b-4d92-be7d-30e35625bbc0",
-      "type": "expense",
-      "name": "Automobile"
-    },
     {
       "id": "148884b0-a60e-4ec6-ba14-83b3944bdfb0",
       "type": "expense",
