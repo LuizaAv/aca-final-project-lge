@@ -92,8 +92,12 @@ export default function History() {
       <div className={classes.flexContainer}>
         {budgetSearched.length === 0
           ? (
-            <Typography align="center"   color="textSecondary">
-              <div className={classes.text}>There isn't any post yet !!!</div>
+            <Typography
+              className={classes.empty}
+              align="center" 
+              color="textSecondary"
+            >
+              There isn't any post yet !!!
             </Typography>
           ) : (
             budgetSearched

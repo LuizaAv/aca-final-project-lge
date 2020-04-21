@@ -4,7 +4,6 @@ export default makeStyles({
   iconButton: {
     margin: -20,
     marginRight: 0,
-    // color: '#f44336',
   },
   icon: {
     '&:hover': {
@@ -16,6 +15,7 @@ export default makeStyles({
   },
   dialogTitle: {
     fontSize: 20,
+    textAlign: 'center',
   },
   dialogAction: {
     marginTop: -5,

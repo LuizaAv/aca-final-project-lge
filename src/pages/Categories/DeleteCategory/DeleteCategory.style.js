@@ -14,6 +14,7 @@ export default makeStyles(({
   },
   dialogTitle: {
     fontSize: 20,
+    textAlign: 'center',
   },
   dialogAction: {
     marginTop: -10,

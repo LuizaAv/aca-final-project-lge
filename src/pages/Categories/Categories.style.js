@@ -24,10 +24,13 @@ export default makeStyles((theme) => ({
     },
   },
   tableContainer: {
-    width: '92%',
+    width: '96%',
     alignSelf: 'center',
     boxShadow: theme.shadows[5],
     paddingBottom: 50,
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+    },
   },
   title: {
     color: theme.palette.tertiary.main,
@@ -35,11 +38,13 @@ export default makeStyles((theme) => ({
     fontWeight: 900,
     marginLeft: 50,
     marginTop: 30,
+    [theme.breakpoints.down('md')]: {
+      marginLeft: 40,
+      fontSize: 28,
+    },
     [theme.breakpoints.down('sm')]: {
       fontSize: 22,
-    },
-    [theme.breakpoints.between('sm', 'md')]: {
-      fontSize: 26,
+      marginLeft: 30,
     },
   },
   table: {
@@ -54,23 +59,31 @@ export default makeStyles((theme) => ({
     fontWeight: 900,
     fontSize: 17,
     width: '20%',
+    [theme.breakpoints.down('sm')]: {
+      width: 0,
+      fontSize: 15,
+    },
   },
-  content: {
-    fontSize: 17,
-    textTransform: 'capitalize',
+  tableRow: {
+    transition: 'transform .2s',
+    '&:hover': {
+      transform: 'scale(1.01)',
+      backgroundColor: '#e0ebeb',
+    },
   },
   name: {
     color: theme.palette.tertiary.main,
     fontSize: 17,
     textTransform: 'capitalize',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 15,
+    },
   },
-  tableRow: {
-    padding: 10,
-    margin: 5,
-    transition: 'transform .2s',
-    '&:hover': {
-      transform: 'scale(1.01)',
-      backgroundColor: '#e0ebeb',
+  content: {
+    fontSize: 17,
+    textTransform: 'capitalize',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 15,
     },
   },
 }));
