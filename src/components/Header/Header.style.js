@@ -20,16 +20,16 @@ export default makeStyles((theme) => ({
     borderLeft: '1px solid #707070',
     paddingLeft: 40,
     marginLeft: 50,
-    width: 150,
+    minWidth: 150,
     [theme.breakpoints.down('md')]: {
       paddingLeft: 30,
       marginLeft: 40,
-      width: 130,
+      minWidth: 130,
     },
     [theme.breakpoints.down('sm')]: {
       paddingLeft: 10,
       marginLeft: 20,
-      width: 100,
+      minWidth: 100,
     },
   },
   current: {
