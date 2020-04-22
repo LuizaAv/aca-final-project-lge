@@ -19,13 +19,13 @@ export default function Header() {
       : acc
   ), 0);
 
-  const futureAmountIncome = income.reduce((acc, item) => (
+  const upcomingAmountIncome = income.reduce((acc, item) => (
     item.date.getTime() > new Date().getTime()
       ? acc + +item.amount
       : acc
   ), 0);
 
-  const totalAmountIncome = currentAmountIncome + futureAmountIncome;
+  const totalAmountIncome = currentAmountIncome + upcomingAmountIncome;
 
   const currentAmountExpense = expense.reduce((acc, item) => (
     item.date.getTime() <= new Date().getTime()
@@ -33,17 +33,17 @@ export default function Header() {
       : acc
   ), 0);
 
-  const futureAmountExpense = expense.reduce((acc, item) => (
+  const upcomingAmountExpense = expense.reduce((acc, item) => (
     item.date.getTime() > new Date().getTime()
       ? acc + +item.amount
       : acc
   ), 0);
 
-  const totalAmountExpense = currentAmountExpense + futureAmountExpense;
+  const totalAmountExpense = currentAmountExpense + upcomingAmountExpense;
 
   const currentBalance = currentAmountIncome - currentAmountExpense;
-  const futureBalance = futureAmountIncome - futureAmountExpense;
-  const totalBalance = currentBalance + futureBalance;
+  const upcomingBalance = upcomingAmountIncome - upcomingAmountExpense;
+  const totalBalance = currentBalance + upcomingBalance;
 
   const addComma = (amount) => amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
@@ -51,7 +51,7 @@ export default function Header() {
     {
       name: 'balance',
       currentAmount: addComma(currentBalance),
-      futureAmount: addComma(futureBalance),
+      upcomingAmount: addComma(upcomingBalance),
       totalAmount: addComma(totalBalance),
     },
     {
@@ -59,9 +59,9 @@ export default function Header() {
       currentAmount: currentAmountIncome === 0
         ? currentAmountIncome
         : `+${addComma(currentAmountIncome)}`,
-      futureAmount: futureAmountIncome === 0
-        ? futureAmountIncome
-        : `+${addComma(futureAmountIncome)}`,
+      upcomingAmount: upcomingAmountIncome === 0
+        ? upcomingAmountIncome
+        : `+${addComma(upcomingAmountIncome)}`,
       totalAmount: totalAmountIncome === 0
         ? totalAmountIncome
         : `+${addComma(totalAmountIncome)}`,
@@ -71,9 +71,9 @@ export default function Header() {
       currentAmount: currentAmountExpense === 0
         ? currentAmountExpense
         : `-${addComma(currentAmountExpense)}`,
-      futureAmount: futureAmountExpense === 0
-        ? futureAmountExpense
-        : `-${addComma(futureAmountExpense)}`,
+      upcomingAmount: upcomingAmountExpense === 0
+        ? upcomingAmountExpense
+        : `-${addComma(upcomingAmountExpense)}`,
       totalAmount: totalAmountExpense === 0
         ? totalAmountExpense
         : `-${addComma(totalAmountExpense)}`,
@@ -93,10 +93,10 @@ export default function Header() {
             </Typography>
             <div className={classes.span}>
               <Typography className={classes.text}>
-                Future:
+                Upcoming:
               </Typography>
               <Typography className={classes.text}>
-                {item.futureAmount}
+                {item.upcomingAmount}
               </Typography>
             </div>
             <div className={classes.span}>
