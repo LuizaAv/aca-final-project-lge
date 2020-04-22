@@ -25,7 +25,7 @@ const cheсkType = (type) => {
   if (type === 'cancel') {
     return {
       severity: 'warning',
-      message: 'Аction was canceled',
+      message: 'The action is canceled',
     };
   }
   if (type === 'error') {
