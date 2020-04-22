@@ -4,9 +4,9 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
-import useStyles from './Show.style';
+import useStyles from './View.style';
 
-export default function Show({ isCurrent, setIsCurrent }) {
+export default function View({ isCurrent, setIsCurrent }) {
   const classes = useStyles();
 
   const handleChange = () => {
@@ -16,7 +16,7 @@ export default function Show({ isCurrent, setIsCurrent }) {
   return (
     <FormControl variant="outlined">
       <InputLabel className={classes.label}>
-        Show
+        View
       </InputLabel>
       <Select
         className={classes.select}
@@ -24,26 +24,26 @@ export default function Show({ isCurrent, setIsCurrent }) {
         variant="outlined"
         defaultValue="current"
         onChange={handleChange}
-        label="Show "
+        label="View"
       >
         <MenuItem
           className={classes.item}
           value="current"
         >
-          Current
+          Current state
         </MenuItem>
         <MenuItem
           className={classes.item}
-          value="future"
+          value="upcoming"
         >
-          Future
+          Upcoming state
         </MenuItem>
       </Select>
     </FormControl>
   );
 }
 
-Show.propTypes = {
+View.propTypes = {
   isCurrent: propTypes.bool.isRequired,
   setIsCurrent: propTypes.func.isRequired,
 };
