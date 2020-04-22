@@ -13,7 +13,7 @@ import FilterDate from '../../components/FilterDate/FilterDate';
 import EditHistory from './EditHistory/EditHistory';
 import DeleteHistory from './DeleteHistory/DeleteHistory';
 import Search from '../../components/Search/Search';
-import Show from '../../components/Show/Show';
+import View from '../../components/View/View';
 import Snackbars from '../../components/Snackbars/Snackbars';
 import useStyles from './History.style';
 
@@ -85,7 +85,7 @@ export default function History() {
         <Sort isAscending={isAscending} setIsAscending={setIsAscending} />
         <FilterType filterType={filterType} setFilterType={setFilterType} />
         <FilterDate filterDate={filterDate} setFilterDate={setFilterDate} />
-        <Show isCurrent={isCurrent} setIsCurrent={setIsCurrent} />
+        <View isCurrent={isCurrent} setIsCurrent={setIsCurrent} />
         <Search searchValue={searchValue} setSearchValue={setSearchValue} />
       </div>
 

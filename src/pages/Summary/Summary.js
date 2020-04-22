@@ -15,7 +15,7 @@ import { useStoreContext } from '../../store/storeContext';
 import Header from '../../components/Header/Header';
 import Sort from '../../components/Sort/Sort';
 import FilterType from '../../components/FilterType/FilterType';
-import Show from '../../components/Show/Show';
+import View from '../../components/View/View';
 import useStyles from './Summary.style';
 
 export default function Categories() {
@@ -67,7 +67,7 @@ export default function Categories() {
       <div className={classes.tools}>
         <Sort isAscending={isAscending} setIsAscending={setIsAscending} />
         <FilterType filterType={filterType} setFilterType={setFilterType} />
-        <Show isCurrent={isCurrent} setIsCurrent={setIsCurrent} />
+        <View isCurrent={isCurrent} setIsCurrent={setIsCurrent} />
       </div>
 
       <TableContainer component={Paper} className={classes.tableContainer}>

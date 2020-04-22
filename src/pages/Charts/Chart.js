@@ -3,7 +3,7 @@ import { Line, Doughnut } from 'react-chartjs-2';
 import Paper from '@material-ui/core/Paper';
 
 import { useStoreContext } from '../../store/storeContext';
-import Show from '../../components/Show/Show';
+import View from '../../components/View/View';
 import CartType from './ChartType/ChartType';
 import useStyles from './Charts.style';
 
@@ -82,7 +82,7 @@ export default function MainChart() {
       </header>
 
       <div className={classes.tools}>
-        <Show isCurrent={isCurrent} setIsCurrent={setIsCurrent} />
+        <View isCurrent={isCurrent} setIsCurrent={setIsCurrent} />
         <CartType type={type} setType={setType} />
       </div>
 
