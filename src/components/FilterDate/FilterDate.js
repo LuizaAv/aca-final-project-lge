@@ -24,7 +24,7 @@ export default function FilterDate({ filterDate, setFilterDate }) {
     <div>
       <FormControl variant="outlined">
         <InputLabel className={classes.label}>
-          Date filter
+          Period
         </InputLabel>
         <Select
           className={classes.select}
