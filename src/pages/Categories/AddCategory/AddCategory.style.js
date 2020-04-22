@@ -43,4 +43,10 @@ export default makeStyles((theme) => ({
     width: 100,
     fontWeight: 600,
   },
+  colorPicker: {
+    margin: 'auto',
+  },
+  buttonColor: {
+
+  },
 }));
