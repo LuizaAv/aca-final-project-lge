@@ -87,9 +87,9 @@ export default function EditHistory({
   };
 
   const handleEditBudget = () => {
-    const { id } = budget;
+    const { id, color } = budget;
     const editedBudget = {
-      id, type, name, category, amount: +amount, date,
+      id, type, name, category, amount: +amount, date, color,
     };
     handleClose();
     dbEditBudget(editedBudget)
@@ -129,7 +129,7 @@ export default function EditHistory({
         onClose={handleClose}
         open={open}
       >
-        <DialogTitle className={classes.title}>Edit Budget</DialogTitle>
+        <DialogTitle className={classes.title}>Edit item</DialogTitle>
 
         <FormControl className={classes.itemSize}>
           <InputLabel>Type</InputLabel>
@@ -209,6 +209,7 @@ EditHistory.propTypes = {
     type: propTypes.string.isRequired,
     name: propTypes.string.isRequired,
     category: propTypes.string.isRequired,
+    color: propTypes.string.isRequired,
     amount: propTypes.number.isRequired,
     date: propTypes.instanceOf(Date),
   }),
@@ -222,6 +223,7 @@ EditHistory.defaultProps = {
     type: propTypes.string.isRequired,
     name: propTypes.string.isRequired,
     category: propTypes.string.isRequired,
+    color: propTypes.string.isRequired,
     amount: propTypes.number.isRequired,
     date: propTypes.instanceOf(Date),
   },
