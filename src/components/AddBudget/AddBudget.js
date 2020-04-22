@@ -24,6 +24,7 @@ export default function AddBudget() {
   const [type, setType] = useState('');
   const [name, setName] = useState('');
   const [category, setCategory] = useState('');
+  const [color, setColor] = useState('');
   const [amount, setAmount] = useState('');
   const [date, setDate] = useState(new Date());
   const [datePickerError, setDatePickerError] = useState('');
@@ -52,11 +53,17 @@ export default function AddBudget() {
   };
 
   const handleClickExpense = () => {
+    if (type === 'income') {
+      setCategory('');
+    }
     setType('expense');
     setDialogOpen(true);
   };
 
   const handleClickIncome = () => {
+    if (type === 'expense') {
+      setCategory('');
+    }
     setType('income');
     setDialogOpen(true);
   };
@@ -66,6 +73,10 @@ export default function AddBudget() {
   };
 
   const handleCategoryChange = (e) => {
+    const selectedCategory = state.categories.find(
+      (item) => item.name === e.target.value,
+    );
+    setColor(selectedCategory.color);
     setCategory(e.target.value);
   };
 
@@ -90,6 +101,7 @@ export default function AddBudget() {
     setType('');
     setName('');
     setCategory('');
+    setColor('');
     setAmount('');
     setDate(new Date());
   };
@@ -97,7 +109,7 @@ export default function AddBudget() {
   const handleAddingBudget = () => {
     const id = uuidv4();
     const addedBudget = {
-      id, type, name, category, amount: +amount, date,
+      id, type, name, amount: +amount, date, category, color,
     };
     handleStateReset();
     dbAddBudget(addedBudget)
@@ -155,10 +167,10 @@ export default function AddBudget() {
           <InputLabel>Category</InputLabel>
           <Select value={category} onChange={handleCategoryChange}>
             {state.categories
-              .filter((stateCategory) => stateCategory.type === type)
-              .map((stateCategory) => (
-                <MenuItem value={stateCategory.name} key={stateCategory.id}>
-                  {stateCategory.name}
+              .filter((item) => item.type === type)
+              .map((item) => (
+                <MenuItem value={item.name} key={item.id}>
+                  {item.name}
                 </MenuItem>
               ))}
           </Select>

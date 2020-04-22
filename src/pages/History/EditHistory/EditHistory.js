@@ -57,6 +57,7 @@ export default function EditHistory({
   };
 
   const handleTypeChange = (e) => {
+    setCategory('');
     setType(e.target.value);
     setCategory('');
   };

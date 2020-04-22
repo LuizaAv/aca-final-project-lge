@@ -33,6 +33,7 @@ export default function MainChart() {
   const incomes = sortedBudgetByDate.map((el) => (el.type === 'income' ? el.amount : 0));
   const labelsDoughnut = uniqueCategories.map((item) => item.name);
   const amounts = uniqueCategories.map((item) => item.amount);
+  const colors = uniqueCategories.map((item) => item.color);
 
   if (!isCurrent) {
     labelsLine.unshift(new Date().toLocaleDateString());
@@ -65,12 +66,7 @@ export default function MainChart() {
     datasets: [
       {
         data: amounts,
-        backgroundColor: [
-          '#ff8a80', '#ff80ab', '#ea80fc', '#b388ff',
-          '#82b1ff', '#80d8ff', '#b9f6ca', '#ccff90',
-          '#f4ff81', '#ffd740', '#ff6e40', '#8d6e63',
-          '#90a4ae',
-        ],
+        backgroundColor: colors,
       },
     ],
     display: true,
