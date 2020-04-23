@@ -154,7 +154,7 @@ export default function EditHistory({
 
         <TextField
           className={classes.itemSize}
-          label="name"
+          label="Name"
           value={name}
           onChange={handleNameChange}
         />

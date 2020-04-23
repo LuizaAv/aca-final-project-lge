@@ -45,9 +45,9 @@ export default makeStyles((theme) => ({
   text: {
     fontFamily: 'Segoe UI',
     fontWeight: 300,
-    fontSize: 15,
+    fontSize: 13,
     [theme.breakpoints.down('md')]: {
-      fontSize: 12,
+      fontSize: 11,
     },
   },
   span: {

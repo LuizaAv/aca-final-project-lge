@@ -94,7 +94,7 @@ export default function History() {
           ? (
             <Typography
               className={classes.empty}
-              align="center" 
+              align="center"
               color="textSecondary"
             >
               There isn't any post yet !!!
