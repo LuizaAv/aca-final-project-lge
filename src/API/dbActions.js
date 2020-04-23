@@ -64,3 +64,10 @@ export const dbDeleteBudget = (payload) => (
     method: 'DELETE',
   })
 );
+
+export const rateExchange = () => (
+  fetch('http://www.floatrates.com/daily/usd.json')
+    .then((response) => response.json())
+    .then((rate) => ({ USD: 1, AMD: rate.amd.rate, EUR: rate.eur.rate }))
+    .catch(() => false)
+);
