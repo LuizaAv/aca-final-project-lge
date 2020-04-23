@@ -83,4 +83,16 @@ export default makeStyles((theme) => ({
   menuIcon: {
     position: 'fixed',
   },
+  currency: {
+    width: '10ch',
+    height: 40,
+    margin: 'auto',
+    marginTop: 10,
+    fontSize: 16,
+  },
+  selectRoot: {
+    '&:focus': {
+      background: 'none',
+    },
+  },
 }));

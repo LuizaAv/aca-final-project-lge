@@ -20,7 +20,9 @@ import Snackbars from '../Snackbars/Snackbars';
 
 export default function AddBudget() {
   const classes = useStyles();
-  const { state, dispatch } = useStoreContext();
+  const {
+    state, dispatch, rate, currency,
+  } = useStoreContext();
   const [type, setType] = useState('');
   const [name, setName] = useState('');
   const [category, setCategory] = useState('');
@@ -112,7 +114,9 @@ export default function AddBudget() {
       id, type, name, amount: +amount, date, category, color,
     };
     handleStateReset();
-    dbAddBudget(addedBudget)
+    dbAddBudget({
+      ...addedBudget, amount: Math.ceil(addedBudget.amount / rate[currency]),
+    })
       .then(() => dispatch(addBudget(addedBudget)))
       .then(() => handleSnackbarAdd())
       .catch(() => handleSnackbarErroe());
