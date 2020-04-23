@@ -26,10 +26,6 @@ export default makeStyles((theme) => ({
       width: '100%',
       justifyContent: 'space-evenly',
     },
-    // [theme.breakpoints.down('xs')]: {
-    //   flexWrap: 'wrap',
-    //   height: 100,
-    // },
   },
   paper: {
     width: '70%',
@@ -40,5 +36,8 @@ export default makeStyles((theme) => ({
       marginLeft: -15,
     },
   },
-
+  progress: {
+    margin: 'auto',
+    zIndex: theme.zIndex.drawer + 1,
+  },
 }));

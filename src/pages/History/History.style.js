@@ -39,15 +39,6 @@ export default makeStyles((theme) => ({
       width: '100%',
     },
   },
-  empty: {
-    fontSize: 40,
-    [theme.breakpoints.down('md')]: {
-      fontSize: 30,
-    },
-    [theme.breakpoints.down('sm')]: {
-      fontSize: 25,
-    },
-  },
   card: {
     width: 330,
     height: 140,
@@ -69,14 +60,16 @@ export default makeStyles((theme) => ({
     color: theme.palette.tertiary.light,
     fontWeight: 300,
   },
-  date: {
-
-  },
   hr: {
     marginTop: 40,
     marginBottom: 10,
   },
   pagination: {
     margin: 'auto',
+  },
+  progress: {
+    height: '55vh',
+    margin: 'auto',
+    zIndex: theme.zIndex.drawer + 1,
   },
 }));

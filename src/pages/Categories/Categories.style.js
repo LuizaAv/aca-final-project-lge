@@ -86,4 +86,8 @@ export default makeStyles((theme) => ({
       fontSize: 15,
     },
   },
+  progress: {
+    margin: 'auto',
+    zIndex: theme.zIndex.drawer + 1,
+  },
 }));

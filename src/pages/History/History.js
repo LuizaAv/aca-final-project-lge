@@ -1,9 +1,9 @@
-/* eslint-disable react/no-unescaped-entities */
 import React, { useState, useEffect } from 'react';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Pagination from '@material-ui/lab/Pagination';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { useStoreContext } from '../../store/storeContext';
 import Header from '../../components/Header/Header';
@@ -39,7 +39,7 @@ function filterByDate(budget, date) {
 
 export default function History() {
   const classes = useStyles();
-  const { state } = useStoreContext();
+  const { state, loading } = useStoreContext();
   const [filterType, setFilterType] = useState('all');
   const [isAscending, setIsAscending] = useState(true);
   const [filterDate, setFilterDate] = useState('all');
@@ -89,18 +89,15 @@ export default function History() {
         <Search searchValue={searchValue} setSearchValue={setSearchValue} />
       </div>
 
-      <div className={classes.flexContainer}>
-        {budgetSearched.length === 0
-          ? (
-            <Typography
-              className={classes.empty}
-              align="center"
-              color="textSecondary"
-            >
-              There isn't any post yet !!!
-            </Typography>
-          ) : (
-            budgetSearched
+      {loading
+        ? (
+          <div className={classes.progress}>
+            <CircularProgress size={50} />
+          </div>
+        )
+        : (
+          <div className={classes.flexContainer}>
+            {budgetSearched
               .filter((item, index) => index >= indexMin && index < indexMax)
               .map((item) => (
                 <Card key={item.id} className={classes.card}>
@@ -140,9 +137,9 @@ export default function History() {
                     </div>
                   </CardContent>
                 </Card>
-              )))}
-      </div>
-
+              ))}
+          </div>
+        )}
       <Pagination
         count={countPages}
         page={page}
@@ -151,7 +148,6 @@ export default function History() {
         color="secondary"
         className={classes.pagination}
       />
-
       <Snackbars type={snackbarType} open={snackbarOpen} setOpen={setSnackbarOpen} />
     </div>
   );

@@ -90,4 +90,8 @@ export default makeStyles((theme) => ({
     marginRight: 10,
     marginBottom: -4,
   },
+  progress: {
+    margin: 'auto',
+    zIndex: theme.zIndex.drawer + 1,
+  },
 }));
