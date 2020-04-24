@@ -4,7 +4,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Pagination from '@material-ui/lab/Pagination';
-
+import {FormattedMessage} from 'react-intl';
 import { useStoreContext } from '../../store/storeContext';
 import Header from '../../components/Header/Header';
 import Sort from '../../components/Sort/Sort';
@@ -93,7 +93,7 @@ export default function History() {
         {budgetSearched.length === 0
           ? (
             <Typography align="center" variant="h3" color="textSecondary">
-              There isn't any post yet !!!
+              <FormattedMessage id='EmptyHistory'/>
             </Typography>
           ) : (
             budgetSearched
@@ -121,7 +121,7 @@ export default function History() {
 
                     <div className={classes.cardItem}>
                       <Typography className={classes.category}>
-                        {item.category}
+                      <FormattedMessage id={item.category}/>
                       </Typography>
 
                       <Typography>

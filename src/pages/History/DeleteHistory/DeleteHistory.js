@@ -6,6 +6,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
+import {FormattedMessage} from 'react-intl';
 
 import { useStoreContext } from '../../../store/storeContext';
 import { deleteBudget } from '../../../store/actions';
@@ -67,7 +68,7 @@ export default function DeleteHistory({
         classes={{ paper: classes.dialog }}
       >
         <DialogTitle className={classes.dialogTitle} disableTypography>
-          Are you sure want to permanently remove this item?
+        <FormattedMessage id='Delete'/>
         </DialogTitle>
         <DialogActions className={classes.dialogAction}>
           <Button
@@ -75,14 +76,14 @@ export default function DeleteHistory({
             className={classes.actionButton}
             color="secondary"
           >
-            Cancel
+            <FormattedMessage id='Cancel'/>
           </Button>
           <Button
             onClick={handleDeleteBudget}
             className={classes.actionButton}
             color="primary"
           >
-            Ok
+             <FormattedMessage id='OK'/>
           </Button>
         </DialogActions>
       </Dialog>

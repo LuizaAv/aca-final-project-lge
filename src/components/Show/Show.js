@@ -5,6 +5,7 @@ import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import useStyles from './Show.style';
+import {FormattedMessage} from 'react-intl';
 
 export default function Show({ isCurrent, setIsCurrent }) {
   const classes = useStyles();
@@ -16,7 +17,7 @@ export default function Show({ isCurrent, setIsCurrent }) {
   return (
     <FormControl variant="outlined">
       <InputLabel className={classes.label}>
-        Show
+        <FormattedMessage id='Show'/>
       </InputLabel>
       <Select
         className={classes.select}
@@ -30,13 +31,13 @@ export default function Show({ isCurrent, setIsCurrent }) {
           className={classes.item}
           value="current"
         >
-          Current
+        <FormattedMessage id='Current'/>
         </MenuItem>
         <MenuItem
           className={classes.item}
           value="future"
         >
-          Future
+        <FormattedMessage id='Future'/>
         </MenuItem>
       </Select>
     </FormControl>

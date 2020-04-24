@@ -6,7 +6,7 @@ import { StoreContext } from '../store/storeContext';
 import { reducer } from '../store/reducers';
 import { initCategory, initBudget } from '../store/actions';
 import { dbGetBudget, dbGetCategory } from '../API/dbActions';
-import {IntlProvider,FormattedMessage} from 'react-intl';
+import {IntlProvider} from 'react-intl';
 
 import Navigation from '../components/Navigation/Navigation';
 import Summary from './Summary/Summary';

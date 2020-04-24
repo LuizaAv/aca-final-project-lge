@@ -93,13 +93,13 @@ export default function Categories() {
             {filteredAmounts.map((amount) => (
               <TableRow key={amount.id} className={classes.tableRow}>
                 <TableCell className={classes.category}>
-                  {amount.category}
+                  <FormattedMessage id={amount.category} values={amount.category}/>
                 </TableCell>
                 <TableCell className={classes.content} align="center">
                   {amount.type === 'expense'
                     ? <ArrowDownwardIcon className={classes.icon} />
                     : <ArrowUpwardIcon className={classes.icon} />}
-                  {amount.type}
+                    <FormattedMessage id={amount.type}  />
                 </TableCell>
                 <TableCell className={classes.content} align="right">
                   {(amount.type === 'expense' ? '-' : '+') + amount.amount}

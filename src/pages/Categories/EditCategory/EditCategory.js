@@ -11,6 +11,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
+import {FormattedMessage} from 'react-intl';
 
 import { useStoreContext } from '../../../store/storeContext';
 import { editCategory } from '../../../store/actions';
@@ -94,22 +95,33 @@ export default function EditCategory({
         onClose={handleClose}
         open={open}
       >
-        <DialogTitle className={classes.title}>Edit Category</DialogTitle>
+        <DialogTitle className={classes.title}>
+         <FormattedMessage id='EditCategory'/>
+          </DialogTitle>
 
         <FormControl className={classes.itemSize}>
-          <InputLabel>Category type</InputLabel>
+          <InputLabel><FormattedMessage id='CategoryType'/></InputLabel>
           <Select value={type} onChange={handleTypeChange}>
-            <MenuItem value="expense">Expense</MenuItem>
-            <MenuItem value="income">Income</MenuItem>
+            <MenuItem value="expense">
+            <FormattedMessage id='Expense'/>
+            </MenuItem>
+            <MenuItem value="income">
+            <FormattedMessage id='Income'/>
+              </MenuItem>
           </Select>
         </FormControl>
 
-        <TextField
-          className={classes.itemSize}
-          label="Category name"
-          value={name}
-          onChange={handleNameChange}
-        />
+       
+        <FormattedMessage id={name} >
+      {name=>
+      <TextField 
+      className={classes.itemSize}
+      label={<FormattedMessage id='CategoryName' />}
+      value={name}
+      onChange={handleNameChange}
+      />
+      }
+    </FormattedMessage>
 
         <DialogActions className={classes.dialogAction}>
           <Button
@@ -117,7 +129,7 @@ export default function EditCategory({
             onClick={handleCancel}
             color="secondary"
           >
-            Cancel
+            <FormattedMessage id='Cancel'/>
           </Button>
           <Button
             className={classes.actionButton}
@@ -125,7 +137,7 @@ export default function EditCategory({
             onClick={handleEditCategory}
             color="primary"
           >
-            Done
+          <FormattedMessage id='Done'/>
           </Button>
         </DialogActions>
       </Dialog>

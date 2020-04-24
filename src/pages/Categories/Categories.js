@@ -6,6 +6,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import {FormattedMessage} from 'react-intl';
 
 import Typography from '@material-ui/core/Typography';
 import { ReactComponent as ArrowDownwardIcon } from '../../assets/icons/Arrow-down.svg';
@@ -45,19 +46,19 @@ export default function Categories() {
 
       <TableContainer component={Paper} className={classes.tableContainer}>
         <Typography className={classes.title}>
-          Category
+         <FormattedMessage id="Category"/>
         </Typography>
         <Table className={classes.table}>
           <TableHead>
             <TableRow>
               <TableCell className={classes.head}>
-                Name
+                <FormattedMessage id="Name"/>
               </TableCell>
               <TableCell className={classes.head} align="center">
-                Type
+              <FormattedMessage id="Type"/>
               </TableCell>
               <TableCell className={classes.head} align="right">
-                Action
+              <FormattedMessage id="Action"/>
               </TableCell>
             </TableRow>
           </TableHead>
@@ -65,13 +66,13 @@ export default function Categories() {
             {filteredCategories.map((category) => (
               <TableRow key={category.id} className={classes.tableRow}>
                 <TableCell className={classes.name}>
-                  {category.name}
+                 <FormattedMessage  id={category.name}/>
                 </TableCell>
                 <TableCell className={classes.content} align="center">
                   {category.type === 'expense'
                     ? <ArrowDownwardIcon className={classes.icon} />
                     : <ArrowUpwardIcon className={classes.icon} />}
-                  {category.type}
+                  <FormattedMessage id={category.type}  />
                 </TableCell>
                 <TableCell className={classes.content} align="right">
                   <EditCategory
