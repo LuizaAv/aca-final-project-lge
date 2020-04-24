@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {FormattedMessage} from 'react-intl';
+import { Button } from '@material-ui/core';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+
 
 
 import Drawer from '@material-ui/core/Drawer';
@@ -23,6 +27,7 @@ export default function Navigation() {
   const matches = useMediaQuery('(min-width:1030px)');
   const [path, setPath] = useState(window.location.pathname);
   const [open, setOpen] = useState(true);
+ 
 
   const {language,setLanguage} = useStoreContext();
 
@@ -35,6 +40,11 @@ export default function Navigation() {
       setOpen(!open);
     }
   };
+  const handleChangeLanguage=(lang)=>{
+    setLanguage(lang);
+   
+  }
+  
   
 
 
@@ -64,12 +74,28 @@ export default function Navigation() {
         >
           Finance
         </Typography>
+
         
-        <select onChange={(e)=>setLanguage(e.target.value)} defaultValue={language}>
-        {["en", "hy"].map(l => (
-          <option key={l}>{l}</option>
-        ))}
-      </select>
+
+        <Select
+          className={classes.currency}
+          classes={{ root: classes.selectRoot }}
+          variant="outlined"
+          value={language}
+          onChange={(e) => setLanguage(e.target.value)}
+        >
+          <MenuItem value="en">
+            English
+          </MenuItem>
+          <MenuItem value="hy">
+            Hayeren
+          </MenuItem>
+          <MenuItem value="ru">
+            Rseren
+          </MenuItem>
+        </Select>
+       
+   
 
         <nav className={classes.nav}>
           <Link
