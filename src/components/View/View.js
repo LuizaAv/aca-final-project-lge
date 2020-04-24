@@ -4,7 +4,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
-import useStyles from './Show.style';
+import useStyles from './View.style';
 import {FormattedMessage} from 'react-intl';
 
 export default function View({ isCurrent, setIsCurrent }) {
