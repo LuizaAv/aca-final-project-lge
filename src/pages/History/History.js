@@ -1,10 +1,11 @@
-/* eslint-disable react/no-unescaped-entities */
 import React, { useState, useEffect } from 'react';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Pagination from '@material-ui/lab/Pagination';
 import {FormattedMessage} from 'react-intl';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 import { useStoreContext } from '../../store/storeContext';
 import Header from '../../components/Header/Header';
 import Sort from '../../components/Sort/Sort';
@@ -13,7 +14,7 @@ import FilterDate from '../../components/FilterDate/FilterDate';
 import EditHistory from './EditHistory/EditHistory';
 import DeleteHistory from './DeleteHistory/DeleteHistory';
 import Search from '../../components/Search/Search';
-import Show from '../../components/Show/Show';
+import View from '../../components/View/View';
 import Snackbars from '../../components/Snackbars/Snackbars';
 import useStyles from './History.style';
 
@@ -39,7 +40,7 @@ function filterByDate(budget, date) {
 
 export default function History() {
   const classes = useStyles();
-  const { state } = useStoreContext();
+  const { state, loading } = useStoreContext();
   const [filterType, setFilterType] = useState('all');
   const [isAscending, setIsAscending] = useState(true);
   const [filterDate, setFilterDate] = useState('all');
@@ -85,18 +86,19 @@ export default function History() {
         <Sort isAscending={isAscending} setIsAscending={setIsAscending} />
         <FilterType filterType={filterType} setFilterType={setFilterType} />
         <FilterDate filterDate={filterDate} setFilterDate={setFilterDate} />
-        <Show isCurrent={isCurrent} setIsCurrent={setIsCurrent} />
+        <View isCurrent={isCurrent} setIsCurrent={setIsCurrent} />
         <Search searchValue={searchValue} setSearchValue={setSearchValue} />
       </div>
 
-      <div className={classes.flexContainer}>
-        {budgetSearched.length === 0
-          ? (
-            <Typography align="center" variant="h3" color="textSecondary">
-              <FormattedMessage id='EmptyHistory'/>
-            </Typography>
-          ) : (
-            budgetSearched
+      {loading
+        ? (
+          <div className={classes.progress}>
+            <CircularProgress size={50} />
+          </div>
+        )
+        : (
+          <div className={classes.flexContainer}>
+            {budgetSearched
               .filter((item, index) => index >= indexMin && index < indexMax)
               .map((item) => (
                 <Card key={item.id} className={classes.card}>
@@ -136,9 +138,9 @@ export default function History() {
                     </div>
                   </CardContent>
                 </Card>
-              )))}
-      </div>
-
+              ))}
+          </div>
+        )}
       <Pagination
         count={countPages}
         page={page}
@@ -147,7 +149,6 @@ export default function History() {
         color="secondary"
         className={classes.pagination}
       />
-
       <Snackbars type={snackbarType} open={snackbarOpen} setOpen={setSnackbarOpen} />
     </div>
   );

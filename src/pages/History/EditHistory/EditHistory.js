@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import propTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
@@ -24,7 +24,9 @@ export default function EditHistory({
   budget, setSnackbarType, setSnackbarOpen,
 }) {
   const classes = useStyles();
-  const { state, dispatch } = useStoreContext();
+  const {
+    state, dispatch, rate, currency,
+  } = useStoreContext();
   const [type, setType] = useState(budget.type);
   const [name, setName] = useState(budget.name);
   const [category, setCategory] = useState(budget.category);
@@ -32,6 +34,10 @@ export default function EditHistory({
   const [date, setDate] = useState(budget.date);
   const [picherError, setPicherError] = useState('');
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    setAmount(budget.amount);
+  }, [budget]);
 
   const handleOpen = () => {
     setOpen(true);
@@ -58,6 +64,7 @@ export default function EditHistory({
   };
 
   const handleTypeChange = (e) => {
+    setCategory('');
     setType(e.target.value);
     setCategory('');
   };
@@ -87,12 +94,14 @@ export default function EditHistory({
   };
 
   const handleEditBudget = () => {
-    const { id } = budget;
+    const { id, color } = budget;
     const editedBudget = {
-      id, type, name, category, amount: +amount, date,
+      id, type, name, category, amount: +amount, date, color,
     };
     handleClose();
-    dbEditBudget(editedBudget)
+    dbEditBudget({
+      ...editedBudget, amount: Math.ceil(editedBudget.amount / rate[currency]),
+    })
       .then(() => dispatch(editBudget(editedBudget)))
       .then(() => handleSnackbarEdit())
       .catch(() => handleSnackbarErroe());
@@ -224,6 +233,7 @@ EditHistory.propTypes = {
     type: propTypes.string.isRequired,
     name: propTypes.string.isRequired,
     category: propTypes.string.isRequired,
+    color: propTypes.string.isRequired,
     amount: propTypes.number.isRequired,
     date: propTypes.instanceOf(Date),
   }),
@@ -237,6 +247,7 @@ EditHistory.defaultProps = {
     type: propTypes.string.isRequired,
     name: propTypes.string.isRequired,
     category: propTypes.string.isRequired,
+    color: propTypes.string.isRequired,
     amount: propTypes.number.isRequired,
     date: propTypes.instanceOf(Date),
   },

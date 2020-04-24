@@ -7,7 +7,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import useStyles from './Show.style';
 import {FormattedMessage} from 'react-intl';
 
-export default function Show({ isCurrent, setIsCurrent }) {
+export default function View({ isCurrent, setIsCurrent }) {
   const classes = useStyles();
 
   const handleChange = () => {
@@ -25,7 +25,7 @@ export default function Show({ isCurrent, setIsCurrent }) {
         variant="outlined"
         defaultValue="current"
         onChange={handleChange}
-        label="Show "
+        label="View"
       >
         <MenuItem
           className={classes.item}
@@ -35,7 +35,7 @@ export default function Show({ isCurrent, setIsCurrent }) {
         </MenuItem>
         <MenuItem
           className={classes.item}
-          value="future"
+          value="upcoming"
         >
         <FormattedMessage id='Future'/>
         </MenuItem>
@@ -44,7 +44,7 @@ export default function Show({ isCurrent, setIsCurrent }) {
   );
 }
 
-Show.propTypes = {
+View.propTypes = {
   isCurrent: propTypes.bool.isRequired,
   setIsCurrent: propTypes.func.isRequired,
 };

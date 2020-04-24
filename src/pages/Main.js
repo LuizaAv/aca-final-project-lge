@@ -4,9 +4,9 @@ import {messages} from '../languages/messages'
 
 import { StoreContext } from '../store/storeContext';
 import { reducer } from '../store/reducers';
-import { initCategory, initBudget } from '../store/actions';
-import { dbGetBudget, dbGetCategory } from '../API/dbActions';
 import {IntlProvider} from 'react-intl';
+import { initCategory, initBudget, editBudget } from '../store/actions';
+import { dbGetBudget, dbGetCategory, rateExchange } from '../API/dbActions';
 
 import Navigation from '../components/Navigation/Navigation';
 import Summary from './Summary/Summary';
@@ -26,27 +26,50 @@ export default function Main() {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [language, setLanguage] = useState("en");
+  const [currency, setCurrency] = useState('USD');
+  const [loading, setLoading] = useState(true);
+  const [rate, setRate] = useState({ USD: 1, AMD: 480, EUR: 0.91 });
+
+  useEffect(() => {
+    rateExchange()
+      .then((newRate) => {
+        if (newRate) setRate(newRate);
+      });
+  }, []);
 
   useEffect(() => {
     dbGetCategory()
       .then((categories) => dispatch(initCategory(categories)))
-      .catch(() => setSnackbarOpen(true));
+      .then(() => setLoading(false))
+      .catch(() => setSnackbarOpen(true))
+      .then(() => setLoading(false));
     dbGetBudget()
       .then((budget) => dispatch(initBudget(budget)))
-      .catch(() => setSnackbarOpen(true));
+      .then(() => setLoading(false))
+      .catch(() => setSnackbarOpen(true))
+      .then(() => setLoading(false));
   }, []);
 
-  
+  useEffect(() => {
+    dbGetBudget()
+      .then((budget) => budget.map((item) => dispatch(editBudget({
+        ...item, amount: Math.floor(item.amount * rate[currency]),
+      }))));
+  }, [currency, rate]);
 
   return (
+    <StoreContext.Provider value={{
+      state, dispatch, currency, setCurrency, rate, loading,language,setLanguage
+    }}
 
-    <StoreContext.Provider value={{ state, dispatch,language,setLanguage }}>
-    
-    <IntlProvider locale={language} messages={messages[language]}>
+    >
+      <IntlProvider locale={language} messages={messages[language]}>
+
       <div className={classes.root}>
         <div className={classes.navigation}>
           <Navigation />
         </div>
+
         <div className={classes.content}>
           <Switch>
             <Route exact path="/">

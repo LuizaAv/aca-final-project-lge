@@ -12,8 +12,11 @@ import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
+import { useStoreContext } from '../../store/storeContext';
 import { ReactComponent as GraphsIcon } from '../../assets/icons/Graphs.svg';
 import { ReactComponent as SummaryIcon } from '../../assets/icons/Summary.svg';
 import { ReactComponent as HistoryIcon } from '../../assets/icons/History.svg';
@@ -24,6 +27,7 @@ import { useStoreContext } from '../../store/storeContext';
 
 export default function Navigation() {
   const classes = useStyles();
+  const { currency, setCurrency } = useStoreContext();
   const matches = useMediaQuery('(min-width:1030px)');
   const [path, setPath] = useState(window.location.pathname);
   const [open, setOpen] = useState(true);
@@ -75,7 +79,7 @@ export default function Navigation() {
           Finance
         </Typography>
 
-        
+    
 
         <Select
           className={classes.currency}
@@ -95,7 +99,20 @@ export default function Navigation() {
           </MenuItem>
         </Select>
        
-   
+        <Select
+          value={currency}
+          onChange={(e) => setCurrency(e.target.value)}
+        >
+          <MenuItem value="USD">
+            USD
+          </MenuItem>
+          <MenuItem value="AMD">
+            AMD
+          </MenuItem>
+          <MenuItem value="EUR">
+            EUR
+          </MenuItem>
+        </Select>
 
         <nav className={classes.nav}>
           <Link

@@ -35,4 +35,10 @@ export default makeStyles(({
     width: 100,
     fontWeight: 600,
   },
+  colorPicker: {
+    margin: 'auto',
+  },
+  buttonColor: {
+
+  },
 }));

@@ -2,6 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
   root: {
+    marginTop: -20,
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -19,13 +20,16 @@ export default makeStyles((theme) => ({
     borderLeft: '1px solid #707070',
     paddingLeft: 40,
     marginLeft: 50,
+    minWidth: 150,
     [theme.breakpoints.down('md')]: {
       paddingLeft: 30,
       marginLeft: 40,
+      minWidth: 130,
     },
     [theme.breakpoints.down('sm')]: {
       paddingLeft: 10,
       marginLeft: 20,
+      minWidth: 100,
     },
   },
   current: {
@@ -41,9 +45,9 @@ export default makeStyles((theme) => ({
   text: {
     fontFamily: 'Segoe UI',
     fontWeight: 300,
-    fontSize: 15,
+    fontSize: 13,
     [theme.breakpoints.down('md')]: {
-      fontSize: 12,
+      fontSize: 11,
     },
   },
   span: {

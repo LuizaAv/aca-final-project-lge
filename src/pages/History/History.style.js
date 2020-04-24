@@ -34,12 +34,19 @@ export default makeStyles((theme) => ({
     flexWrap: 'wrap',
     justifyContent: 'center',
     minHeight: '55vh',
+    width: '96%',
+    [theme.breakpoints.down('md')]: {
+      width: '100%',
+    },
   },
   card: {
     width: 330,
     height: 140,
-    margin: '0 20px',
+    margin: '0 20px 20px 20px',
     boxShadow: theme.shadows[5],
+    [theme.breakpoints.down('sm')]: {
+      margin: '0 10px 10px 10px',
+    },
   },
   cardItem: {
     display: 'flex',
@@ -53,14 +60,16 @@ export default makeStyles((theme) => ({
     color: theme.palette.tertiary.light,
     fontWeight: 300,
   },
-  date: {
-
-  },
   hr: {
     marginTop: 40,
     marginBottom: 10,
   },
   pagination: {
     margin: 'auto',
+  },
+  progress: {
+    height: '55vh',
+    margin: 'auto',
+    zIndex: theme.zIndex.drawer + 1,
   },
 }));

@@ -7,21 +7,21 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import { ReactComponent as ArrowDownwardIcon } from '../../assets/icons/Arrow-down.svg';
-import { ReactComponent as ArrowUpwardIcon } from '../../assets/icons/Arrow-up.svg';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import {FormattedMessage} from 'react-intl';
-
 import { useStoreContext } from '../../store/storeContext';
-
 import Header from '../../components/Header/Header';
 import Sort from '../../components/Sort/Sort';
 import FilterType from '../../components/FilterType/FilterType';
-import Show from '../../components/Show/Show';
+import View from '../../components/View/View';
+import { ReactComponent as ArrowDownwardIcon } from '../../assets/icons/Arrow-down.svg';
+import { ReactComponent as ArrowUpwardIcon } from '../../assets/icons/Arrow-up.svg';
 import useStyles from './Summary.style';
+
 
 export default function Categories() {
   const classes = useStyles();
-  const { state } = useStoreContext();
+  const { state, loading } = useStoreContext();
   const [filterType, setFilterType] = useState('all');
   const [isAscending, setIsAscending] = useState(true);
   const [isCurrent, setIsCurrent] = useState(true);
@@ -68,10 +68,17 @@ export default function Categories() {
       <div className={classes.tools}>
         <Sort isAscending={isAscending} setIsAscending={setIsAscending} />
         <FilterType filterType={filterType} setFilterType={setFilterType} />
-        <Show isCurrent={isCurrent} setIsCurrent={setIsCurrent} />
+        <View isCurrent={isCurrent} setIsCurrent={setIsCurrent} />
       </div>
 
-      <TableContainer component={Paper} className={classes.tableContainer}>
+      {loading
+        ? (
+          <div className={classes.progress}>
+            <CircularProgress size={50} />
+          </div>
+        )
+        : (
+          <TableContainer component={Paper} className={classes.tableContainer}>
         <Typography className={classes.title}>
         <FormattedMessage id="Summary"  />
         </Typography>
@@ -109,6 +116,8 @@ export default function Categories() {
           </TableBody>
         </Table>
       </TableContainer>
+        )}
+
     </div>
   );
 }
