@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
+import {FormattedMessage} from 'react-intl';
+import { Button } from '@material-ui/core';
 import Drawer from '@material-ui/core/Drawer';
 import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -9,14 +10,13 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-
-import { useStoreContext } from '../../store/storeContext';
 import { ReactComponent as GraphsIcon } from '../../assets/icons/Graphs.svg';
 import { ReactComponent as SummaryIcon } from '../../assets/icons/Summary.svg';
 import { ReactComponent as HistoryIcon } from '../../assets/icons/History.svg';
 import { ReactComponent as CategoriesIcon } from '../../assets/icons/Categories.svg';
 import { ReactComponent as RectangleIcon } from '../../assets/icons/Rectangle.svg';
 import useStyles from './Navigation.style';
+import { useStoreContext } from '../../store/storeContext';
 
 export default function Navigation() {
   const classes = useStyles();
@@ -24,6 +24,9 @@ export default function Navigation() {
   const matches = useMediaQuery('(min-width:1030px)');
   const [path, setPath] = useState(window.location.pathname);
   const [open, setOpen] = useState(true);
+ 
+
+  const {language,setLanguage} = useStoreContext();
 
   useEffect(() => {
     setOpen(matches);
@@ -34,6 +37,14 @@ export default function Navigation() {
       setOpen(!open);
     }
   };
+  const handleChangeLanguage=(lang)=>{
+    setLanguage(lang);
+   
+  }
+  
+  
+
+
 
   return (
     <div>
@@ -61,10 +72,27 @@ export default function Navigation() {
           Finance
         </Typography>
 
+    
+
         <Select
           className={classes.currency}
           classes={{ root: classes.selectRoot }}
           variant="outlined"
+          value={language}
+          onChange={(e) => setLanguage(e.target.value)}
+        >
+          <MenuItem value="en">
+            English
+          </MenuItem>
+          <MenuItem value="hy">
+            Hayeren
+          </MenuItem>
+          <MenuItem value="ru">
+            Rseren
+          </MenuItem>
+        </Select>
+       
+        <Select
           value={currency}
           onChange={(e) => setCurrency(e.target.value)}
         >
@@ -98,7 +126,7 @@ export default function Navigation() {
                 }
             />
             <SummaryIcon className={classes.summaryIcon} />
-            Summary
+            <FormattedMessage id="Summary"  />
           </Link>
           <Link
             to="/History"
@@ -107,13 +135,14 @@ export default function Navigation() {
               ? classes.activeLink
               : classes.link}
           >
+            
             <RectangleIcon
               className={path === '/History'
                 ? classes.activeRectangleIcon
                 : classes.rectangleIcon}
             />
             <HistoryIcon className={classes.historyIcon} />
-            History
+            <FormattedMessage id="History"  />
           </Link>
           <Link
             to="/Categories"
@@ -128,7 +157,7 @@ export default function Navigation() {
                 : classes.rectangleIcon}
             />
             <CategoriesIcon className={classes.categoriesIcon} />
-            Categories
+            <FormattedMessage id="Categories"  />
           </Link>
           <Link
             to="/Charts"
@@ -143,7 +172,7 @@ export default function Navigation() {
                 : classes.rectangleIcon}
             />
             <GraphsIcon className={classes.graphsIcon} />
-            Charts
+            <FormattedMessage id="Graphs"  />
           </Link>
         </nav>
       </Drawer>

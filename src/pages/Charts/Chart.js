@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Line, Doughnut } from 'react-chartjs-2';
 import Paper from '@material-ui/core/Paper';
+import {FormattedMessage} from 'react-intl';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { useStoreContext } from '../../store/storeContext';
@@ -79,7 +80,9 @@ export default function MainChart() {
   return (
     <div className={classes.container}>
       <header className={classes.header}>
-        <h1>Total expenses and income</h1>
+        <h1>
+        <FormattedMessage id="Totalexpenseandincome"  />
+          </h1>
       </header>
 
       <div className={classes.tools}>

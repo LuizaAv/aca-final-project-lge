@@ -11,6 +11,7 @@ import { useStoreContext } from '../../../store/storeContext';
 import { deleteCategory } from '../../../store/actions';
 import useStyles from './DeleteCategory.style';
 import { dbDeleteCategory } from '../../../API/dbActions';
+import { FormattedMessage } from 'react-intl';
 
 
 export default function DeleteCategory({
@@ -67,7 +68,8 @@ export default function DeleteCategory({
         classes={{ paper: classes.dialog }}
       >
         <DialogTitle className={classes.dialogTitle} disableTypography>
-          Are you sure you want to delete this item?
+         
+          <FormattedMessage id='Delete'/>
         </DialogTitle>
         <DialogActions className={classes.dialogAction}>
           <Button
@@ -75,14 +77,14 @@ export default function DeleteCategory({
             className={classes.actionButton}
             color="secondary"
           >
-            Cancel
+            <FormattedMessage id='Cancel'/>
           </Button>
           <Button
             onClick={handleDeleteCategory}
             className={classes.actionButton}
             color="primary"
           >
-            Ok
+              <FormattedMessage id='OK'/>
           </Button>
         </DialogActions>
       </Dialog>

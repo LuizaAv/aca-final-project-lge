@@ -3,6 +3,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Pagination from '@material-ui/lab/Pagination';
+import {FormattedMessage} from 'react-intl';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { useStoreContext } from '../../store/storeContext';
@@ -122,7 +123,7 @@ export default function History() {
 
                     <div className={classes.cardItem}>
                       <Typography className={classes.category}>
-                        {item.category}
+                      <FormattedMessage id={item.category}/>
                       </Typography>
 
                       <Typography>

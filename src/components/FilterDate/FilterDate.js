@@ -5,7 +5,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import useStyles from './FilterDate.style';
-
+import {FormattedMessage} from 'react-intl';
 export default function FilterDate({ filterDate, setFilterDate }) {
   const classes = useStyles();
 
@@ -24,7 +24,7 @@ export default function FilterDate({ filterDate, setFilterDate }) {
     <div>
       <FormControl variant="outlined">
         <InputLabel className={classes.label}>
-          Period
+        <FormattedMessage id='Datefilter'/>
         </InputLabel>
         <Select
           className={classes.select}
@@ -39,7 +39,7 @@ export default function FilterDate({ filterDate, setFilterDate }) {
               key={item.name}
               value={item.value}
             >
-              {item.name}
+              <FormattedMessage id={item.name} values={item.name} />
             </MenuItem>
           ))}
         </Select>

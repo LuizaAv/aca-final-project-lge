@@ -1,6 +1,7 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import clsx from 'clsx';
+import {FormattedMessage} from 'react-intl';
 
 import { useStoreContext } from '../../store/storeContext';
 import AddBudget from '../AddBudget/AddBudget';
@@ -93,7 +94,7 @@ export default function Header() {
             </Typography>
             <div className={classes.span}>
               <Typography className={classes.text}>
-                Upcoming:
+                <FormattedMessage id='Future'/>
               </Typography>
               <Typography className={classes.text}>
                 {item.upcomingAmount}
@@ -101,12 +102,15 @@ export default function Header() {
             </div>
             <div className={classes.span}>
               <Typography className={classes.text}>
-                Total:
+              <FormattedMessage id='Total'/>
               </Typography>
               <Typography className={classes.text}>
                 {item.totalAmount}
               </Typography>
             </div>
+            <Typography className={classes.name}>
+            <FormattedMessage id={item.name} />
+            </Typography>
           </div>
         ))}
       </div>

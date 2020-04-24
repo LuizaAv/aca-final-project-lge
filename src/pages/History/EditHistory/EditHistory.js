@@ -13,6 +13,7 @@ import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/picker
 import DateFnsUtils from '@date-io/date-fns';
 import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
+import {FormattedMessage} from 'react-intl';
 
 import { useStoreContext } from '../../../store/storeContext';
 import { editBudget } from '../../../store/actions';
@@ -137,39 +138,54 @@ export default function EditHistory({
         onClose={handleClose}
         open={open}
       >
-        <DialogTitle className={classes.title}>Edit item</DialogTitle>
+        <DialogTitle className={classes.title}>
+         <FormattedMessage id='EditBudget'/>
+          </DialogTitle>
 
         <FormControl className={classes.itemSize}>
-          <InputLabel>Type</InputLabel>
+          <InputLabel>
+          <FormattedMessage id='Type'/>
+          </InputLabel>
           <Select value={type} onChange={handleTypeChange}>
-            <MenuItem value="expense">Expense</MenuItem>
-            <MenuItem value="income">Income</MenuItem>
+            <MenuItem value="expense">
+            <FormattedMessage id='Expense'/>
+            </MenuItem>
+            <MenuItem value="income">
+            <FormattedMessage id='Income'/>
+            </MenuItem>
           </Select>
         </FormControl>
 
         <FormControl className={classes.itemSize}>
-          <InputLabel>Category</InputLabel>
+          <InputLabel>
+          <FormattedMessage id='Category'/>
+          </InputLabel>
           <Select value={category} onChange={handleCategoryChange}>
             {state.categories
               .filter((stateCategory) => stateCategory.type === type)
               .map((stateCategory) => (
                 <MenuItem value={stateCategory.name} key={stateCategory.id}>
-                  {stateCategory.name}
+                 <FormattedMessage id={stateCategory.name}/>
                 </MenuItem>
               ))}
           </Select>
+          
         </FormControl>
 
-        <TextField
-          className={classes.itemSize}
-          label="Name"
-          value={name}
-          onChange={handleNameChange}
-        />
+      
+      <TextField 
+      className={classes.itemSize}
+      label={<FormattedMessage id='Name' />}
+      value={name}
+      onChange={handleNameChange}
+      />
+
+      
+   
 
         <TextField
           className={classes.itemSize}
-          label="Amount"
+          label={<FormattedMessage id='Amount' />}
           value={amount}
           onChange={handleAmountChange}
         />
@@ -179,7 +195,7 @@ export default function EditHistory({
             className={classes.date}
             format="dd/MM/yyyy"
             margin="normal"
-            label="Date"
+            label={<FormattedMessage id='Date' />}
             value={date}
             onChange={handleDateChange}
             onError={handlePicherError}
@@ -195,7 +211,7 @@ export default function EditHistory({
             color="secondary"
             onClick={handleCancel}
           >
-            Cancel
+            <FormattedMessage id='Cancel' />
           </Button>
           <Button
             className={classes.actionButton}
@@ -203,7 +219,7 @@ export default function EditHistory({
             color="primary"
             onClick={handleEditBudget}
           >
-            Done
+             <FormattedMessage id='Done' />
           </Button>
         </DialogActions>
       </Dialog>

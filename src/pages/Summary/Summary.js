@@ -8,7 +8,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
-
+import {FormattedMessage} from 'react-intl';
 import { useStoreContext } from '../../store/storeContext';
 import Header from '../../components/Header/Header';
 import Sort from '../../components/Sort/Sort';
@@ -79,38 +79,45 @@ export default function Categories() {
         )
         : (
           <TableContainer component={Paper} className={classes.tableContainer}>
-            <Typography className={classes.title}>
-              Summary
-            </Typography>
-            <Table className={classes.table}>
-              <TableHead>
-                <TableRow>
-                  <TableCell className={classes.head}>Category</TableCell>
-                  <TableCell className={classes.head} align="center">Type</TableCell>
-                  <TableCell className={classes.head} align="right">Amount</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {filteredAmounts.map((amount) => (
-                  <TableRow key={amount.id} className={classes.tableRow}>
-                    <TableCell className={classes.category}>
-                      {amount.category}
-                    </TableCell>
-                    <TableCell className={classes.content} align="center">
-                      {amount.type === 'expense'
-                        ? <ArrowDownwardIcon className={classes.icon} />
-                        : <ArrowUpwardIcon className={classes.icon} />}
-                      {amount.type}
-                    </TableCell>
-                    <TableCell className={classes.content} align="right">
-                      {(amount.type === 'expense' ? '-' : '+') + amount.amount}
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
+        <Typography className={classes.title}>
+        <FormattedMessage id="Summary"  />
+        </Typography>
+        <Table className={classes.table}>
+          <TableHead>
+            <TableRow>
+              <TableCell className={classes.head}>
+              <FormattedMessage id="Category"  />
+              </TableCell>
+              <TableCell className={classes.head} align="center">
+              <FormattedMessage id="Type"  />
+                </TableCell>
+              <TableCell className={classes.head} align="right">
+              <FormattedMessage id="Amount"  />
+                </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {filteredAmounts.map((amount) => (
+              <TableRow key={amount.id} className={classes.tableRow}>
+                <TableCell className={classes.category}>
+                  <FormattedMessage id={amount.category} values={amount.category}/>
+                </TableCell>
+                <TableCell className={classes.content} align="center">
+                  {amount.type === 'expense'
+                    ? <ArrowDownwardIcon className={classes.icon} />
+                    : <ArrowUpwardIcon className={classes.icon} />}
+                    <FormattedMessage id={amount.type}  />
+                </TableCell>
+                <TableCell className={classes.content} align="right">
+                  {(amount.type === 'expense' ? '-' : '+') + amount.amount}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
         )}
+
     </div>
   );
 }

@@ -5,8 +5,9 @@ import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import useStyles from './ChartType.style';
+import {FormattedMessage} from 'react-intl';
 
-export default function ChartType({ type, setType }) {
+export default function Type({ type, setType }) {
   const classes = useStyles();
 
   const handleChange = (e) => {
@@ -16,7 +17,7 @@ export default function ChartType({ type, setType }) {
   return (
     <FormControl variant="outlined">
       <InputLabel className={classes.label}>
-        Chart type
+        <FormattedMessage id='Type'/>
       </InputLabel>
       <Select
         className={classes.select}
@@ -24,26 +25,26 @@ export default function ChartType({ type, setType }) {
         variant="outlined"
         defaultValue="date"
         onChange={handleChange}
-        label="Chart type"
+        label=" type"
       >
         <MenuItem
           className={classes.item}
           value="date"
         >
-          By date
+          <FormattedMessage id='ByDate'/>
         </MenuItem>
         <MenuItem
           className={classes.item}
           value="amount"
         >
-          By amount
+          <FormattedMessage id='ByAmount'/>
         </MenuItem>
       </Select>
     </FormControl>
   );
 }
 
-ChartType.propTypes = {
+Type.propTypes = {
   type: propTypes.string.isRequired,
   setType: propTypes.func.isRequired,
 };

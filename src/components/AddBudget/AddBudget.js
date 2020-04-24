@@ -11,6 +11,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
+import {FormattedMessage} from 'react-intl';
 
 import useStyles from './AddBudget.style';
 import { addBudget } from '../../store/actions';
@@ -139,7 +140,8 @@ export default function AddBudget() {
           color="primary"
           variant="outlined"
         >
-          Add income
+          
+           <FormattedMessage id="AddIncome" />
         </Button>
         <Button
           className={classes.addExpense}
@@ -147,7 +149,8 @@ export default function AddBudget() {
           color="secondary"
           variant="outlined"
         >
-          Add expense
+        
+         <FormattedMessage id="AddExpense" />
         </Button>
       </div>
 
@@ -164,17 +167,22 @@ export default function AddBudget() {
               : classes.titleIncome
           }
         >
-          {`Add ${type}`}
+          {type === 'expense'
+           ? <FormattedMessage id='AddExpense'/>
+           : <FormattedMessage id='AddIncome'/>                 
+          }
         </DialogTitle>
 
         <FormControl className={classes.item}>
-          <InputLabel>Category</InputLabel>
+          <InputLabel>
+          <FormattedMessage id="Categories"  />
+          </InputLabel>
           <Select value={category} onChange={handleCategoryChange}>
             {state.categories
-              .filter((item) => item.type === type)
-              .map((item) => (
-                <MenuItem value={item.name} key={item.id}>
-                  {item.name}
+              .filter((stateCategory) => stateCategory.type === type)
+              .map((stateCategory) => (
+                <MenuItem value={stateCategory.name} key={stateCategory.id}>
+                 <FormattedMessage id={stateCategory.name} values={ stateCategory.name}/>
                 </MenuItem>
               ))}
           </Select>
@@ -182,14 +190,14 @@ export default function AddBudget() {
 
         <TextField
           className={classes.item}
-          label="Name"
+          label={<FormattedMessage id='Name' />}
           value={name}
           onChange={handleNameChange}
         />
 
         <TextField
           className={classes.item}
-          label="Amount"
+          label={<FormattedMessage id='Amount' />}
           value={amount}
           onChange={handleAmountChange}
         />
@@ -199,7 +207,7 @@ export default function AddBudget() {
             className={classes.date}
             format="dd/MM/yyyy"
             margin="normal"
-            label="Date"
+            label={<FormattedMessage id='Date' />}
             onError={handleDatePickerError}
             value={date}
             onChange={handleDateChange}
@@ -215,7 +223,7 @@ export default function AddBudget() {
             onClick={handleCancel}
             color="secondary"
           >
-            Cancel
+           <FormattedMessage id='Cancel'/>
           </Button>
           <Button
             className={classes.actionButton}
@@ -223,7 +231,7 @@ export default function AddBudget() {
             onClick={handleAddingBudget}
             color="primary"
           >
-            Done
+            <FormattedMessage id='Done'/>
           </Button>
         </DialogActions>
       </Dialog>
