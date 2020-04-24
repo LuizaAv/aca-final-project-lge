@@ -25,7 +25,9 @@ export default function Main() {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [currency, setCurrency] = useState('USD');
   const [loading, setLoading] = useState(true);
-  const [rate, setRate] = useState({ USD: 1, AMD: 480, EUR: 0.91 });
+  const [rate, setRate] = useState({
+    USD: 1, AMD: 480, RUB: 74, EUR: 0.91,
+  });
 
   useEffect(() => {
     rateExchange()

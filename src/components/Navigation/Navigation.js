@@ -74,6 +74,9 @@ export default function Navigation() {
           <MenuItem value="AMD">
             AMD
           </MenuItem>
+          <MenuItem value="RUB">
+            RUB
+          </MenuItem>
           <MenuItem value="EUR">
             EUR
           </MenuItem>
