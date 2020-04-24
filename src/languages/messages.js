@@ -60,6 +60,8 @@ export const messages= {
        DeletedSuccessfully:'Deleted successfully',
        АctionWasCanceled:'Аction was Canceled',
        Error:'Error: Server is not responding',
+       ByDate:'By Date',
+       ByAmount:'By Amount',
        
         
     },
@@ -124,6 +126,8 @@ export const messages= {
        DeletedSuccessfully:'Հաջողությամբ ջնջվեց',
        АctionWasCanceled:'Գործողությունը չեղարկվեց',
        Error:'Սխալ:Սերվերը չի աշխատում...',
+       ByDate:'Ըստ ամսաթվի',
+       ByAmount:'Ըստ գումարի',
        
 
       
@@ -187,7 +191,9 @@ export const messages= {
     EditedSuccessfully:'Отредактировано Успешно',
     DeletedSuccessfully:'Удалено Успешно',
     АctionWasCanceled:'Действие было отменено',
-    Error:'Oшибка:Сервер не отвечает'
+    Error:'Oшибка:Сервер не отвечает',
+    ByDate:'По дате ',
+    ByAmount:'По сумме',
 
 
 
