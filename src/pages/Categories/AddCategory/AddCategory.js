@@ -14,8 +14,6 @@ import useStyles from './AddCategory.style';
 import {FormattedMessage} from 'react-intl';
 import { CirclePicker } from 'react-color';
 import Popover from '@material-ui/core/Popover';
-
-import useStyles from './AddCategory.style';
 import { useStoreContext } from '../../../store/storeContext';
 import { addCategory } from '../../../store/actions';
 import { dbAddCategory } from '../../../API/dbActions';

@@ -6,12 +6,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-<<<<<<< HEAD
 import {FormattedMessage} from 'react-intl';
-=======
 import CircularProgress from '@material-ui/core/CircularProgress';
->>>>>>> 76dd9b4cecbcf346c4878ec555c0457098620698
-
 import Typography from '@material-ui/core/Typography';
 import { ReactComponent as ArrowDownwardIcon } from '../../assets/icons/Arrow-down.svg';
 import { ReactComponent as ArrowUpwardIcon } from '../../assets/icons/Arrow-up.svg';
@@ -48,8 +44,16 @@ export default function Categories() {
         <FilterType filterType={filterType} setFilterType={setFilterType} />
       </div>
 
-<<<<<<< HEAD
-      <TableContainer component={Paper} className={classes.tableContainer}>
+      
+
+      {loading
+        ? (
+          <div className={classes.progress}>
+            <CircularProgress size={50} />
+          </div>
+        )
+        : (
+          <TableContainer component={Paper} className={classes.tableContainer}>
         <Typography className={classes.title}>
          <FormattedMessage id="Category"/>
         </Typography>
@@ -96,63 +100,8 @@ export default function Categories() {
           </TableBody>
         </Table>
       </TableContainer>
-=======
-      {loading
-        ? (
-          <div className={classes.progress}>
-            <CircularProgress size={50} />
-          </div>
-        )
-        : (
-          <TableContainer component={Paper} className={classes.tableContainer}>
-            <Typography className={classes.title}>
-              Category
-            </Typography>
-            <Table className={classes.table}>
-              <TableHead>
-                <TableRow>
-                  <TableCell className={classes.head}>
-                    Name
-                  </TableCell>
-                  <TableCell className={classes.head} align="center">
-                    Type
-                  </TableCell>
-                  <TableCell className={classes.head} align="right">
-                    Action
-                  </TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {filteredCategories.map((category) => (
-                  <TableRow key={category.id} className={classes.tableRow}>
-                    <TableCell className={classes.name}>
-                      {category.name}
-                    </TableCell>
-                    <TableCell className={classes.content} align="center">
-                      {category.type === 'expense'
-                        ? <ArrowDownwardIcon className={classes.icon} />
-                        : <ArrowUpwardIcon className={classes.icon} />}
-                      {category.type}
-                    </TableCell>
-                    <TableCell className={classes.content} align="right">
-                      <EditCategory
-                        category={category}
-                        setSnackbarType={setSnackbarType}
-                        setSnackbarOpen={setSnackbarOpen}
-                      />
-                      <DeleteCategory
-                        category={category}
-                        setSnackbarType={setSnackbarType}
-                        setSnackbarOpen={setSnackbarOpen}
-                      />
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
         )}
->>>>>>> 76dd9b4cecbcf346c4878ec555c0457098620698
+
 
       <Snackbars type={snackbarType} open={snackbarOpen} setOpen={setSnackbarOpen} />
     </div>
