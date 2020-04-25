@@ -1,12 +1,12 @@
 import React, { useReducer, useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import {messages} from '../languages/messages'
+import { IntlProvider } from 'react-intl';
 
 import { StoreContext } from '../store/storeContext';
 import { reducer } from '../store/reducers';
-import {IntlProvider} from 'react-intl';
 import { initCategory, initBudget, editBudget } from '../store/actions';
 import { dbGetBudget, dbGetCategory, rateExchange } from '../API/dbActions';
+import messages from '../languages/messages';
 
 import Navigation from '../components/Navigation/Navigation';
 import Summary from './Summary/Summary';
@@ -25,7 +25,7 @@ export default function Main() {
   const classes = useStyles();
   const [state, dispatch] = useReducer(reducer, initialState);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
-  const [language, setLanguage] = useState("en");
+  const [language, setLanguage] = useState('EN');
   const [currency, setCurrency] = useState('USD');
   const [loading, setLoading] = useState(true);
   const [rate, setRate] = useState({
@@ -61,35 +61,33 @@ export default function Main() {
 
   return (
     <StoreContext.Provider value={{
-      state, dispatch, currency, setCurrency, rate, loading,language,setLanguage
+      state, dispatch, currency, setCurrency, rate, loading, language, setLanguage,
     }}
-
     >
       <IntlProvider locale={language} messages={messages[language]}>
+        <div className={classes.root}>
+          <div className={classes.navigation}>
+            <Navigation />
+          </div>
 
-      <div className={classes.root}>
-        <div className={classes.navigation}>
-          <Navigation />
+          <div className={classes.content}>
+            <Switch>
+              <Route exact path="/">
+                <Summary />
+              </Route>
+              <Route path="/Categories">
+                <Categories />
+              </Route>
+              <Route path="/History">
+                <History />
+              </Route>
+              <Route path="/Charts">
+                <Chart />
+              </Route>
+            </Switch>
+          </div>
         </div>
-
-        <div className={classes.content}>
-          <Switch>
-            <Route exact path="/">
-              <Summary />
-            </Route>
-            <Route path="/Categories">
-              <Categories />
-            </Route>
-            <Route path="/History">
-              <History />
-            </Route>
-            <Route path="/Charts">
-              <Chart />
-            </Route>
-          </Switch>
-        </div>
-      </div>
-      <Snackbars type="error" open={snackbarOpen} setOpen={setSnackbarOpen} />
+        <Snackbars type="error" open={snackbarOpen} setOpen={setSnackbarOpen} />
       </IntlProvider>
     </StoreContext.Provider>
   );

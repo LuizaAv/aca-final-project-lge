@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { FormattedMessage } from 'react-intl';
+
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -11,19 +13,17 @@ import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
-import {FormattedMessage} from 'react-intl';
 
 import useStyles from './AddBudget.style';
+import Snackbars from '../Snackbars/Snackbars';
 import { addBudget } from '../../store/actions';
 import { useStoreContext } from '../../store/storeContext';
 import { dbAddBudget } from '../../API/dbActions';
-import Snackbars from '../Snackbars/Snackbars';
 
 export default function AddBudget() {
   const classes = useStyles();
-  const {
-    state, dispatch, rate, currency,
-  } = useStoreContext();
+  const { state, dispatch } = useStoreContext();
+  const { rate, currency } = useStoreContext();
   const [type, setType] = useState('');
   const [name, setName] = useState('');
   const [category, setCategory] = useState('');
@@ -140,8 +140,7 @@ export default function AddBudget() {
           color="primary"
           variant="outlined"
         >
-          
-           <FormattedMessage id="AddIncome" />
+          <FormattedMessage id="addIncome" />
         </Button>
         <Button
           className={classes.addExpense}
@@ -149,8 +148,7 @@ export default function AddBudget() {
           color="secondary"
           variant="outlined"
         >
-        
-         <FormattedMessage id="AddExpense" />
+          <FormattedMessage id="addExpense" />
         </Button>
       </div>
 
@@ -168,21 +166,20 @@ export default function AddBudget() {
           }
         >
           {type === 'expense'
-           ? <FormattedMessage id='AddExpense'/>
-           : <FormattedMessage id='AddIncome'/>                 
-          }
+            ? <FormattedMessage id="addExpense" />
+            : <FormattedMessage id="addIncome" />}
         </DialogTitle>
 
         <FormControl className={classes.item}>
           <InputLabel>
-          <FormattedMessage id="Categories"  />
+            <FormattedMessage id="category" />
           </InputLabel>
           <Select value={category} onChange={handleCategoryChange}>
             {state.categories
-              .filter((stateCategory) => stateCategory.type === type)
-              .map((stateCategory) => (
-                <MenuItem value={stateCategory.name} key={stateCategory.id}>
-                 <FormattedMessage id={stateCategory.name} values={ stateCategory.name}/>
+              .filter((item) => item.type === type)
+              .map((item) => (
+                <MenuItem value={item.name} key={item.id}>
+                  {item.name}
                 </MenuItem>
               ))}
           </Select>
@@ -190,14 +187,14 @@ export default function AddBudget() {
 
         <TextField
           className={classes.item}
-          label={<FormattedMessage id='Name' />}
+          label={<FormattedMessage id="name" />}
           value={name}
           onChange={handleNameChange}
         />
 
         <TextField
           className={classes.item}
-          label={<FormattedMessage id='Amount' />}
+          label={<FormattedMessage id="amount" />}
           value={amount}
           onChange={handleAmountChange}
         />
@@ -207,7 +204,7 @@ export default function AddBudget() {
             className={classes.date}
             format="dd/MM/yyyy"
             margin="normal"
-            label={<FormattedMessage id='Date' />}
+            label={<FormattedMessage id="date" />}
             onError={handleDatePickerError}
             value={date}
             onChange={handleDateChange}
@@ -223,7 +220,7 @@ export default function AddBudget() {
             onClick={handleCancel}
             color="secondary"
           >
-           <FormattedMessage id='Cancel'/>
+            <FormattedMessage id="cancel" />
           </Button>
           <Button
             className={classes.actionButton}
@@ -231,7 +228,7 @@ export default function AddBudget() {
             onClick={handleAddingBudget}
             color="primary"
           >
-            <FormattedMessage id='Done'/>
+            <FormattedMessage id="done" />
           </Button>
         </DialogActions>
       </Dialog>

@@ -83,11 +83,14 @@ export default makeStyles((theme) => ({
   menuIcon: {
     position: 'fixed',
   },
-  currency: {
+  tools: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    marginTop: 10,
+  },
+  select: {
     width: '10ch',
     height: 40,
-    margin: 'auto',
-    marginTop: 10,
     fontSize: 16,
   },
   selectRoot: {

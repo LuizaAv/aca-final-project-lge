@@ -1,45 +1,42 @@
 import React from 'react';
 import propTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
+
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import useStyles from './FilterDate.style';
-import {FormattedMessage} from 'react-intl';
+
 export default function FilterDate({ filterDate, setFilterDate }) {
   const classes = useStyles();
-
-  const select = [
-    { value: 'all', name: 'Whole Period' },
-    { value: 'daily', name: 'Daily' },
-    { value: 'monthly', name: 'Monthly' },
-    { value: 'yearly', name: 'Yearly' },
-  ];
 
   const handleChange = (e) => {
     setFilterDate(e.target.value);
   };
 
+  const select = ['wholePeriod', 'daily', 'monthly', 'yearly'];
+
   return (
     <div>
       <FormControl variant="outlined">
         <InputLabel className={classes.label}>
-        <FormattedMessage id='Datefilter'/>
+          <FormattedMessage id="period" />
         </InputLabel>
         <Select
           className={classes.select}
           classes={{ root: classes.selectRoot }}
           value={filterDate}
           onChange={handleChange}
-          label="Date filter"
+          label={<FormattedMessage id="period" />}
         >
           {select.map((item) => (
             <MenuItem
               className={classes.item}
-              key={item.name}
-              value={item.value}
+              key={item}
+              value={item}
             >
-              <FormattedMessage id={item.name} values={item.name} />
+              <FormattedMessage id={item} />
             </MenuItem>
           ))}
         </Select>

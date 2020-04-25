@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import propTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
+import { CirclePicker } from 'react-color';
+
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -11,14 +14,13 @@ import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
-import {FormattedMessage} from 'react-intl';
-import { CirclePicker } from 'react-color';
 import Popover from '@material-ui/core/Popover';
 
 import { useStoreContext } from '../../../store/storeContext';
+import { dbEditCategory } from '../../../API/dbActions';
 import { editCategory } from '../../../store/actions';
 import useStyles from './EditCategory.style';
-import { dbEditCategory } from '../../../API/dbActions';
+
 
 const colors = [
   '#e53935', '#ec407a', '#ffcdd2', '#ab47bc', '#7e57c2', '#0D47A1',
@@ -121,32 +123,29 @@ export default function EditCategory({
         open={dialogOpen}
       >
         <DialogTitle className={classes.title}>
-         <FormattedMessage id='EditCategory'/>
-          </DialogTitle>
+          <FormattedMessage id="editCategory" />
+        </DialogTitle>
 
         <FormControl className={classes.itemSize}>
-          <InputLabel><FormattedMessage id='CategoryType'/></InputLabel>
+          <InputLabel>
+            <FormattedMessage id="categoryType" />
+          </InputLabel>
           <Select value={type} onChange={handleTypeChange}>
             <MenuItem value="expense">
-            <FormattedMessage id='Expense'/>
+              <FormattedMessage id="expense" />
             </MenuItem>
             <MenuItem value="income">
-            <FormattedMessage id='Income'/>
-              </MenuItem>
+              <FormattedMessage id="income" />
+            </MenuItem>
           </Select>
         </FormControl>
 
-       
-        <FormattedMessage id={name} >
-      {name=>
-      <TextField 
-      className={classes.itemSize}
-      label={<FormattedMessage id='CategoryName' />}
-      value={name}
-      onChange={handleNameChange}
-      />
-      }
-    </FormattedMessage>
+        <TextField
+          className={classes.itemSize}
+          label={<FormattedMessage id="categoryName" />}
+          value={name}
+          onChange={handleNameChange}
+        />
 
         <div className={classes.colorPicker}>
           <Button
@@ -154,7 +153,7 @@ export default function EditCategory({
             onClick={handlePopoverOpen}
             variant="outlined"
           >
-            select color
+            <FormattedMessage id="selectColor" />
           </Button>
           <Popover
             open={Boolean(anchorEl)}
@@ -185,7 +184,7 @@ export default function EditCategory({
             onClick={handleCancel}
             color="secondary"
           >
-            <FormattedMessage id='Cancel'/>
+            <FormattedMessage id="cancel" />
           </Button>
           <Button
             className={classes.actionButton}
@@ -193,7 +192,7 @@ export default function EditCategory({
             onClick={handleEditCategory}
             color="primary"
           >
-          <FormattedMessage id='Done'/>
+            <FormattedMessage id="done" />
           </Button>
         </DialogActions>
       </Dialog>

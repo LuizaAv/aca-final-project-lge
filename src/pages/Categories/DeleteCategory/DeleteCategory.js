@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import propTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
+
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Dialog from '@material-ui/core/Dialog';
@@ -8,11 +10,9 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 
 import { useStoreContext } from '../../../store/storeContext';
+import { dbDeleteCategory } from '../../../API/dbActions';
 import { deleteCategory } from '../../../store/actions';
 import useStyles from './DeleteCategory.style';
-import { dbDeleteCategory } from '../../../API/dbActions';
-import { FormattedMessage } from 'react-intl';
-
 
 export default function DeleteCategory({
   category, setSnackbarType, setSnackbarOpen,
@@ -68,8 +68,7 @@ export default function DeleteCategory({
         classes={{ paper: classes.dialog }}
       >
         <DialogTitle className={classes.dialogTitle} disableTypography>
-         
-          <FormattedMessage id='Delete'/>
+          <FormattedMessage id="deleteWarning" />
         </DialogTitle>
         <DialogActions className={classes.dialogAction}>
           <Button
@@ -77,14 +76,14 @@ export default function DeleteCategory({
             className={classes.actionButton}
             color="secondary"
           >
-            <FormattedMessage id='Cancel'/>
+            <FormattedMessage id="cancel" />
           </Button>
           <Button
             onClick={handleDeleteCategory}
             className={classes.actionButton}
             color="primary"
           >
-              <FormattedMessage id='OK'/>
+            <FormattedMessage id="ok" />
           </Button>
         </DialogActions>
       </Dialog>

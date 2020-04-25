@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import propTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
+import { CirclePicker } from 'react-color';
+import { FormattedMessage } from 'react-intl';
+
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -10,10 +13,9 @@ import DialogActions from '@material-ui/core/DialogActions';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
-import useStyles from './AddCategory.style';
-import {FormattedMessage} from 'react-intl';
-import { CirclePicker } from 'react-color';
 import Popover from '@material-ui/core/Popover';
+
+import useStyles from './AddCategory.style';
 import { useStoreContext } from '../../../store/storeContext';
 import { addCategory } from '../../../store/actions';
 import { dbAddCategory } from '../../../API/dbActions';
@@ -97,6 +99,7 @@ export default function AddCategory({ setSnackbarType, setSnackbarOpen }) {
   };
 
   const doneDisabled = (name === '' || type === '' || color === '');
+
   return (
     <>
       <Button
@@ -104,7 +107,7 @@ export default function AddCategory({ setSnackbarType, setSnackbarOpen }) {
         onClick={handleDialogOpen}
         className={classes.button}
       >
-        <FormattedMessage id='AddCategory'/>
+        <FormattedMessage id="addCategory" />
       </Button>
 
       <Dialog
@@ -115,24 +118,26 @@ export default function AddCategory({ setSnackbarType, setSnackbarOpen }) {
         open={dialogOpen}
       >
         <DialogTitle className={classes.title}>
-        <FormattedMessage id='AddCategory'/>
-          </DialogTitle>
+          <FormattedMessage id="addCategory" />
+        </DialogTitle>
 
         <FormControl className={classes.itemSize}>
           <InputLabel>
-          <FormattedMessage id='CategoryType'/>
+            <FormattedMessage id="categoryType" />
           </InputLabel>
           <Select value={type} onChange={handleTypeChange}>
             <MenuItem value="expense">
-              <FormattedMessage id='Expense'/></MenuItem>
+              <FormattedMessage id="expense" />
+            </MenuItem>
             <MenuItem value="income">
-            <FormattedMessage id='Income'/></MenuItem>
+              <FormattedMessage id="income" />
+            </MenuItem>
           </Select>
         </FormControl>
 
         <TextField
           className={classes.itemSize}
-          label={<FormattedMessage id='CategoryName' />}
+          label={<FormattedMessage id="categoryName" />}
           value={name}
           onChange={handleNameChange}
         />
@@ -143,7 +148,7 @@ export default function AddCategory({ setSnackbarType, setSnackbarOpen }) {
             onClick={handlePopoverOpen}
             variant="outlined"
           >
-            select color
+            <FormattedMessage id="selectColor" />
           </Button>
           <Popover
             open={Boolean(anchorEl)}
@@ -174,7 +179,7 @@ export default function AddCategory({ setSnackbarType, setSnackbarOpen }) {
             onClick={handleCancel}
             color="secondary"
           >
-            <FormattedMessage id='Cancel'/>
+            <FormattedMessage id="cancel" />
           </Button>
           <Button
             className={classes.actionButton}
@@ -182,7 +187,7 @@ export default function AddCategory({ setSnackbarType, setSnackbarOpen }) {
             onClick={handleAddCategory}
             color="primary"
           >
-            <FormattedMessage id='Done'/>
+            <FormattedMessage id="done" />
           </Button>
         </DialogActions>
       </Dialog>

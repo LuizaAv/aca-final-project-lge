@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import propTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
+
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -13,20 +15,18 @@ import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/picker
 import DateFnsUtils from '@date-io/date-fns';
 import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
-import {FormattedMessage} from 'react-intl';
 
 import { useStoreContext } from '../../../store/storeContext';
-import { editBudget } from '../../../store/actions';
 import { dbEditBudget } from '../../../API/dbActions';
+import { editBudget } from '../../../store/actions';
 import useStyles from './EditHistory.style';
 
 export default function EditHistory({
   budget, setSnackbarType, setSnackbarOpen,
 }) {
   const classes = useStyles();
-  const {
-    state, dispatch, rate, currency,
-  } = useStoreContext();
+  const { state, dispatch } = useStoreContext();
+  const { rate, currency } = useStoreContext();
   const [type, setType] = useState(budget.type);
   const [name, setName] = useState(budget.name);
   const [category, setCategory] = useState(budget.category);
@@ -139,53 +139,49 @@ export default function EditHistory({
         open={open}
       >
         <DialogTitle className={classes.title}>
-         <FormattedMessage id='EditBudget'/>
-          </DialogTitle>
+          <FormattedMessage id="editItem" />
+        </DialogTitle>
 
         <FormControl className={classes.itemSize}>
           <InputLabel>
-          <FormattedMessage id='Type'/>
+            <FormattedMessage id="type" />
           </InputLabel>
           <Select value={type} onChange={handleTypeChange}>
             <MenuItem value="expense">
-            <FormattedMessage id='Expense'/>
+              <FormattedMessage id="expense" />
             </MenuItem>
             <MenuItem value="income">
-            <FormattedMessage id='Income'/>
+              <FormattedMessage id="income" />
             </MenuItem>
           </Select>
         </FormControl>
 
         <FormControl className={classes.itemSize}>
           <InputLabel>
-          <FormattedMessage id='Category'/>
+            <FormattedMessage id="category" />
           </InputLabel>
           <Select value={category} onChange={handleCategoryChange}>
             {state.categories
-              .filter((stateCategory) => stateCategory.type === type)
-              .map((stateCategory) => (
-                <MenuItem value={stateCategory.name} key={stateCategory.id}>
-                 <FormattedMessage id={stateCategory.name}/>
+              .filter((item) => item.type === type)
+              .map((item) => (
+                <MenuItem value={item.name} key={item.id}>
+                  {item.name}
                 </MenuItem>
               ))}
           </Select>
-          
         </FormControl>
 
-      
-      <TextField 
-      className={classes.itemSize}
-      label={<FormattedMessage id='Name' />}
-      value={name}
-      onChange={handleNameChange}
-      />
-
-      
-   
 
         <TextField
           className={classes.itemSize}
-          label={<FormattedMessage id='Amount' />}
+          label={<FormattedMessage id="name" />}
+          value={name}
+          onChange={handleNameChange}
+        />
+
+        <TextField
+          className={classes.itemSize}
+          label={<FormattedMessage id="amount" />}
           value={amount}
           onChange={handleAmountChange}
         />
@@ -195,7 +191,7 @@ export default function EditHistory({
             className={classes.date}
             format="dd/MM/yyyy"
             margin="normal"
-            label={<FormattedMessage id='Date' />}
+            label={<FormattedMessage id="date" />}
             value={date}
             onChange={handleDateChange}
             onError={handlePicherError}
@@ -211,7 +207,7 @@ export default function EditHistory({
             color="secondary"
             onClick={handleCancel}
           >
-            <FormattedMessage id='Cancel' />
+            <FormattedMessage id="cancel" />
           </Button>
           <Button
             className={classes.actionButton}
@@ -219,7 +215,7 @@ export default function EditHistory({
             color="primary"
             onClick={handleEditBudget}
           >
-             <FormattedMessage id='Done' />
+            <FormattedMessage id="done" />
           </Button>
         </DialogActions>
       </Dialog>

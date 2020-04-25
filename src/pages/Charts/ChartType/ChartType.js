@@ -1,11 +1,12 @@
 import React from 'react';
 import propTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
+
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import useStyles from './ChartType.style';
-import {FormattedMessage} from 'react-intl';
 
 export default function Type({ type, setType }) {
   const classes = useStyles();
@@ -17,27 +18,28 @@ export default function Type({ type, setType }) {
   return (
     <FormControl variant="outlined">
       <InputLabel className={classes.label}>
-        <FormattedMessage id='Type'/>
+        <FormattedMessage id="chartType" />
       </InputLabel>
       <Select
         className={classes.select}
         classes={{ root: classes.selectRoot }}
         variant="outlined"
         defaultValue="date"
+        value={type}
         onChange={handleChange}
-        label=" type"
+        label={<FormattedMessage id="chartType" />}
       >
         <MenuItem
           className={classes.item}
           value="date"
         >
-          <FormattedMessage id='ByDate'/>
+          <FormattedMessage id="byDate" />
         </MenuItem>
         <MenuItem
           className={classes.item}
           value="amount"
         >
-          <FormattedMessage id='ByAmount'/>
+          <FormattedMessage id="byAmount" />
         </MenuItem>
       </Select>
     </FormControl>

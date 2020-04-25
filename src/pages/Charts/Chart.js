@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Line, Doughnut } from 'react-chartjs-2';
-import Paper from '@material-ui/core/Paper';
-import {FormattedMessage} from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Paper from '@material-ui/core/Paper';
 
 import { useStoreContext } from '../../store/storeContext';
 import View from '../../components/View/View';
@@ -81,8 +81,8 @@ export default function MainChart() {
     <div className={classes.container}>
       <header className={classes.header}>
         <h1>
-        <FormattedMessage id="Totalexpenseandincome"  />
-          </h1>
+          <FormattedMessage id="chartsHeader" />
+        </h1>
       </header>
 
       <div className={classes.tools}>

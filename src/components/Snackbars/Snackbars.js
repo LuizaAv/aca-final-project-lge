@@ -8,32 +8,31 @@ const cheсkType = (type) => {
   if (type === 'add') {
     return {
       severity: 'success',
-      message: 'AddedSuccessfully',
+      message: 'snackbarAdd',
     };
   }
   if (type === 'edit') {
     return {
       severity: 'success',
-      message: 'EditedSuccessfully',
+      message: 'snackbarEdit',
     };
   }
   if (type === 'delete') {
     return {
       severity: 'success',
-      message: 'DeletedSuccessfully',
+      message: 'snackbarDelet',
     };
   }
   if (type === 'cancel') {
     return {
       severity: 'warning',
-      message: 'АctionWasCanceled',
+      message: 'snackbarCancel',
     };
   }
   if (type === 'error') {
     return {
       severity: 'error',
-      message: 'Error',
-     
+      message: 'snackbarError',
     };
   }
   return {
@@ -53,7 +52,6 @@ export default function Snackbars({ type, open, setOpen }) {
     <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
       <MuiAlert variant="filled" severity={severity} onClose={handleClose}>
         <FormattedMessage id={message} />
-        
       </MuiAlert>
     </Snackbar>
   );

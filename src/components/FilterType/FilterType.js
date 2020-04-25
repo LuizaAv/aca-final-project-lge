@@ -1,11 +1,12 @@
 import React from 'react';
 import propTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
+
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import useStyles from './FilterType.style';
-import {FormattedMessage} from 'react-intl';
 
 export default function FilterType({ filterType, setFilterType }) {
   const classes = useStyles();
@@ -14,16 +15,12 @@ export default function FilterType({ filterType, setFilterType }) {
     setFilterType(e.target.value);
   };
 
-  const select = [
-    { value: 'all', name: 'All' },
-    { value: 'expense', name: 'Expense' },
-    { value: 'income', name: 'Income' },
-  ];
+  const select = ['all', 'expense', 'income'];
 
   return (
     <FormControl variant="outlined">
       <InputLabel className={classes.label}>
-      <FormattedMessage id="Typefilter"  />
+        <FormattedMessage id="type" />
       </InputLabel>
       <Select
         className={classes.select}
@@ -31,22 +28,16 @@ export default function FilterType({ filterType, setFilterType }) {
         variant="outlined"
         value={filterType}
         onChange={handleChange}
-        label="Type filter"
-
-        
+        label={<FormattedMessage id="type" />}
       >
         {select.map((item) => (
-          
           <MenuItem
-          
-             className={classes.item}
-             key={item.name}
-             value={item.value}
-
+            className={classes.item}
+            key={item}
+            value={item}
           >
-          <FormattedMessage id={item.name} values={item.name} />
+            <FormattedMessage id={item} />
           </MenuItem>
-         
         ))}
       </Select>
     </FormControl>

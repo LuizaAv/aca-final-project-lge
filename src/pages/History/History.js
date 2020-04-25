@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
+
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Pagination from '@material-ui/lab/Pagination';
-import {FormattedMessage} from 'react-intl';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { useStoreContext } from '../../store/storeContext';
@@ -43,7 +43,7 @@ export default function History() {
   const { state, loading } = useStoreContext();
   const [filterType, setFilterType] = useState('all');
   const [isAscending, setIsAscending] = useState(true);
-  const [filterDate, setFilterDate] = useState('all');
+  const [filterDate, setFilterDate] = useState('wholePeriod');
   const [searchValue, setSearchValue] = useState('');
   const [snackbarType, setSnackbarType] = useState('');
   const [isCurrent, setIsCurrent] = useState(true);
@@ -123,7 +123,7 @@ export default function History() {
 
                     <div className={classes.cardItem}>
                       <Typography className={classes.category}>
-                      <FormattedMessage id={item.category}/>
+                        {item.category}
                       </Typography>
 
                       <Typography>
