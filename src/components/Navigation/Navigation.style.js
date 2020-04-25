@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const drawerWidth = 180;
+const drawerWidth = 210;
 
 export default makeStyles((theme) => ({
   drawer: {
@@ -15,8 +15,20 @@ export default makeStyles((theme) => ({
     paddingTop: 40,
     paddingBottom: 40,
     boxShadow: '0px 7px 60px 0px #e6e8fc',
+  },
+  linkLogo: {
+    textDecoration: 'none',
+  },
+  finance: {
     fontWeight: theme.typography.fontWeightBold,
     color: theme.palette.tertiary.main,
+    marginBottom: -10,
+  },
+  management: {
+    fontWeight: theme.typography.fontWeightBold,
+    color: theme.palette.common.black,
+    textTransform: 'uppercase',
+    transform: 'scaleX(1.2)',
   },
   nav: {
     display: 'flex',
@@ -85,7 +97,7 @@ export default makeStyles((theme) => ({
   },
   tools: {
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     marginTop: 10,
   },
   select: {
