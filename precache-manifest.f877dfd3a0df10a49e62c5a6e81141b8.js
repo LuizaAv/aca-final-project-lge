@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c67f28f8bd438ba5007f45bc40f9be46",
+    "revision": "a39c79844c6c255c661e7263a95bb024",
     "url": "/aca-final-project-lge/index.html"
   },
   {
-    "revision": "7ef64795a5a95a06a4fc",
-    "url": "/aca-final-project-lge/static/css/main.48d3cb6e.chunk.css"
+    "revision": "ec49e64912219c0e0a66",
+    "url": "/aca-final-project-lge/static/css/main.bc654ded.chunk.css"
   },
   {
     "revision": "f576af33ed4c9581db37",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/aca-final-project-lge/static/js/2.816acaa9.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "7ef64795a5a95a06a4fc",
-    "url": "/aca-final-project-lge/static/js/main.52dbac2c.chunk.js"
+    "revision": "ec49e64912219c0e0a66",
+    "url": "/aca-final-project-lge/static/js/main.7e8d4df1.chunk.js"
   },
   {
     "revision": "b136d124ffad18adfceb",
@@ -54,5 +54,9 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "8162b9bc65a6e924260bed4916751b03",
     "url": "/aca-final-project-lge/static/media/Summary.8162b9bc.svg"
+  },
+  {
+    "revision": "c69db12f8b6ef6b1baf28625a4e319ff",
+    "url": "/aca-final-project-lge/static/media/seguibl.c69db12f.ttf"
   }
 ]);

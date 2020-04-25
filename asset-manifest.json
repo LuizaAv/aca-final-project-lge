@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/aca-final-project-lge/static/css/main.48d3cb6e.chunk.css",
-    "main.js": "/aca-final-project-lge/static/js/main.52dbac2c.chunk.js",
-    "main.js.map": "/aca-final-project-lge/static/js/main.52dbac2c.chunk.js.map",
+    "main.css": "/aca-final-project-lge/static/css/main.bc654ded.chunk.css",
+    "main.js": "/aca-final-project-lge/static/js/main.7e8d4df1.chunk.js",
+    "main.js.map": "/aca-final-project-lge/static/js/main.7e8d4df1.chunk.js.map",
     "runtime-main.js": "/aca-final-project-lge/static/js/runtime-main.4e89c3f6.js",
     "runtime-main.js.map": "/aca-final-project-lge/static/js/runtime-main.4e89c3f6.js.map",
     "static/js/2.816acaa9.chunk.js": "/aca-final-project-lge/static/js/2.816acaa9.chunk.js",
     "static/js/2.816acaa9.chunk.js.map": "/aca-final-project-lge/static/js/2.816acaa9.chunk.js.map",
     "index.html": "/aca-final-project-lge/index.html",
-    "precache-manifest.c354d5c07be5e89c9eb7ce61de9616e7.js": "/aca-final-project-lge/precache-manifest.c354d5c07be5e89c9eb7ce61de9616e7.js",
+    "precache-manifest.f877dfd3a0df10a49e62c5a6e81141b8.js": "/aca-final-project-lge/precache-manifest.f877dfd3a0df10a49e62c5a6e81141b8.js",
     "service-worker.js": "/aca-final-project-lge/service-worker.js",
-    "static/css/main.48d3cb6e.chunk.css.map": "/aca-final-project-lge/static/css/main.48d3cb6e.chunk.css.map",
+    "static/css/main.bc654ded.chunk.css.map": "/aca-final-project-lge/static/css/main.bc654ded.chunk.css.map",
     "static/js/2.816acaa9.chunk.js.LICENSE.txt": "/aca-final-project-lge/static/js/2.816acaa9.chunk.js.LICENSE.txt",
     "static/media/Arrow-down.8ae78787.svg": "/aca-final-project-lge/static/media/Arrow-down.8ae78787.svg",
     "static/media/Arrow-up.5ef66327.svg": "/aca-final-project-lge/static/media/Arrow-up.5ef66327.svg",
@@ -19,12 +19,13 @@
     "static/media/History.02086e46.svg": "/aca-final-project-lge/static/media/History.02086e46.svg",
     "static/media/Rectangle.e453c90c.svg": "/aca-final-project-lge/static/media/Rectangle.e453c90c.svg",
     "static/media/SegoeUI.ttf": "/aca-final-project-lge/static/media/SegoeUI.6581cfae.ttf",
-    "static/media/Summary.8162b9bc.svg": "/aca-final-project-lge/static/media/Summary.8162b9bc.svg"
+    "static/media/Summary.8162b9bc.svg": "/aca-final-project-lge/static/media/Summary.8162b9bc.svg",
+    "static/media/index.css": "/aca-final-project-lge/static/media/seguibl.c69db12f.ttf"
   },
   "entrypoints": [
     "static/js/runtime-main.4e89c3f6.js",
     "static/js/2.816acaa9.chunk.js",
-    "static/css/main.48d3cb6e.chunk.css",
-    "static/js/main.52dbac2c.chunk.js"
+    "static/css/main.bc654ded.chunk.css",
+    "static/js/main.7e8d4df1.chunk.js"
   ]
 }
