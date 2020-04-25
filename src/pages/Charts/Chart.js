@@ -3,8 +3,10 @@ import { Line, Doughnut } from 'react-chartjs-2';
 import { FormattedMessage } from 'react-intl';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 
 import { useStoreContext } from '../../store/storeContext';
+import Header from '../../components/Header/Header';
 import View from '../../components/View/View';
 import CartType from './ChartType/ChartType';
 import useStyles from './Charts.style';
@@ -79,16 +81,20 @@ export default function MainChart() {
 
   return (
     <div className={classes.container}>
-      <header className={classes.header}>
-        <h1>
-          <FormattedMessage id="chartsHeader" />
-        </h1>
-      </header>
+      <Header />
 
       <div className={classes.tools}>
         <View isCurrent={isCurrent} setIsCurrent={setIsCurrent} />
         <CartType type={type} setType={setType} />
       </div>
+
+      <Typography
+        align="center"
+        variant="h4"
+        className={classes.title}
+      >
+        <FormattedMessage id="chartsHeader" />
+      </Typography>
 
       {loading
         ? (

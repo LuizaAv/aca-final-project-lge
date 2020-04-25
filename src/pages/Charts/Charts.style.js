@@ -5,15 +5,15 @@ export default makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
   },
-  header: {
-    margin: 'auto',
-    textAlign: 'center',
+  title: {
+    marginBottom: 20,
   },
   tools: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
     margin: 40,
+    marginBottom: 10,
     marginLeft: 85,
     width: 370,
     [theme.breakpoints.down('md')]: {
