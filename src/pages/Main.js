@@ -12,7 +12,7 @@ import Navigation from '../components/Navigation/Navigation';
 import Summary from './Summary/Summary';
 import Categories from './Categories/Categories';
 import History from './History/History';
-import Chart from './Charts/Chart';
+import Charts from './Charts/Charts';
 import Snackbars from '../components/Snackbars/Snackbars';
 import useStyles from './Main.style';
 
@@ -82,7 +82,7 @@ export default function Main() {
                 <History />
               </Route>
               <Route path="/Charts">
-                <Chart />
+                <Charts />
               </Route>
             </Switch>
           </div>

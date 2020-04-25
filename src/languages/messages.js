@@ -60,7 +60,7 @@ const messages = {
     categories: 'Կատեգորիաներ',
     category: 'Կատեգորիա',
     charts: 'Դիագրամներ',
-    chartsHeader: 'Ընդհանուր Ծախսերը և Եկամուտները',
+    chartsHeader: 'Ընդհանուր Ծախսեր և Եկամուտներ',
     chartType: 'Դիագրամա',
     addIncome: 'Եկամուտ',
     addExpense: 'Ծախս',

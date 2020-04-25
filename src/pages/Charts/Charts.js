@@ -11,7 +11,7 @@ import View from '../../components/View/View';
 import CartType from './ChartType/ChartType';
 import useStyles from './Charts.style';
 
-export default function MainChart() {
+export default function Charts() {
   const classes = useStyles();
   const { state, loading } = useStoreContext();
   const [isCurrent, setIsCurrent] = useState(true);
