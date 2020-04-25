@@ -12,13 +12,13 @@ export default function Search({ searchValue, setSearchValue }) {
   };
 
   return (
-    <FormattedMessage id="search">
-      {(name) => (
+    <FormattedMessage id="searchPlaceholder">
+      {(placeholder) => (
         <TextField
           className={classes.search}
           InputLabelProps={{ shrink: true }}
           label={<FormattedMessage id="search" />}
-          placeholder={name}
+          placeholder={placeholder}
           size="small"
           variant="outlined"
           value={searchValue}
