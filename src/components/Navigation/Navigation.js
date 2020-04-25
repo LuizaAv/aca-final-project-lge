@@ -81,7 +81,7 @@ export default function Navigation() {
             </Typography>
             <Typography
               className={classes.management}
-              variant="body2"
+              variant="body1"
               align="center"
             >
               management

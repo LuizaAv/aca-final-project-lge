@@ -35,9 +35,11 @@ export default makeStyles((theme) => ({
   current: {
     fontFamily: 'Segoe UI',
     fontSize: 30,
-    textAlign: 'center',
+    // textAlign: 'center',
     letterSpacing: 2,
     transform: 'scaleY(0.9)',
+    marginTop: -8,
+    marginBottom: -8,
     [theme.breakpoints.down('md')]: {
       fontSize: 25,
     },
@@ -72,7 +74,7 @@ export default makeStyles((theme) => ({
     fontWeight: 600,
     fontSize: 23,
     textTransform: 'capitalize',
-    textAlign: 'center',
+    // textAlign: 'center',
     [theme.breakpoints.down('md')]: {
       fontSize: 20,
     },

@@ -7,44 +7,33 @@ export default makeStyles((theme) => ({
     justifyContent: 'space-between',
     width: 290,
     marginRight: 30,
-    [theme.breakpoints.down('md')]: {
-      width: 250,
-    },
     [theme.breakpoints.down('sm')]: {
       margin: 'auto',
       marginLeft: 4,
-      width: 260,
     },
   },
   addIncome: {
     color: '#000',
     fontSize: 16,
     width: 135,
-    // textTransform: 'capitalize',
     '&:hover': {
       backgroundColor: lightGreen.A200,
     },
     [theme.breakpoints.down('md')]: {
       fontSize: 14,
     },
-    // [theme.breakpoints.down('sm')]: {
-    //   fontSize: 10,
-    // },
+
   },
   addExpense: {
     color: '#000',
     fontSize: 16,
     width: 135,
-    // textTransform: 'capitalize',
     '&:hover': {
       backgroundColor: red.A100,
     },
     [theme.breakpoints.down('md')]: {
       fontSize: 14,
     },
-    // [theme.breakpoints.down('sm')]: {
-    //   fontSize: 10,
-    // },
   },
   titleIncome: {
     backgroundColor: theme.palette.primary.main,
