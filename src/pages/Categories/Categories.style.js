@@ -24,10 +24,11 @@ export default makeStyles((theme) => ({
     },
   },
   tableContainer: {
-    width: '96%',
+    width: 1150,
     alignSelf: 'center',
     boxShadow: theme.shadows[5],
     paddingBottom: 50,
+
     [theme.breakpoints.down('sm')]: {
       width: '100%',
     },

@@ -34,7 +34,7 @@ export default makeStyles((theme) => ({
     flexWrap: 'wrap',
     justifyContent: 'center',
     minHeight: '55vh',
-    width: '96%',
+    width: 1150,
     [theme.breakpoints.down('md')]: {
       width: '100%',
     },
