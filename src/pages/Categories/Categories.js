@@ -55,7 +55,7 @@ export default function Categories() {
         : (
           <TableContainer component={Paper} className={classes.tableContainer}>
             <Typography className={classes.title}>
-              <FormattedMessage id="category" />
+              <FormattedMessage id="categories" />
             </Typography>
             <Table className={classes.table}>
               <TableHead>
