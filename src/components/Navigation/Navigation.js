@@ -66,13 +66,28 @@ export default function Navigation() {
         anchor="left"
         onClick={handleClick}
       >
-        <Typography
-          className={classes.logo}
-          variant="h4"
-          align="center"
-        >
-          Finance
-        </Typography>
+        <div className={classes.logo}>
+          <Link
+            className={classes.linkLogo}
+            to="/"
+            onClick={() => setPath('/')}
+          >
+            <Typography
+              className={classes.finance}
+              variant="h4"
+              align="center"
+            >
+              Finance
+            </Typography>
+            <Typography
+              className={classes.management}
+              variant="body2"
+              align="center"
+            >
+              management
+            </Typography>
+          </Link>
+        </div>
 
         <div className={classes.tools}>
           <Select
