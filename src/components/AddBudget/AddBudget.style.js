@@ -19,6 +19,8 @@ export default makeStyles((theme) => ({
   addIncome: {
     color: '#000',
     fontSize: 16,
+    width: 135,
+    // textTransform: 'capitalize',
     '&:hover': {
       backgroundColor: lightGreen.A200,
     },
@@ -32,6 +34,8 @@ export default makeStyles((theme) => ({
   addExpense: {
     color: '#000',
     fontSize: 16,
+    width: 135,
+    // textTransform: 'capitalize',
     '&:hover': {
       backgroundColor: red.A100,
     },
