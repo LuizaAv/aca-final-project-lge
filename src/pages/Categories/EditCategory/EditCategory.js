@@ -3,6 +3,7 @@ import propTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { CirclePicker } from 'react-color';
 
+import Tooltip from '@material-ui/core/Tooltip';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -106,14 +107,19 @@ export default function EditCategory({
 
   return (
     <>
-      <IconButton
-        className={classes.iconButton}
-        onClick={handleOpen}
+      <Tooltip
+        arrow
+        title={<FormattedMessage id="edit" />}
       >
-        <EditIcon
-          className={classes.icon}
-        />
-      </IconButton>
+        <IconButton
+          className={classes.iconButton}
+          onClick={handleOpen}
+        >
+          <EditIcon
+            className={classes.icon}
+          />
+        </IconButton>
+      </Tooltip>
 
       <Dialog
         classes={{ paper: classes.dialog }}
