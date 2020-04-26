@@ -3,7 +3,10 @@ import { makeStyles } from '@material-ui/core/styles';
 export default makeStyles({
   iconButton: {
     margin: -20,
-    marginRight: 0,
+    marginRight: 10,
+    '&:hover': {
+      backgroundColor: '#ffebee',
+    },
   },
   icon: {
     '&:hover': {
