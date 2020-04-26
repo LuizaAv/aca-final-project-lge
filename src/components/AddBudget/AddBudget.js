@@ -11,6 +11,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
+import InputAdornment from '@material-ui/core/InputAdornment';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 
@@ -19,6 +20,22 @@ import Snackbars from '../Snackbars/Snackbars';
 import { addBudget } from '../../store/actions';
 import { useStoreContext } from '../../store/storeContext';
 import { dbAddBudget } from '../../API/dbActions';
+
+function currencyIcon(currency) {
+  if (currency === 'USD') {
+    return '$';
+  }
+  if (currency === 'AMD') {
+    return '\u058F';
+  }
+  if (currency === 'RUB') {
+    return '\u20bd';
+  }
+  if (currency === 'EUR') {
+    return '\u20ac';
+  }
+  return '';
+}
 
 export default function AddBudget() {
   const classes = useStyles();
@@ -197,6 +214,9 @@ export default function AddBudget() {
           label={<FormattedMessage id="amount" />}
           value={amount}
           onChange={handleAmountChange}
+          InputProps={{
+            endAdornment: <InputAdornment position="end">{currencyIcon(currency)}</InputAdornment>,
+          }}
         />
 
         <MuiPickersUtilsProvider utils={DateFnsUtils}>

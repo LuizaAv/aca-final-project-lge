@@ -50,6 +50,10 @@ const messages = {
     snackbarError: 'Error: Server is not responding',
     byDate: 'By Date',
     byAmount: 'By Amount',
+    edit: 'Edit',
+    delete: 'Delete',
+    language: 'Laguage',
+    currency: 'Currency',
   },
 
   HY: {
@@ -103,6 +107,10 @@ const messages = {
     snackbarError: 'Սխալ: Սերվերը չի արձագանքում',
     byDate: 'Ըստ Ամսաթվի',
     byAmount: 'Ըստ Գումարի',
+    edit: 'Խմբագրել',
+    delete: 'Հեռացնել',
+    language: 'Լեզու',
+    currency: 'Արժույթ',
   },
 
   RU: {
@@ -156,6 +164,10 @@ const messages = {
     snackbarError: 'Oшибка: Сервер не отвечает',
     byDate: 'По Дате ',
     byAmount: 'По Сумме',
+    edit: 'Изменить',
+    delete: 'Удалить',
+    language: 'Язык',
+    currency: 'Валюта',
   },
 };
 

@@ -18,6 +18,22 @@ import View from '../../components/View/View';
 import Snackbars from '../../components/Snackbars/Snackbars';
 import useStyles from './History.style';
 
+function currencyIcon(currency) {
+  if (currency === 'USD') {
+    return '$';
+  }
+  if (currency === 'AMD') {
+    return '\u058F';
+  }
+  if (currency === 'RUB') {
+    return '\u20bd';
+  }
+  if (currency === 'EUR') {
+    return '\u20ac';
+  }
+  return '';
+}
+
 function filterByDate(budget, date) {
   const dayCheck = () => budget.filter((item) => (
     item.date.getDate() === new Date().getDate()
@@ -40,7 +56,7 @@ function filterByDate(budget, date) {
 
 export default function History() {
   const classes = useStyles();
-  const { state, loading } = useStoreContext();
+  const { state, loading, currency } = useStoreContext();
   const [filterType, setFilterType] = useState('all');
   const [isAscending, setIsAscending] = useState(true);
   const [filterDate, setFilterDate] = useState('wholePeriod');
@@ -127,9 +143,9 @@ export default function History() {
                       </Typography>
 
                       <Typography>
-                        {item.type === 'expense'
-                          ? `- ${item.amount}`
-                          : `+ ${item.amount}`}
+                        {item.type === 'expense' ? '-' : '+'}
+                        {item.amount}
+                        {currencyIcon(currency)}
                       </Typography>
 
                       <Typography className={classes.date}>
