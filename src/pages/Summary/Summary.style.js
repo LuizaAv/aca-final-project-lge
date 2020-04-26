@@ -68,7 +68,7 @@ export default makeStyles((theme) => ({
     transition: 'transform .2s',
     '&:hover': {
       transform: 'scale(1.01)',
-      backgroundColor: '#e0ebeb',
+      backgroundColor: '#ffebee',
     },
   },
   category: {
