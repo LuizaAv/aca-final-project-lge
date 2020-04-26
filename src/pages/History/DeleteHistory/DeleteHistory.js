@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import propTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
+import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Dialog from '@material-ui/core/Dialog';
@@ -55,12 +56,17 @@ export default function DeleteHistory({
 
   return (
     <>
-      <IconButton
-        className={classes.iconButton}
-        onClick={handleOpen}
+      <Tooltip
+        arrow
+        title={<FormattedMessage id="delete" />}
       >
-        <DeleteIcon className={classes.icon} />
-      </IconButton>
+        <IconButton
+          className={classes.iconButton}
+          onClick={handleOpen}
+        >
+          <DeleteIcon className={classes.icon} classes={{ root: 'my-class-name' }} />
+        </IconButton>
+      </Tooltip>
 
       <Dialog
         open={open}
