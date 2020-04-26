@@ -91,48 +91,6 @@ export default function Navigation() {
           </Link>
         </div>
 
-        <div className={classes.tools}>
-          <FormControl variant="outlined">
-            <InputLabel className={classes.label}>
-              <FormattedMessage id="language" />
-            </InputLabel>
-            <Select
-              className={classes.select}
-              classes={{ root: classes.selectRoot }}
-              variant="outlined"
-              value={language}
-              onChange={handlSelectLanguage}
-              label={<FormattedMessage id="language" />}
-            >
-              {selectLanguage.map((item) => (
-                <MenuItem value={item} key={item}>
-                  {item}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-
-          <FormControl variant="outlined">
-            <InputLabel className={classes.label}>
-              <FormattedMessage id="currency" />
-            </InputLabel>
-            <Select
-              className={classes.select}
-              classes={{ root: classes.selectRoot }}
-              variant="outlined"
-              value={currency}
-              onChange={handlselectCurrency}
-              label={<FormattedMessage id="currency" />}
-            >
-              {selectCurrency.map((item) => (
-                <MenuItem value={item} key={item}>
-                  {item}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </div>
-
         <nav className={classes.nav}>
           <Link
             to="/"
@@ -198,6 +156,49 @@ export default function Navigation() {
             <FormattedMessage id="charts" />
           </Link>
         </nav>
+
+
+        <div className={classes.tools}>
+          <FormControl variant="outlined">
+            <InputLabel className={classes.label}>
+              <FormattedMessage id="language" />
+            </InputLabel>
+            <Select
+              className={classes.select}
+              classes={{ root: classes.selectRoot }}
+              variant="outlined"
+              value={language}
+              onChange={handlSelectLanguage}
+              label={<FormattedMessage id="language" />}
+            >
+              {selectLanguage.map((item) => (
+                <MenuItem value={item} key={item}>
+                  {item}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+
+          <FormControl variant="outlined">
+            <InputLabel className={classes.label}>
+              <FormattedMessage id="currency" />
+            </InputLabel>
+            <Select
+              className={classes.select}
+              classes={{ root: classes.selectRoot }}
+              variant="outlined"
+              value={currency}
+              onChange={handlselectCurrency}
+              label={<FormattedMessage id="currency" />}
+            >
+              {selectCurrency.map((item) => (
+                <MenuItem value={item} key={item}>
+                  {item}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </div>
       </Drawer>
     </div>
   );

@@ -20,7 +20,6 @@ export default makeStyles((theme) => ({
     textDecoration: 'none',
   },
   finance: {
-    // fontWeight: theme.typography.fontWeightBold,
     color: theme.palette.tertiary.main,
     marginBottom: -12,
     fontFamily: 'Seguibl',
@@ -28,10 +27,7 @@ export default makeStyles((theme) => ({
   management: {
     letterSpacing: 3.5,
     marginLeft: 5,
-    // fontWeight: theme.typography.fontWeightBold,
     color: theme.palette.grey[600],
-    // textTransform: 'uppercase',
-    // transform: 'scaleX(1.5)',
   },
   nav: {
     display: 'flex',
@@ -100,11 +96,14 @@ export default makeStyles((theme) => ({
   },
   tools: {
     display: 'flex',
-    justifyContent: 'space-around',
-    marginTop: 10,
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginBottom: 20,
   },
   select: {
-    width: '10ch',
+    width: '18ch',
+    // margin: 'auto',
+    marginBottom: 20,
     height: 40,
     fontSize: 16,
   },
