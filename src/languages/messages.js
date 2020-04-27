@@ -62,6 +62,10 @@ const messages = {
     HistoryHelp:' In this  page  are  introduced  all costs  and  income  that  added  byusers. Here  we introduce it  with  categories.  The  information  in every  card  iscontains the   date   when   that cost/income was   added,   its   amount, name,category. In  this  page user  have  an  opportunity  to  edit  and   delete thosecards. There  are  also  many  opportunities for  filtering  cards. Here  they are. Youcan   filter   it   by   amount, cost or  income  ingredient, by date (daily, monthly,yearly). You  also  can  search  every  card  created by  you through category name.Being in this  page you  also  can  add  cost/income.',
     CategoriesHelp:' In page Categories  you  have  an  opportunity to  create  new  cost orincome   categories. You   can do   that   by clicking on the   appropriate   button,choosing category type (cost or  income), typing name and  choosing  the  color  ofcategory. After  adding  it  will  be  reflected on our summery  table, which  includecost  or  income ingredient`s category  and  its  type. In  this  page user  have  anopportunity  to  edit  and   delete  added categories. You can  filter  by categorytype (total/cost/income).Being in this  page you  also  can  add  cost/income.',
     ChartsHelp:' In  page Graphs  with  red  and  green  colors  are  introduced  accordinglycost   and   income   categories  types. Those are   introduce   made   costs   andrecieved income dynamic  for  a  certain  period  of time. Here  also  user  haveopportunity  to  filter  the  data. The  first  filter is  by current  and  future  costs  andincome. Whit  next  filter  you  can  choose a graph by  date  or  by  amount.Being in this  page you  also  can  add  cost/income.',
+    edit: 'Edit',
+    delete: 'Delete',
+    language: 'Laguage',
+    currency: 'Currency',
   },
 
   HY: {
@@ -127,6 +131,10 @@ const messages = {
     HistoryHelp:'Այս  էջում  ներկայացված են  ավելացված  բոլոր ծախսերը  եւեկամուտները   ըստ կատեգորիաների: Յուրաքանչյուր   քարտում   ներառվածտեղեկատվությունը     պարունակում   է      ծախսի/եկամտի     ավելացմանամսաթիվը, գումարի   չափը, անվանումը, կատեգորիան: Առկա   է   քարտիխմբագրման  եւ  ջնջման հնարավորություն: Էջում  կան նաեւ  տեսակավորմանբազմաթիվ հնարավորություններ: Դրանք  են՝ տեսակավորում  ըստ  գումարի,եկամտային եւ   ծախսային բաղադրիչի, ժամանակագրական տվյալի՝ օրեկան,ամսեկան, տարեկան: Դուք հնարավորություն  ունեք  նաեւ  որոնելու ցանկացածստեղծված  քարտ՝  ըստ կատեգորիայի:Գտնվելով  այս  էջում՝  կրկին կարող եք  ավելացնել ծախս/եկամուտ:',
     CategoriesHelp:' Կատեգորիաներ     էջում   դուք     հնարավորություն     ունեքստեղծելու  ծախսային կամ  եկամտային  նոր  կատեգորիաներ: Դա  կարող  եքանել՝     սեղմելով     համապատասխան     կոճակը,   ընտրելով     կատեգորիայիտեսակը՝     ծախս/եկամուտ,       գրելով     անվանումը     եւ     ընտրելով     գույնը:Ավելացնելուց   հետո   այն կարտացոլվի   բերված   ամփոփ աղյուսակում, որըներառում է  ծախսային կամ  եկամտային բաղադրիչի  կատեգորիան, տեսակը:Էջում     առկա     է     խմբագրման     եւ     ջնջման   հնարավորություն:   Կարող   եքտեսակավորել  ըստ  կատեգորիայի  տեսակի՝  ամբողջը/եկամուտ/ծախս/:Գտնվելով  այս  էջում՝  կրկին կարող եք  ավելացնել ծախս/եկամուտ',
     ChartsHelp:'  Գրաֆիկներ     էջում     կարմիր     եւ     կանաչ     երանգավորմամբներկայացված     են     համապատասխանաբար     ծախս   եւ     եկամուտկատեգորիաների     տեսակները:   Դրանք     ներկայացնում     են     որոշակիժամանակահատվածի     ընթացքում     կատարված     ծախսերի     եւ     ստացածեկամուտների      դինամիկան:   Այստեղ      եւս      կա      հնարավորությունտեսակավորելու      ըստ      որոշ   տվյալների:   Առաջին   տեսակավորմանհանրավորությունը   հավելվածը     տալիս   է     ըստ     ընթացիկ     եւ     առաջիկածախսերի      ու      եկամուտների:   Տեսակավորման   երկրորդ      տեսակըհնարավորություն  է  տալիս  ընտրելու  գրաֆիկը՝  ըստ  ամսաթվերի  եւ  ըստգումարի:Գտնվելով  այս  էջում՝  կրկին կարող եք  ավելացնել ծախս/եկամուտ:',
+    edit: 'Խմբագրել',
+    delete: 'Հեռացնել',
+    language: 'Լեզու',
+    currency: 'Արժույթ',
   },
 
   RU: {
@@ -192,6 +200,10 @@ const messages = {
     HistoryHelp:'На этой странице представлены все расходы и доходы, которые добавляются пользователями. Здесь мы представляем это с категориями. Информация в каждой карточке содержит дату, когда была добавлена эта стоимость / доход, ее сумма, имя, категория. На этой странице пользователь имеет возможность редактировать и удалять эти карты. Есть также много возможностей для фильтрации карт. Они здесь. Вы можете отфильтровать его по количеству, стоимости или доходу, по дате (ежедневно, ежемесячно, ежегодно). Вы также можете искать каждую карту, созданную вами, по названию категории. На этой странице вы также можете добавить стоимость / доход.',
     CategoriesHelp:'На странице категорий у вас есть возможность создавать новые категории затрат или доходов. Вы можете сделать это, нажав на соответствующую кнопку, выбрав тип категории (стоимость или доход), введя имя и выбрав цвет категории. После добавления это будет отражено в нашей летней таблице, в которой указана категория стоимости или дохода и тип ингредиента. На этой странице у пользователя есть возможность редактировать и удалять добавленные категории. Вы можете фильтровать по типу категории (общая / стоимость / доход). На этой странице вы также можете добавить стоимость / доход.',
     ChartsHelp:'На странице Графики с красным и зеленым цветами вводятся соответственно виды стоимости и категории доходов. Они представляют собой произведенные затраты и динамику полученного дохода за определенный период времени. Здесь также у пользователя есть возможность фильтровать данные. Первый фильтр - по текущим и будущим затратам и доходам. Следующим фильтром вы можете выбрать график по дате или по сумме. На этой странице вы также можете добавить стоимость / доход.',
+    edit: 'Изменить',
+    delete: 'Удалить',
+    language: 'Язык',
+    currency: 'Валюта',
   },
 };
 

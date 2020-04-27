@@ -12,26 +12,24 @@ export default makeStyles((theme) => ({
   },
   logo: {
     width: '100%',
-    paddingTop: 40,
-    paddingBottom: 40,
+    minHeight: 120,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
     boxShadow: '0px 7px 60px 0px #e6e8fc',
   },
   linkLogo: {
     textDecoration: 'none',
   },
   finance: {
-    // fontWeight: theme.typography.fontWeightBold,
     color: theme.palette.tertiary.main,
     marginBottom: -12,
     fontFamily: 'Seguibl',
   },
   management: {
-    letterSpacing: 3.5,
-    marginLeft: 5,
-    // fontWeight: theme.typography.fontWeightBold,
+    letterSpacing: 3.3,
+    marginLeft: 3,
     color: theme.palette.grey[600],
-    // textTransform: 'uppercase',
-    // transform: 'scaleX(1.5)',
   },
   nav: {
     display: 'flex',
@@ -45,7 +43,7 @@ export default makeStyles((theme) => ({
     textDecoration: 'none',
     display: 'flex',
     alignItems: 'center',
-    marginBottom: 40,
+    marginBottom: 30,
     color: theme.palette.text.secondary,
     fill: '#ababab', // svg icon color
     '&:hover': {
@@ -57,7 +55,7 @@ export default makeStyles((theme) => ({
     textDecoration: 'none',
     display: 'flex',
     alignItems: 'center',
-    marginBottom: 40,
+    marginBottom: 30,
     color: theme.palette.text.primary,
     fill: theme.palette.secondary.main, // svg icon color
 
@@ -100,11 +98,13 @@ export default makeStyles((theme) => ({
   },
   tools: {
     display: 'flex',
-    justifyContent: 'space-around',
-    marginTop: 10,
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginBottom: 20,
   },
   select: {
-    width: '10ch',
+    width: '18ch',
+    marginBottom: 20,
     height: 40,
     fontSize: 16,
   },

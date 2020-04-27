@@ -8,9 +8,25 @@ import { useStoreContext } from '../../store/storeContext';
 import AddBudget from '../AddBudget/AddBudget';
 import useStyles from './Header.style';
 
+function currencyIcon(currency) {
+  if (currency === 'USD') {
+    return '$';
+  }
+  if (currency === 'AMD') {
+    return '\u058F';
+  }
+  if (currency === 'RUB') {
+    return '\u20bd';
+  }
+  if (currency === 'EUR') {
+    return '\u20ac';
+  }
+  return '';
+}
+
 export default function Header() {
   const classes = useStyles();
-  const { state } = useStoreContext();
+  const { state, currency } = useStoreContext();
 
   const income = state.budget.filter((item) => item.type === 'income');
   const expense = state.budget.filter((item) => item.type === 'expense');
@@ -92,6 +108,7 @@ export default function Header() {
             </Typography>
             <Typography className={clsx(classes.current, classes[item.name])}>
               {item.currentAmount}
+              {currencyIcon(currency)}
             </Typography>
             <div className={classes.span}>
               <Typography className={classes.text}>

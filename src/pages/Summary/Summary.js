@@ -20,10 +20,25 @@ import { ReactComponent as ArrowDownwardIcon } from '../../assets/icons/Arrow-do
 import { ReactComponent as ArrowUpwardIcon } from '../../assets/icons/Arrow-up.svg';
 import useStyles from './Summary.style';
 
+function currencyIcon(currency) {
+  if (currency === 'USD') {
+    return '$';
+  }
+  if (currency === 'AMD') {
+    return '\u058F';
+  }
+  if (currency === 'RUB') {
+    return '\u20bd';
+  }
+  if (currency === 'EUR') {
+    return '\u20ac';
+  }
+  return '';
+}
 
 export default function Categories() {
   const classes = useStyles();
-  const { state, loading } = useStoreContext();
+  const { state, loading, currency } = useStoreContext();
   const [filterType, setFilterType] = useState('all');
   const [isAscending, setIsAscending] = useState(true);
   const [isCurrent, setIsCurrent] = useState(true);
@@ -111,7 +126,9 @@ export default function Categories() {
                       <FormattedMessage id={amount.type} />
                     </TableCell>
                     <TableCell className={classes.content} align="right">
-                      {(amount.type === 'expense' ? '-' : '+') + amount.amount}
+                      {(amount.type === 'expense' ? '-' : '+')}
+                      {amount.amount}
+                      {currencyIcon(currency)}
                     </TableCell>
                   </TableRow>
                 ))}

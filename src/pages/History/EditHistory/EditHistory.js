@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import propTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
+import Tooltip from '@material-ui/core/Tooltip';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -11,6 +12,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
+import InputAdornment from '@material-ui/core/InputAdornment';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import IconButton from '@material-ui/core/IconButton';
@@ -20,6 +22,22 @@ import { useStoreContext } from '../../../store/storeContext';
 import { dbEditBudget } from '../../../API/dbActions';
 import { editBudget } from '../../../store/actions';
 import useStyles from './EditHistory.style';
+
+function currencyIcon(currency) {
+  if (currency === 'USD') {
+    return '$';
+  }
+  if (currency === 'AMD') {
+    return '\u058F';
+  }
+  if (currency === 'RUB') {
+    return '\u20bd';
+  }
+  if (currency === 'EUR') {
+    return '\u20ac';
+  }
+  return '';
+}
 
 export default function EditHistory({
   budget, setSnackbarType, setSnackbarOpen,
@@ -125,12 +143,17 @@ export default function EditHistory({
 
   return (
     <>
-      <IconButton
-        className={classes.iconButton}
-        onClick={handleOpen}
+      <Tooltip
+        arrow
+        title={<FormattedMessage id="edit" />}
       >
-        <EditIcon className={classes.icon} />
-      </IconButton>
+        <IconButton
+          className={classes.iconButton}
+          onClick={handleOpen}
+        >
+          <EditIcon className={classes.icon} />
+        </IconButton>
+      </Tooltip>
       <Dialog
         classes={{ paper: classes.dialog }}
         fullWidth
@@ -184,6 +207,9 @@ export default function EditHistory({
           label={<FormattedMessage id="amount" />}
           value={amount}
           onChange={handleAmountChange}
+          InputProps={{
+            endAdornment: <InputAdornment position="end">{currencyIcon(currency)}</InputAdornment>,
+          }}
         />
 
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
