@@ -183,6 +183,23 @@ export default function Navigation() {
             <GraphsIcon className={classes.graphsIcon} />
             <FormattedMessage id="charts" />
           </Link>
+          <Link
+            to="/Help"
+            onClick={() => setPath('/Help')}
+            className={path === '/Help'
+              ? classes.activeLink
+              : classes.link}
+          >
+            <RectangleIcon
+              className={
+                path === '/Help'
+                  ? classes.activeRectangleIcon
+                  : classes.rectangleIcon
+                }
+            />
+            <SummaryIcon className={classes.summaryIcon} />
+            <FormattedMessage id="Help" />
+          </Link>
         </nav>
       </Drawer>
     </div>
