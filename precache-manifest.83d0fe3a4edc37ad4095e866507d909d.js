@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ed195fcde703c877f6a072d966eaa4ce",
+    "revision": "56b64a8099a0ade5399545aef438db9a",
     "url": "/aca-final-project-lge/index.html"
   },
   {
-    "revision": "a4b9b67a7859de6f6160",
+    "revision": "56d30b769c5f6a22d230",
     "url": "/aca-final-project-lge/static/css/main.bc654ded.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/aca-final-project-lge/static/js/2.3ae9437a.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "a4b9b67a7859de6f6160",
-    "url": "/aca-final-project-lge/static/js/main.6966cac2.chunk.js"
+    "revision": "56d30b769c5f6a22d230",
+    "url": "/aca-final-project-lge/static/js/main.e19fa08e.chunk.js"
   },
   {
     "revision": "b136d124ffad18adfceb",
