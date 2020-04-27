@@ -12,8 +12,10 @@ export default makeStyles((theme) => ({
   },
   logo: {
     width: '100%',
-    paddingTop: 40,
-    paddingBottom: 40,
+    minHeight: 120,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
     boxShadow: '0px 7px 60px 0px #e6e8fc',
   },
   linkLogo: {
@@ -25,8 +27,8 @@ export default makeStyles((theme) => ({
     fontFamily: 'Seguibl',
   },
   management: {
-    letterSpacing: 3.5,
-    marginLeft: 5,
+    letterSpacing: 3.3,
+    marginLeft: 3,
     color: theme.palette.grey[600],
   },
   nav: {
@@ -41,7 +43,7 @@ export default makeStyles((theme) => ({
     textDecoration: 'none',
     display: 'flex',
     alignItems: 'center',
-    marginBottom: 40,
+    marginBottom: 30,
     color: theme.palette.text.secondary,
     fill: '#ababab', // svg icon color
     '&:hover': {
@@ -53,7 +55,7 @@ export default makeStyles((theme) => ({
     textDecoration: 'none',
     display: 'flex',
     alignItems: 'center',
-    marginBottom: 40,
+    marginBottom: 30,
     color: theme.palette.text.primary,
     fill: theme.palette.secondary.main, // svg icon color
 
@@ -102,7 +104,6 @@ export default makeStyles((theme) => ({
   },
   select: {
     width: '18ch',
-    // margin: 'auto',
     marginBottom: 20,
     height: 40,
     fontSize: 16,

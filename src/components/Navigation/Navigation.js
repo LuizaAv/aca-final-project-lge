@@ -72,7 +72,6 @@ export default function Navigation() {
           <Link
             className={classes.linkLogo}
             to="/"
-            onClick={() => setPath('/')}
           >
             <Typography
               className={classes.finance}
