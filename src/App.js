@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
 
 import theme from './theme/theme';
@@ -9,9 +9,9 @@ import Main from './pages/Main';
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Router>
+      <HashRouter>
         <Main />
-      </Router>
+      </HashRouter>
     </ThemeProvider>
   );
 }
