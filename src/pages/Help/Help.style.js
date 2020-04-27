@@ -4,6 +4,7 @@ export default makeStyles((theme) => ({
     root: {
         width: '75%',
         margin:'auto',
+        marginTop:'100px',
         [theme.breakpoints.down('sm')]: {
             width: '100%',
           },
@@ -12,7 +13,15 @@ export default makeStyles((theme) => ({
         fontSize: theme.typography.pxToRem(15),
         flexBasis: '33.33%',
         flexShrink: 0,
-        color:'red',
+        fontWeight:700,
+        color:'#3949ab',
+        fontSize:'19px',
+        '&:hover': {
+            transform: 'scale(1.3)',
+            // backgroundColor: '#ffebee',
+            width:'100%',
+            marginLeft:30,
+          },
        
       },
     h1:{
@@ -22,7 +31,8 @@ export default makeStyles((theme) => ({
     },
     paragraph:{
      padding:10,
-     textAlign:'justify'
+     textAlign:'justify',
+     fontWeight:700,
     }
    
     
