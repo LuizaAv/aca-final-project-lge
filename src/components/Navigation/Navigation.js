@@ -19,6 +19,7 @@ import { ReactComponent as SummaryIcon } from '../../assets/icons/Summary.svg';
 import { ReactComponent as HistoryIcon } from '../../assets/icons/History.svg';
 import { ReactComponent as CategoriesIcon } from '../../assets/icons/Categories.svg';
 import { ReactComponent as RectangleIcon } from '../../assets/icons/Rectangle.svg';
+import { ReactComponent as HelpIcon } from '../../assets/icons/question.svg';
 import useStyles from './Navigation.style';
 
 export default function Navigation() {
@@ -168,8 +169,8 @@ export default function Navigation() {
                   : classes.rectangleIcon
                 }
             />
-            <SummaryIcon className={classes.summaryIcon} />
-            <FormattedMessage id="Help" />
+            <HelpIcon className={classes.helpIcon} />
+            <FormattedMessage id="help" />
           </Link>
         </nav>
 

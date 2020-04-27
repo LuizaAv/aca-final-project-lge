@@ -63,6 +63,7 @@ export default makeStyles((theme) => ({
   rectangleIcon: {
     marginRight: 17,
     fill: '#fff',
+    color: '#fff',
   },
   activeRectangleIcon: {
     marginRight: 17,
@@ -85,6 +86,11 @@ export default makeStyles((theme) => ({
     marginRight: 17,
     marginLeft: -1,
     height: 27,
+  },
+  helpIcon: {
+    marginRight: 17,
+    width: 28,
+    height: 28,
   },
   hide: {
     display: 'none',
