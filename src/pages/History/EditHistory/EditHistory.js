@@ -15,6 +15,9 @@ import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
+import enLocale from 'date-fns/locale/en-US';
+import ruLocale from 'date-fns/locale/ru';
+import hyLocale from 'date-fns/locale/hy';
 import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
 
@@ -39,11 +42,17 @@ function currencyIcon(currency) {
   return '';
 }
 
+const localeMap = {
+  EN: enLocale,
+  RU: ruLocale,
+  HY: hyLocale,
+};
+
 export default function EditHistory({
   budget, setSnackbarType, setSnackbarOpen,
 }) {
   const classes = useStyles();
-  const { state, dispatch } = useStoreContext();
+  const { state, dispatch, language } = useStoreContext();
   const { rate, currency } = useStoreContext();
   const [type, setType] = useState(budget.type);
   const [name, setName] = useState(budget.name);
@@ -212,7 +221,7 @@ export default function EditHistory({
           }}
         />
 
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        <MuiPickersUtilsProvider utils={DateFnsUtils} locale={localeMap[language]}>
           <KeyboardDatePicker
             className={classes.date}
             format="dd/MM/yyyy"
@@ -221,6 +230,8 @@ export default function EditHistory({
             value={date}
             onChange={handleDateChange}
             onError={handlePicherError}
+            cancelLabel={<FormattedMessage id="cancel" />}
+            okLabel={<FormattedMessage id="ok" />}
             KeyboardButtonProps={{
               'aria-label': 'change date',
             }}

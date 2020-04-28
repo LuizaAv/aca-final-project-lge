@@ -9,11 +9,12 @@ import { useStoreContext } from '../../store/storeContext';
 import Header from '../../components/Header/Header';
 import View from '../../components/View/View';
 import CartType from './ChartType/ChartType';
+import messages from '../../languages/messages';
 import useStyles from './Charts.style';
 
 export default function Charts() {
   const classes = useStyles();
-  const { state, loading } = useStoreContext();
+  const { state, loading, language } = useStoreContext();
   const [isCurrent, setIsCurrent] = useState(true);
   const [type, setType] = useState('date');
 
@@ -49,18 +50,18 @@ export default function Charts() {
     labels: labelsLine,
     datasets: [
       {
-        label: 'income',
+        label: messages[language].income,
         data: incomes,
-        fill: true, // Don't fill area under the line
-        backgroundColor: '#76ff0335', // fill color
-        borderColor: '#76ff03', // Line color
+        fill: true,
+        backgroundColor: '#76ff0335',
+        borderColor: '#76ff03',
       },
       {
-        label: 'expense',
+        label: messages[language].expense,
         data: expenses,
-        fill: true, // Don't fill area under the line
-        backgroundColor: '#ff525235', // fill color
-        borderColor: '#FF5D5D', // Line color
+        fill: true,
+        backgroundColor: '#ff525235',
+        borderColor: '#FF5D5D',
       },
     ],
   };
