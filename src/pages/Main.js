@@ -1,12 +1,13 @@
-import React, { useReducer, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { IntlProvider } from 'react-intl';
 
-import { StoreContext } from '../store/storeContext';
-import { reducer } from '../store/reducers';
+import { MainContext } from './mainContext';
+import { useStoreContext } from '../store/storeContext';
+import { useSnackbarContext } from '../components/Snackbars/snackbarContext';
 import { initCategory, initBudget, editBudget } from '../store/actions';
 import { dbGetBudget, dbGetCategory, rateExchange } from '../API/dbActions';
-import messages from '../languages/messages';
+import { ERROR } from '../components/Snackbars/snackbarActions';
 
 import Navigation from '../components/Navigation/Navigation';
 import Summary from './Summary/Summary';
@@ -15,18 +16,11 @@ import History from './History/History';
 import Charts from './Charts/Charts';
 import Help from './Help/Help';
 import Snackbars from '../components/Snackbars/Snackbars';
-import { useSnackbarContext } from '../components/Snackbars/snackbarContext';
-import { ERROR } from '../components/Snackbars/snackbarActions';
+import messages from '../languages/messages';
 import useStyles from './Main.style';
-
-const initialState = {
-  categories: [],
-  budget: [],
-};
 
 export default function Main() {
   const classes = useStyles();
-  const [state, dispatch] = useReducer(reducer, initialState);
   const [language, setLanguage] = useState('EN');
   const [currency, setCurrency] = useState('USD');
   const [loading, setLoading] = useState(true);
@@ -34,6 +28,7 @@ export default function Main() {
     USD: 1, AMD: 480, RUB: 74, EUR: 0.91,
   });
   const { snackbarDispatch } = useSnackbarContext();
+  const { dispatch } = useStoreContext();
 
   useEffect(() => {
     rateExchange()
@@ -63,8 +58,8 @@ export default function Main() {
   }, [currency, rate]);
 
   return (
-    <StoreContext.Provider value={{
-      state, dispatch, currency, setCurrency, rate, loading, language, setLanguage,
+    <MainContext.Provider value={{
+      currency, setCurrency, rate, loading, language, setLanguage,
     }}
     >
       <IntlProvider locale={language} messages={messages[language]}>
@@ -90,12 +85,11 @@ export default function Main() {
               <Route path="/Help">
                 <Help />
               </Route>
-
             </Switch>
           </div>
         </div>
         <Snackbars />
       </IntlProvider>
-    </StoreContext.Provider>
+    </MainContext.Provider>
   );
 }
