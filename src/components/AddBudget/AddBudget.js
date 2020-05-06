@@ -22,6 +22,7 @@ import useStyles from './AddBudget.style';
 import Snackbars from '../Snackbars/Snackbars';
 import { addBudget } from '../../store/actions';
 import { useStoreContext } from '../../store/storeContext';
+import { useMainContext } from '../../pages/mainContext';
 import { dbAddBudget } from '../../API/dbActions';
 import { currencySign } from '../../globals/constants';
 import { useSnackbarContext } from '../Snackbars/snackbarContext';
@@ -36,8 +37,8 @@ const localeMap = {
 
 export default function AddBudget() {
   const classes = useStyles();
-  const { state, dispatch, language } = useStoreContext();
-  const { rate, currency } = useStoreContext();
+  const { state, dispatch } = useStoreContext();
+  const { rate, currency, language } = useMainContext();
   const [type, setType] = useState('');
   const [name, setName] = useState('');
   const [category, setCategory] = useState('');

@@ -5,13 +5,15 @@ import Typography from '@material-ui/core/Typography';
 import clsx from 'clsx';
 
 import { useStoreContext } from '../../store/storeContext';
+import { useMainContext } from '../../pages/mainContext';
 import AddBudget from '../AddBudget/AddBudget';
 import { currencySign } from '../../globals/constants';
 import useStyles from './Header.style';
 
 export default function Header() {
   const classes = useStyles();
-  const { state, currency } = useStoreContext();
+  const { state } = useStoreContext();
+  const { currency } = useMainContext();
 
   const income = state.budget.filter((item) => item.type === 'income');
   const expense = state.budget.filter((item) => item.type === 'expense');

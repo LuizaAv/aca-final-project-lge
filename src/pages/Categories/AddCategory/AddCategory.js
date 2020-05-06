@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import propTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 import { CirclePicker } from 'react-color';
 import { FormattedMessage } from 'react-intl';

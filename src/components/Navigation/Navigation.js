@@ -13,7 +13,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
-import { useStoreContext } from '../../store/storeContext';
+import { useMainContext } from '../../pages/mainContext';
 import { ReactComponent as GraphsIcon } from '../../assets/icons/Graphs.svg';
 import { ReactComponent as SummaryIcon } from '../../assets/icons/Summary.svg';
 import { ReactComponent as HistoryIcon } from '../../assets/icons/History.svg';
@@ -25,8 +25,9 @@ import useStyles from './Navigation.style';
 export default function Navigation() {
   const classes = useStyles();
   const matches = useMediaQuery('(min-width:1030px)');
-  const { currency, setCurrency } = useStoreContext();
-  const { language, setLanguage } = useStoreContext();
+  const {
+    language, setLanguage, currency, setCurrency,
+  } = useMainContext();
   const [path, setPath] = useState(window.location.pathname);
   const [open, setOpen] = useState(true);
 

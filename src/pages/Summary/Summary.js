@@ -12,6 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { useStoreContext } from '../../store/storeContext';
+import { useMainContext } from '../mainContext';
 import Header from '../../components/Header/Header';
 import Sort from '../../components/Sort/Sort';
 import FilterType from '../../components/FilterType/FilterType';
@@ -23,7 +24,8 @@ import useStyles from './Summary.style';
 
 export default function Categories() {
   const classes = useStyles();
-  const { state, loading, currency } = useStoreContext();
+  const { state } = useStoreContext();
+  const { loading, currency } = useMainContext();
   const [filterType, setFilterType] = useState('all');
   const [isAscending, setIsAscending] = useState(true);
   const [isCurrent, setIsCurrent] = useState(true);

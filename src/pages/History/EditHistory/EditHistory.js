@@ -22,6 +22,7 @@ import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
 
 import { useStoreContext } from '../../../store/storeContext';
+import { useMainContext } from '../../mainContext';
 import { dbEditBudget } from '../../../API/dbActions';
 import { editBudget } from '../../../store/actions';
 import { currencySign } from '../../../globals/constants';
@@ -37,8 +38,8 @@ const localeMap = {
 
 export default function EditHistory({ budget }) {
   const classes = useStyles();
-  const { state, dispatch, language } = useStoreContext();
-  const { rate, currency } = useStoreContext();
+  const { state, dispatch } = useStoreContext();
+  const { rate, currency, language } = useMainContext();
   const [type, setType] = useState(budget.type);
   const [name, setName] = useState(budget.name);
   const [category, setCategory] = useState(budget.category);
