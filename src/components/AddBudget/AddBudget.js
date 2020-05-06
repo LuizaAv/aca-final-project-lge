@@ -24,6 +24,9 @@ import { addBudget } from '../../store/actions';
 import { useStoreContext } from '../../store/storeContext';
 import { dbAddBudget } from '../../API/dbActions';
 import { currencySign } from '../../globals/constants';
+import { useSnackbarContext } from '../Snackbars/snackbarContext';
+import { ADD, CANCEL, ERROR } from '../Snackbars/snackbarActions';
+
 
 const localeMap = {
   EN: enLocale,
@@ -43,27 +46,15 @@ export default function AddBudget() {
   const [date, setDate] = useState(new Date());
   const [datePickerError, setDatePickerError] = useState('');
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [snackbarType, setSnackbarType] = useState('');
-  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const { snackbarDispatch } = useSnackbarContext();
 
   const handleDialogClose = () => {
     setDialogOpen(false);
   };
 
-  const handleSnackbarAdd = () => {
-    setSnackbarType('add');
-    setSnackbarOpen(true);
-  };
-
-  const handleSnackbarErroe = () => {
-    setSnackbarType('error');
-    setSnackbarOpen(true);
-  };
-
   const handleCancel = () => {
     setDialogOpen(false);
-    setSnackbarType('cancel');
-    setSnackbarOpen(true);
+    snackbarDispatch(CANCEL);
   };
 
   const handleClickExpense = () => {
@@ -130,8 +121,8 @@ export default function AddBudget() {
       ...addedBudget, amount: Math.ceil(addedBudget.amount / rate[currency]),
     })
       .then(() => dispatch(addBudget(addedBudget)))
-      .then(() => handleSnackbarAdd())
-      .catch(() => handleSnackbarErroe());
+      .then(() => snackbarDispatch(ADD))
+      .catch(() => snackbarDispatch(ERROR));
   };
 
   const doneDisabled = (
@@ -249,7 +240,7 @@ export default function AddBudget() {
         </DialogActions>
       </Dialog>
 
-      <Snackbars type={snackbarType} open={snackbarOpen} setOpen={setSnackbarOpen} />
+      <Snackbars />
     </div>
   );
 }

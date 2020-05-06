@@ -15,6 +15,8 @@ import History from './History/History';
 import Charts from './Charts/Charts';
 import Help from './Help/Help';
 import Snackbars from '../components/Snackbars/Snackbars';
+import { useSnackbarContext } from '../components/Snackbars/snackbarContext';
+import { ERROR } from '../components/Snackbars/snackbarActions';
 import useStyles from './Main.style';
 
 const initialState = {
@@ -25,13 +27,13 @@ const initialState = {
 export default function Main() {
   const classes = useStyles();
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [language, setLanguage] = useState('EN');
   const [currency, setCurrency] = useState('USD');
   const [loading, setLoading] = useState(true);
   const [rate, setRate] = useState({
     USD: 1, AMD: 480, RUB: 74, EUR: 0.91,
   });
+  const { snackbarDispatch } = useSnackbarContext();
 
   useEffect(() => {
     rateExchange()
@@ -44,12 +46,12 @@ export default function Main() {
     dbGetCategory()
       .then((categories) => dispatch(initCategory(categories)))
       .then(() => setLoading(false))
-      .catch(() => setSnackbarOpen(true))
+      .catch(() => snackbarDispatch(ERROR))
       .then(() => setLoading(false));
     dbGetBudget()
       .then((budget) => dispatch(initBudget(budget)))
       .then(() => setLoading(false))
-      .catch(() => setSnackbarOpen(true))
+      .catch(() => snackbarDispatch(ERROR))
       .then(() => setLoading(false));
   }, []);
 
@@ -92,7 +94,7 @@ export default function Main() {
             </Switch>
           </div>
         </div>
-        <Snackbars type="error" open={snackbarOpen} setOpen={setSnackbarOpen} />
+        <Snackbars />
       </IntlProvider>
     </StoreContext.Provider>
   );

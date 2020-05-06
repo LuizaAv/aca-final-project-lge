@@ -13,14 +13,15 @@ import Button from '@material-ui/core/Button';
 import { useStoreContext } from '../../../store/storeContext';
 import { dbDeleteBudget } from '../../../API/dbActions';
 import { deleteBudget } from '../../../store/actions';
+import { useSnackbarContext } from '../../../components/Snackbars/snackbarContext';
+import { DELETE, CANCEL, ERROR } from '../../../components/Snackbars/snackbarActions';
 import useStyles from './DeleteHistory.style';
 
-export default function DeleteHistory({
-  budget, setSnackbarType, setSnackbarOpen,
-}) {
+export default function DeleteHistory({ budget }) {
   const classes = useStyles();
   const { dispatch } = useStoreContext();
   const [open, setOpen] = useState(false);
+  const { snackbarDispatch } = useSnackbarContext();
 
   const handleOpen = () => {
     setOpen(true);
@@ -30,28 +31,17 @@ export default function DeleteHistory({
     setOpen(false);
   };
 
-  const handleSnackbarDelete = () => {
-    setSnackbarType('delete');
-    setSnackbarOpen(true);
-  };
-
-  const handleSnackbarErroe = () => {
-    setSnackbarType('error');
-    setSnackbarOpen(true);
-  };
-
   const handleCancel = () => {
     setOpen(false);
-    setSnackbarType('cancel');
-    setSnackbarOpen(true);
+    snackbarDispatch(CANCEL);
   };
 
   const handleDeleteBudget = () => {
     handleClose();
     dbDeleteBudget(budget)
       .then(() => dispatch(deleteBudget(budget)))
-      .then(() => handleSnackbarDelete())
-      .catch(() => handleSnackbarErroe());
+      .then(() => snackbarDispatch(DELETE))
+      .catch(() => snackbarDispatch(ERROR));
   };
 
   return (
@@ -106,8 +96,6 @@ DeleteHistory.propTypes = {
     amount: propTypes.number.isRequired,
     date: propTypes.instanceOf(Date),
   }),
-  setSnackbarType: propTypes.func.isRequired,
-  setSnackbarOpen: propTypes.func.isRequired,
 };
 
 DeleteHistory.defaultProps = {

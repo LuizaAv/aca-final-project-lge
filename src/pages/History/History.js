@@ -46,9 +46,7 @@ export default function History() {
   const [isAscending, setIsAscending] = useState(true);
   const [filterDate, setFilterDate] = useState('wholePeriod');
   const [searchValue, setSearchValue] = useState('');
-  const [snackbarType, setSnackbarType] = useState('');
   const [isCurrent, setIsCurrent] = useState(true);
-  const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [page, setPage] = useState(1);
 
   const currentBudget = state.budget.filter((item) => item.date.getTime() <= new Date().getTime());
@@ -107,16 +105,8 @@ export default function History() {
                     <div className={classes.cardItem}>
                       <Typography className={classes.name}>{item.name}</Typography>
                       <div className={classes.amount}>
-                        <EditHistory
-                          budget={item}
-                          setSnackbarType={setSnackbarType}
-                          setSnackbarOpen={setSnackbarOpen}
-                        />
-                        <DeleteHistory
-                          budget={item}
-                          setSnackbarType={setSnackbarType}
-                          setSnackbarOpen={setSnackbarOpen}
-                        />
+                        <EditHistory budget={item} />
+                        <DeleteHistory budget={item} />
                       </div>
                     </div>
 
@@ -150,7 +140,7 @@ export default function History() {
         color="secondary"
         className={classes.pagination}
       />
-      <Snackbars type={snackbarType} open={snackbarOpen} setOpen={setSnackbarOpen} />
+      <Snackbars />
     </div>
   );
 }

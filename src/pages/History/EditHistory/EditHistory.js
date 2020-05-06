@@ -25,6 +25,8 @@ import { useStoreContext } from '../../../store/storeContext';
 import { dbEditBudget } from '../../../API/dbActions';
 import { editBudget } from '../../../store/actions';
 import { currencySign } from '../../../globals/constants';
+import { useSnackbarContext } from '../../../components/Snackbars/snackbarContext';
+import { EDIT, CANCEL, ERROR } from '../../../components/Snackbars/snackbarActions';
 import useStyles from './EditHistory.style';
 
 const localeMap = {
@@ -33,9 +35,7 @@ const localeMap = {
   HY: hyLocale,
 };
 
-export default function EditHistory({
-  budget, setSnackbarType, setSnackbarOpen,
-}) {
+export default function EditHistory({ budget }) {
   const classes = useStyles();
   const { state, dispatch, language } = useStoreContext();
   const { rate, currency } = useStoreContext();
@@ -46,6 +46,7 @@ export default function EditHistory({
   const [date, setDate] = useState(budget.date);
   const [picherError, setPicherError] = useState('');
   const [open, setOpen] = useState(false);
+  const { snackbarDispatch } = useSnackbarContext();
 
   useEffect(() => {
     setAmount(budget.amount);
@@ -59,20 +60,9 @@ export default function EditHistory({
     setOpen(false);
   };
 
-  const handleSnackbarEdit = () => {
-    setSnackbarType('edit');
-    setSnackbarOpen(true);
-  };
-
-  const handleSnackbarErroe = () => {
-    setSnackbarType('error');
-    setSnackbarOpen(true);
-  };
-
   const handleCancel = () => {
     setOpen(false);
-    setSnackbarType('cancel');
-    setSnackbarOpen(true);
+    snackbarDispatch(CANCEL);
   };
 
   const handleTypeChange = (e) => {
@@ -115,8 +105,8 @@ export default function EditHistory({
       ...editedBudget, amount: Math.ceil(editedBudget.amount / rate[currency]),
     })
       .then(() => dispatch(editBudget(editedBudget)))
-      .then(() => handleSnackbarEdit())
-      .catch(() => handleSnackbarErroe());
+      .then(() => snackbarDispatch(EDIT))
+      .catch(() => snackbarDispatch(ERROR));
   };
 
   const doneDisabled = (
@@ -255,8 +245,6 @@ EditHistory.propTypes = {
     amount: propTypes.number.isRequired,
     date: propTypes.instanceOf(Date),
   }),
-  setSnackbarType: propTypes.func.isRequired,
-  setSnackbarOpen: propTypes.func.isRequired,
 };
 
 EditHistory.defaultProps = {

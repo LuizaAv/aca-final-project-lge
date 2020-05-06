@@ -20,6 +20,8 @@ import Popover from '@material-ui/core/Popover';
 import { useStoreContext } from '../../../store/storeContext';
 import { dbEditCategory } from '../../../API/dbActions';
 import { editCategory } from '../../../store/actions';
+import { useSnackbarContext } from '../../../components/Snackbars/snackbarContext';
+import { EDIT, CANCEL, ERROR } from '../../../components/Snackbars/snackbarActions';
 import useStyles from './EditCategory.style';
 
 
@@ -29,9 +31,7 @@ const colors = [
   '#fdd835', '#FF8F00', '#ff7043', '#8d6e63', '#616161', '#78909c',
 ];
 
-export default function EditCategory({
-  category, setSnackbarType, setSnackbarOpen,
-}) {
+export default function EditCategory({ category }) {
   const classes = useStyles();
   const { dispatch } = useStoreContext();
   const [type, setType] = useState(category.type);
@@ -39,6 +39,7 @@ export default function EditCategory({
   const [color, setColor] = useState(category.color);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+  const { snackbarDispatch } = useSnackbarContext();
 
   const handleOpen = () => {
     setDialogOpen(true);
@@ -56,20 +57,9 @@ export default function EditCategory({
     setAnchorEl(null);
   };
 
-  const handleSnackbarEdit = () => {
-    setSnackbarType('edit');
-    setSnackbarOpen(true);
-  };
-
-  const handleSnackbarErroe = () => {
-    setSnackbarType('error');
-    setSnackbarOpen(true);
-  };
-
   const handleCancel = () => {
     setDialogOpen(false);
-    setSnackbarType('cancel');
-    setSnackbarOpen(true);
+    snackbarDispatch(CANCEL);
   };
 
   const handleTypeChange = (e) => {
@@ -92,8 +82,8 @@ export default function EditCategory({
     handleClose();
     dbEditCategory(editedCategory)
       .then(() => dispatch(editCategory(editedCategory)))
-      .then(() => handleSnackbarEdit())
-      .catch(() => handleSnackbarErroe());
+      .then(() => snackbarDispatch(EDIT))
+      .catch(() => snackbarDispatch(ERROR));
   };
 
   const doneDisabled = (
@@ -213,8 +203,6 @@ EditCategory.propTypes = {
     name: propTypes.string.isRequired,
     color: propTypes.string.isRequired,
   }),
-  setSnackbarType: propTypes.func.isRequired,
-  setSnackbarOpen: propTypes.func.isRequired,
 };
 
 EditCategory.defaultProps = {
