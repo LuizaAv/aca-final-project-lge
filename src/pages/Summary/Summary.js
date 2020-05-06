@@ -45,34 +45,32 @@ export default function Categories() {
 
   const currentBudget = state.budget.filter((item) => item.date.getTime() <= new Date().getTime());
   const upcomingBudget = state.budget.filter((item) => item.date.getTime() > new Date().getTime());
-
   const showItems = isCurrent ? currentBudget : upcomingBudget;
 
-  const uniqueCategories = showItems.reduce((acc, item) => (
+  const uniqueCategoriesItems = showItems.reduce((acc, item) => (
     acc.some((accItem) => (
-      accItem.category === item.category
-      && accItem.type === item.type
+      accItem.category === item.category && accItem.type === item.type
     ))
       ? acc
       : [...acc, item]
   ), []);
 
-  const amounts = uniqueCategories.map((category) => {
-    const amount = state.budget.reduce(
-      (acc, budget) => (
-        budget.category === category.category && budget.type === category.type
-          ? acc + +budget.amount
+  const sumAmounts = uniqueCategoriesItems.map((uniqueItem) => {
+    const amount = showItems.reduce(
+      (acc, item) => (
+        item.category === uniqueItem.category && item.type === uniqueItem.type
+          ? acc + +item.amount
           : acc),
       0,
     );
-    return { ...category, amount };
+    return { ...uniqueItem, amount };
   });
 
-  const filteredAmounts = filterType === 'all'
-    ? [...amounts]
-    : amounts.filter((amount) => amount.type === filterType);
+  const filteredItems = filterType === 'all'
+    ? [...sumAmounts]
+    : sumAmounts.filter((amount) => amount.type === filterType);
 
-  filteredAmounts.sort((a, b) => (
+  filteredItems.sort((a, b) => (
     isAscending
       ? a.amount - b.amount
       : b.amount - a.amount
@@ -114,20 +112,20 @@ export default function Categories() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {filteredAmounts.map((amount) => (
-                  <TableRow key={amount.id} className={classes.tableRow}>
+                {filteredItems.map((item) => (
+                  <TableRow key={item.id} className={classes.tableRow}>
                     <TableCell className={classes.category}>
-                      {amount.category}
+                      {item.category}
                     </TableCell>
                     <TableCell className={classes.content} align="center">
-                      {amount.type === 'expense'
+                      {item.type === 'expense'
                         ? <ArrowDownwardIcon className={classes.icon} />
                         : <ArrowUpwardIcon className={classes.icon} />}
-                      <FormattedMessage id={amount.type} />
+                      <FormattedMessage id={item.type} />
                     </TableCell>
                     <TableCell className={classes.content} align="right">
-                      {(amount.type === 'expense' ? '-' : '+')}
-                      {amount.amount}
+                      {(item.type === 'expense' ? '-' : '+')}
+                      {item.amount}
                       {currencyIcon(currency)}
                     </TableCell>
                   </TableRow>

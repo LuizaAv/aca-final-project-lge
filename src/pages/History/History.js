@@ -67,13 +67,13 @@ export default function History() {
   const [page, setPage] = useState(1);
 
   const currentBudget = state.budget.filter((item) => item.date.getTime() <= new Date().getTime());
-  const futureBudget = state.budget.filter((item) => item.date.getTime() > new Date().getTime());
+  const upcomingBudget = state.budget.filter((item) => item.date.getTime() > new Date().getTime());
 
   useEffect(() => {
     setPage(1);
   }, [filterType, isAscending, filterDate, searchValue]);
 
-  const showItems = isCurrent ? currentBudget : futureBudget;
+  const showItems = isCurrent ? currentBudget : upcomingBudget;
 
   const budgetFilteredByType = filterType === 'all'
     ? [...showItems]
