@@ -19,26 +19,31 @@ export default function Charts() {
   const [type, setType] = useState('date');
 
   const currentBudget = state.budget.filter((item) => item.date.getTime() <= new Date().getTime());
-  const futureBudget = state.budget.filter((item) => item.date.getTime() > new Date().getTime());
-
-  const showItems = isCurrent ? currentBudget : futureBudget;
+  const upcomingBudget = state.budget.filter((item) => item.date.getTime() > new Date().getTime());
+  const showItems = isCurrent ? currentBudget : upcomingBudget;
 
   const uniqueCategories = showItems.reduce((acc, item) => (
     acc.some((accItem) => (
-      accItem.category === item.category
-      && accItem.type === item.type
+      accItem.category === item.category && accItem.type === item.type
     ))
       ? acc
       : [...acc, item]
   ), []);
 
+  const amounts = uniqueCategories.map((category) => (
+    showItems.reduce((acc, item) => (
+      item.category === category.category && item.type === category.type
+        ? acc + +item.amount
+        : acc
+    ), 0)
+  ));
+
+  const labelsDoughnut = uniqueCategories.map((item) => item.category);
+  const colors = uniqueCategories.map((item) => item.color);
   const sortedBudgetByDate = showItems.sort((a, b) => a.date.getTime() - b.date.getTime());
   const labelsLine = sortedBudgetByDate.map((el) => el.date.toLocaleDateString());
   const expenses = sortedBudgetByDate.map((el) => (el.type === 'expense' ? el.amount : 0));
   const incomes = sortedBudgetByDate.map((el) => (el.type === 'income' ? el.amount : 0));
-  const labelsDoughnut = uniqueCategories.map((item) => item.name);
-  const amounts = uniqueCategories.map((item) => item.amount);
-  const colors = uniqueCategories.map((item) => item.color);
 
   if (!isCurrent) {
     labelsLine.unshift(new Date().toLocaleDateString());
