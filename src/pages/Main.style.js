@@ -14,4 +14,10 @@ export default makeStyles((theme) => ({
     backgroundColor: '#f2f3f9',
     padding: theme.spacing(3),
   },
+  progress: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    zIndex: theme.zIndex.drawer + 1,
+  },
 }));

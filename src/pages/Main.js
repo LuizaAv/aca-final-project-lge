@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { IntlProvider } from 'react-intl';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { MainContext } from './mainContext';
 import { useStoreContext } from '../store/storeContext';
@@ -24,17 +25,15 @@ export default function Main() {
   const [language, setLanguage] = useState('EN');
   const [currency, setCurrency] = useState('USD');
   const [loading, setLoading] = useState(true);
-  const [rate, setRate] = useState({
-    USD: 1, AMD: 480, RUB: 74, EUR: 0.91,
-  });
+  const [loadingRate, setLoadingRate] = useState(true);
+  const [rate, setRate] = useState({});
   const { snackbarDispatch } = useSnackbarContext();
   const { dispatch } = useStoreContext();
 
   useEffect(() => {
     rateExchange()
-      .then((newRate) => {
-        if (newRate) setRate(newRate);
-      });
+      .then((newRate) => setRate(newRate))
+      .then(() => setTimeout(() => setLoadingRate(false), 100));
   }, []);
 
   useEffect(() => {
@@ -68,25 +67,33 @@ export default function Main() {
             <Navigation />
           </div>
 
-          <div className={classes.content}>
-            <Switch>
-              <Route exact path="/">
-                <Summary />
-              </Route>
-              <Route path="/Categories">
-                <Categories />
-              </Route>
-              <Route path="/History">
-                <History />
-              </Route>
-              <Route path="/Charts">
-                <Charts />
-              </Route>
-              <Route path="/Help">
-                <Help />
-              </Route>
-            </Switch>
-          </div>
+          {loadingRate
+            ? (
+              <div className={classes.progress}>
+                <CircularProgress size={50} />
+              </div>
+            )
+            : (
+              <div className={classes.content}>
+                <Switch>
+                  <Route exact path="/">
+                    <Summary />
+                  </Route>
+                  <Route path="/Categories">
+                    <Categories />
+                  </Route>
+                  <Route path="/History">
+                    <History />
+                  </Route>
+                  <Route path="/Charts">
+                    <Charts />
+                  </Route>
+                  <Route path="/Help">
+                    <Help />
+                  </Route>
+                </Switch>
+              </div>
+            )}
         </div>
         <Snackbars />
       </IntlProvider>
