@@ -71,5 +71,7 @@ export const rateExchange = () => (
     .then((rate) => ({
       USD: 1, AMD: rate.amd.rate, RUB: rate.rub.rate, EUR: rate.eur.rate,
     }))
-    .catch(() => false)
+    .catch(() => ({
+      USD: 1, AMD: 480, RUB: 74, EUR: 0.91,
+    }))
 );
