@@ -16,23 +16,8 @@ import DeleteHistory from './DeleteHistory/DeleteHistory';
 import Search from '../../components/Search/Search';
 import View from '../../components/View/View';
 import Snackbars from '../../components/Snackbars/Snackbars';
+import { currencySign } from '../../globals/constants';
 import useStyles from './History.style';
-
-function currencyIcon(currency) {
-  if (currency === 'USD') {
-    return '$';
-  }
-  if (currency === 'AMD') {
-    return '\u058F';
-  }
-  if (currency === 'RUB') {
-    return '\u20bd';
-  }
-  if (currency === 'EUR') {
-    return '\u20ac';
-  }
-  return '';
-}
 
 function filterByDate(budget, date) {
   const dayCheck = () => budget.filter((item) => (
@@ -145,7 +130,7 @@ export default function History() {
                       <Typography>
                         {item.type === 'expense' ? '-' : '+'}
                         {item.amount}
-                        {currencyIcon(currency)}
+                        {currencySign[currency]}
                       </Typography>
 
                       <Typography className={classes.date}>

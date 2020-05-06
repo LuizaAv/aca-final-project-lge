@@ -6,23 +6,8 @@ import clsx from 'clsx';
 
 import { useStoreContext } from '../../store/storeContext';
 import AddBudget from '../AddBudget/AddBudget';
+import { currencySign } from '../../globals/constants';
 import useStyles from './Header.style';
-
-function currencyIcon(currency) {
-  if (currency === 'USD') {
-    return '$';
-  }
-  if (currency === 'AMD') {
-    return '\u058F';
-  }
-  if (currency === 'RUB') {
-    return '\u20bd';
-  }
-  if (currency === 'EUR') {
-    return '\u20ac';
-  }
-  return '';
-}
 
 export default function Header() {
   const classes = useStyles();
@@ -108,7 +93,7 @@ export default function Header() {
             </Typography>
             <Typography className={clsx(classes.current, classes[item.name])}>
               {item.currentAmount}
-              {currencyIcon(currency)}
+              {currencySign[currency]}
             </Typography>
             <div className={classes.span}>
               <Typography className={classes.text}>

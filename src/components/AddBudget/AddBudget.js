@@ -23,22 +23,7 @@ import Snackbars from '../Snackbars/Snackbars';
 import { addBudget } from '../../store/actions';
 import { useStoreContext } from '../../store/storeContext';
 import { dbAddBudget } from '../../API/dbActions';
-
-function currencyIcon(currency) {
-  if (currency === 'USD') {
-    return '$';
-  }
-  if (currency === 'AMD') {
-    return '\u058F';
-  }
-  if (currency === 'RUB') {
-    return '\u20bd';
-  }
-  if (currency === 'EUR') {
-    return '\u20ac';
-  }
-  return '';
-}
+import { currencySign } from '../../globals/constants';
 
 const localeMap = {
   EN: enLocale,
@@ -224,7 +209,7 @@ export default function AddBudget() {
           value={amount}
           onChange={handleAmountChange}
           InputProps={{
-            endAdornment: <InputAdornment position="end">{currencyIcon(currency)}</InputAdornment>,
+            endAdornment: <InputAdornment position="end">{currencySign[currency]}</InputAdornment>,
           }}
         />
 

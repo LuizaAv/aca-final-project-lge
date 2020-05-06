@@ -24,23 +24,8 @@ import EditIcon from '@material-ui/icons/Edit';
 import { useStoreContext } from '../../../store/storeContext';
 import { dbEditBudget } from '../../../API/dbActions';
 import { editBudget } from '../../../store/actions';
+import { currencySign } from '../../../globals/constants';
 import useStyles from './EditHistory.style';
-
-function currencyIcon(currency) {
-  if (currency === 'USD') {
-    return '$';
-  }
-  if (currency === 'AMD') {
-    return '\u058F';
-  }
-  if (currency === 'RUB') {
-    return '\u20bd';
-  }
-  if (currency === 'EUR') {
-    return '\u20ac';
-  }
-  return '';
-}
 
 const localeMap = {
   EN: enLocale,
@@ -217,7 +202,7 @@ export default function EditHistory({
           value={amount}
           onChange={handleAmountChange}
           InputProps={{
-            endAdornment: <InputAdornment position="end">{currencyIcon(currency)}</InputAdornment>,
+            endAdornment: <InputAdornment position="end">{currencySign[currency]}</InputAdornment>,
           }}
         />
 

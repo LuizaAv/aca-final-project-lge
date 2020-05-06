@@ -18,23 +18,8 @@ import FilterType from '../../components/FilterType/FilterType';
 import View from '../../components/View/View';
 import { ReactComponent as ArrowDownwardIcon } from '../../assets/icons/Arrow-down.svg';
 import { ReactComponent as ArrowUpwardIcon } from '../../assets/icons/Arrow-up.svg';
+import { currencySign } from '../../globals/constants';
 import useStyles from './Summary.style';
-
-function currencyIcon(currency) {
-  if (currency === 'USD') {
-    return '$';
-  }
-  if (currency === 'AMD') {
-    return '\u058F';
-  }
-  if (currency === 'RUB') {
-    return '\u20bd';
-  }
-  if (currency === 'EUR') {
-    return '\u20ac';
-  }
-  return '';
-}
 
 export default function Categories() {
   const classes = useStyles();
@@ -126,7 +111,7 @@ export default function Categories() {
                     <TableCell className={classes.content} align="right">
                       {(item.type === 'expense' ? '-' : '+')}
                       {item.amount}
-                      {currencyIcon(currency)}
+                      {currencySign[currency]}
                     </TableCell>
                   </TableRow>
                 ))}
