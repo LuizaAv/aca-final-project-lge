@@ -112,18 +112,22 @@ export default function AddBudget() {
     setDate(new Date());
   };
 
-  const handleAddingBudget = () => {
+  const handleAddingBudget = async () => {
     const id = uuidv4();
     const addedBudget = {
       id, type, name, amount: +amount, date, category, color,
     };
     handleStateReset();
-    dbAddBudget({
-      ...addedBudget, amount: Math.ceil(addedBudget.amount / rate[currency]),
-    })
-      .then(() => dispatch(addBudget(addedBudget)))
-      .then(() => snackbarDispatch(ADD))
-      .catch(() => snackbarDispatch(ERROR));
+    try {
+      await dbAddBudget({
+        ...addedBudget,
+        amount: Math.ceil(addedBudget.amount / rate[currency]),
+      });
+      dispatch(addBudget(addedBudget));
+      snackbarDispatch(ADD);
+    } catch (err) {
+      snackbarDispatch(ERROR);
+    }
   };
 
   const doneDisabled = (
