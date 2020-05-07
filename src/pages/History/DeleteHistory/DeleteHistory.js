@@ -36,12 +36,15 @@ export default function DeleteHistory({ budget }) {
     snackbarDispatch(CANCEL);
   };
 
-  const handleDeleteBudget = () => {
+  const handleDeleteBudget = async () => {
     handleClose();
-    dbDeleteBudget(budget)
-      .then(() => dispatch(deleteBudget(budget)))
-      .then(() => snackbarDispatch(DELETE))
-      .catch(() => snackbarDispatch(ERROR));
+    try {
+      await dbDeleteBudget(budget);
+      dispatch(deleteBudget(budget));
+      snackbarDispatch(DELETE);
+    } catch (err) {
+      snackbarDispatch(ERROR);
+    }
   };
 
   return (
