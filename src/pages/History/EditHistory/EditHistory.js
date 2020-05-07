@@ -96,18 +96,21 @@ export default function EditHistory({ budget }) {
     setPicherError(e);
   };
 
-  const handleEditBudget = () => {
+  const handleEditBudget = async () => {
     const { id, color } = budget;
     const editedBudget = {
       id, type, name, category, amount: +amount, date, color,
     };
     handleClose();
-    dbEditBudget({
-      ...editedBudget, amount: Math.ceil(editedBudget.amount / rate[currency]),
-    })
-      .then(() => dispatch(editBudget(editedBudget)))
-      .then(() => snackbarDispatch(EDIT))
-      .catch(() => snackbarDispatch(ERROR));
+    try {
+      await dbEditBudget({
+        ...editedBudget, amount: Math.ceil(editedBudget.amount / rate[currency]),
+      });
+      dispatch(editBudget(editedBudget));
+      snackbarDispatch(EDIT);
+    } catch (err) {
+      snackbarDispatch(ERROR);
+    }
   };
 
   const doneDisabled = (
