@@ -6,39 +6,45 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
 import { useStoreContext } from '../../store/storeContext';
+import { useMainContext } from '../mainContext';
 import Header from '../../components/Header/Header';
 import View from '../../components/View/View';
 import CartType from './ChartType/ChartType';
-import messages from '../../languages/messages';
 import useStyles from './Charts.style';
 
 export default function Charts() {
   const classes = useStyles();
-  const { state, loading, language } = useStoreContext();
+  const { state } = useStoreContext();
+  const { loading } = useMainContext();
   const [isCurrent, setIsCurrent] = useState(true);
   const [type, setType] = useState('date');
 
   const currentBudget = state.budget.filter((item) => item.date.getTime() <= new Date().getTime());
-  const futureBudget = state.budget.filter((item) => item.date.getTime() > new Date().getTime());
+  const upcomingBudget = state.budget.filter((item) => item.date.getTime() > new Date().getTime());
+  const showItems = isCurrent ? currentBudget : upcomingBudget;
 
-  const showItems = isCurrent ? currentBudget : futureBudget;
-
-  const uniqueCategories = showItems.reduce((acc, item) => (
+  const uniqueCategoriesItems = showItems.reduce((acc, item) => (
     acc.some((accItem) => (
-      accItem.category === item.category
-      && accItem.type === item.type
+      accItem.category === item.category && accItem.type === item.type
     ))
       ? acc
       : [...acc, item]
   ), []);
 
+  const amounts = uniqueCategoriesItems.map((uniqueItem) => (
+    showItems.reduce((acc, item) => (
+      item.category === uniqueItem.category && item.type === uniqueItem.type
+        ? acc + +item.amount
+        : acc
+    ), 0)
+  ));
+
+  const labelsDoughnut = uniqueCategoriesItems.map((item) => item.category);
+  const colors = uniqueCategoriesItems.map((item) => item.color);
   const sortedBudgetByDate = showItems.sort((a, b) => a.date.getTime() - b.date.getTime());
   const labelsLine = sortedBudgetByDate.map((el) => el.date.toLocaleDateString());
   const expenses = sortedBudgetByDate.map((el) => (el.type === 'expense' ? el.amount : 0));
   const incomes = sortedBudgetByDate.map((el) => (el.type === 'income' ? el.amount : 0));
-  const labelsDoughnut = uniqueCategories.map((item) => item.name);
-  const amounts = uniqueCategories.map((item) => item.amount);
-  const colors = uniqueCategories.map((item) => item.color);
 
   if (!isCurrent) {
     labelsLine.unshift(new Date().toLocaleDateString());
@@ -50,14 +56,14 @@ export default function Charts() {
     labels: labelsLine,
     datasets: [
       {
-        label: messages[language].income,
+        label: 'income',
         data: incomes,
         fill: true,
         backgroundColor: '#76ff0335',
         borderColor: '#76ff03',
       },
       {
-        label: messages[language].expense,
+        label: 'expense',
         data: expenses,
         fill: true,
         backgroundColor: '#ff525235',

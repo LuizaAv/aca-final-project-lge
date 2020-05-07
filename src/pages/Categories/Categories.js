@@ -14,6 +14,7 @@ import Typography from '@material-ui/core/Typography';
 import { ReactComponent as ArrowDownwardIcon } from '../../assets/icons/Arrow-down.svg';
 import { ReactComponent as ArrowUpwardIcon } from '../../assets/icons/Arrow-up.svg';
 import { useStoreContext } from '../../store/storeContext';
+import { useMainContext } from '../mainContext';
 
 import Header from '../../components/Header/Header';
 import AddCategory from './AddCategory/AddCategory';
@@ -25,10 +26,9 @@ import useStyles from './Categories.style';
 
 export default function Categories() {
   const classes = useStyles();
-  const { state, loading } = useStoreContext();
+  const { state } = useStoreContext();
+  const { loading } = useMainContext();
   const [filterType, setFilterType] = useState('all');
-  const [snackbarType, setSnackbarType] = useState('');
-  const [snackbarOpen, setSnackbarOpen] = useState(false);
 
   const filteredCategories = filterType === 'all'
     ? [...state.categories]
@@ -39,10 +39,7 @@ export default function Categories() {
       <Header />
 
       <div className={classes.tools}>
-        <AddCategory
-          setSnackbarType={setSnackbarType}
-          setSnackbarOpen={setSnackbarOpen}
-        />
+        <AddCategory />
         <FilterType filterType={filterType} setFilterType={setFilterType} />
       </div>
 
@@ -84,16 +81,8 @@ export default function Categories() {
                       <FormattedMessage id={category.type} />
                     </TableCell>
                     <TableCell className={classes.content} align="right">
-                      <EditCategory
-                        category={category}
-                        setSnackbarType={setSnackbarType}
-                        setSnackbarOpen={setSnackbarOpen}
-                      />
-                      <DeleteCategory
-                        category={category}
-                        setSnackbarType={setSnackbarType}
-                        setSnackbarOpen={setSnackbarOpen}
-                      />
+                      <EditCategory category={category} />
+                      <DeleteCategory category={category} />
                     </TableCell>
                   </TableRow>
                 ))}
@@ -102,7 +91,7 @@ export default function Categories() {
           </TableContainer>
         )}
 
-      <Snackbars type={snackbarType} open={snackbarOpen} setOpen={setSnackbarOpen} />
+      <Snackbars />
     </div>
   );
 }

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import propTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 import { CirclePicker } from 'react-color';
 import { FormattedMessage } from 'react-intl';
@@ -19,6 +18,8 @@ import useStyles from './AddCategory.style';
 import { useStoreContext } from '../../../store/storeContext';
 import { addCategory } from '../../../store/actions';
 import { dbAddCategory } from '../../../API/dbActions';
+import { useSnackbarContext } from '../../../components/Snackbars/snackbarContext';
+import { ADD, CANCEL, ERROR } from '../../../components/Snackbars/snackbarActions';
 
 const colors = [
   '#e53935', '#ec407a', '#ffcdd2', '#ab47bc', '#7e57c2', '#0D47A1',
@@ -26,7 +27,7 @@ const colors = [
   '#fdd835', '#FF8F00', '#ff7043', '#8d6e63', '#616161', '#78909c',
 ];
 
-export default function AddCategory({ setSnackbarType, setSnackbarOpen }) {
+export default function AddCategory() {
   const classes = useStyles();
   const { dispatch } = useStoreContext();
   const [type, setType] = useState('');
@@ -34,6 +35,7 @@ export default function AddCategory({ setSnackbarType, setSnackbarOpen }) {
   const [color, setColor] = useState('');
   const [dialogOpen, setDialogOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+  const { snackbarDispatch } = useSnackbarContext();
 
   const handleDialogOpen = () => {
     setDialogOpen(true);
@@ -51,20 +53,9 @@ export default function AddCategory({ setSnackbarType, setSnackbarOpen }) {
     setAnchorEl(null);
   };
 
-  const handleSnackbarAdd = () => {
-    setSnackbarType('add');
-    setSnackbarOpen(true);
-  };
-
-  const handleSnackbarErroe = () => {
-    setSnackbarType('error');
-    setSnackbarOpen(true);
-  };
-
   const handleCancel = () => {
     setDialogOpen(false);
-    setSnackbarType('cancel');
-    setSnackbarOpen(true);
+    snackbarDispatch(CANCEL);
   };
 
   const handleTypeChange = (e) => {
@@ -86,16 +77,19 @@ export default function AddCategory({ setSnackbarType, setSnackbarOpen }) {
     setDialogOpen(false);
   };
 
-  const handleAddCategory = () => {
+  const handleAddCategory = async () => {
     const id = uuidv4();
     const addedCategory = {
       id, type, name, color,
     };
     handleStateReset();
-    dbAddCategory(addedCategory)
-      .then(() => dispatch(addCategory(addedCategory)))
-      .then(() => handleSnackbarAdd())
-      .catch(() => handleSnackbarErroe());
+    try {
+      await dbAddCategory(addedCategory);
+      dispatch(addCategory(addedCategory));
+      snackbarDispatch(ADD);
+    } catch (err) {
+      snackbarDispatch(ERROR);
+    }
   };
 
   const doneDisabled = (name === '' || type === '' || color === '');
@@ -194,8 +188,3 @@ export default function AddCategory({ setSnackbarType, setSnackbarOpen }) {
     </>
   );
 }
-
-AddCategory.propTypes = {
-  setSnackbarType: propTypes.func.isRequired,
-  setSnackbarOpen: propTypes.func.isRequired,
-};

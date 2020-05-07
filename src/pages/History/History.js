@@ -7,6 +7,7 @@ import Pagination from '@material-ui/lab/Pagination';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { useStoreContext } from '../../store/storeContext';
+import { useMainContext } from '../mainContext';
 import Header from '../../components/Header/Header';
 import Sort from '../../components/Sort/Sort';
 import FilterType from '../../components/FilterType/FilterType';
@@ -16,23 +17,9 @@ import DeleteHistory from './DeleteHistory/DeleteHistory';
 import Search from '../../components/Search/Search';
 import View from '../../components/View/View';
 import Snackbars from '../../components/Snackbars/Snackbars';
+import { currencySign } from '../../globals/constants';
+import { formatingAmount } from '../../globals/helpers';
 import useStyles from './History.style';
-
-function currencyIcon(currency) {
-  if (currency === 'USD') {
-    return '$';
-  }
-  if (currency === 'AMD') {
-    return '\u058F';
-  }
-  if (currency === 'RUB') {
-    return '\u20bd';
-  }
-  if (currency === 'EUR') {
-    return '\u20ac';
-  }
-  return '';
-}
 
 function filterByDate(budget, date) {
   const dayCheck = () => budget.filter((item) => (
@@ -56,24 +43,23 @@ function filterByDate(budget, date) {
 
 export default function History() {
   const classes = useStyles();
-  const { state, loading, currency } = useStoreContext();
+  const { state } = useStoreContext();
+  const { loading, currency } = useMainContext();
   const [filterType, setFilterType] = useState('all');
   const [isAscending, setIsAscending] = useState(true);
   const [filterDate, setFilterDate] = useState('wholePeriod');
   const [searchValue, setSearchValue] = useState('');
-  const [snackbarType, setSnackbarType] = useState('');
   const [isCurrent, setIsCurrent] = useState(true);
-  const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [page, setPage] = useState(1);
 
   const currentBudget = state.budget.filter((item) => item.date.getTime() <= new Date().getTime());
-  const futureBudget = state.budget.filter((item) => item.date.getTime() > new Date().getTime());
+  const upcomingBudget = state.budget.filter((item) => item.date.getTime() > new Date().getTime());
 
   useEffect(() => {
     setPage(1);
   }, [filterType, isAscending, filterDate, searchValue]);
 
-  const showItems = isCurrent ? currentBudget : futureBudget;
+  const showItems = isCurrent ? currentBudget : upcomingBudget;
 
   const budgetFilteredByType = filterType === 'all'
     ? [...showItems]
@@ -122,16 +108,8 @@ export default function History() {
                     <div className={classes.cardItem}>
                       <Typography className={classes.name}>{item.name}</Typography>
                       <div className={classes.amount}>
-                        <EditHistory
-                          budget={item}
-                          setSnackbarType={setSnackbarType}
-                          setSnackbarOpen={setSnackbarOpen}
-                        />
-                        <DeleteHistory
-                          budget={item}
-                          setSnackbarType={setSnackbarType}
-                          setSnackbarOpen={setSnackbarOpen}
-                        />
+                        <EditHistory budget={item} />
+                        <DeleteHistory budget={item} />
                       </div>
                     </div>
 
@@ -144,8 +122,8 @@ export default function History() {
 
                       <Typography>
                         {item.type === 'expense' ? '-' : '+'}
-                        {item.amount}
-                        {currencyIcon(currency)}
+                        {formatingAmount(item.amount)}
+                        {currencySign[currency]}
                       </Typography>
 
                       <Typography className={classes.date}>
@@ -165,7 +143,7 @@ export default function History() {
         color="secondary"
         className={classes.pagination}
       />
-      <Snackbars type={snackbarType} open={snackbarOpen} setOpen={setSnackbarOpen} />
+      <Snackbars />
     </div>
   );
 }

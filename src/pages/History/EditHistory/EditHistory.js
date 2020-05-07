@@ -22,25 +22,13 @@ import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
 
 import { useStoreContext } from '../../../store/storeContext';
+import { useMainContext } from '../../mainContext';
 import { dbEditBudget } from '../../../API/dbActions';
 import { editBudget } from '../../../store/actions';
+import { currencySign } from '../../../globals/constants';
+import { useSnackbarContext } from '../../../components/Snackbars/snackbarContext';
+import { EDIT, CANCEL, ERROR } from '../../../components/Snackbars/snackbarActions';
 import useStyles from './EditHistory.style';
-
-function currencyIcon(currency) {
-  if (currency === 'USD') {
-    return '$';
-  }
-  if (currency === 'AMD') {
-    return '\u058F';
-  }
-  if (currency === 'RUB') {
-    return '\u20bd';
-  }
-  if (currency === 'EUR') {
-    return '\u20ac';
-  }
-  return '';
-}
 
 const localeMap = {
   EN: enLocale,
@@ -48,12 +36,10 @@ const localeMap = {
   HY: hyLocale,
 };
 
-export default function EditHistory({
-  budget, setSnackbarType, setSnackbarOpen,
-}) {
+export default function EditHistory({ budget }) {
   const classes = useStyles();
-  const { state, dispatch, language } = useStoreContext();
-  const { rate, currency } = useStoreContext();
+  const { state, dispatch } = useStoreContext();
+  const { rate, currency, language } = useMainContext();
   const [type, setType] = useState(budget.type);
   const [name, setName] = useState(budget.name);
   const [category, setCategory] = useState(budget.category);
@@ -61,6 +47,7 @@ export default function EditHistory({
   const [date, setDate] = useState(budget.date);
   const [picherError, setPicherError] = useState('');
   const [open, setOpen] = useState(false);
+  const { snackbarDispatch } = useSnackbarContext();
 
   useEffect(() => {
     setAmount(budget.amount);
@@ -74,20 +61,9 @@ export default function EditHistory({
     setOpen(false);
   };
 
-  const handleSnackbarEdit = () => {
-    setSnackbarType('edit');
-    setSnackbarOpen(true);
-  };
-
-  const handleSnackbarErroe = () => {
-    setSnackbarType('error');
-    setSnackbarOpen(true);
-  };
-
   const handleCancel = () => {
     setOpen(false);
-    setSnackbarType('cancel');
-    setSnackbarOpen(true);
+    snackbarDispatch(CANCEL);
   };
 
   const handleTypeChange = (e) => {
@@ -120,18 +96,21 @@ export default function EditHistory({
     setPicherError(e);
   };
 
-  const handleEditBudget = () => {
+  const handleEditBudget = async () => {
     const { id, color } = budget;
     const editedBudget = {
       id, type, name, category, amount: +amount, date, color,
     };
     handleClose();
-    dbEditBudget({
-      ...editedBudget, amount: Math.ceil(editedBudget.amount / rate[currency]),
-    })
-      .then(() => dispatch(editBudget(editedBudget)))
-      .then(() => handleSnackbarEdit())
-      .catch(() => handleSnackbarErroe());
+    try {
+      await dbEditBudget({
+        ...editedBudget, amount: Math.ceil(editedBudget.amount / rate[currency]),
+      });
+      dispatch(editBudget(editedBudget));
+      snackbarDispatch(EDIT);
+    } catch (err) {
+      snackbarDispatch(ERROR);
+    }
   };
 
   const doneDisabled = (
@@ -217,7 +196,7 @@ export default function EditHistory({
           value={amount}
           onChange={handleAmountChange}
           InputProps={{
-            endAdornment: <InputAdornment position="end">{currencyIcon(currency)}</InputAdornment>,
+            endAdornment: <InputAdornment position="end">{currencySign[currency]}</InputAdornment>,
           }}
         />
 
@@ -270,8 +249,6 @@ EditHistory.propTypes = {
     amount: propTypes.number.isRequired,
     date: propTypes.instanceOf(Date),
   }),
-  setSnackbarType: propTypes.func.isRequired,
-  setSnackbarOpen: propTypes.func.isRequired,
 };
 
 EditHistory.defaultProps = {

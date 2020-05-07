@@ -12,67 +12,53 @@ import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { useStoreContext } from '../../store/storeContext';
+import { useMainContext } from '../mainContext';
 import Header from '../../components/Header/Header';
 import Sort from '../../components/Sort/Sort';
 import FilterType from '../../components/FilterType/FilterType';
 import View from '../../components/View/View';
 import { ReactComponent as ArrowDownwardIcon } from '../../assets/icons/Arrow-down.svg';
 import { ReactComponent as ArrowUpwardIcon } from '../../assets/icons/Arrow-up.svg';
+import { currencySign } from '../../globals/constants';
+import { formatingAmount } from '../../globals/helpers';
 import useStyles from './Summary.style';
-
-function currencyIcon(currency) {
-  if (currency === 'USD') {
-    return '$';
-  }
-  if (currency === 'AMD') {
-    return '\u058F';
-  }
-  if (currency === 'RUB') {
-    return '\u20bd';
-  }
-  if (currency === 'EUR') {
-    return '\u20ac';
-  }
-  return '';
-}
 
 export default function Categories() {
   const classes = useStyles();
-  const { state, loading, currency } = useStoreContext();
+  const { state } = useStoreContext();
+  const { loading, currency } = useMainContext();
   const [filterType, setFilterType] = useState('all');
   const [isAscending, setIsAscending] = useState(true);
   const [isCurrent, setIsCurrent] = useState(true);
 
   const currentBudget = state.budget.filter((item) => item.date.getTime() <= new Date().getTime());
   const upcomingBudget = state.budget.filter((item) => item.date.getTime() > new Date().getTime());
-
   const showItems = isCurrent ? currentBudget : upcomingBudget;
 
-  const uniqueCategories = showItems.reduce((acc, item) => (
+  const uniqueCategoriesItems = showItems.reduce((acc, item) => (
     acc.some((accItem) => (
-      accItem.category === item.category
-      && accItem.type === item.type
+      accItem.category === item.category && accItem.type === item.type
     ))
       ? acc
       : [...acc, item]
   ), []);
 
-  const amounts = uniqueCategories.map((category) => {
-    const amount = state.budget.reduce(
-      (acc, budget) => (
-        budget.category === category.category && budget.type === category.type
-          ? acc + +budget.amount
+  const sumAmounts = uniqueCategoriesItems.map((uniqueItem) => {
+    const amount = showItems.reduce(
+      (acc, item) => (
+        item.category === uniqueItem.category && item.type === uniqueItem.type
+          ? acc + +item.amount
           : acc),
       0,
     );
-    return { ...category, amount };
+    return { ...uniqueItem, amount };
   });
 
-  const filteredAmounts = filterType === 'all'
-    ? [...amounts]
-    : amounts.filter((amount) => amount.type === filterType);
+  const filteredItems = filterType === 'all'
+    ? [...sumAmounts]
+    : sumAmounts.filter((amount) => amount.type === filterType);
 
-  filteredAmounts.sort((a, b) => (
+  filteredItems.sort((a, b) => (
     isAscending
       ? a.amount - b.amount
       : b.amount - a.amount
@@ -114,21 +100,21 @@ export default function Categories() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {filteredAmounts.map((amount) => (
-                  <TableRow key={amount.id} className={classes.tableRow}>
+                {filteredItems.map((item) => (
+                  <TableRow key={item.id} className={classes.tableRow}>
                     <TableCell className={classes.category}>
-                      {amount.category}
+                      {item.category}
                     </TableCell>
                     <TableCell className={classes.content} align="center">
-                      {amount.type === 'expense'
+                      {item.type === 'expense'
                         ? <ArrowDownwardIcon className={classes.icon} />
                         : <ArrowUpwardIcon className={classes.icon} />}
-                      <FormattedMessage id={amount.type} />
+                      <FormattedMessage id={item.type} />
                     </TableCell>
                     <TableCell className={classes.content} align="right">
-                      {(amount.type === 'expense' ? '-' : '+')}
-                      {amount.amount}
-                      {currencyIcon(currency)}
+                      {(item.type === 'expense' ? '-' : '+')}
+                      {formatingAmount(item.amount)}
+                      {currencySign[currency]}
                     </TableCell>
                   </TableRow>
                 ))}

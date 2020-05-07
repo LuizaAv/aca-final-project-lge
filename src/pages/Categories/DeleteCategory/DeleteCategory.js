@@ -13,14 +13,15 @@ import Button from '@material-ui/core/Button';
 import { useStoreContext } from '../../../store/storeContext';
 import { dbDeleteCategory } from '../../../API/dbActions';
 import { deleteCategory } from '../../../store/actions';
+import { useSnackbarContext } from '../../../components/Snackbars/snackbarContext';
+import { DELETE, CANCEL, ERROR } from '../../../components/Snackbars/snackbarActions';
 import useStyles from './DeleteCategory.style';
 
-export default function DeleteCategory({
-  category, setSnackbarType, setSnackbarOpen,
-}) {
+export default function DeleteCategory({ category }) {
   const classes = useStyles();
   const { dispatch } = useStoreContext();
   const [open, setOpen] = useState(false);
+  const { snackbarDispatch } = useSnackbarContext();
 
   const handleOpen = () => {
     setOpen(true);
@@ -30,28 +31,20 @@ export default function DeleteCategory({
     setOpen(false);
   };
 
-  const handleSnackbarDelete = () => {
-    setSnackbarType('delete');
-    setSnackbarOpen(true);
-  };
-
-  const handleSnackbarErroe = () => {
-    setSnackbarType('error');
-    setSnackbarOpen(true);
-  };
-
   const handleCancel = () => {
     setOpen(false);
-    setSnackbarType('cancel');
-    setSnackbarOpen(true);
+    snackbarDispatch(CANCEL);
   };
 
-  const handleDeleteCategory = () => {
+  const handleDeleteCategory = async () => {
     handleClose();
-    dbDeleteCategory(category)
-      .then(() => dispatch(deleteCategory(category)))
-      .then(() => handleSnackbarDelete())
-      .catch(() => handleSnackbarErroe());
+    try {
+      await dbDeleteCategory(category);
+      dispatch(deleteCategory(category));
+      snackbarDispatch(DELETE);
+    } catch (err) {
+      snackbarDispatch(ERROR);
+    }
   };
 
   return (
@@ -103,8 +96,6 @@ DeleteCategory.propTypes = {
     type: propTypes.string.isRequired,
     name: propTypes.string.isRequired,
   }),
-  setSnackbarType: propTypes.func.isRequired,
-  setSnackbarOpen: propTypes.func.isRequired,
 };
 
 DeleteCategory.defaultProps = {

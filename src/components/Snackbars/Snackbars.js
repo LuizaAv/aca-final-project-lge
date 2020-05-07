@@ -1,64 +1,22 @@
 import React from 'react';
-import propTypes from 'prop-types';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import { FormattedMessage } from 'react-intl';
+import { useSnackbarContext } from './snackbarContext';
+import { CLOSE } from './snackbarActions';
 
-const cheсkType = (type) => {
-  if (type === 'add') {
-    return {
-      severity: 'success',
-      message: 'snackbarAdd',
-    };
-  }
-  if (type === 'edit') {
-    return {
-      severity: 'success',
-      message: 'snackbarEdit',
-    };
-  }
-  if (type === 'delete') {
-    return {
-      severity: 'success',
-      message: 'snackbarDelet',
-    };
-  }
-  if (type === 'cancel') {
-    return {
-      severity: 'warning',
-      message: 'snackbarCancel',
-    };
-  }
-  if (type === 'error') {
-    return {
-      severity: 'error',
-      message: 'snackbarError',
-    };
-  }
-  return {
-    severity: '',
-    message: '',
-  };
-};
-
-export default function Snackbars({ type, open, setOpen }) {
-  const { severity, message } = cheсkType(type);
+export default function Snackbars() {
+  const { snackbarState, snackbarDispatch } = useSnackbarContext();
 
   const handleClose = () => {
-    setOpen(false);
+    snackbarDispatch(CLOSE);
   };
 
   return (
-    <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
-      <MuiAlert variant="filled" severity={severity} onClose={handleClose}>
-        <FormattedMessage id={message} />
+    <Snackbar open={snackbarState.open} autoHideDuration={3000} onClose={handleClose}>
+      <MuiAlert variant="filled" severity={snackbarState.severity} onClose={handleClose}>
+        <FormattedMessage id={snackbarState.message} />
       </MuiAlert>
     </Snackbar>
   );
 }
-
-Snackbars.propTypes = {
-  type: propTypes.string.isRequired,
-  open: propTypes.bool.isRequired,
-  setOpen: propTypes.func.isRequired,
-};

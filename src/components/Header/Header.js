@@ -5,28 +5,16 @@ import Typography from '@material-ui/core/Typography';
 import clsx from 'clsx';
 
 import { useStoreContext } from '../../store/storeContext';
+import { useMainContext } from '../../pages/mainContext';
 import AddBudget from '../AddBudget/AddBudget';
+import { currencySign } from '../../globals/constants';
+import { formatingAmount } from '../../globals/helpers';
 import useStyles from './Header.style';
-
-function currencyIcon(currency) {
-  if (currency === 'USD') {
-    return '$';
-  }
-  if (currency === 'AMD') {
-    return '\u058F';
-  }
-  if (currency === 'RUB') {
-    return '\u20bd';
-  }
-  if (currency === 'EUR') {
-    return '\u20ac';
-  }
-  return '';
-}
 
 export default function Header() {
   const classes = useStyles();
-  const { state, currency } = useStoreContext();
+  const { state } = useStoreContext();
+  const { currency } = useMainContext();
 
   const income = state.budget.filter((item) => item.type === 'income');
   const expense = state.budget.filter((item) => item.type === 'expense');
@@ -63,38 +51,36 @@ export default function Header() {
   const upcomingBalance = upcomingAmountIncome - upcomingAmountExpense;
   const totalBalance = currentBalance + upcomingBalance;
 
-  const addComma = (amount) => amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
   const amount = [
     {
       name: 'balance',
-      currentAmount: addComma(currentBalance),
-      upcomingAmount: addComma(upcomingBalance),
-      totalAmount: addComma(totalBalance),
+      currentAmount: formatingAmount(currentBalance),
+      upcomingAmount: formatingAmount(upcomingBalance),
+      totalAmount: formatingAmount(totalBalance),
     },
     {
       name: 'income',
       currentAmount: currentAmountIncome === 0
         ? currentAmountIncome
-        : `+${addComma(currentAmountIncome)}`,
+        : `+${formatingAmount(currentAmountIncome)}`,
       upcomingAmount: upcomingAmountIncome === 0
         ? upcomingAmountIncome
-        : `+${addComma(upcomingAmountIncome)}`,
+        : `+${formatingAmount(upcomingAmountIncome)}`,
       totalAmount: totalAmountIncome === 0
         ? totalAmountIncome
-        : `+${addComma(totalAmountIncome)}`,
+        : `+${formatingAmount(totalAmountIncome)}`,
     },
     {
       name: 'expense',
       currentAmount: currentAmountExpense === 0
         ? currentAmountExpense
-        : `-${addComma(currentAmountExpense)}`,
+        : `-${formatingAmount(currentAmountExpense)}`,
       upcomingAmount: upcomingAmountExpense === 0
         ? upcomingAmountExpense
-        : `-${addComma(upcomingAmountExpense)}`,
+        : `-${formatingAmount(upcomingAmountExpense)}`,
       totalAmount: totalAmountExpense === 0
         ? totalAmountExpense
-        : `-${addComma(totalAmountExpense)}`,
+        : `-${formatingAmount(totalAmountExpense)}`,
     },
   ];
 
@@ -108,7 +94,7 @@ export default function Header() {
             </Typography>
             <Typography className={clsx(classes.current, classes[item.name])}>
               {item.currentAmount}
-              {currencyIcon(currency)}
+              {currencySign[currency]}
             </Typography>
             <div className={classes.span}>
               <Typography className={classes.text}>

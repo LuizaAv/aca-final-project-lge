@@ -22,23 +22,12 @@ import useStyles from './AddBudget.style';
 import Snackbars from '../Snackbars/Snackbars';
 import { addBudget } from '../../store/actions';
 import { useStoreContext } from '../../store/storeContext';
+import { useMainContext } from '../../pages/mainContext';
 import { dbAddBudget } from '../../API/dbActions';
+import { currencySign } from '../../globals/constants';
+import { useSnackbarContext } from '../Snackbars/snackbarContext';
+import { ADD, CANCEL, ERROR } from '../Snackbars/snackbarActions';
 
-function currencyIcon(currency) {
-  if (currency === 'USD') {
-    return '$';
-  }
-  if (currency === 'AMD') {
-    return '\u058F';
-  }
-  if (currency === 'RUB') {
-    return '\u20bd';
-  }
-  if (currency === 'EUR') {
-    return '\u20ac';
-  }
-  return '';
-}
 
 const localeMap = {
   EN: enLocale,
@@ -48,8 +37,8 @@ const localeMap = {
 
 export default function AddBudget() {
   const classes = useStyles();
-  const { state, dispatch, language } = useStoreContext();
-  const { rate, currency } = useStoreContext();
+  const { state, dispatch } = useStoreContext();
+  const { rate, currency, language } = useMainContext();
   const [type, setType] = useState('');
   const [name, setName] = useState('');
   const [category, setCategory] = useState('');
@@ -58,27 +47,15 @@ export default function AddBudget() {
   const [date, setDate] = useState(new Date());
   const [datePickerError, setDatePickerError] = useState('');
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [snackbarType, setSnackbarType] = useState('');
-  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const { snackbarDispatch } = useSnackbarContext();
 
   const handleDialogClose = () => {
     setDialogOpen(false);
   };
 
-  const handleSnackbarAdd = () => {
-    setSnackbarType('add');
-    setSnackbarOpen(true);
-  };
-
-  const handleSnackbarErroe = () => {
-    setSnackbarType('error');
-    setSnackbarOpen(true);
-  };
-
   const handleCancel = () => {
     setDialogOpen(false);
-    setSnackbarType('cancel');
-    setSnackbarOpen(true);
+    snackbarDispatch(CANCEL);
   };
 
   const handleClickExpense = () => {
@@ -135,18 +112,22 @@ export default function AddBudget() {
     setDate(new Date());
   };
 
-  const handleAddingBudget = () => {
+  const handleAddingBudget = async () => {
     const id = uuidv4();
     const addedBudget = {
       id, type, name, amount: +amount, date, category, color,
     };
     handleStateReset();
-    dbAddBudget({
-      ...addedBudget, amount: Math.ceil(addedBudget.amount / rate[currency]),
-    })
-      .then(() => dispatch(addBudget(addedBudget)))
-      .then(() => handleSnackbarAdd())
-      .catch(() => handleSnackbarErroe());
+    try {
+      await dbAddBudget({
+        ...addedBudget,
+        amount: Math.ceil(addedBudget.amount / rate[currency]),
+      });
+      dispatch(addBudget(addedBudget));
+      snackbarDispatch(ADD);
+    } catch (err) {
+      snackbarDispatch(ERROR);
+    }
   };
 
   const doneDisabled = (
@@ -224,7 +205,7 @@ export default function AddBudget() {
           value={amount}
           onChange={handleAmountChange}
           InputProps={{
-            endAdornment: <InputAdornment position="end">{currencyIcon(currency)}</InputAdornment>,
+            endAdornment: <InputAdornment position="end">{currencySign[currency]}</InputAdornment>,
           }}
         />
 
@@ -264,7 +245,7 @@ export default function AddBudget() {
         </DialogActions>
       </Dialog>
 
-      <Snackbars type={snackbarType} open={snackbarOpen} setOpen={setSnackbarOpen} />
+      <Snackbars />
     </div>
   );
 }
