@@ -10,13 +10,12 @@ import { useMainContext } from '../mainContext';
 import Header from '../../components/Header/Header';
 import View from '../../components/View/View';
 import CartType from './ChartType/ChartType';
-import messages from '../../languages/messages';
 import useStyles from './Charts.style';
 
 export default function Charts() {
   const classes = useStyles();
   const { state } = useStoreContext();
-  const { loading, language } = useMainContext();
+  const { loading } = useMainContext();
   const [isCurrent, setIsCurrent] = useState(true);
   const [type, setType] = useState('date');
 
@@ -57,14 +56,14 @@ export default function Charts() {
     labels: labelsLine,
     datasets: [
       {
-        label: messages[language].income,
+        label: 'income',
         data: incomes,
         fill: true,
         backgroundColor: '#76ff0335',
         borderColor: '#76ff03',
       },
       {
-        label: messages[language].expense,
+        label: 'expense',
         data: expenses,
         fill: true,
         backgroundColor: '#ff525235',
