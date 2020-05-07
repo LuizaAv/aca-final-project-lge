@@ -74,16 +74,19 @@ export default function EditCategory({ category }) {
     setColor(selectedColor.hex);
   };
 
-  const handleEditCategory = () => {
+  const handleEditCategory = async () => {
     const { id } = category;
     const editedCategory = {
       id, type, name, color,
     };
     handleClose();
-    dbEditCategory(editedCategory)
-      .then(() => dispatch(editCategory(editedCategory)))
-      .then(() => snackbarDispatch(EDIT))
-      .catch(() => snackbarDispatch(ERROR));
+    try {
+      await dbEditCategory(editedCategory);
+      dispatch(editCategory(editedCategory));
+      snackbarDispatch(EDIT);
+    } catch (err) {
+      snackbarDispatch(ERROR);
+    }
   };
 
   const doneDisabled = (
