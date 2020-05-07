@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { CirclePicker } from 'react-color';
+import { ChromePicker } from 'react-color';
 import { FormattedMessage } from 'react-intl';
 
 import Button from '@material-ui/core/Button';
@@ -20,12 +20,6 @@ import { addCategory } from '../../../store/actions';
 import { dbAddCategory } from '../../../API/dbActions';
 import { useSnackbarContext } from '../../../components/Snackbars/snackbarContext';
 import { ADD, CANCEL, ERROR } from '../../../components/Snackbars/snackbarActions';
-
-const colors = [
-  '#e53935', '#ec407a', '#ffcdd2', '#ab47bc', '#7e57c2', '#0D47A1',
-  '#29b6f6', '#80deea', '#26a69a', '#9ccc65', '#689f38', '#afb42b',
-  '#fdd835', '#FF8F00', '#ff7043', '#8d6e63', '#616161', '#78909c',
-];
 
 export default function AddCategory() {
   const classes = useStyles();
@@ -138,6 +132,7 @@ export default function AddCategory() {
 
         <div className={classes.colorPicker}>
           <Button
+            className={classes.buttonColor}
             style={{ backgroundColor: color }}
             onClick={handlePopoverOpen}
             variant="outlined"
@@ -146,24 +141,22 @@ export default function AddCategory() {
           </Button>
           <Popover
             open={Boolean(anchorEl)}
-            onClick={handlePopoverClose}
+            onClose={handlePopoverClose}
             anchorEl={anchorEl}
             anchorOrigin={{
-              vertical: 'center',
+              vertical: 'bottom',
               horizontal: 'center',
             }}
             transformOrigin={{
-              vertical: 'center',
+              vertical: 'top',
               horizontal: 'center',
             }}
           >
-            <MenuItem>
-              <CirclePicker
-                onChange={handleColorChange}
-                colors={colors}
-                color={color}
-              />
-            </MenuItem>
+            <ChromePicker
+              disableAlpha
+              onChange={handleColorChange}
+              color={color}
+            />
           </Popover>
         </div>
 

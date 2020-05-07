@@ -39,6 +39,7 @@ export default makeStyles(({
     margin: 'auto',
   },
   buttonColor: {
-
+    fontWeight: 600,
+    textShadow: '-1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff',
   },
 }));

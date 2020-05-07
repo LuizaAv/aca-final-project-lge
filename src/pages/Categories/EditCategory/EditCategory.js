@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import propTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { CirclePicker } from 'react-color';
+import { ChromePicker } from 'react-color';
 
 import Tooltip from '@material-ui/core/Tooltip';
 import Button from '@material-ui/core/Button';
@@ -23,13 +23,6 @@ import { editCategory } from '../../../store/actions';
 import { useSnackbarContext } from '../../../components/Snackbars/snackbarContext';
 import { EDIT, CANCEL, ERROR } from '../../../components/Snackbars/snackbarActions';
 import useStyles from './EditCategory.style';
-
-
-const colors = [
-  '#e53935', '#ec407a', '#ffcdd2', '#ab47bc', '#7e57c2', '#0D47A1',
-  '#29b6f6', '#80deea', '#26a69a', '#9ccc65', '#689f38', '#afb42b',
-  '#fdd835', '#FF8F00', '#ff7043', '#8d6e63', '#616161', '#78909c',
-];
 
 export default function EditCategory({ category }) {
   const classes = useStyles();
@@ -148,6 +141,7 @@ export default function EditCategory({ category }) {
 
         <div className={classes.colorPicker}>
           <Button
+            className={classes.buttonColor}
             style={{ backgroundColor: color }}
             onClick={handlePopoverOpen}
             variant="outlined"
@@ -156,24 +150,22 @@ export default function EditCategory({ category }) {
           </Button>
           <Popover
             open={Boolean(anchorEl)}
-            onClick={handlePopoverClose}
+            onClose={handlePopoverClose}
             anchorEl={anchorEl}
             anchorOrigin={{
-              vertical: 'center',
+              vertical: 'bottom',
               horizontal: 'center',
             }}
             transformOrigin={{
-              vertical: 'center',
+              vertical: 'top',
               horizontal: 'center',
             }}
           >
-            <MenuItem>
-              <CirclePicker
-                onChange={handleColorChange}
-                colors={colors}
-                color={color}
-              />
-            </MenuItem>
+            <ChromePicker
+              disableAlpha
+              onChange={handleColorChange}
+              color={color}
+            />
           </Popover>
         </div>
 

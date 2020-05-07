@@ -11,12 +11,8 @@ export default makeStyles((theme) => ({
       borderColor: '#3f51b5',
     },
     [theme.breakpoints.down('md')]: {
-      // width: '22ch',
       fontSize: 14,
     },
-    // [theme.breakpoints.down('sm')]: {
-    //   fontSize: 10,
-    // },
   },
   dialog: {
     borderRadius: 30,
@@ -47,6 +43,7 @@ export default makeStyles((theme) => ({
     margin: 'auto',
   },
   buttonColor: {
-
+    fontWeight: 600,
+    textShadow: '-1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff',
   },
 }));
