@@ -36,12 +36,15 @@ export default function DeleteCategory({ category }) {
     snackbarDispatch(CANCEL);
   };
 
-  const handleDeleteCategory = () => {
+  const handleDeleteCategory = async () => {
     handleClose();
-    dbDeleteCategory(category)
-      .then(() => dispatch(deleteCategory(category)))
-      .then(() => snackbarDispatch(DELETE))
-      .catch(() => snackbarDispatch(ERROR));
+    try {
+      await dbDeleteCategory(category);
+      dispatch(deleteCategory(category));
+      snackbarDispatch(DELETE);
+    } catch (err) {
+      snackbarDispatch(ERROR);
+    }
   };
 
   return (
