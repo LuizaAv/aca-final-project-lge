@@ -22,23 +22,27 @@ import { formatingAmount } from '../../globals/helpers';
 import useStyles from './History.style';
 
 function filterByDate(budget, date) {
-  const dayCheck = () => budget.filter((item) => (
-    item.date.getDate() === new Date().getDate()
-    && item.date.getMonth() === new Date().getMonth()
-    && item.date.getFullYear() === new Date().getFullYear()
-  ));
-  const monthCheck = () => budget.filter((item) => (
-    item.date.getMonth() === new Date().getMonth()
-    && item.date.getFullYear() === new Date().getFullYear()
-  ));
-  const yearCheck = () => budget.filter((item) => (
-    item.date.getFullYear() === new Date().getFullYear()
-  ));
-
-  if (date === 'daily') return dayCheck();
-  if (date === 'monthly') return monthCheck();
-  if (date === 'yearly') return yearCheck();
-  return [...budget];
+  switch (date) {
+    case 'daily': return (
+      budget.filter((item) => (
+        item.date.getDate() === new Date().getDate()
+        && item.date.getMonth() === new Date().getMonth()
+        && item.date.getFullYear() === new Date().getFullYear()
+      ))
+    );
+    case 'monthly': return (
+      budget.filter((item) => (
+        item.date.getMonth() === new Date().getMonth()
+        && item.date.getFullYear() === new Date().getFullYear()
+      ))
+    );
+    case 'yearly': return (
+      budget.filter((item) => (
+        item.date.getFullYear() === new Date().getFullYear()
+      ))
+    );
+    default: return [...budget];
+  }
 }
 
 export default function History() {
