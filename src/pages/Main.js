@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { IntlProvider } from 'react-intl';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { MainContext } from './mainContext';
@@ -17,12 +16,10 @@ import History from './History/History';
 import Charts from './Charts/Charts';
 import Help from './Help/Help';
 import Snackbars from '../components/Snackbars/Snackbars';
-import messages from '../languages/messages';
 import useStyles from './Main.style';
 
 export default function Main() {
   const classes = useStyles();
-  const [language, setLanguage] = useState('EN');
   const [currency, setCurrency] = useState('USD');
   const [loading, setLoading] = useState(true);
   const [loadingRate, setLoadingRate] = useState(true);
@@ -71,45 +68,43 @@ export default function Main() {
 
   return (
     <MainContext.Provider value={{
-      currency, setCurrency, rate, loading, language, setLanguage,
+      currency, setCurrency, rate, loading,
     }}
     >
-      <IntlProvider locale={language} messages={messages[language]}>
-        <div className={classes.root}>
-          <div className={classes.navigation}>
-            <Navigation />
-          </div>
-
-          {loadingRate
-            ? (
-              <div className={classes.progress}>
-                <CircularProgress size={50} />
-              </div>
-            )
-            : (
-              <div className={classes.content}>
-                <Switch>
-                  <Route exact path="/">
-                    <Summary />
-                  </Route>
-                  <Route path="/Categories">
-                    <Categories />
-                  </Route>
-                  <Route path="/History">
-                    <History />
-                  </Route>
-                  <Route path="/Charts">
-                    <Charts />
-                  </Route>
-                  <Route path="/Help">
-                    <Help />
-                  </Route>
-                </Switch>
-              </div>
-            )}
+      <div className={classes.root}>
+        <div className={classes.navigation}>
+          <Navigation />
         </div>
-        <Snackbars />
-      </IntlProvider>
+
+        {loadingRate
+          ? (
+            <div className={classes.progress}>
+              <CircularProgress size={50} />
+            </div>
+          )
+          : (
+            <div className={classes.content}>
+              <Switch>
+                <Route exact path="/">
+                  <Summary />
+                </Route>
+                <Route path="/Categories">
+                  <Categories />
+                </Route>
+                <Route path="/History">
+                  <History />
+                </Route>
+                <Route path="/Charts">
+                  <Charts />
+                </Route>
+                <Route path="/Help">
+                  <Help />
+                </Route>
+              </Switch>
+            </div>
+          )}
+      </div>
+      <Snackbars />
     </MainContext.Provider>
   );
 }
