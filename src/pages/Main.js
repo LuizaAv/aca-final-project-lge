@@ -30,13 +30,7 @@ export default function Main() {
   const { snackbarDispatch } = useSnackbarContext();
   const { dispatch } = useStoreContext();
 
-  useEffect(async () => {
-    const rateResponse = await rateExchange();
-    setRate(rateResponse);
-    setLoadingRate(false);
-  }, []);
-
-  useEffect(async () => {
+  const getDatabase = async () => {
     try {
       const categories = await dbGetCategory();
       const budget = await dbGetBudget();
@@ -47,14 +41,33 @@ export default function Main() {
       snackbarDispatch(ERROR);
       setLoading(false);
     }
+  };
+
+  const getRate = async () => {
+    const rateResponse = await rateExchange();
+    setRate(rateResponse);
+    setLoadingRate(false);
+  };
+
+  const currencyChange = async () => {
+    const budget = await dbGetBudget();
+    budget.map((item) => (
+      dispatch(editBudget(
+        { ...item, amount: Math.floor(item.amount * rate[currency]) },
+      ))
+    ));
+    setLoadingRate(false);
+  };
+
+  useEffect(() => {
+    getRate();
+    getDatabase();
   }, []);
 
   useEffect(() => {
-    dbGetBudget()
-      .then((budget) => budget.map((item) => dispatch(editBudget({
-        ...item, amount: Math.floor(item.amount * rate[currency]),
-      }))));
-  }, [currency, rate]);
+    setLoadingRate(true);
+    currencyChange();
+  }, [currency]);
 
   return (
     <MainContext.Provider value={{
