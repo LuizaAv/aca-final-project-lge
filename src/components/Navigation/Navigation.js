@@ -14,6 +14,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import { useMainContext } from '../../pages/mainContext';
+import { useLanguageContext } from '../../languages/languageContext';
 import { ReactComponent as GraphsIcon } from '../../assets/icons/Graphs.svg';
 import { ReactComponent as SummaryIcon } from '../../assets/icons/Summary.svg';
 import { ReactComponent as HistoryIcon } from '../../assets/icons/History.svg';
@@ -25,9 +26,8 @@ import useStyles from './Navigation.style';
 export default function Navigation() {
   const classes = useStyles();
   const matches = useMediaQuery('(min-width:1030px)');
-  const {
-    language, setLanguage, currency, setCurrency,
-  } = useMainContext();
+  const { locale, setLanguage } = useLanguageContext();
+  const { currency, setCurrency } = useMainContext();
   const [path, setPath] = useState(window.location.pathname);
   const [open, setOpen] = useState(true);
 
@@ -39,10 +39,6 @@ export default function Navigation() {
     if (!matches) {
       setOpen(!open);
     }
-  };
-
-  const handlSelectLanguage = (e) => {
-    setLanguage(e.target.value);
   };
 
   const handlselectCurrency = (e) => {
@@ -185,8 +181,8 @@ export default function Navigation() {
               className={classes.select}
               classes={{ root: classes.selectRoot }}
               variant="outlined"
-              value={language}
-              onChange={handlSelectLanguage}
+              value={locale}
+              onChange={setLanguage}
               label={<FormattedMessage id="language" />}
             >
               {selectLanguage.map((item) => (
