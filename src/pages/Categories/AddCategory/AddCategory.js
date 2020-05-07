@@ -77,16 +77,19 @@ export default function AddCategory() {
     setDialogOpen(false);
   };
 
-  const handleAddCategory = () => {
+  const handleAddCategory = async () => {
     const id = uuidv4();
     const addedCategory = {
       id, type, name, color,
     };
     handleStateReset();
-    dbAddCategory(addedCategory)
-      .then(() => dispatch(addCategory(addedCategory)))
-      .then(() => snackbarDispatch(ADD))
-      .catch(() => snackbarDispatch(ERROR));
+    try {
+      await dbAddCategory(addedCategory);
+      dispatch(addCategory(addedCategory));
+      snackbarDispatch(ADD);
+    } catch (err) {
+      snackbarDispatch(ERROR);
+    }
   };
 
   const doneDisabled = (name === '' || type === '' || color === '');
