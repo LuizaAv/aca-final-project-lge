@@ -30,23 +30,23 @@ export default function Main() {
   const { snackbarDispatch } = useSnackbarContext();
   const { dispatch } = useStoreContext();
 
-  useEffect(() => {
-    rateExchange()
-      .then((newRate) => setRate(newRate))
-      .then(() => setTimeout(() => setLoadingRate(false), 100));
+  useEffect(async () => {
+    const rateResponse = await rateExchange();
+    setRate(rateResponse);
+    setLoadingRate(false);
   }, []);
 
-  useEffect(() => {
-    dbGetCategory()
-      .then((categories) => dispatch(initCategory(categories)))
-      .then(() => setLoading(false))
-      .catch(() => snackbarDispatch(ERROR))
-      .then(() => setLoading(false));
-    dbGetBudget()
-      .then((budget) => dispatch(initBudget(budget)))
-      .then(() => setLoading(false))
-      .catch(() => snackbarDispatch(ERROR))
-      .then(() => setLoading(false));
+  useEffect(async () => {
+    try {
+      const categories = await dbGetCategory();
+      const budget = await dbGetBudget();
+      dispatch(initCategory(categories));
+      dispatch(initBudget(budget));
+      setLoading(false);
+    } catch (err) {
+      snackbarDispatch(ERROR);
+      setLoading(false);
+    }
   }, []);
 
   useEffect(() => {
