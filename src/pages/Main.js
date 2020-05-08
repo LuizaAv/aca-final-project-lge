@@ -10,6 +10,7 @@ import { dbGetBudget, dbGetCategory, rateExchange } from '../API/dbActions';
 import { ERROR } from '../components/Snackbars/snackbarActions';
 
 import Navigation from '../components/Navigation/Navigation';
+import { ROUTES } from '../globals/routes';
 import Summary from './Summary/Summary';
 import Categories from './Categories/Categories';
 import History from './History/History';
@@ -43,7 +44,6 @@ export default function Main() {
   const getRate = async () => {
     const rateResponse = await rateExchange();
     setRate(rateResponse);
-    setLoadingRate(false);
   };
 
   const currencyChange = async () => {
@@ -64,7 +64,7 @@ export default function Main() {
   useEffect(() => {
     setLoadingRate(true);
     currencyChange();
-  }, [currency]);
+  }, [currency, rate]);
 
   return (
     <MainContext.Provider value={{
@@ -85,19 +85,19 @@ export default function Main() {
           : (
             <div className={classes.content}>
               <Switch>
-                <Route exact path="/">
+                <Route exact path={ROUTES.summary}>
                   <Summary />
                 </Route>
-                <Route path="/Categories">
+                <Route path={ROUTES.categories}>
                   <Categories />
                 </Route>
-                <Route path="/History">
+                <Route path={ROUTES.history}>
                   <History />
                 </Route>
-                <Route path="/Charts">
+                <Route path={ROUTES.charts}>
                   <Charts />
                 </Route>
-                <Route path="/Help">
+                <Route path={ROUTES.help}>
                   <Help />
                 </Route>
               </Switch>
