@@ -101,6 +101,7 @@ export default function Navigation() {
         <nav className={classes.nav}>
           {links.map((link) => (
             <Link
+              key={link.message}
               to={link.route}
               onClick={() => setSelectedPath(link.route)}
               className={selectedPath === link.route
