@@ -13,6 +13,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
+import { ROUTES } from '../../globals/routes';
 import { useMainContext } from '../../pages/mainContext';
 import { useLanguageContext } from '../../languages/languageContext';
 import { ReactComponent as GraphsIcon } from '../../assets/icons/Graphs.svg';
@@ -28,7 +29,7 @@ export default function Navigation() {
   const matches = useMediaQuery('(min-width:1030px)');
   const { locale, setLanguage } = useLanguageContext();
   const { currency, setCurrency } = useMainContext();
-  const [path, setPath] = useState(window.location.pathname);
+  const [selectedPath, setSelectedPath] = useState(ROUTES.summary);
   const [open, setOpen] = useState(true);
 
   useEffect(() => {
@@ -47,6 +48,14 @@ export default function Navigation() {
 
   const selectLanguage = ['EN', 'HY', 'RU'];
   const selectCurrency = ['USD', 'AMD', 'RUB', 'EUR'];
+
+  const links = [
+    { route: ROUTES.summary, message: 'summary', icon: <SummaryIcon className={classes.summaryIcon} /> },
+    { route: ROUTES.history, message: 'history', icon: <HistoryIcon className={classes.historyIcon} /> },
+    { route: ROUTES.categories, message: 'categories', icon: <CategoriesIcon className={classes.categoriesIcon} /> },
+    { route: ROUTES.charts, message: 'charts', icon: <GraphsIcon className={classes.graphsIcon} /> },
+    { route: ROUTES.help, message: 'help', icon: <HelpIcon className={classes.helpIcon} /> },
+  ];
 
   return (
     <div>
@@ -68,8 +77,9 @@ export default function Navigation() {
       >
         <div className={classes.logo}>
           <Link
+            to={ROUTES.summary}
+            onClick={() => setSelectedPath(ROUTES.summary)}
             className={classes.linkLogo}
-            to="/"
           >
             <Typography
               className={classes.finance}
@@ -89,86 +99,25 @@ export default function Navigation() {
         </div>
 
         <nav className={classes.nav}>
-          <Link
-            to="/"
-            onClick={() => setPath('/')}
-            className={path === '/'
-              ? classes.activeLink
-              : classes.link}
-          >
-            <RectangleIcon
-              className={
-                path === '/'
+          {links.map((link) => (
+            <Link
+              to={link.route}
+              onClick={() => setSelectedPath(link.route)}
+              className={selectedPath === link.route
+                ? classes.activeLink
+                : classes.link}
+            >
+              <RectangleIcon
+                className={
+                selectedPath === link.route
                   ? classes.activeRectangleIcon
                   : classes.rectangleIcon
                 }
-            />
-            <SummaryIcon className={classes.summaryIcon} />
-            <FormattedMessage id="summary" />
-          </Link>
-          <Link
-            to="/History"
-            onClick={() => setPath('/History')}
-            className={path === '/History'
-              ? classes.activeLink
-              : classes.link}
-          >
-
-            <RectangleIcon
-              className={path === '/History'
-                ? classes.activeRectangleIcon
-                : classes.rectangleIcon}
-            />
-            <HistoryIcon className={classes.historyIcon} />
-            <FormattedMessage id="history" />
-          </Link>
-          <Link
-            to="/Categories"
-            onClick={() => setPath('/Categories')}
-            className={path === '/Categories'
-              ? classes.activeLink
-              : classes.link}
-          >
-            <RectangleIcon
-              className={path === '/Categories'
-                ? classes.activeRectangleIcon
-                : classes.rectangleIcon}
-            />
-            <CategoriesIcon className={classes.categoriesIcon} />
-            <FormattedMessage id="categories" />
-          </Link>
-          <Link
-            to="/Charts"
-            onClick={() => setPath('/Charts')}
-            className={path === '/Charts'
-              ? classes.activeLink
-              : classes.link}
-          >
-            <RectangleIcon
-              className={path === '/Charts'
-                ? classes.activeRectangleIcon
-                : classes.rectangleIcon}
-            />
-            <GraphsIcon className={classes.graphsIcon} />
-            <FormattedMessage id="charts" />
-          </Link>
-          <Link
-            to="/Help"
-            onClick={() => setPath('/Help')}
-            className={path === '/Help'
-              ? classes.activeLink
-              : classes.link}
-          >
-            <RectangleIcon
-              className={
-                path === '/Help'
-                  ? classes.activeRectangleIcon
-                  : classes.rectangleIcon
-                }
-            />
-            <HelpIcon className={classes.helpIcon} />
-            <FormattedMessage id="help" />
-          </Link>
+              />
+              {link.icon}
+              <FormattedMessage id={link.message} />
+            </Link>
+          ))}
         </nav>
 
 
