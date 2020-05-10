@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import clsx from 'clsx';
 
 import { useStoreContext } from '../../store/storeContext';
-import { useMainContext } from '../../pages/mainContext';
+import { useMainContext } from '../../pages/Main/mainContext';
 import AddBudget from '../AddBudget/AddBudget';
 import { currencySign } from '../../globals/constants';
 import { formatingAmount } from '../../globals/helpers';

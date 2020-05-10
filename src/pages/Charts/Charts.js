@@ -6,7 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
 import { useStoreContext } from '../../store/storeContext';
-import { useMainContext } from '../mainContext';
+import { useMainContext } from '../Main/mainContext';
 import Header from '../../components/Header/Header';
 import View from '../../components/View/View';
 import CartType from './ChartType/ChartType';

@@ -22,7 +22,7 @@ import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
 
 import { useStoreContext } from '../../../store/storeContext';
-import { useMainContext } from '../../mainContext';
+import { useMainContext } from '../../Main/mainContext';
 import { dbEditBudget } from '../../../API/dbActions';
 import { editBudget } from '../../../store/actions';
 import { currencySign } from '../../../globals/constants';

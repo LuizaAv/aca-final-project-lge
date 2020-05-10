@@ -22,7 +22,7 @@ import useStyles from './AddBudget.style';
 import Snackbars from '../Snackbars/Snackbars';
 import { addBudget } from '../../store/actions';
 import { useStoreContext } from '../../store/storeContext';
-import { useMainContext } from '../../pages/mainContext';
+import { useMainContext } from '../../pages/Main/mainContext';
 import { dbAddBudget } from '../../API/dbActions';
 import { currencySign } from '../../globals/constants';
 import { useSnackbarContext } from '../Snackbars/snackbarContext';
