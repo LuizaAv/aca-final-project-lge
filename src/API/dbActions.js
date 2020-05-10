@@ -5,31 +5,31 @@ export const dbGetCategory = async () => {
   return response.json();
 };
 
-export const dbAddCategory = (payload) => {
+export const dbAddCategory = (payload) => (
   fetch(`${URL}/categories`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(payload),
-  });
-};
+  })
+);
 
-export const dbEditCategory = (payload) => {
+export const dbEditCategory = (payload) => (
   fetch(`${URL}/categories/${payload.id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(payload),
-  });
-};
+  })
+);
 
-export const dbDeleteCategory = (payload) => {
+export const dbDeleteCategory = (payload) => (
   fetch(`${URL}/categories/${payload.id}`, {
     method: 'DELETE',
-  });
-};
+  })
+);
 
 export const dbGetBudget = async () => {
   const response = await fetch(`${URL}/budget`);
@@ -37,31 +37,31 @@ export const dbGetBudget = async () => {
   return budget.map((item) => ({ ...item, date: new Date(item.date) }));
 };
 
-export const dbAddBudget = (payload) => {
+export const dbAddBudget = (payload) => (
   fetch(`${URL}/budget`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(payload),
-  });
-};
+  })
+);
 
-export const dbEditBudget = (payload) => {
+export const dbEditBudget = (payload) => (
   fetch(`${URL}/budget/${payload.id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(payload),
-  });
-};
+  })
+);
 
-export const dbDeleteBudget = (payload) => {
+export const dbDeleteBudget = (payload) => (
   fetch(`${URL}/budget/${payload.id}`, {
     method: 'DELETE',
-  });
-};
+  })
+);
 
 export const rateExchange = async () => {
   try {
