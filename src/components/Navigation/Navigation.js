@@ -14,7 +14,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import { ROUTES } from '../../globals/routes';
-import { useMainContext } from '../../pages/mainContext';
+import { useMainContext } from '../../pages/Main/mainContext';
 import { useLanguageContext } from '../../languages/languageContext';
 import { ReactComponent as GraphsIcon } from '../../assets/icons/Graphs.svg';
 import { ReactComponent as SummaryIcon } from '../../assets/icons/Summary.svg';
@@ -29,7 +29,7 @@ export default function Navigation() {
   const matches = useMediaQuery('(min-width:1030px)');
   const { locale, setLanguage } = useLanguageContext();
   const { currency, setCurrency } = useMainContext();
-  const [selectedPath, setSelectedPath] = useState(ROUTES.summary);
+  const [selectedPath, setSelectedPath] = useState(window.location.hash.slice(1));
   const [open, setOpen] = useState(true);
 
   useEffect(() => {
