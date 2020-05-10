@@ -4,8 +4,9 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import SnackbarProvider from './components/Snackbars/SnackbarProvider';
 import StoreProvider from './store/StoreProvider';
 import LanguageProvider from './languages/LanguageProvider';
+import MainProvider from './pages/Main/MainProvider';
 import theme from './theme/theme';
-import Main from './pages/Main';
+import Main from './pages/Main/Main';
 
 function App() {
   return (
@@ -14,7 +15,9 @@ function App() {
         <StoreProvider>
           <SnackbarProvider>
             <HashRouter>
-              <Main />
+              <MainProvider>
+                <Main />
+              </MainProvider>
             </HashRouter>
           </SnackbarProvider>
         </StoreProvider>
