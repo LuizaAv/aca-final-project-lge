@@ -17,7 +17,7 @@ import { useSnackbarContext } from '../../../components/Snackbars/snackbarContex
 import { DELETE, CANCEL, ERROR } from '../../../components/Snackbars/snackbarActions';
 import useStyles from './DeleteHistory.style';
 
-export default function DeleteHistory({ budget }) {
+export default function DeleteHistory({ budgetId }) {
   const classes = useStyles();
   const { dispatch } = useStoreContext();
   const [open, setOpen] = useState(false);
@@ -39,8 +39,8 @@ export default function DeleteHistory({ budget }) {
   const handleDeleteBudget = async () => {
     handleClose();
     try {
-      await dbDeleteBudget(budget);
-      dispatch(deleteBudget(budget));
+      await dbDeleteBudget(budgetId);
+      dispatch(deleteBudget(budgetId));
       snackbarDispatch(DELETE);
     } catch (err) {
       snackbarDispatch(ERROR);
@@ -91,23 +91,5 @@ export default function DeleteHistory({ budget }) {
 }
 
 DeleteHistory.propTypes = {
-  budget: propTypes.shape({
-    id: propTypes.string.isRequired,
-    type: propTypes.string.isRequired,
-    name: propTypes.string.isRequired,
-    categoryId: propTypes.string.isRequired,
-    amount: propTypes.number.isRequired,
-    date: propTypes.instanceOf(Date),
-  }),
-};
-
-DeleteHistory.defaultProps = {
-  budget: {
-    id: propTypes.string.isRequired,
-    type: propTypes.string.isRequired,
-    name: propTypes.string.isRequired,
-    categoryId: propTypes.string.isRequired,
-    amount: propTypes.number.isRequired,
-    date: propTypes.instanceOf(Date),
-  },
+  budgetId: propTypes.string.isRequired,
 };

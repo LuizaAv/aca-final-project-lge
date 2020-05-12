@@ -113,7 +113,7 @@ export default function History() {
                       <Typography className={classes.name}>{item.name}</Typography>
                       <div className={classes.amount}>
                         <EditHistory budget={item} />
-                        <DeleteHistory budget={item} />
+                        <DeleteHistory budgetId={item.id} />
                       </div>
                     </div>
 

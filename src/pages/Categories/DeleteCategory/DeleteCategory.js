@@ -17,7 +17,7 @@ import { useSnackbarContext } from '../../../components/Snackbars/snackbarContex
 import { DELETE, CANCEL, ERROR } from '../../../components/Snackbars/snackbarActions';
 import useStyles from './DeleteCategory.style';
 
-export default function DeleteCategory({ category }) {
+export default function DeleteCategory({ categoryId }) {
   const classes = useStyles();
   const { dispatch } = useStoreContext();
   const [open, setOpen] = useState(false);
@@ -39,8 +39,8 @@ export default function DeleteCategory({ category }) {
   const handleDeleteCategory = async () => {
     handleClose();
     try {
-      await dbDeleteCategory(category);
-      dispatch(deleteCategory(category));
+      await dbDeleteCategory(categoryId);
+      dispatch(deleteCategory(categoryId));
       snackbarDispatch(DELETE);
     } catch (err) {
       snackbarDispatch(ERROR);
@@ -91,17 +91,5 @@ export default function DeleteCategory({ category }) {
 }
 
 DeleteCategory.propTypes = {
-  category: propTypes.shape({
-    id: propTypes.string.isRequired,
-    type: propTypes.string.isRequired,
-    name: propTypes.string.isRequired,
-  }),
-};
-
-DeleteCategory.defaultProps = {
-  category: {
-    id: propTypes.string.isRequired,
-    type: propTypes.string.isRequired,
-    name: propTypes.string.isRequired,
-  },
+  categoryId: propTypes.string.isRequired,
 };

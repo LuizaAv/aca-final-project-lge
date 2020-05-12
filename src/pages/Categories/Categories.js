@@ -82,7 +82,7 @@ export default function Categories() {
                     </TableCell>
                     <TableCell className={classes.content} align="right">
                       <EditCategory category={category} />
-                      <DeleteCategory category={category} />
+                      <DeleteCategory categoryId={category.id} />
                     </TableCell>
                   </TableRow>
                 ))}
