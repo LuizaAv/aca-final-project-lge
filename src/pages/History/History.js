@@ -121,7 +121,7 @@ export default function History() {
 
                     <div className={classes.cardItem}>
                       <Typography className={classes.category}>
-                        {item.category}
+                        {state.categories.find((category) => category.id === item.categoryId).name}
                       </Typography>
 
                       <Typography>

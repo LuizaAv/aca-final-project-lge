@@ -23,24 +23,32 @@ export default function Charts() {
   const upcomingBudget = state.budget.filter((item) => item.date.getTime() > new Date().getTime());
   const showItems = isCurrent ? currentBudget : upcomingBudget;
 
-  const uniqueCategoriesItems = showItems.reduce((acc, item) => (
-    acc.some((accItem) => (
-      accItem.category === item.category && accItem.type === item.type
-    ))
+  const uniqueIdCategories = showItems.reduce((acc, item) => (
+    acc.some((categoryId) => (categoryId === item.categoryId))
       ? acc
-      : [...acc, item]
+      : [...acc, item.categoryId]
   ), []);
 
-  const amounts = uniqueCategoriesItems.map((uniqueItem) => (
+  const amounts = uniqueIdCategories.map((categoryId) => (
     showItems.reduce((acc, item) => (
-      item.category === uniqueItem.category && item.type === uniqueItem.type
+      item.categoryId === categoryId
         ? acc + +item.amount
         : acc
     ), 0)
   ));
 
-  const labelsDoughnut = uniqueCategoriesItems.map((item) => item.category);
-  const colors = uniqueCategoriesItems.map((item) => item.color);
+  const labelsDoughnut = uniqueIdCategories.map((categoryId) => (
+    state.categories.find((category) => (
+      category.id === categoryId
+    )).name
+  ));
+
+  const colors = uniqueIdCategories.map((categoryId) => (
+    state.categories.find((category) => (
+      category.id === categoryId
+    )).color
+  ));
+
   const sortedBudgetByDate = showItems.sort((a, b) => a.date.getTime() - b.date.getTime());
   const labelsLine = sortedBudgetByDate.map((el) => el.date.toLocaleDateString());
   const expenses = sortedBudgetByDate.map((el) => (el.type === 'expense' ? el.amount : 0));

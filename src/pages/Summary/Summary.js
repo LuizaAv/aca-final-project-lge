@@ -35,15 +35,13 @@ export default function Categories() {
   const upcomingBudget = state.budget.filter((item) => item.date.getTime() > new Date().getTime());
   const showItems = isCurrent ? currentBudget : upcomingBudget;
 
-  const uniqueCategoriesItems = showItems.reduce((acc, item) => (
-    acc.some((accItem) => (
-      accItem.category === item.category && accItem.type === item.type
-    ))
+  const uniqueCategoryItems = showItems.reduce((acc, item) => (
+    acc.some((uniqueItem) => (uniqueItem.categoryId === item.categoryId))
       ? acc
       : [...acc, item]
   ), []);
 
-  const sumAmounts = uniqueCategoriesItems.map((uniqueItem) => {
+  const sumAmountsItems = uniqueCategoryItems.map((uniqueItem) => {
     const amount = showItems.reduce(
       (acc, item) => (
         item.category === uniqueItem.category && item.type === uniqueItem.type
@@ -55,8 +53,8 @@ export default function Categories() {
   });
 
   const filteredItems = filterType === 'all'
-    ? [...sumAmounts]
-    : sumAmounts.filter((amount) => amount.type === filterType);
+    ? [...sumAmountsItems]
+    : sumAmountsItems.filter((amount) => amount.type === filterType);
 
   filteredItems.sort((a, b) => (
     isAscending
@@ -103,7 +101,7 @@ export default function Categories() {
                 {filteredItems.map((item) => (
                   <TableRow key={item.id} className={classes.tableRow}>
                     <TableCell className={classes.category}>
-                      {item.category}
+                      {state.categories.find((category) => category.id === item.categoryId).name}
                     </TableCell>
                     <TableCell className={classes.content} align="center">
                       {item.type === 'expense'

@@ -40,12 +40,13 @@ export default function EditHistory({ budget }) {
   const classes = useStyles();
   const { state, dispatch } = useStoreContext();
   const { rate, currency, language } = useMainContext();
+  const initialCategory = state.categories.find((category) => category.id === budget.categoryId);
+  const [categoryName, setCategoryName] = useState(initialCategory.name);
   const [type, setType] = useState(budget.type);
   const [name, setName] = useState(budget.name);
-  const [category, setCategory] = useState(budget.category);
   const [amount, setAmount] = useState(budget.amount);
   const [date, setDate] = useState(budget.date);
-  const [picherError, setPicherError] = useState('');
+  const [datePicherError, setDatePicherError] = useState('');
   const [open, setOpen] = useState(false);
   const { snackbarDispatch } = useSnackbarContext();
 
@@ -67,9 +68,8 @@ export default function EditHistory({ budget }) {
   };
 
   const handleTypeChange = (e) => {
-    setCategory('');
     setType(e.target.value);
-    setCategory('');
+    setCategoryName('');
   };
 
   const handleNameChange = (e) => {
@@ -77,7 +77,7 @@ export default function EditHistory({ budget }) {
   };
 
   const handleCategoryChange = (e) => {
-    setCategory(e.target.value);
+    setCategoryName(e.target.value);
   };
 
   const handleAmountChange = (e) => {
@@ -93,13 +93,14 @@ export default function EditHistory({ budget }) {
   };
 
   const handlePicherError = (e) => {
-    setPicherError(e);
+    setDatePicherError(e);
   };
 
   const handleEditBudget = async () => {
-    const { id, color } = budget;
+    const { id } = budget;
+    const categoryId = state.categories.find((category) => category.name === categoryName).id;
     const editedBudget = {
-      id, type, name, category, amount: +amount, date, color,
+      id, type, name, categoryId, amount: +amount, date,
     };
     handleClose();
     try {
@@ -115,14 +116,14 @@ export default function EditHistory({ budget }) {
 
   const doneDisabled = (
     type === ''
-    || category === ''
+    || categoryName === ''
     || name === ''
     || amount === ''
     || date === null
-    || picherError !== ''
+    || datePicherError !== ''
     || (
       type === budget.type
-      && category === budget.category
+      && categoryName === initialCategory.name
       && name === budget.name
       && +amount === +budget.amount
       && date.getTime() === budget.date.getTime()
@@ -171,12 +172,12 @@ export default function EditHistory({ budget }) {
           <InputLabel>
             <FormattedMessage id="category" />
           </InputLabel>
-          <Select value={category} onChange={handleCategoryChange}>
+          <Select value={categoryName} onChange={handleCategoryChange}>
             {state.categories
-              .filter((item) => item.type === type)
-              .map((item) => (
-                <MenuItem value={item.name} key={item.id}>
-                  {item.name}
+              .filter((category) => category.type === type)
+              .map((category) => (
+                <MenuItem value={category.name} key={category.id}>
+                  {category.name}
                 </MenuItem>
               ))}
           </Select>
@@ -244,8 +245,7 @@ EditHistory.propTypes = {
     id: propTypes.string.isRequired,
     type: propTypes.string.isRequired,
     name: propTypes.string.isRequired,
-    category: propTypes.string.isRequired,
-    color: propTypes.string.isRequired,
+    categoryId: propTypes.string.isRequired,
     amount: propTypes.number.isRequired,
     date: propTypes.instanceOf(Date),
   }),
@@ -256,8 +256,7 @@ EditHistory.defaultProps = {
     id: propTypes.string.isRequired,
     type: propTypes.string.isRequired,
     name: propTypes.string.isRequired,
-    category: propTypes.string.isRequired,
-    color: propTypes.string.isRequired,
+    categoryId: propTypes.string.isRequired,
     amount: propTypes.number.isRequired,
     date: propTypes.instanceOf(Date),
   },

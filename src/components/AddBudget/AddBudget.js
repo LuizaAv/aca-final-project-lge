@@ -41,8 +41,7 @@ export default function AddBudget() {
   const { rate, currency, language } = useMainContext();
   const [type, setType] = useState('');
   const [name, setName] = useState('');
-  const [category, setCategory] = useState('');
-  const [color, setColor] = useState('');
+  const [categoryName, setCategoryName] = useState('');
   const [amount, setAmount] = useState('');
   const [date, setDate] = useState(new Date());
   const [datePickerError, setDatePickerError] = useState('');
@@ -60,7 +59,7 @@ export default function AddBudget() {
 
   const handleClickExpense = () => {
     if (type === 'income') {
-      setCategory('');
+      setCategoryName('');
     }
     setType('expense');
     setDialogOpen(true);
@@ -68,7 +67,7 @@ export default function AddBudget() {
 
   const handleClickIncome = () => {
     if (type === 'expense') {
-      setCategory('');
+      setCategoryName('');
     }
     setType('income');
     setDialogOpen(true);
@@ -78,12 +77,8 @@ export default function AddBudget() {
     setName(e.target.value);
   };
 
-  const handleCategoryChange = (e) => {
-    const selectedCategory = state.categories.find(
-      (item) => item.name === e.target.value,
-    );
-    setColor(selectedCategory.color);
-    setCategory(e.target.value);
+  const handleCategoryNameChange = (e) => {
+    setCategoryName(e.target.value);
   };
 
   const handleAmountChange = (e) => {
@@ -106,16 +101,18 @@ export default function AddBudget() {
     setDialogOpen(false);
     setType('');
     setName('');
-    setCategory('');
-    setColor('');
+    setCategoryName('');
     setAmount('');
     setDate(new Date());
   };
 
   const handleAddingBudget = async () => {
     const id = uuidv4();
+    const categoryId = state.categories.find((category) => (
+      category.name === categoryName
+    )).id;
     const addedBudget = {
-      id, type, name, amount: +amount, date, category, color,
+      id, name, type, amount: +amount, date, categoryId,
     };
     handleStateReset();
     try {
@@ -131,7 +128,7 @@ export default function AddBudget() {
   };
 
   const doneDisabled = (
-    category === ''
+    categoryName === ''
     || name === ''
     || amount === ''
     || date === null
@@ -181,12 +178,12 @@ export default function AddBudget() {
           <InputLabel>
             <FormattedMessage id="category" />
           </InputLabel>
-          <Select value={category} onChange={handleCategoryChange}>
+          <Select value={categoryName} onChange={handleCategoryNameChange}>
             {state.categories
-              .filter((item) => item.type === type)
-              .map((item) => (
-                <MenuItem value={item.name} key={item.id}>
-                  {item.name}
+              .filter((category) => category.type === type)
+              .map((category) => (
+                <MenuItem value={category.name} key={category.id}>
+                  {category.name}
                 </MenuItem>
               ))}
           </Select>
