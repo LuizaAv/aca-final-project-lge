@@ -5,28 +5,28 @@ export const dbGetCategory = async () => {
   return response.json();
 };
 
-export const dbAddCategory = (payload) => (
+export const dbAddCategory = (newCategory) => (
   fetch(`${URL}/categories`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(payload),
+    body: JSON.stringify(newCategory),
   })
 );
 
-export const dbEditCategory = (payload) => (
-  fetch(`${URL}/categories/${payload.id}`, {
+export const dbEditCategory = (editedCategory) => (
+  fetch(`${URL}/categories/${editedCategory.id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(payload),
+    body: JSON.stringify(editedCategory),
   })
 );
 
-export const dbDeleteCategory = (payload) => (
-  fetch(`${URL}/categories/${payload}`, {
+export const dbDeleteCategory = (categoryId) => (
+  fetch(`${URL}/categories/${categoryId}`, {
     method: 'DELETE',
   })
 );
@@ -37,28 +37,28 @@ export const dbGetBudget = async () => {
   return budget.map((item) => ({ ...item, date: new Date(item.date) }));
 };
 
-export const dbAddBudget = (payload) => (
+export const dbAddBudget = (newBudget) => (
   fetch(`${URL}/budget`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(payload),
+    body: JSON.stringify(newBudget),
   })
 );
 
-export const dbEditBudget = (payload) => (
-  fetch(`${URL}/budget/${payload.id}`, {
+export const dbEditBudget = (editedBudget) => (
+  fetch(`${URL}/budget/${editedBudget.id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(payload),
+    body: JSON.stringify(editedBudget),
   })
 );
 
-export const dbDeleteBudget = (payload) => (
-  fetch(`${URL}/budget/${payload}`, {
+export const dbDeleteBudget = (budgetId) => (
+  fetch(`${URL}/budget/${budgetId}`, {
     method: 'DELETE',
   })
 );
