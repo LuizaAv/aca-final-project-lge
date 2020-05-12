@@ -19,7 +19,7 @@ import useStyles from './DeleteCategory.style';
 
 export default function DeleteCategory({ categoryId }) {
   const classes = useStyles();
-  const { dispatch } = useStoreContext();
+  const { state, dispatch } = useStoreContext();
   const [open, setOpen] = useState(false);
   const { snackbarDispatch } = useSnackbarContext();
 
@@ -47,18 +47,23 @@ export default function DeleteCategory({ categoryId }) {
     }
   };
 
+  const isCategoryUsed = state.budget.some((item) => item.categoryId === categoryId);
+
   return (
     <>
       <Tooltip
         arrow
-        title={<FormattedMessage id="delete" />}
+        title={isCategoryUsed ? <FormattedMessage id="isCategoryUsed" /> : <FormattedMessage id="delete" />}
       >
-        <IconButton
-          className={classes.iconButton}
-          onClick={handleOpen}
-        >
-          <DeleteIcon className={classes.icon} />
-        </IconButton>
+        <span>
+          <IconButton
+            className={classes.iconButton}
+            onClick={handleOpen}
+            disabled={isCategoryUsed}
+          >
+            <DeleteIcon className={classes.icon} />
+          </IconButton>
+        </span>
       </Tooltip>
 
       <Dialog
