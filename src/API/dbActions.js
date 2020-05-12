@@ -26,7 +26,7 @@ export const dbEditCategory = (payload) => (
 );
 
 export const dbDeleteCategory = (payload) => (
-  fetch(`${URL}/categories/${payload.id}`, {
+  fetch(`${URL}/categories/${payload}`, {
     method: 'DELETE',
   })
 );
@@ -58,7 +58,7 @@ export const dbEditBudget = (payload) => (
 );
 
 export const dbDeleteBudget = (payload) => (
-  fetch(`${URL}/budget/${payload.id}`, {
+  fetch(`${URL}/budget/${payload}`, {
     method: 'DELETE',
   })
 );

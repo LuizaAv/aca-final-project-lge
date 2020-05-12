@@ -16,7 +16,7 @@ export function categoriesReducer(state, action) {
     case ADD_CATEGORY:
       return [...state, action.payload];
     case DELETE_CATEGORY:
-      return state.filter((category) => category.id !== action.payload.id);
+      return state.filter((category) => category.id !== action.payload);
     case EDIT_CATEGORY:
       return state.map((category) => (
         category.id === action.payload.id
@@ -34,7 +34,7 @@ export function budgetReducer(state, action) {
     case ADD_BUDGET:
       return [...state, action.payload];
     case DELETE_BUDGET:
-      return state.filter((budget) => budget.id !== action.payload.id);
+      return state.filter((budget) => budget.id !== action.payload);
     case EDIT_BUDGET:
       return state.map((budget) => (
         budget.id === action.payload.id
