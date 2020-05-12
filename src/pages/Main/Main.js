@@ -43,9 +43,11 @@ export default function Main() {
   const getRate = async () => {
     const rateResponse = await rateExchange();
     setRate(rateResponse);
+    setMainLoading(false);
   };
 
   const currencyChange = async () => {
+    setMainLoading(true);
     try {
       const budget = await dbGetBudget();
       budget.map((item) => (
@@ -67,7 +69,6 @@ export default function Main() {
   }, []);
 
   useEffect(() => {
-    setMainLoading(true);
     currencyChange();
     // eslint-disable-next-line
   }, [currency, rate]);
