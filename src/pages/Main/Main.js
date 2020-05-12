@@ -46,13 +46,18 @@ export default function Main() {
   };
 
   const currencyChange = async () => {
-    const budget = await dbGetBudget();
-    budget.map((item) => (
-      dispatch(editBudget(
-        { ...item, amount: Math.floor(item.amount * rate[currency]) },
-      ))
-    ));
-    setLoading(false);
+    try {
+      const budget = await dbGetBudget();
+      budget.map((item) => (
+        dispatch(editBudget(
+          { ...item, amount: Math.floor(item.amount * rate[currency]) },
+        ))
+      ));
+      setLoading(false);
+    } catch (err) {
+      setLoading(false);
+      snackbarDispatch(ERROR);
+    }
   };
 
   useEffect(() => {
