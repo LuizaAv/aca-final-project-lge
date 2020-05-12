@@ -22,11 +22,13 @@ import { dbEditCategory } from '../../../API/dbActions';
 import { editCategory } from '../../../store/actions';
 import { useSnackbarContext } from '../../../components/Snackbars/snackbarContext';
 import { EDIT, CANCEL, ERROR } from '../../../components/Snackbars/snackbarActions';
+import { useLoadingContext } from '../../../components/Loading/loadingContext';
 import useStyles from './EditCategory.style';
 
 export default function EditCategory({ category }) {
   const classes = useStyles();
   const { state, dispatch } = useStoreContext();
+  const { setLoading } = useLoadingContext();
   const [type, setType] = useState(category.type);
   const [name, setName] = useState(category.name);
   const [color, setColor] = useState(category.color);
@@ -76,12 +78,15 @@ export default function EditCategory({ category }) {
       id, type, name, color,
     };
     handleClose();
+    setLoading(true);
     try {
       await dbEditCategory(editedCategory);
       dispatch(editCategory(editedCategory));
       snackbarDispatch(EDIT);
+      setLoading(false);
     } catch (err) {
       snackbarDispatch(ERROR);
+      setLoading(false);
     }
   };
 

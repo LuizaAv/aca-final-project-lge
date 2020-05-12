@@ -23,6 +23,7 @@ import EditIcon from '@material-ui/icons/Edit';
 
 import { useStoreContext } from '../../../store/storeContext';
 import { useMainContext } from '../../Main/mainContext';
+import { useLoadingContext } from '../../../components/Loading/loadingContext';
 import { dbEditBudget } from '../../../API/dbActions';
 import { editBudget } from '../../../store/actions';
 import { currencySign } from '../../../globals/constants';
@@ -40,6 +41,7 @@ export default function EditHistory({ budget }) {
   const classes = useStyles();
   const { state, dispatch } = useStoreContext();
   const { rate, currency, language } = useMainContext();
+  const { setLoading } = useLoadingContext();
   const initialCategory = state.categories.find((category) => category.id === budget.categoryId);
   const [categoryName, setCategoryName] = useState(initialCategory.name);
   const [type, setType] = useState(budget.type);
@@ -109,14 +111,17 @@ export default function EditHistory({ budget }) {
       id, type, name, categoryId, amount: +amount, date,
     };
     handleClose();
+    setLoading(true);
     try {
       await dbEditBudget({
         ...editedBudget, amount: Math.ceil(editedBudget.amount / rate[currency]),
       });
       dispatch(editBudget(editedBudget));
       snackbarDispatch(EDIT);
+      setLoading(false);
     } catch (err) {
       snackbarDispatch(ERROR);
+      setLoading(false);
     }
   };
 

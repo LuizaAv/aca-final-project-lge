@@ -15,11 +15,13 @@ import { dbDeleteCategory } from '../../../API/dbActions';
 import { deleteCategory } from '../../../store/actions';
 import { useSnackbarContext } from '../../../components/Snackbars/snackbarContext';
 import { DELETE, CANCEL, ERROR } from '../../../components/Snackbars/snackbarActions';
+import { useLoadingContext } from '../../../components/Loading/loadingContext';
 import useStyles from './DeleteCategory.style';
 
 export default function DeleteCategory({ categoryId }) {
   const classes = useStyles();
   const { state, dispatch } = useStoreContext();
+  const { setLoading } = useLoadingContext();
   const [open, setOpen] = useState(false);
   const { snackbarDispatch } = useSnackbarContext();
 
@@ -38,12 +40,15 @@ export default function DeleteCategory({ categoryId }) {
 
   const handleDeleteCategory = async () => {
     handleClose();
+    setLoading(true);
     try {
       await dbDeleteCategory(categoryId);
       dispatch(deleteCategory(categoryId));
       snackbarDispatch(DELETE);
+      setLoading(false);
     } catch (err) {
       snackbarDispatch(ERROR);
+      setLoading(false);
     }
   };
 

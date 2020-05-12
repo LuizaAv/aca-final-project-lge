@@ -14,6 +14,7 @@ import { useStoreContext } from '../../../store/storeContext';
 import { dbDeleteBudget } from '../../../API/dbActions';
 import { deleteBudget } from '../../../store/actions';
 import { useSnackbarContext } from '../../../components/Snackbars/snackbarContext';
+import { useLoadingContext } from '../../../components/Loading/loadingContext';
 import { DELETE, CANCEL, ERROR } from '../../../components/Snackbars/snackbarActions';
 import useStyles from './DeleteHistory.style';
 
@@ -22,6 +23,7 @@ export default function DeleteHistory({ budgetId }) {
   const { dispatch } = useStoreContext();
   const [open, setOpen] = useState(false);
   const { snackbarDispatch } = useSnackbarContext();
+  const { setLoading } = useLoadingContext();
 
   const handleOpen = () => {
     setOpen(true);
@@ -37,13 +39,16 @@ export default function DeleteHistory({ budgetId }) {
   };
 
   const handleDeleteBudget = async () => {
+    setLoading(true);
     handleClose();
     try {
       await dbDeleteBudget(budgetId);
       dispatch(deleteBudget(budgetId));
       snackbarDispatch(DELETE);
+      setLoading(false);
     } catch (err) {
       snackbarDispatch(ERROR);
+      setLoading(false);
     }
   };
 

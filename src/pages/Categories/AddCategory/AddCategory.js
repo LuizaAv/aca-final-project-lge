@@ -20,10 +20,12 @@ import { addCategory } from '../../../store/actions';
 import { dbAddCategory } from '../../../API/dbActions';
 import { useSnackbarContext } from '../../../components/Snackbars/snackbarContext';
 import { ADD, CANCEL, ERROR } from '../../../components/Snackbars/snackbarActions';
+import { useLoadingContext } from '../../../components/Loading/loadingContext';
 
 export default function AddCategory() {
   const classes = useStyles();
   const { state, dispatch } = useStoreContext();
+  const { setLoading } = useLoadingContext();
   const [type, setType] = useState('');
   const [name, setName] = useState('');
   const [color, setColor] = useState('');
@@ -77,12 +79,15 @@ export default function AddCategory() {
       id, type, name, color,
     };
     handleStateReset();
+    setLoading(true);
     try {
       await dbAddCategory(addedCategory);
       dispatch(addCategory(addedCategory));
       snackbarDispatch(ADD);
+      setLoading(false);
     } catch (err) {
       snackbarDispatch(ERROR);
+      setLoading(false);
     }
   };
 

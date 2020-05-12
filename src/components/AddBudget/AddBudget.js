@@ -27,7 +27,7 @@ import { dbAddBudget } from '../../API/dbActions';
 import { currencySign } from '../../globals/constants';
 import { useSnackbarContext } from '../Snackbars/snackbarContext';
 import { ADD, CANCEL, ERROR } from '../Snackbars/snackbarActions';
-
+import { useLoadingContext } from '../Loading/loadingContext';
 
 const localeMap = {
   EN: enLocale,
@@ -39,6 +39,7 @@ export default function AddBudget() {
   const classes = useStyles();
   const { state, dispatch } = useStoreContext();
   const { rate, currency, language } = useMainContext();
+  const { setLoading } = useLoadingContext();
   const [type, setType] = useState('');
   const [name, setName] = useState('');
   const [categoryName, setCategoryName] = useState('');
@@ -115,6 +116,7 @@ export default function AddBudget() {
       id, name, type, amount: +amount, date, categoryId,
     };
     handleStateReset();
+    setLoading(true);
     try {
       await dbAddBudget({
         ...addedBudget,
@@ -122,8 +124,10 @@ export default function AddBudget() {
       });
       dispatch(addBudget(addedBudget));
       snackbarDispatch(ADD);
+      setLoading(false);
     } catch (err) {
       snackbarDispatch(ERROR);
+      setLoading(false);
     }
   };
 
