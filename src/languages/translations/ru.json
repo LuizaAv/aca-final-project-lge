@@ -60,5 +60,6 @@
   "edit": "Изменить",
   "delete": "Удалить",
   "language": "Язык",
-  "currency": "Валюта"
+  "currency": "Валюта",
+  "isCategoryUsed": "Категория уже используется"
 }

@@ -60,5 +60,6 @@
   "edit": "Edit",
   "delete": "Delete",
   "language": "Laguage",
-  "currency": "Currency"
+  "currency": "Currency",
+  "isCategoryUsed": "Category is already in use"
 }
