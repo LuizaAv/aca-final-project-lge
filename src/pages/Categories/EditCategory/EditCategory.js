@@ -94,6 +94,8 @@ export default function EditCategory({ category }) {
   const isEmpty = (name === '' || type === '' || color === '');
   const doneDisabled = (isEmpty || isDuplicate || isPreviousValue);
 
+  const isCategoryUsed = state.budget.some((item) => item.categoryId === category.id);
+
   return (
     <>
       <Tooltip
@@ -125,7 +127,7 @@ export default function EditCategory({ category }) {
           <InputLabel>
             <FormattedMessage id="categoryType" />
           </InputLabel>
-          <Select value={type} onChange={handleTypeChange}>
+          <Select value={type} onChange={handleTypeChange} disabled={isCategoryUsed}>
             <MenuItem value="expense">
               <FormattedMessage id="expense" />
             </MenuItem>
