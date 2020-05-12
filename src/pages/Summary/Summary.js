@@ -9,7 +9,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { useStoreContext } from '../../store/storeContext';
 import { useMainContext } from '../Main/mainContext';
@@ -26,7 +25,7 @@ import useStyles from './Summary.style';
 export default function Categories() {
   const classes = useStyles();
   const { state } = useStoreContext();
-  const { loading, currency } = useMainContext();
+  const { currency } = useMainContext();
   const [filterType, setFilterType] = useState('all');
   const [isAscending, setIsAscending] = useState(true);
   const [isCurrent, setIsCurrent] = useState(true);
@@ -72,55 +71,46 @@ export default function Categories() {
         <View isCurrent={isCurrent} setIsCurrent={setIsCurrent} />
       </div>
 
-      {loading
-        ? (
-          <div className={classes.progress}>
-            <CircularProgress size={50} />
-          </div>
-        )
-        : (
-          <TableContainer component={Paper} className={classes.tableContainer}>
-            <Typography className={classes.title}>
-              <FormattedMessage id="summary" />
-            </Typography>
-            <Table className={classes.table}>
-              <TableHead>
-                <TableRow>
-                  <TableCell className={classes.head}>
-                    <FormattedMessage id="category" />
-                  </TableCell>
-                  <TableCell className={classes.head} align="center">
-                    <FormattedMessage id="type" />
-                  </TableCell>
-                  <TableCell className={classes.head} align="right">
-                    <FormattedMessage id="amount" />
-                  </TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {filteredItems.map((item) => (
-                  <TableRow key={item.id} className={classes.tableRow}>
-                    <TableCell className={classes.category}>
-                      {state.categories.find((category) => category.id === item.categoryId).name}
-                    </TableCell>
-                    <TableCell className={classes.content} align="center">
-                      {item.type === 'expense'
-                        ? <ArrowDownwardIcon className={classes.icon} />
-                        : <ArrowUpwardIcon className={classes.icon} />}
-                      <FormattedMessage id={item.type} />
-                    </TableCell>
-                    <TableCell className={classes.content} align="right">
-                      {(item.type === 'expense' ? '-' : '+')}
-                      {formatingAmount(item.amount)}
-                      {currencySign[currency]}
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        )}
-
+      <TableContainer component={Paper} className={classes.tableContainer}>
+        <Typography className={classes.title}>
+          <FormattedMessage id="summary" />
+        </Typography>
+        <Table className={classes.table}>
+          <TableHead>
+            <TableRow>
+              <TableCell className={classes.head}>
+                <FormattedMessage id="category" />
+              </TableCell>
+              <TableCell className={classes.head} align="center">
+                <FormattedMessage id="type" />
+              </TableCell>
+              <TableCell className={classes.head} align="right">
+                <FormattedMessage id="amount" />
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {filteredItems.map((item) => (
+              <TableRow key={item.id} className={classes.tableRow}>
+                <TableCell className={classes.category}>
+                  {state.categories.find((category) => category.id === item.categoryId).name}
+                </TableCell>
+                <TableCell className={classes.content} align="center">
+                  {item.type === 'expense'
+                    ? <ArrowDownwardIcon className={classes.icon} />
+                    : <ArrowUpwardIcon className={classes.icon} />}
+                  <FormattedMessage id={item.type} />
+                </TableCell>
+                <TableCell className={classes.content} align="right">
+                  {(item.type === 'expense' ? '-' : '+')}
+                  {formatingAmount(item.amount)}
+                  {` ${currencySign[currency]}`}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </div>
   );
 }

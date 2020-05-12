@@ -4,7 +4,6 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Pagination from '@material-ui/lab/Pagination';
-import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { useStoreContext } from '../../store/storeContext';
 import { useMainContext } from '../Main/mainContext';
@@ -48,7 +47,7 @@ function filterByDate(budget, date) {
 export default function History() {
   const classes = useStyles();
   const { state } = useStoreContext();
-  const { loading, currency } = useMainContext();
+  const { currency } = useMainContext();
   const [filterType, setFilterType] = useState('all');
   const [isAscending, setIsAscending] = useState(true);
   const [filterDate, setFilterDate] = useState('wholePeriod');
@@ -96,49 +95,42 @@ export default function History() {
         <Search searchValue={searchValue} setSearchValue={setSearchValue} />
       </div>
 
-      {loading
-        ? (
-          <div className={classes.progress}>
-            <CircularProgress size={50} />
-          </div>
-        )
-        : (
-          <div className={classes.flexContainer}>
-            {budgetSearched
-              .filter((item, index) => index >= indexMin && index < indexMax)
-              .map((item) => (
-                <Card key={item.id} className={classes.card}>
-                  <CardContent>
-                    <div className={classes.cardItem}>
-                      <Typography className={classes.name}>{item.name}</Typography>
-                      <div className={classes.amount}>
-                        <EditHistory budget={item} />
-                        <DeleteHistory budgetId={item.id} />
-                      </div>
-                    </div>
+      <div className={classes.flexContainer}>
+        {budgetSearched
+          .filter((item, index) => index >= indexMin && index < indexMax)
+          .map((item) => (
+            <Card key={item.id} className={classes.card}>
+              <CardContent>
+                <div className={classes.cardItem}>
+                  <Typography className={classes.name}>{item.name}</Typography>
+                  <div className={classes.amount}>
+                    <EditHistory budget={item} />
+                    <DeleteHistory budgetId={item.id} />
+                  </div>
+                </div>
 
-                    <hr className={classes.hr} />
+                <hr className={classes.hr} />
 
-                    <div className={classes.cardItem}>
-                      <Typography className={classes.category}>
-                        {state.categories.find((category) => category.id === item.categoryId).name}
-                      </Typography>
+                <div className={classes.cardItem}>
+                  <Typography className={classes.category}>
+                    {state.categories.find((category) => category.id === item.categoryId).name}
+                  </Typography>
 
-                      <Typography>
-                        {item.type === 'expense' ? '-' : '+'}
-                        {formatingAmount(item.amount)}
-                        {currencySign[currency]}
-                      </Typography>
+                  <Typography>
+                    {item.type === 'expense' ? '-' : '+'}
+                    {formatingAmount(item.amount)}
+                    {` ${currencySign[currency]}`}
+                  </Typography>
 
-                      <Typography className={classes.date}>
-                        {item.date.toLocaleDateString()}
-                      </Typography>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-          </div>
-        )}
+                  <Typography className={classes.date}>
+                    {item.date.toLocaleDateString()}
+                  </Typography>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+      </div>
+
       <Pagination
         count={countPages}
         page={page}
