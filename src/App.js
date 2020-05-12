@@ -5,6 +5,7 @@ import SnackbarProvider from './components/Snackbars/SnackbarProvider';
 import StoreProvider from './store/StoreProvider';
 import LanguageProvider from './languages/LanguageProvider';
 import MainProvider from './pages/Main/MainProvider';
+import LoadingProvider from './components/Loading/LoadingProvider';
 import theme from './theme/theme';
 import Main from './pages/Main/Main';
 
@@ -15,9 +16,11 @@ function App() {
         <StoreProvider>
           <SnackbarProvider>
             <HashRouter>
-              <MainProvider>
-                <Main />
-              </MainProvider>
+              <LoadingProvider>
+                <MainProvider>
+                  <Main />
+                </MainProvider>
+              </LoadingProvider>
             </HashRouter>
           </SnackbarProvider>
         </StoreProvider>
