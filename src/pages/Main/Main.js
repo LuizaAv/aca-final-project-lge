@@ -17,6 +17,7 @@ import History from '../History/History';
 import Charts from '../Charts/Charts';
 import Help from '../Help/Help';
 import Snackbars from '../../components/Snackbars/Snackbars';
+import Loading from '../../components/Loading/Loading';
 import useStyles from './Main.style';
 
 export default function Main() {
@@ -24,7 +25,7 @@ export default function Main() {
   const { snackbarDispatch } = useSnackbarContext();
   const { dispatch } = useStoreContext();
   const { currency, rate, setRate } = useMainContext();
-  const [loading, setLoading] = useState(true);
+  const [mainLoading, setMainLoading] = useState(true);
 
   const getDatabase = async () => {
     try {
@@ -32,10 +33,10 @@ export default function Main() {
       const budget = await dbGetBudget();
       dispatch(initCategory(categories));
       dispatch(initBudget(budget));
-      setLoading(false);
+      setMainLoading(false);
     } catch (err) {
       snackbarDispatch(ERROR);
-      setLoading(false);
+      setMainLoading(false);
     }
   };
 
@@ -52,9 +53,9 @@ export default function Main() {
           { ...item, amount: Math.floor(item.amount * rate[currency]) },
         ))
       ));
-      setLoading(false);
+      setMainLoading(false);
     } catch (err) {
-      setLoading(false);
+      setMainLoading(false);
       snackbarDispatch(ERROR);
     }
   };
@@ -62,11 +63,13 @@ export default function Main() {
   useEffect(() => {
     getRate();
     getDatabase();
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
-    setLoading(true);
+    setMainLoading(true);
     currencyChange();
+    // eslint-disable-next-line
   }, [currency, rate]);
 
   return (
@@ -75,7 +78,7 @@ export default function Main() {
         <Navigation />
       </div>
 
-      {loading
+      {mainLoading
         ? (
           <div className={classes.progress}>
             <CircularProgress size={50} />
@@ -103,6 +106,7 @@ export default function Main() {
           </div>
         )}
       <Snackbars />
+      <Loading />
     </div>
   );
 }
