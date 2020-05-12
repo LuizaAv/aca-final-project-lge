@@ -94,7 +94,7 @@ export default function Header() {
             </Typography>
             <Typography className={clsx(classes.current, classes[item.name])}>
               {item.currentAmount}
-              {currencySign[currency]}
+              {` ${currencySign[currency]}`}
             </Typography>
             <div className={classes.span}>
               <Typography className={classes.text}>
