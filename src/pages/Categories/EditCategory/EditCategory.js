@@ -26,7 +26,7 @@ import useStyles from './EditCategory.style';
 
 export default function EditCategory({ category }) {
   const classes = useStyles();
-  const { dispatch } = useStoreContext();
+  const { state, dispatch } = useStoreContext();
   const [type, setType] = useState(category.type);
   const [name, setName] = useState(category.name);
   const [color, setColor] = useState(category.color);
@@ -53,6 +53,9 @@ export default function EditCategory({ category }) {
   const handleCancel = () => {
     setDialogOpen(false);
     snackbarDispatch(CANCEL);
+    setType(category.type);
+    setName(category.name);
+    setColor(category.color);
   };
 
   const handleTypeChange = (e) => {
@@ -82,14 +85,14 @@ export default function EditCategory({ category }) {
     }
   };
 
-  const doneDisabled = (
-    name === '' || type === '' || color === ''
-    || (
-      type === category.type
-      && name === category.name
-      && color === category.color
-    )
+  const isPreviousValue = (
+    type === category.type && name === category.name && color === category.color
   );
+  const isDuplicate = state.categories.some((item) => (
+    name === item.name && type === item.type && (type !== category.type || name !== category.name)
+  ));
+  const isEmpty = (name === '' || type === '' || color === '');
+  const doneDisabled = (isEmpty || isDuplicate || isPreviousValue);
 
   return (
     <>
