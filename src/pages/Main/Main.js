@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -23,9 +23,8 @@ export default function Main() {
   const classes = useStyles();
   const { snackbarDispatch } = useSnackbarContext();
   const { dispatch } = useStoreContext();
-  const {
-    currency, rate, setRate, loading, setLoading,
-  } = useMainContext();
+  const { currency, rate, setRate } = useMainContext();
+  const [loading, setLoading] = useState(true);
 
   const getDatabase = async () => {
     try {

@@ -5,11 +5,10 @@ import { MainContext } from './mainContext';
 export default function MainProvider({ children }) {
   const [currency, setCurrency] = useState('USD');
   const [rate, setRate] = useState({});
-  const [loading, setLoading] = useState(true);
 
   return (
     <MainContext.Provider value={{
-      currency, setCurrency, rate, setRate, loading, setLoading,
+      currency, setCurrency, rate, setRate,
     }}
     >
       {children}

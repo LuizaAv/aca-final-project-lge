@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { Line, Doughnut } from 'react-chartjs-2';
 import { FormattedMessage, injectIntl } from 'react-intl';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
 import { useStoreContext } from '../../store/storeContext';
-import { useMainContext } from '../Main/mainContext';
 import Header from '../../components/Header/Header';
 import View from '../../components/View/View';
 import CartType from './ChartType/ChartType';
@@ -15,7 +13,6 @@ import useStyles from './Charts.style';
 export default function Charts() {
   const classes = useStyles();
   const { state } = useStoreContext();
-  const { loading } = useMainContext();
   const [isCurrent, setIsCurrent] = useState(true);
   const [type, setType] = useState('date');
 
@@ -114,19 +111,12 @@ export default function Charts() {
         <FormattedMessage id="chartsHeader" />
       </Typography>
 
-      {loading
-        ? (
-          <div className={classes.progress}>
-            <CircularProgress size={50} />
-          </div>
-        )
-        : (
-          <Paper className={classes.paper} elevation={5}>
-            {type === 'date'
-              ? <LineChart />
-              : <Doughnut data={dataDoughnut} />}
-          </Paper>
-        )}
+
+      <Paper className={classes.paper} elevation={5}>
+        {type === 'date'
+          ? <LineChart />
+          : <Doughnut data={dataDoughnut} />}
+      </Paper>
     </div>
   );
 }
