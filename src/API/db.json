@@ -1,67 +1,52 @@
 {
   "budget": [
     {
-      "id": "d95c9158-a6e2-4217-9fab-5dc97310a548",
-      "type": "expense",
-      "name": "Insurance",
-      "category": "Automobile",
-      "amount": 500,
-      "date": "2020-03-19T08:42:00.000Z",
-      "color": "#e53935"
-    },
-    {
       "id": "0236d1e5-90f3-412d-84ad-057a1334a805",
       "type": "expense",
       "name": "Concert",
-      "category": "Entertainment",
+      "categoryId": "148884b0-a60e-4ec6-ba14-83b3944bdfb0",
       "amount": 310,
-      "date": "2020-03-21T08:43:00.000Z",
-      "color": "#ec407a"
+      "date": "2020-03-21T08:43:00.000Z"
     },
     {
       "id": "851f66f3-9404-4657-bf8c-e5bcd296f823",
       "type": "expense",
       "name": "Groceries",
-      "category": "Food",
+      "categoryId": "fa791c9b-4ea1-449e-8f2e-caf6172a5321",
       "amount": 120,
-      "date": "2020-04-09T08:43:00.000Z",
-      "color": "#ffcdd2"
+      "date": "2020-04-09T08:43:00.000Z"
     },
     {
       "id": "3cd34bfa-93fa-4438-b80d-dd00744cd56c",
       "type": "expense",
       "name": "HealthCare",
-      "category": "Medical",
+      "categoryId": "37265e9e-92f0-467c-8285-ab2ec288cd5c",
       "amount": 530,
-      "date": "2020-04-05T08:44:00.000Z",
-      "color": "#ab47bc"
+      "date": "2020-04-05T08:44:00.000Z"
     },
     {
       "id": "c3273f68-d284-4433-9ad0-ca0d7df81d09",
       "type": "expense",
       "name": "Utilities",
-      "category": "Electric",
+      "categoryId": "8b3ff5f8-63c2-4935-947c-50ec8dfe604c",
       "amount": 340,
-      "date": "2020-03-28T08:44:00.000Z",
-      "color": "#7e57c2"
+      "date": "2020-03-28T08:44:00.000Z"
     },
     {
       "id": "9ae8755c-1e67-4fc8-be24-f6ef23950454",
       "type": "income",
       "name": "Programming",
-      "category": "Salary",
+      "categoryId": "d445bf76-8ceb-4573-bf02-9fd67c9fba93",
       "amount": 1000,
-      "date": "2020-03-14T08:45:00.000Z",
-      "color": "#0D47A1"
+      "date": "2020-03-14T08:45:00.000Z"
     },
     {
       "id": "696f7890-f370-4517-b645-0a77312f6bad",
       "type": "income",
       "name": "Electronics store",
-      "category": "Salary",
+      "categoryId": "d445bf76-8ceb-4573-bf02-9fd67c9fba93",
       "amount": 850,
-      "date": "2020-04-01T08:45:00.000Z",
-      "color": "#29b6f6"
+      "date": "2020-04-01T08:45:00.000Z"
     }
   ],
   "categories": [
@@ -75,7 +60,7 @@
       "id": "fa791c9b-4ea1-449e-8f2e-caf6172a5321",
       "type": "expense",
       "name": "Food",
-      "color": "#9ccc65"
+      "color": "#fdff5f"
     },
     {
       "id": "37265e9e-92f0-467c-8285-ab2ec288cd5c",
@@ -93,7 +78,7 @@
       "id": "d445bf76-8ceb-4573-bf02-9fd67c9fba93",
       "type": "income",
       "name": "Salary",
-      "color": "#fdd835"
+      "color": "#66ff70"
     },
     {
       "id": "75c2da2e-693b-4cc6-8b44-90bdb8fdc8e7",
