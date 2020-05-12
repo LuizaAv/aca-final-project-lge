@@ -65,6 +65,12 @@ export default function EditHistory({ budget }) {
   const handleCancel = () => {
     setOpen(false);
     snackbarDispatch(CANCEL);
+    setCategoryName(initialCategory.name);
+    setType(budget.type);
+    setName(budget.name);
+    setAmount(budget.amount);
+    setDate(budget.date);
+    setDatePicherError('');
   };
 
   const handleTypeChange = (e) => {
@@ -114,21 +120,24 @@ export default function EditHistory({ budget }) {
     }
   };
 
-  const doneDisabled = (
+  const isPreviousValue = (
+    type === budget.type
+    && categoryName === initialCategory.name
+    && name === budget.name
+    && +amount === +budget.amount
+    && date.getTime() === budget.date.getTime()
+  );
+
+  const isEmpty = (
     type === ''
     || categoryName === ''
     || name === ''
     || amount === ''
     || date === null
     || datePicherError !== ''
-    || (
-      type === budget.type
-      && categoryName === initialCategory.name
-      && name === budget.name
-      && +amount === +budget.amount
-      && date.getTime() === budget.date.getTime()
-    )
   );
+
+  const doneDisabled = (isEmpty || isPreviousValue);
 
   return (
     <>
