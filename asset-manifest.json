@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/aca-final-project-lge/static/css/main.bc654ded.chunk.css",
-    "main.js": "/aca-final-project-lge/static/js/main.8d2e7c58.chunk.js",
-    "main.js.map": "/aca-final-project-lge/static/js/main.8d2e7c58.chunk.js.map",
+    "main.js": "/aca-final-project-lge/static/js/main.7ed8f94e.chunk.js",
+    "main.js.map": "/aca-final-project-lge/static/js/main.7ed8f94e.chunk.js.map",
     "runtime-main.js": "/aca-final-project-lge/static/js/runtime-main.4e89c3f6.js",
     "runtime-main.js.map": "/aca-final-project-lge/static/js/runtime-main.4e89c3f6.js.map",
-    "static/js/2.abfb4f53.chunk.js": "/aca-final-project-lge/static/js/2.abfb4f53.chunk.js",
-    "static/js/2.abfb4f53.chunk.js.map": "/aca-final-project-lge/static/js/2.abfb4f53.chunk.js.map",
+    "static/js/2.e0642511.chunk.js": "/aca-final-project-lge/static/js/2.e0642511.chunk.js",
+    "static/js/2.e0642511.chunk.js.map": "/aca-final-project-lge/static/js/2.e0642511.chunk.js.map",
     "index.html": "/aca-final-project-lge/index.html",
-    "precache-manifest.0fb3fe06566a109c7927dcf21d55d9a9.js": "/aca-final-project-lge/precache-manifest.0fb3fe06566a109c7927dcf21d55d9a9.js",
+    "precache-manifest.359391ae68650d8d4409fad13dd2fb9e.js": "/aca-final-project-lge/precache-manifest.359391ae68650d8d4409fad13dd2fb9e.js",
     "service-worker.js": "/aca-final-project-lge/service-worker.js",
     "static/css/main.bc654ded.chunk.css.map": "/aca-final-project-lge/static/css/main.bc654ded.chunk.css.map",
-    "static/js/2.abfb4f53.chunk.js.LICENSE.txt": "/aca-final-project-lge/static/js/2.abfb4f53.chunk.js.LICENSE.txt",
+    "static/js/2.e0642511.chunk.js.LICENSE.txt": "/aca-final-project-lge/static/js/2.e0642511.chunk.js.LICENSE.txt",
     "static/media/Arrow-down.8ae78787.svg": "/aca-final-project-lge/static/media/Arrow-down.8ae78787.svg",
     "static/media/Arrow-up.5ef66327.svg": "/aca-final-project-lge/static/media/Arrow-up.5ef66327.svg",
     "static/media/Categories.96d3df18.svg": "/aca-final-project-lge/static/media/Categories.96d3df18.svg",
@@ -25,8 +25,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.4e89c3f6.js",
-    "static/js/2.abfb4f53.chunk.js",
+    "static/js/2.e0642511.chunk.js",
     "static/css/main.bc654ded.chunk.css",
-    "static/js/main.8d2e7c58.chunk.js"
+    "static/js/main.7ed8f94e.chunk.js"
   ]
 }
