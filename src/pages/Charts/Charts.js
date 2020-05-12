@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Line, Doughnut } from 'react-chartjs-2';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl } from 'react-intl';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -60,26 +60,6 @@ export default function Charts() {
     incomes.unshift(0);
   }
 
-  const dataLine = {
-    labels: labelsLine,
-    datasets: [
-      {
-        label: 'income',
-        data: incomes,
-        fill: true,
-        backgroundColor: '#76ff0335',
-        borderColor: '#76ff03',
-      },
-      {
-        label: 'expense',
-        data: expenses,
-        fill: true,
-        backgroundColor: '#ff525235',
-        borderColor: '#FF5D5D',
-      },
-    ],
-  };
-
   const dataDoughnut = {
     labels: labelsDoughnut,
     datasets: [
@@ -93,6 +73,29 @@ export default function Charts() {
     fullWidth: true,
     reverse: false,
   };
+
+  const LineChart = injectIntl(({ intl }) => (
+    <Line data={{
+      labels: labelsLine,
+      datasets: [
+        {
+          label: intl.formatMessage({ id: 'income' }),
+          data: incomes,
+          fill: true,
+          backgroundColor: '#76ff0335',
+          borderColor: '#76ff03',
+        },
+        {
+          label: intl.formatMessage({ id: 'expense' }),
+          data: expenses,
+          fill: true,
+          backgroundColor: '#ff525235',
+          borderColor: '#FF5D5D',
+        },
+      ],
+    }}
+    />
+  ));
 
   return (
     <div className={classes.container}>
@@ -120,7 +123,7 @@ export default function Charts() {
         : (
           <Paper className={classes.paper} elevation={5}>
             {type === 'date'
-              ? <Line data={dataLine} />
+              ? <LineChart />
               : <Doughnut data={dataDoughnut} />}
           </Paper>
         )}
