@@ -23,7 +23,7 @@ import { ADD, CANCEL, ERROR } from '../../../components/Snackbars/snackbarAction
 
 export default function AddCategory() {
   const classes = useStyles();
-  const { dispatch } = useStoreContext();
+  const { state, dispatch } = useStoreContext();
   const [type, setType] = useState('');
   const [name, setName] = useState('');
   const [color, setColor] = useState('');
@@ -86,7 +86,11 @@ export default function AddCategory() {
     }
   };
 
-  const doneDisabled = (name === '' || type === '' || color === '');
+  const isDuplicate = state.categories.some((category) => (
+    category.name === name && category.type === type
+  ));
+  const isEmpty = (name === '' || type === '' || color === '');
+  const doneDisabled = (isEmpty || isDuplicate);
 
   return (
     <>
