@@ -58,7 +58,9 @@ export default function DeleteCategory({ categoryId }) {
     <>
       <Tooltip
         arrow
-        title={isCategoryUsed ? <FormattedMessage id="isCategoryUsed" /> : <FormattedMessage id="delete" />}
+        title={isCategoryUsed
+          ? <FormattedMessage id="isCategoryUsed" />
+          : <FormattedMessage id="delete" />}
       >
         <span>
           <IconButton

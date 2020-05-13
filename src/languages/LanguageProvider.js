@@ -6,16 +6,16 @@ import EN from './translations/en.json';
 import HY from './translations/hy.json';
 import RU from './translations/ru.json';
 
-const language = { EN, HY, RU };
+const translation = { EN, HY, RU };
 
 export default function LanguageProvider({ children }) {
   const [locale, setLocale] = useState('EN');
-  const [messages, setMessages] = useState(language.EN);
+  const [messages, setMessages] = useState(translation.EN);
 
   const setLanguage = (e) => {
-    const lang = e.target.value;
-    setMessages(language[lang]);
-    setLocale(lang);
+    const selectedLanguage = e.target.value;
+    setMessages(translation[selectedLanguage]);
+    setLocale(selectedLanguage);
   };
 
   return (

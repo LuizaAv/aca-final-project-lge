@@ -50,7 +50,7 @@ export default function EditHistory({ budget }) {
   const [name, setName] = useState(budget.name);
   const [amount, setAmount] = useState(budget.amount);
   const [date, setDate] = useState(budget.date);
-  const [datePicherError, setDatePicherError] = useState('');
+  const [datePickerError, setDatePickerError] = useState('');
   const [open, setOpen] = useState(false);
   const { snackbarDispatch } = useSnackbarContext();
 
@@ -74,7 +74,7 @@ export default function EditHistory({ budget }) {
     setName(budget.name);
     setAmount(budget.amount);
     setDate(budget.date);
-    setDatePicherError('');
+    setDatePickerError('');
   };
 
   const handleTypeChange = (e) => {
@@ -102,8 +102,8 @@ export default function EditHistory({ budget }) {
     setDate(newData);
   };
 
-  const handlePicherError = (e) => {
-    setDatePicherError(e);
+  const handlePickerError = (e) => {
+    setDatePickerError(e);
   };
 
   const handleEditBudget = async () => {
@@ -141,7 +141,7 @@ export default function EditHistory({ budget }) {
     || name === ''
     || amount === ''
     || date === null
-    || datePicherError !== ''
+    || datePickerError !== ''
   );
 
   const doneDisabled = (isEmpty || isPreviousValue);
@@ -225,7 +225,7 @@ export default function EditHistory({ budget }) {
             label={<FormattedMessage id="date" />}
             value={date}
             onChange={handleDateChange}
-            onError={handlePicherError}
+            onError={handlePickerError}
             cancelLabel={<FormattedMessage id="cancel" />}
             okLabel={<FormattedMessage id="ok" />}
             KeyboardButtonProps={{

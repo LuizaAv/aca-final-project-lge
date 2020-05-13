@@ -17,7 +17,7 @@ import Search from '../../components/Search/Search';
 import View from '../../components/View/View';
 import Snackbars from '../../components/Snackbars/Snackbars';
 import { currencySign } from '../../globals/constants';
-import { formatingAmount } from '../../globals/helpers';
+import { formattingAmount } from '../../globals/helpers';
 import useStyles from './History.style';
 
 function filterByDate(budget, date) {
@@ -118,7 +118,7 @@ export default function History() {
 
                   <Typography>
                     {item.type === 'expense' ? '-' : '+'}
-                    {formatingAmount(item.amount)}
+                    {formattingAmount(item.amount)}
                     {` ${currencySign[currency]}`}
                   </Typography>
 

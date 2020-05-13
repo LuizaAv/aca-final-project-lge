@@ -19,7 +19,7 @@ import View from '../../components/View/View';
 import { ReactComponent as ArrowDownwardIcon } from '../../assets/icons/Arrow-down.svg';
 import { ReactComponent as ArrowUpwardIcon } from '../../assets/icons/Arrow-up.svg';
 import { currencySign } from '../../globals/constants';
-import { formatingAmount } from '../../globals/helpers';
+import { formattingAmount } from '../../globals/helpers';
 import useStyles from './Summary.style';
 
 export default function Categories() {
@@ -103,7 +103,7 @@ export default function Categories() {
                 </TableCell>
                 <TableCell className={classes.content} align="right">
                   {(item.type === 'expense' ? '-' : '+')}
-                  {formatingAmount(item.amount)}
+                  {formattingAmount(item.amount)}
                   {` ${currencySign[currency]}`}
                 </TableCell>
               </TableRow>

@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import { useStoreContext } from '../../store/storeContext';
 import Header from '../../components/Header/Header';
 import View from '../../components/View/View';
-import CartType from './ChartType/ChartType';
+import ChartType from './ChartType/ChartType';
 import useStyles from './Charts.style';
 
 export default function Charts() {
@@ -100,7 +100,7 @@ export default function Charts() {
 
       <div className={classes.tools}>
         <View isCurrent={isCurrent} setIsCurrent={setIsCurrent} />
-        <CartType type={type} setType={setType} />
+        <ChartType type={type} setType={setType} />
       </div>
 
       <Typography

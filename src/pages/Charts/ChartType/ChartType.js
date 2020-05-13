@@ -8,7 +8,7 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import useStyles from './ChartType.style';
 
-export default function Type({ type, setType }) {
+export default function ChartType({ type, setType }) {
   const classes = useStyles();
 
   const handleChange = (e) => {
@@ -46,7 +46,7 @@ export default function Type({ type, setType }) {
   );
 }
 
-Type.propTypes = {
+ChartType.propTypes = {
   type: propTypes.string.isRequired,
   setType: propTypes.func.isRequired,
 };

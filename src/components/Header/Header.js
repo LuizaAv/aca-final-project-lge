@@ -8,7 +8,7 @@ import { useStoreContext } from '../../store/storeContext';
 import { useMainContext } from '../../pages/Main/mainContext';
 import AddBudget from '../AddBudget/AddBudget';
 import { currencySign } from '../../globals/constants';
-import { formatingAmount } from '../../globals/helpers';
+import { formattingAmount } from '../../globals/helpers';
 import useStyles from './Header.style';
 
 export default function Header() {
@@ -54,33 +54,33 @@ export default function Header() {
   const amount = [
     {
       name: 'balance',
-      currentAmount: formatingAmount(currentBalance),
-      upcomingAmount: formatingAmount(upcomingBalance),
-      totalAmount: formatingAmount(totalBalance),
+      currentAmount: formattingAmount(currentBalance),
+      upcomingAmount: formattingAmount(upcomingBalance),
+      totalAmount: formattingAmount(totalBalance),
     },
     {
       name: 'income',
       currentAmount: currentAmountIncome === 0
         ? currentAmountIncome
-        : `+${formatingAmount(currentAmountIncome)}`,
+        : `+${formattingAmount(currentAmountIncome)}`,
       upcomingAmount: upcomingAmountIncome === 0
         ? upcomingAmountIncome
-        : `+${formatingAmount(upcomingAmountIncome)}`,
+        : `+${formattingAmount(upcomingAmountIncome)}`,
       totalAmount: totalAmountIncome === 0
         ? totalAmountIncome
-        : `+${formatingAmount(totalAmountIncome)}`,
+        : `+${formattingAmount(totalAmountIncome)}`,
     },
     {
       name: 'expense',
       currentAmount: currentAmountExpense === 0
         ? currentAmountExpense
-        : `-${formatingAmount(currentAmountExpense)}`,
+        : `-${formattingAmount(currentAmountExpense)}`,
       upcomingAmount: upcomingAmountExpense === 0
         ? upcomingAmountExpense
-        : `-${formatingAmount(upcomingAmountExpense)}`,
+        : `-${formattingAmount(upcomingAmountExpense)}`,
       totalAmount: totalAmountExpense === 0
         ? totalAmountExpense
-        : `-${formatingAmount(totalAmountExpense)}`,
+        : `-${formattingAmount(totalAmountExpense)}`,
     },
   ];
 

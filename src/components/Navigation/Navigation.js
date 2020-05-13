@@ -42,7 +42,7 @@ export default function Navigation() {
     }
   };
 
-  const handlselectCurrency = (e) => {
+  const handleSelectCurrency = (e) => {
     setCurrency(e.target.value);
   };
 
@@ -152,7 +152,7 @@ export default function Navigation() {
               classes={{ root: classes.selectRoot }}
               variant="outlined"
               value={currency}
-              onChange={handlselectCurrency}
+              onChange={handleSelectCurrency}
               label={<FormattedMessage id="currency" />}
             >
               {selectCurrency.map((item) => (

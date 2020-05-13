@@ -40,7 +40,6 @@ export default function Categories() {
         <FilterType filterType={filterType} setFilterType={setFilterType} />
       </div>
 
-
       <TableContainer component={Paper} className={classes.tableContainer}>
         <Typography className={classes.title}>
           <FormattedMessage id="categories" />
@@ -80,8 +79,6 @@ export default function Categories() {
           </TableBody>
         </Table>
       </TableContainer>
-
-
       <Snackbars />
     </div>
   );
