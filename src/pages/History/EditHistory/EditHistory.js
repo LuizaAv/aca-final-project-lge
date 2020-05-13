@@ -41,7 +41,7 @@ const localeMap = {
 export default function EditHistory({ budget }) {
   const classes = useStyles();
   const { state, dispatch } = useStoreContext();
-  const { rate, currency, language } = useMainContext();
+  const { rate, currency } = useMainContext();
   const { locale } = useLanguageContext();
   const { setLoading } = useLoadingContext();
   const initialCategory = state.categories.find((category) => category.id === budget.categoryId);
