@@ -23,6 +23,7 @@ import Snackbars from '../Snackbars/Snackbars';
 import { addBudget } from '../../store/actions';
 import { useStoreContext } from '../../store/storeContext';
 import { useMainContext } from '../../pages/Main/mainContext';
+import { useLanguageContext } from '../../languages/languageContext';
 import { dbAddBudget } from '../../API/dbActions';
 import { currencySign } from '../../globals/constants';
 import { useSnackbarContext } from '../Snackbars/snackbarContext';
@@ -38,7 +39,8 @@ const localeMap = {
 export default function AddBudget() {
   const classes = useStyles();
   const { state, dispatch } = useStoreContext();
-  const { rate, currency, language } = useMainContext();
+  const { rate, currency } = useMainContext();
+  const { locale } = useLanguageContext();
   const { setLoading } = useLoadingContext();
   const [type, setType] = useState('');
   const [name, setName] = useState('');
@@ -210,7 +212,7 @@ export default function AddBudget() {
           }}
         />
 
-        <MuiPickersUtilsProvider utils={DateFnsUtils} locale={localeMap[language]}>
+        <MuiPickersUtilsProvider utils={DateFnsUtils} locale={localeMap[locale]}>
           <KeyboardDatePicker
             className={classes.date}
             format="dd/MM/yyyy"

@@ -23,6 +23,7 @@ import EditIcon from '@material-ui/icons/Edit';
 
 import { useStoreContext } from '../../../store/storeContext';
 import { useMainContext } from '../../Main/mainContext';
+import { useLanguageContext } from '../../../languages/languageContext';
 import { useLoadingContext } from '../../../components/Loading/loadingContext';
 import { dbEditBudget } from '../../../API/dbActions';
 import { editBudget } from '../../../store/actions';
@@ -41,6 +42,7 @@ export default function EditHistory({ budget }) {
   const classes = useStyles();
   const { state, dispatch } = useStoreContext();
   const { rate, currency, language } = useMainContext();
+  const { locale } = useLanguageContext();
   const { setLoading } = useLoadingContext();
   const initialCategory = state.categories.find((category) => category.id === budget.categoryId);
   const [categoryName, setCategoryName] = useState(initialCategory.name);
@@ -215,7 +217,7 @@ export default function EditHistory({ budget }) {
           }}
         />
 
-        <MuiPickersUtilsProvider utils={DateFnsUtils} locale={localeMap[language]}>
+        <MuiPickersUtilsProvider utils={DateFnsUtils} locale={localeMap[locale]}>
           <KeyboardDatePicker
             className={classes.date}
             format="dd/MM/yyyy"
