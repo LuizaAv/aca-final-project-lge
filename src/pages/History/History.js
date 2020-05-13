@@ -134,7 +134,7 @@ export default function History() {
       <Pagination
         count={countPages}
         page={page}
-        onChange={(e, vlaue) => setPage(vlaue)}
+        onChange={(e, value) => setPage(value)}
         variant="outlined"
         color="secondary"
         className={classes.pagination}

@@ -14,7 +14,7 @@ export default function snackbarReducer(state, action) {
     case EDIT:
       return { severity: 'success', message: 'snackbarEdit', open: true };
     case DELETE:
-      return { severity: 'success', message: 'snackbarDelet', open: true };
+      return { severity: 'success', message: 'snackbarDelete', open: true };
     case CANCEL:
       return { severity: 'warning', message: 'snackbarCancel', open: true };
     case ERROR:

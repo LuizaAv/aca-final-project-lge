@@ -171,7 +171,7 @@ export default function AddBudget() {
         <DialogTitle
           className={
             type === 'expense'
-              ? classes.titleExpence
+              ? classes.titleExpense
               : classes.titleIncome
           }
         >

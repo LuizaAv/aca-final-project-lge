@@ -42,9 +42,9 @@
   "action": "Action",
   "editCategory": "Edit Category",
   "date": "Date",
-  "snackbarAdd": "Added succesfully",
+  "snackbarAdd": "Added successfully",
   "snackbarEdit": "Edited successfully",
-  "snackbarDelet": "Deleted successfully",
+  "snackbarDelete": "Deleted successfully",
   "snackbarCancel": "The action is canceled",
   "snackbarError": "Error: Server is not responding",
   "byDate": "By Date",
@@ -59,7 +59,7 @@
   "chartsHelp": "This page introduces types of income and costs categories in red and green colors respectively. The graphs introduce pattern of income and costs changes in a  certain  period  of time. This section also has a filtering option. The  first option filters data by current  and  upcoming  costs  and  income, while the second one allows to choose the graph according to the date and amount. ",
   "edit": "Edit",
   "delete": "Delete",
-  "language": "Laguage",
+  "language": "Language",
   "currency": "Currency",
   "isCategoryUsed": "Category is already in use"
 }

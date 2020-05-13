@@ -40,7 +40,7 @@ export default makeStyles((theme) => ({
     color: theme.palette.common.white,
     textAlign: 'center',
   },
-  titleExpence: {
+  titleExpense: {
     backgroundColor: theme.palette.secondary.light,
     color: theme.palette.common.white,
     textAlign: 'center',
