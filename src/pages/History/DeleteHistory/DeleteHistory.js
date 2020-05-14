@@ -21,9 +21,9 @@ import useStyles from './DeleteHistory.style';
 export default function DeleteHistory({ budgetId }) {
   const classes = useStyles();
   const { dispatch } = useStoreContext();
-  const [open, setOpen] = useState(false);
   const { snackbarDispatch } = useSnackbarContext();
   const { setLoading } = useLoadingContext();
+  const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
     setOpen(true);

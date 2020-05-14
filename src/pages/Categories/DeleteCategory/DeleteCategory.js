@@ -22,8 +22,8 @@ export default function DeleteCategory({ categoryId }) {
   const classes = useStyles();
   const { state, dispatch } = useStoreContext();
   const { setLoading } = useLoadingContext();
-  const [open, setOpen] = useState(false);
   const { snackbarDispatch } = useSnackbarContext();
+  const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
     setOpen(true);

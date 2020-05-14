@@ -29,12 +29,12 @@ export default function EditCategory({ category }) {
   const classes = useStyles();
   const { state, dispatch } = useStoreContext();
   const { setLoading } = useLoadingContext();
+  const { snackbarDispatch } = useSnackbarContext();
   const [type, setType] = useState(category.type);
   const [name, setName] = useState(category.name);
   const [color, setColor] = useState(category.color);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
-  const { snackbarDispatch } = useSnackbarContext();
 
   const handleOpen = () => {
     setDialogOpen(true);

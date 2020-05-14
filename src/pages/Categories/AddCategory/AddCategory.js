@@ -26,12 +26,12 @@ export default function AddCategory() {
   const classes = useStyles();
   const { state, dispatch } = useStoreContext();
   const { setLoading } = useLoadingContext();
+  const { snackbarDispatch } = useSnackbarContext();
   const [type, setType] = useState('');
   const [name, setName] = useState('');
   const [color, setColor] = useState('');
   const [dialogOpen, setDialogOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
-  const { snackbarDispatch } = useSnackbarContext();
 
   const handleDialogOpen = () => {
     setDialogOpen(true);

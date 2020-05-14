@@ -44,6 +44,7 @@ export default function EditHistory({ budget }) {
   const { rate, currency } = useMainContext();
   const { locale } = useLanguageContext();
   const { setLoading } = useLoadingContext();
+  const { snackbarDispatch } = useSnackbarContext();
   const initialCategory = state.categories.find((category) => category.id === budget.categoryId);
   const [categoryName, setCategoryName] = useState(initialCategory.name);
   const [type, setType] = useState(budget.type);
@@ -51,8 +52,7 @@ export default function EditHistory({ budget }) {
   const [amount, setAmount] = useState(budget.amount);
   const [date, setDate] = useState(budget.date);
   const [datePickerError, setDatePickerError] = useState('');
-  const [open, setOpen] = useState(false);
-  const { snackbarDispatch } = useSnackbarContext();
+  const [open, setOpen] = useState(false); 
 
   useEffect(() => {
     setAmount(budget.amount);

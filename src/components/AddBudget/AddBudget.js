@@ -42,6 +42,7 @@ export default function AddBudget() {
   const { rate, currency } = useMainContext();
   const { locale } = useLanguageContext();
   const { setLoading } = useLoadingContext();
+  const { snackbarDispatch } = useSnackbarContext();
   const [type, setType] = useState('');
   const [name, setName] = useState('');
   const [categoryName, setCategoryName] = useState('');
@@ -49,7 +50,6 @@ export default function AddBudget() {
   const [date, setDate] = useState(new Date());
   const [datePickerError, setDatePickerError] = useState('');
   const [dialogOpen, setDialogOpen] = useState(false);
-  const { snackbarDispatch } = useSnackbarContext();
 
   const handleDialogClose = () => {
     setDialogOpen(false);
