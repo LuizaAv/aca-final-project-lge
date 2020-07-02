@@ -1,4 +1,5 @@
-const URL = 'http://localhost:3010';
+// const URL = 'http://localhost:3010';
+const URL = 'https://my-json-server.typicode.com/LuizaAv/aca-final-project-lge';
 
 export const dbGetCategory = async () => {
   const response = await fetch(`${URL}/categories`);
