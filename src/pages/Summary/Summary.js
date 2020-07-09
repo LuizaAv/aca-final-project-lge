@@ -43,7 +43,7 @@ export default function Categories() {
   const sumAmountsItems = uniqueCategoryItems.map((uniqueItem) => {
     const amount = showItems.reduce(
       (acc, item) => (
-        item.category === uniqueItem.category && item.type === uniqueItem.type
+        item.categoryId === uniqueItem.categoryId && item.type === uniqueItem.type
           ? acc + +item.amount
           : acc),
       0,
